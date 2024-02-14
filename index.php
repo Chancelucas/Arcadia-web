@@ -13,6 +13,8 @@
     <header>
         <?php
         require_once 'views/componants/navbar.php';
+        include_once 'config/connected_bdd.php';
+
         ?>
 
         <h1>Bienvenu chez ARCADIA</h1>

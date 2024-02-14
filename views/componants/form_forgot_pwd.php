@@ -1,4 +1,4 @@
-<form action="login.php" method="post">
+<form action="login_page.php" method="post">
     <div>
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>

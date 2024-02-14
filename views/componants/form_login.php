@@ -1,16 +1,25 @@
-<form action="login.php" method="post">
+
+<form action="../public/login_page.php" method="post">
     <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="email" name="email" placeholder="Email" value="<?php if(isset($email)){echo $email;}?>">
     </div>
     <div>
-        <label for="password">Mot de passe:</label>
-        <input type="password" id="password" name="password" required>
+        <input type="password" id="password" name="password" placeholder="Mot de passe" value="<?php if(isset($password)){echo $password;}?>" >
     </div>
     <div>
-        <input type="submit" value="Connexion">
+        <input type="submit" value="Connexion" name="connection">
     </div>
 </form>
 <div>
     <a href="forgot_password_page.php">Mot de passe oublié ?</a>
 </div>
+
+<?php if(isset($err_email)){echo $err_email;}?>
+
+
+<?php
+
+require_once '../../controllers/AuthController.php';
+
+
+?>
