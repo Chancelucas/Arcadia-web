@@ -10,13 +10,21 @@
 </head>
 
 <body>
+
     <header>
         <?php
         require_once 'views/componants/navbar.php';
+        require 'config/dsn.php'
         ?>
-
-        <h1>Bienvenu chez ARCADIA</h1>
     </header>
+
+    <div id="body_home">
+        <h1>ARCADIA</h1>
+        <a href="views/pages/public/home_page.php"><button class="button type1">
+                <span class="btn-txt">Acceder au site</span>
+            </button></a>
+    </div>
+
 </body>
 
 </html>
