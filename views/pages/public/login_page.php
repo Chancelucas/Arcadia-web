@@ -1,9 +1,9 @@
 <!-- css -->
-<link rel="stylesheet" media="screen" href="../../../public/css/style.css" type="text/css">
+<link rel="stylesheet" media="screen" href="/public/css/style.css" type="text/css">
 
 <!-- php -->
 <?php
-require_once '../../../views/componants/navbar.php';
+require_once '../../componants/navbar.php';
 ?>
 
 <!-- end insert doc -->
@@ -11,7 +11,6 @@ require_once '../../../views/componants/navbar.php';
 <h2>Connexion</h2>
 
 <?php
-
+require_once '../../../config/dsn.php';
 require_once '../../componants/form_login.php';
-
 ?>

@@ -1,66 +1,84 @@
 <?php
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+require_once '../../../controllers/HomeController.php';
+require_once '../../../config/dsn.php';
 
 
-var_dump($_POST);
+session_start();
 
-if (!empty($_POST)) {
-    $email = $_POST['email'] ?? '';
-    $password = $_POST['password'] ?? '';
-    $valid = (bool) true;
+if(isset($_POST['connection'])){
+    if(!empty($_POST['email']) && !empty($_POST['password'])){
+        // Connexion à la base de données
+        $pdo = connectToDatabase();
 
-    if (isset($_POST['connection'])) {
-        $email = trim($email);
-        $password = trim($password);
+        // Préparation de la requête SQL pour récupérer l'utilisateur en fonction de l'email
+        $stmt = $pdo->prepare('SELECT * FROM User WHERE email = :email');
+        $stmt->bindParam(':email', $_POST['email']);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if (empty($email)) {
-            $valid = false;
-            $err_email = "Ce champ ne peux pas être vide";
-        }
-        if (empty($password)) {
-            $valid = false;
-            $err_password = "Ce champ ne peux pas être vide";
-        }
-
-        if ($valid) {
-            echo 'ok';
+        // Vérification si l'utilisateur existe et si le mot de passe est correct
+        if ($user && password_verify($_POST['password'], $user['password'])) {
+            $_SESSION['user_id'] = $user['id']; // Sauvegarde de l'identifiant de l'utilisateur en session si nécessaire
+            header('Location: ../admin/admin_dashboard.php');
+            exit(); // Important pour arrêter l'exécution du script après la redirection
         } else {
-            echo 'nok';
+            echo "Votre mot de passe ou email est incorrect";
         }
+
+    } else {
+        echo "Veuillez compléter tous les champs";
     }
 }
 
 
 
 
-var_dump($_POST);
 
-if (!empty($_POST)) {
-    $email = $_POST['email'] ?? '';
-    $password = $_POST['password'] ?? '';
-    $valid = (bool) true;
 
-    if (isset($_POST['connection'])) {
-        $email = trim($email);
-        $password = trim($password);
+// if(isset($_POST['connection'])){
+//     if(!empty($_POST['email']) AND !empty($_POST['password'])){
+//         $email_defaut = $bdd->prepare('SELECT * FROM Users WHERE email');
+//         $password_defaut = $bdd->prepare('SELECT * FROM Users WHERE password');
 
-        if (empty($email)) {
-            $valid = false;
-            $err_email = "Ce champ ne peux pas être vide";
-        }
-        if (empty($password)) {
-            $valid = false;
-            $err_password = "Ce champ ne peux pas être vide";
-        }
+//         $email_write = htmlspecialchars($_POST['email']);
+//         $password_write = htmlspecialchars($_POST['password']);
 
-        if ($valid) {
-            echo 'ok';
-        } else {
-            echo 'nok';
-        }
-    }
-}
+//         if ($email_write == $email_defaut AND $password_write == $password_defaut) {
+//             $_SESSION['password'] = $password_write ;
+//             header('Location: ../admin/admin_dashboard.php');
+//         }else {
+//             echo "Votre mot de passe ou email et incorrect";
+//         }
 
+//     }else{
+//         echo "Veuillez compléter les tous champs";
+//     }
+// }
+
+
+
+
+
+// if(isset($_POST['connection'])){
+//     if(!empty($_POST['email']) AND !empty($_POST['password'])){
+//         $email_defaut = "lucas.studi24@gmail.com";
+//         $password_defaut = "123456";
+
+//         $email_write = htmlspecialchars($_POST['email']);
+//         $password_write = htmlspecialchars($_POST['password']);
+
+//         if ($email_write == $email_defaut AND $password_write == $password_defaut) {
+//             $_SESSION['password'] = $password_write ;
+//             header('Location: ../admin/admin_dashboard.php');
+//         }else {
+//             echo "Votre mot de passe ou email et incorrect";
+//         }
+
+//     }else{
+//         echo "Veuillez compléter les tous champs";
+//     }
+// }
+
+
+
+?>
