@@ -12,7 +12,6 @@ require_once '../../../views/componants/navbar.php';
 
 <?php
 
-require_once '../../../views/componants/form_login.php';
-
+require_once '../../componants/form_login.php';
 
 ?>
