@@ -1,5 +1,88 @@
+@import url(config/config.css);
+@import url(pages/public/home_page.css);
+@import url(pages/public/services_page.css);
+@import url(pages/public/habitats_page.css);
+@import url(pages/public/login_page.css);
+@import url(pages/public/contact_page.css);
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: inherit;
+    
+}
+
 body {
+    background-color: var(--main-white-color);
+    color: var(--main-shadow-color);
+    font-family: var(--font-family);
 
-background-color: red;
+}
 
+#body_home{
+    background: linear-gradient(0deg,rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) , url('../../assets/images/mike-marrah-gRB4Euk4BYQ-unsplash\ \(1\).jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto, cover;
+    height: 100vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+    flex-direction: column
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    color: var(--main-white-color);
+    font-size: 10em;
+
+}
+
+.button {
+    height: 50px;
+    width: 200px;
+    position: relative;
+    background-color: transparent;
+    cursor: pointer;
+    border: 2px solid var(--main-white-color);
+    overflow: hidden;
+    border-radius: 30px;
+    color: var(--main-white-color);
+    transition: all 0.5s ease-in-out;
+}
+
+.btn-txt {
+    z-index: 1;
+    font-weight: 800;
+    letter-spacing: 4px;
+}
+
+.type1::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: all 0.5s ease-in-out;
+    background-color: var(--main-white-color);
+    border-radius: 30px;
+    visibility: hidden;
+    height: 10px;
+    width: 10px;
+    z-index: -1;
+}
+
+.button:hover {
+    box-shadow: 1px 1px 200px var(--main-white-color);
+    color: var(--main-white-color);
+    border: none;
+}
+
+.type1:hover::after {
+    visibility: visible;
+    transform: scale(100) translateX(2px);
 }

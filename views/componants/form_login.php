@@ -14,3 +14,15 @@
 <div>
     <a href="forgot_password_page.php">Mot de passe oublié ?</a>
 </div>
+
+<?php if(isset($err_email)){echo $err_email;}?>
+
+
+<?php
+
+
+require_once '../../controllers/AuthController.php';
+
+
+
+?>
