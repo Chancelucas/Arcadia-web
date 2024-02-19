@@ -1,4 +1,4 @@
-<form action="../public/login_page.php" method="POST">
+<form action="../../../controllers/AuthController.php" method="POST">
     <div>
         <input 
             type="email" 
@@ -27,6 +27,4 @@
 
 <?php if(isset($err_email)){echo $err_email;}?>
 
-<?php
-require_once '../../../controllers/AuthController.php';
-?>
+
