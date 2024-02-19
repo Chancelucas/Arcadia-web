@@ -1,5 +1,3 @@
-
-
 <nav>
     <ul>
         <li><a href="/views/pages/public/home_page.php">Accueil</a></li>

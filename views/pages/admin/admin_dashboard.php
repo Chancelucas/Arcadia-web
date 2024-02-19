@@ -1,4 +1,5 @@
 <?php
+require_once '../../componants/admin/admin_navbar.php';
 
 session_start();
 
