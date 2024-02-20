@@ -1,10 +1,8 @@
-@import url(config/config.css);
-@import url(pages/public/home_page.css);
-@import url(pages/public/services_page.css);
-@import url(pages/public/habitats_page.css);
-@import url(pages/public/login_page.css);
-@import url(pages/public/contact_page.css);
-
+@import url(/public/css/config/config.css);
+@import url(/public/css/pages/public/home_page.css);
+@import url(/public/css/pages/admin/admin_dashboard.css);
+@import url(/public/css/pages/employee/employee_dashboard.css);
+@import url(/public/css/pages/vet/vet_dashboard.css);
 
 *{
     margin: 0;

@@ -14,7 +14,7 @@ if (isset($_POST['connection'])) {
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($user) {
-            if ($_POST['password'] == $user['password']) {
+            if (password_verify($_POST['password'], $user['password'])) {
                 $_SESSION['user_id'] = $user['userId'];
                 if ($user['roleId'] == 1 ) {
                     header('Location: ../../../views/pages/admin/admin_dashboard.php');
