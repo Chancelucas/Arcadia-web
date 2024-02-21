@@ -8,15 +8,20 @@
     <title>Connexion</title>
 </head>
 
-<body>
+<body id="body_login_page">
+
     <?php require_once '../../componants/navbar.php'; ?>
 
-    <h2>Connexion</h2>
+    <main id="main_login_page">
+        <div id="form_login_page">
+            <?php
+            require_once '../../../config/dsn.php';
+            require_once '../../componants/form_login.php';
+            ?>
+        </div>
 
-    <?php
-    require_once '../../../config/dsn.php';
-    require_once '../../componants/form_login.php';
-    ?>
+    </main>
+
 
 </body>
 
