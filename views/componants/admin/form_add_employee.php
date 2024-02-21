@@ -20,7 +20,10 @@ require_once '../../../controllers/crud/admin/CreateUser.php'
         </select>
     </div>
     <div>
-        <button type="submit" value="Create_employee" name="Create_employee">Créer</button>
+        <button type="submit" value="Create_employee" name="Create_employee"><img src="../../../../assets/images/icons/add.svg" alt="btn-add"></button>
+    </div>
+    <div>
+        <button type="submit" value="search" name="search"><img src="../../../assets/images/icons/recherche.svg" alt="" srcset=""></button>
     </div>
 </form>
 
