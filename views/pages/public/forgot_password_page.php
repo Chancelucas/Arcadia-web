@@ -1,16 +1,20 @@
-<!-- css -->
-<link rel="stylesheet" media="screen" href="../../../public/css/style.css" type="text/css">
+<!DOCTYPE html>
+<html lang="fr">
 
-<!-- php -->
-<?php
-require_once '../../../views/componants/navbar.php';
-?>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" media="screen" href="../../../public/css/style.css" type="text/css">
 
-<!-- end insert doc -->
+    <title>Mot de passe oublier</title>
+</head>
 
-<h2>Mot de passe oublier</h2>
+<body>
 
-<?php
-require_once '../../componants/form_forgot_pwd.php';
+    <?php
+    require_once '../../../views/componants/navbar.php';
+    ?>
+    <h2>Mot de passe oublier</h2>
+</body>
 
-?>
+</html>

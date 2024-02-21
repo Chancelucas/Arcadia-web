@@ -1,2 +1,4 @@
-@import url(../../componants/navbar.css);
+@import url(/public/css/componants/public/navbar.css);
+@import url(/public/css/config/config.css);
+
 
