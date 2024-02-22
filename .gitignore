@@ -1,2 +1,4 @@
-/config/
-/sql/
+config/config.php
+/vendor/
+composer.json
+composer.lock
