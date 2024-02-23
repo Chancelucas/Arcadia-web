@@ -24,3 +24,9 @@
                     'secure' => truegit 
             ]
             ]);
+
+
+
+Infos sur le projet : 
+
+Dans le fichier script ce trouve un fichier create_admin.php pour crée un administrateur lors de la premier connection. Il faut bien penser a supprier ce compte et de crée un autre vrai profil admin si sera vraiemnt sécuriser. 

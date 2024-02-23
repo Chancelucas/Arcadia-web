@@ -6,7 +6,7 @@
 @media screen and (max-width : 768px) {
     #body_login_page{
         height: 100vh;
-        background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7))  ,url(../../../../assets/images/image/mike-marrah-gRB4Euk4BYQ-unsplash\ \(1\).jpg);
+        background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7))  ,url(https://res.cloudinary.com/dnelvhydy/image/upload/v1708608309/samples/animals/mike-marrah-gRB4Euk4BYQ-unsplash_1_sdxsql.jpg);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -30,7 +30,7 @@
 @media screen and (min-width: 769px) and (max-width: 1024px) {
     #body_login_page{
         height: 100vh;
-        background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7))  ,url(../../../../assets/images/image/mike-marrah-gRB4Euk4BYQ-unsplash\ \(1\).jpg);
+        background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7))  ,url(https://res.cloudinary.com/dnelvhydy/image/upload/v1708608309/samples/animals/mike-marrah-gRB4Euk4BYQ-unsplash_1_sdxsql.jpg);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -53,7 +53,7 @@
 @media screen and (min-width: 1025px) {
     #body_login_page{
         height: 100vh;
-        background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7))  ,url(../../../../assets/images/image/mike-marrah-gRB4Euk4BYQ-unsplash\ \(1\).jpg);
+        background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7))  ,url(https://res.cloudinary.com/dnelvhydy/image/upload/v1708608309/samples/animals/mike-marrah-gRB4Euk4BYQ-unsplash_1_sdxsql.jpg);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;

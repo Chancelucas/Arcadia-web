@@ -1,9 +1,9 @@
-<form action="../../../controllers/AuthController.php" method="POST" class="formulaire" id="form_login">
+<form method="POST" class="formulaire" id="form_login" action="../../../controllers/AuthController.php">
     <div class="input_text_login input_login">
-        <input type="email" id="email" name="email" placeholder="Email" require value="<?php if (isset($email)) {echo $email;} ?>" class="input" id="input_email_login">
+        <input type="email" id="email" name="email" placeholder="Email" required value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>" class="input" id="input_email_login">
     </div>
     <div class="input_text_login input_login">
-        <input type="password" id="password" name="password" placeholder="Mot de passe" require value="<?php if (isset($password)) {echo $password;} ?>" class="input" id="input_password_login">
+        <input type="password" id="password" name="password" placeholder="Mot de passe" required value="<?php echo isset($password) ? htmlspecialchars($password) : ''; ?>" class="input" id="input_password_login">
     </div>
     <div class="input_btn_login input_login">
         <input type="submit" value="Connexion" name="connection" id="btn_connect_login" class="btn">
@@ -14,5 +14,5 @@
 </div>
 
 <?php if (isset($err_email)) {
-    echo $err_email;
+    echo htmlspecialchars($err_email);
 } ?>

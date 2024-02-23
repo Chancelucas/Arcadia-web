@@ -1,41 +1,40 @@
 <?php
 
 require_once '../config/dsn.php';
-
+require_once 'HomeController.php';
+require_once '../scripts/create_admin.php';
 
 session_start();
 $pdo = connectToDatabase();
 
-
 if (isset($_POST['connection'])) {
     if (!empty($_POST['email']) && !empty($_POST['password'])) {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
         $stmt = $pdo->prepare('SELECT * FROM User WHERE email = :email');
-        $stmt->bindParam(':email', $_POST['email']);
+        $stmt->bindParam(':email', $email);
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
         if ($user) {
-            if (password_verify($_POST['password'], $user['password'])) {
-                $_SESSION['user_id'] = $user['userId'];
-                if ($user['roleId'] == 1 ) {
-                    header('Location: ../../../views/pages/admin/admin_dashboard.php');
-                    exit();
-                } elseif ($user['roleId'] == 2) {
-                    header('Location: ../../../views/pages/employee/employee_dashboard.php'); 
-                    exit();
-                } elseif ($user['roleId'] == 3) {
-                    header('Location: ../../../views/pages/vet/vet_dashboard.php');
-                    exit();
+            if ($user['roleId'] == 1) {
+                $adminPassword = $user['password'];
+                $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+                if (password_verify($password, $adminPassword)) {
+                    $_SESSION['user_id'] = $user['userId'];
+                    HomeController::displayDashboard($user['roleId']);
                 } else {
-                    echo "Page introuvable";
+                    $err_email = "Mot de passe incorrect";
                 }
             } else {
-                echo "Votre mot de passe ou email est incorrect";
+                $err_email = "Vous n'êtes pas autorisé à accéder à cette fonctionnalité.";
             }
         } else {
-            echo "Aucun utilisateur trouvé avec cet email";
+            $err_email = "Aucun utilisateur trouvé avec cet email";
         }
     } else {
-        echo "Veuillez compléter tous les champs";
+        $err_email = "Veuillez compléter tous les champs";
     }
 }
-
+?>

@@ -8,7 +8,7 @@ CREATE TABLE User (
     userId INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(50) UNIQUE NOT NULL,
     email VARCHAR(255) NOT NULL,
-    password CHAR(60) NOT NULL,
+    password VARCHAR(255) NOT NULL,
     roleId INT,
     FOREIGN KEY (roleId) REFERENCES Role(roleId)
 );
@@ -17,7 +17,8 @@ CREATE TABLE User (
 CREATE TABLE Habitat (
     habitatId INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255),
-    description TEXT
+    description TEXT,
+    photo_url VARCHAR(255)
 );
 
 CREATE TABLE Animal (
@@ -53,10 +54,6 @@ CREATE TABLE Service (
 );
 
 INSERT INTO Role (roleName) VALUES ('admin'), ('employee'), ('veterinarian');
-INSERT INTO User (username, email, password, roleId) VALUES ('bfciuyea', 'admin@test.com', '123', 1);
-INSERT INTO User (username, email, password, roleId) VALUES ('aaaaa', 'a@a', 'a', 1);
-INSERT INTO User (username, email, password, roleId) VALUES ('btgrfreshr', 'employee@test.com', '123', 2);
-INSERT INTO User (username, email, password, roleId) VALUES ('feazffrez', 'vet@test.com', '123', 3);
 
 INSERT INTO Animal (name, breed) VALUES ('Léo', 'Lion');
 INSERT INTO Animal (name, breed) VALUES ('Milo', 'Tigre');

@@ -31,7 +31,7 @@ body {
     
     
     #body_home{
-        background: linear-gradient(0deg,rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) , url('../../assets/images/image/mike-marrah-gRB4Euk4BYQ-unsplash\ \(1\).jpg');
+        background: linear-gradient(0deg,rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) , url(https://res.cloudinary.com/dnelvhydy/image/upload/v1708608309/samples/animals/mike-marrah-gRB4Euk4BYQ-unsplash_1_sdxsql.jpg);
         background-position: center;
         background-repeat: no-repeat;
         background-size: auto, cover;
@@ -108,7 +108,7 @@ body {
 }
 
 #body_home{
-    background: linear-gradient(0deg,rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) , url('../../assets/images/image/mike-marrah-gRB4Euk4BYQ-unsplash\ \(1\).jpg');
+    background: linear-gradient(0deg,rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) , url(https://res.cloudinary.com/dnelvhydy/image/upload/v1708608309/samples/animals/mike-marrah-gRB4Euk4BYQ-unsplash_1_sdxsql.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: auto, cover;
