@@ -35,7 +35,7 @@
             <div id="user_creaded_admin">
                 <div class="item"><?= $user['username']; ?></div>
                 <div class="item"><?= $user['email']; ?></div>
-                <div class="item role"><?= $user['roleId']; ?></div>
+                <div class="item role"><?= $user['roleName']; ?></div>
 
                 <div class="btn_gestion_user">
                     <a href="../../../controllers/crud/admin/ModifyUser.php?userId=<?= $user['userId']; ?>"><img src="../../../assets/images/icons/modifier.svg" alt="btn-supprier"></a>

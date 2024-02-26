@@ -1,20 +1,20 @@
 <?php
 class HomeController
 {
-    public static function displayDashboard($roleId)
+    public static function displayDashboard($roleName)
     {
-        if ($roleId == 1) {
+        if ($roleName == 'Admin') {
             header('Location: ../../../views/pages/admin/admin_dashboard.php');
-            exit(); // Ajout de exit() pour terminer le script après la redirection
-        } elseif ($roleId == 2) {
+            exit(); 
+        } elseif ($roleName == 'Employer') {
             header('Location: ../../../views/pages/employee/employee_dashboard.php');
-            exit(); // Ajout de exit() pour terminer le script après la redirection
-        } elseif ($roleId == 3) {
+            exit(); 
+        } elseif ($roleName == 'Vétérinaire') {
             header('Location: ../../../views/pages/vet/vet_dashboard.php');
-            exit(); // Ajout de exit() pour terminer le script après la redirection
+            exit(); 
         } else {
             echo "Rôle non reconnu";
-            exit(); // Assurez-vous de terminer le script si le rôle n'est pas reconnu
+            exit(); 
         }
     }
 }

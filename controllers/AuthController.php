@@ -2,7 +2,7 @@
 
 require_once '../config/dsn.php';
 require_once 'HomeController.php';
-require_once '../scripts/create_admin.php';
+include_once '../scripts/create_admin.php';
 
 session_start();
 $pdo = connectToDatabase();
@@ -12,23 +12,18 @@ if (isset($_POST['connection'])) {
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $stmt = $pdo->prepare('SELECT * FROM User WHERE email = :email');
+        $stmt = $pdo->prepare('SELECT User.*, Role.roleName FROM User INNER JOIN Role ON User.roleName = Role.roleName WHERE email = :email');
         $stmt->bindParam(':email', $email);
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user) {
-            if ($user['roleId'] == 1) {
-                $adminPassword = $user['password'];
-                $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-                if (password_verify($password, $adminPassword)) {
-                    $_SESSION['user_id'] = $user['userId'];
-                    HomeController::displayDashboard($user['roleId']);
-                } else {
-                    $err_email = "Mot de passe incorrect";
-                }
+            $hashedPassword = $user['password'];
+            if (password_verify($password, $hashedPassword)) {
+                $_SESSION['user_id'] = $user['userId'];
+                HomeController::displayDashboard($user['roleName']);
             } else {
-                $err_email = "Vous n'êtes pas autorisé à accéder à cette fonctionnalité.";
+                $err_email = "Mot de passe incorrect";
             }
         } else {
             $err_email = "Aucun utilisateur trouvé avec cet email";

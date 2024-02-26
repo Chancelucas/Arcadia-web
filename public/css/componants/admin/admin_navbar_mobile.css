@@ -10,6 +10,7 @@
         border-top: 1px solid var(--main-clear-color);
         height: 80px;
         min-width: 300px;
+        z-index: 100;
     }
     
     #admin_navbar > #ul_links_admin {

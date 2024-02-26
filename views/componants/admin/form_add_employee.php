@@ -13,10 +13,10 @@ require_once '../../../controllers/crud/admin/CreateUser.php'
         <input type="password" id="password" name="password" placeholder="Mot de passe">
     </div>
     <div>
-        <select id="roleId" name="roleId" required>
-            <option value="1">Admin</option>
-            <option value="2">Employé</option>
-            <option value="3">Vétérinaire</option>
+        <select id="roleName" name="roleName" required>
+            <option value="Admin">Admin</option>
+            <option value="Employer">Employer</option>
+            <option value="Vétérinaire">Vétérinaire</option>
         </select>
     </div>
     <div>

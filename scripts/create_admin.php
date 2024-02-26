@@ -4,21 +4,21 @@ require_once '../config/dsn.php';
 
 $pdo = connectToDatabase();
 
-$username = 'a supprier'; //User non securiser a supprimer lors de la permier connection
+$username = 'a supprimer'; 
 $email = 'a@a';
 $password = 'a'; 
 
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-$roleId = 1;
+$roleName = 'Admin'; 
 
 try {
-    $stmt = $pdo->prepare('INSERT INTO User (username, email, password, roleId) VALUES (:username, :email, :password, :roleId)');
+    $stmt = $pdo->prepare('INSERT INTO User (username, email, password, roleName) VALUES (:username, :email, :password, :roleName)');
 
     $stmt->bindParam(':username', $username);
     $stmt->bindParam(':email', $email);
     $stmt->bindParam(':password', $hashedPassword);
-    $stmt->bindParam(':roleId', $roleId);
+    $stmt->bindParam(':roleName', $roleName);
 
     $stmt->execute();
 

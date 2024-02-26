@@ -9,8 +9,8 @@ CREATE TABLE User (
     username VARCHAR(50) UNIQUE NOT NULL,
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    roleId INT,
-    FOREIGN KEY (roleId) REFERENCES Role(roleId)
+    roleName VARCHAR(50),
+    FOREIGN KEY (roleName) REFERENCES Role(roleName)
 );
 
 
@@ -53,7 +53,7 @@ CREATE TABLE Service (
     description TEXT
 );
 
-INSERT INTO Role (roleName) VALUES ('admin'), ('employee'), ('veterinarian');
+INSERT INTO Role (roleName) VALUES ('Admin'), ('Employer'), ('Vétérinaire');
 
 INSERT INTO Animal (name, breed) VALUES ('Léo', 'Lion');
 INSERT INTO Animal (name, breed) VALUES ('Milo', 'Tigre');
