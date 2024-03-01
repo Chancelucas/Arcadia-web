@@ -1,4 +1,4 @@
-config/config.php
-/vendor/
+lib/config/
+public/vendor/
 composer.json
 composer.lock
