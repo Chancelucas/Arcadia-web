@@ -1,0 +1,142 @@
+@import url(/public/css/config/config.css);
+
+@media screen and (max-width: 768px) {
+    #admin_navbar {
+        background-color: var(--main-shadow-color);
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        border-top: 1px solid var(--main-clear-color);
+        height: 80px;
+        min-width: 300px;
+        z-index: 100;
+    }
+    
+    #admin_navbar > #ul_links_admin {
+        list-style: none;
+        text-align: center;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 100%;
+    }
+    
+    #admin_navbar > #ul_links_admin > li {
+        display: inline-block;
+        font-size: 10px;
+    } 
+    
+    #admin_navbar > #ul_links_admin > li > a > img {
+        height: 30px;
+    }
+    
+    #admin_navbar > #ul_links_admin > li > .link:link,
+    #admin_navbar > #ul_links_admin > li > .link:visited {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        text-decoration: none;
+        color: var(--main-white-color);
+        padding: 0 1em 0 1em;
+    }
+    
+    #admin_navbar > #ul_links_admin > li > .link:hover,
+    #admin_navbar > #ul_links_admin > li > .link:active,
+    #admin_navbar > #ul_links_admin > li > .link:focus {
+        color: var(--main-clear-color);
+        border-radius: 10px;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px){
+    #admin_navbar {
+        background-color: var(--main-shadow-color);
+        border-top: 1px solid var(--main-clear-color);
+        height: 80px;
+        min-width: 300px;
+    }
+    
+    #admin_navbar > #ul_links_admin {
+        list-style: none;
+        text-align: center;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 100%;
+    }
+    
+    #admin_navbar > #ul_links_admin > li {
+        display: inline-block;
+        font-size: 1em;
+    }
+    
+    #admin_navbar > #ul_links_admin > li > a > img {
+        display: none;
+    }
+    
+    #admin_navbar > #ul_links_admin > li > .link:link,
+    #admin_navbar > #ul_links_admin > li > .link:visited {
+        display: block;
+        cursor: pointer;
+        text-decoration: none;
+        color: var(--main-white-color);
+        padding: 0 10px 0 10px;
+    }
+    
+    #admin_navbar > #ul_links_admin > li > .link:hover,
+    #admin_navbar > #ul_links_admin > li > .link:active,
+    #admin_navbar > #ul_links_admin > li > .link:focus {
+        color: var(--main-clear-color);
+        border-radius: 10px;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    #admin_navbar {
+        background-color: var(--main-shadow-color);
+        border-top: 1px solid var(--main-clear-color);
+        height: 80px;
+        min-width: 300px;
+        display: flex;
+        justify-content: center;
+        
+    }
+    
+    #admin_navbar > #ul_links_admin {
+        list-style: none;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        max-width: 1440px;
+    }
+    
+    #admin_navbar > #ul_links_admin > li {
+        display: inline-block;
+        font-size: 1em;
+        margin: 0 3em 0 3em;
+    }
+    
+    #admin_navbar > #ul_links_admin > li > a > img {
+        display: none;
+    }
+    
+    #admin_navbar > #ul_links_admin > li > .link:link,
+    #admin_navbar > #ul_links_admin > li > .link:visited {
+        display: block;
+        cursor: pointer;
+        text-decoration: none;
+        color: var(--main-white-color);
+        padding: 0 10px 0 10px;
+    }
+    
+    #admin_navbar > #ul_links_admin > li > .link:hover,
+    #admin_navbar > #ul_links_admin > li > .link:active,
+    #admin_navbar > #ul_links_admin > li > .link:focus {
+        color: var(--main-clear-color);
+        border-radius: 10px;
+    }
+}
