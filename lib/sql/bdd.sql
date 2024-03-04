@@ -1,70 +1,61 @@
 CREATE TABLE Role (
-    roleId INT PRIMARY KEY AUTO_INCREMENT,
-    roleName VARCHAR(50) UNIQUE NOT NULL
+    id_Role INT PRIMARY KEY AUTO_INCREMENT,
+    role VARCHAR(50) UNIQUE NOT NULL
 );
 
 
 CREATE TABLE User (
-    userId INT PRIMARY KEY AUTO_INCREMENT,
+    id_User INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(50) UNIQUE NOT NULL,
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    roleName VARCHAR(50),
-    FOREIGN KEY (roleName) REFERENCES Role(roleName)
+    role VARCHAR(50),
+    FOREIGN KEY (role) REFERENCES Role(role)
 );
 
 
 CREATE TABLE Habitat (
-    habitatId INT PRIMARY KEY AUTO_INCREMENT,
+    id_Habitat INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255),
     description TEXT,
     photo_url VARCHAR(255)
 );
 
 CREATE TABLE Animal (
-    animalId INT PRIMARY KEY AUTO_INCREMENT,
+    id_Animal INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255),
     breed VARCHAR(255),
-    habitatId INT,
-    FOREIGN KEY (habitatId) REFERENCES Habitat(habitatId)
+    id_Habitat INT,
+    FOREIGN KEY (id_Habitat) REFERENCES Habitat(id_Habitat)
 );
 
 CREATE TABLE AnimalReport (
-    reportId INT PRIMARY KEY AUTO_INCREMENT,
-    animalId INT,
+    id_AnimalReport INT PRIMARY KEY AUTO_INCREMENT,
     state VARCHAR(255),
     proposedFood VARCHAR(255),
     foodAmount INT,
     passageDate DATE,
     stateDetail TEXT,
-    FOREIGN KEY (animalId) REFERENCES Animal(animalId)
+    id_Animal INT,
+    FOREIGN KEY (id_Animal) REFERENCES Animal(id_Animal)
 );
 
 CREATE TABLE Review (
-    reviewId INT PRIMARY KEY AUTO_INCREMENT,
+    id_Review INT PRIMARY KEY AUTO_INCREMENT,
     pseudo VARCHAR(255),
     review TEXT,
     status VARCHAR(255)
 );
 
 CREATE TABLE Service (
-    serviceId INT PRIMARY KEY AUTO_INCREMENT,
+    id_Service INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255),
     description TEXT
 );
 
-INSERT INTO Role (roleName) VALUES ('Admin'), ('Employer'), ('Vétérinaire');
+INSERT INTO Role (role) VALUES ('Admin'), ('Employer'), ('Vétérinaire');
 
-INSERT INTO Animal (name, breed) VALUES ('Léo', 'Lion');
-INSERT INTO Animal (name, breed) VALUES ('Milo', 'Tigre');
-INSERT INTO Animal (name, breed) VALUES ('Luna', 'Panthère');
-INSERT INTO Animal (name, breed) VALUES ('Max', 'Jaguar');
-INSERT INTO Animal (name, breed) VALUES ('Bella', 'Lynx');
-INSERT INTO Animal (name, breed) VALUES ('Simba', 'Leopard');
-INSERT INTO Animal (name, breed) VALUES ('Nala', 'Guépard');
-INSERT INTO Animal (name, breed) VALUES ('Rocky', 'Ours');
-INSERT INTO Animal (name, breed) VALUES ('Buddy', 'Loup');
-INSERT INTO Animal (name, breed) VALUES ('Ginger', 'Renard');
+
 
 
 
