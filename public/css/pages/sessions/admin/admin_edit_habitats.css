@@ -1,5 +1,5 @@
-@import url(/public/css/config/config.css);
-@import url(/public/css//templates/sessions/admin/admin_form_habitat.css);
+@import url(/css/config/config.css);
+@import url(/css//templates/sessions/admin/admin_form_habitat.css);
 
 
 @media screen and (max-width : 768px) {

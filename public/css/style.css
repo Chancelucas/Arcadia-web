@@ -1,9 +1,9 @@
-@import url(/public/css/config/config.css);
-@import url(/public/css/templates/navbar.css);
-@import url(/public/css/pages/home_page.css);
-@import url(/public/css/pages/sessions/admin/admin_dashboard.css);
-@import url(/public/css/pages/sessions/employee/employee_dashboard.css);
-@import url(/public/css/pages/sessions/vet/vet_dashboard.css);
+@import url(/css/config/config.css);
+@import url(/css/templates/navbar.css);
+@import url(/css/pages/home_page.css);
+@import url(/css/pages/sessions/admin/admin_dashboard.css);
+@import url(/css/pages/sessions/employee/employee_dashboard.css);
+@import url(/css/pages/sessions/vet/vet_dashboard.css);
 
 *{
     margin: 0;
@@ -21,15 +21,14 @@ body {
 }
 
 @media screen and (max-width : 768px) {
-    
+
 }
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
-    
+
 }
 
 @media screen and (min-width: 1025px) {
-    
     
     #body_home{
         background: linear-gradient(0deg,rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) , url(https://res.cloudinary.com/dnelvhydy/image/upload/v1708608309/samples/animals/mike-marrah-gRB4Euk4BYQ-unsplash_1_sdxsql.jpg);

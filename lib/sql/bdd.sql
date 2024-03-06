@@ -55,6 +55,12 @@ CREATE TABLE Service (
 
 INSERT INTO Role (role) VALUES ('Admin'), ('Employer'), ('Vétérinaire');
 
+INSERT INTO User (username, email, password, role) VALUES ('fregreaagera', 'admin@admin.com', 'azerty', 'Admin');
+INSERT INTO User (username, email, password, role) VALUES ('Admgferazfgerain', 'Employerr@Employerr.com', 'azerty', 'Employer');
+INSERT INTO User (username, email, password, role) VALUES ('Agreagreadmin', 'Vétérinaire@Vétérinaire.com', 'azerty', 'Vétérinaire');
+INSERT INTO User (username, email, password, role) VALUES ('Admgreagreain', 'Vétérinairee@Vétérinairee.com', 'azerty', 'Vétérinaire');
+
+
 
 
 

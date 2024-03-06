@@ -1,3 +1,3 @@
 <?php
 
-namespace Source\Models\templates;
+namespace Source\Models\pages;

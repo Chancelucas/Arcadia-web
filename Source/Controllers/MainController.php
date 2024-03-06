@@ -4,8 +4,19 @@ namespace Source\Controllers;
 
 class MainController extends Controller
 {
+
+    /**
+     * Displays WelcomPage
+     * 
+     */
     public function index()
     {
-        echo "Ceci est la page d'accueil";
+        
+        $this->render('Page/welcomePage');
+
+        // POUR AVOIR DEUX TEMPLATE
+        // $this->render('Page/welcomePage', [], 'home');
+
+
     }
 }

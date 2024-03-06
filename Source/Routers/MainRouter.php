@@ -2,10 +2,8 @@
 
 namespace Source\Routers;
 
-use Source\Models\templates\UserModel;
-
 /**
- * router principal
+ * Router principal
  * 
  */
 class MainRouter
@@ -29,10 +27,11 @@ class MainRouter
         $action = (isset($params[0])) ? array_shift($params) : 'index';
 
         $controllerClass = '\\Source\\controllers\\' . $controllerName;
+
         $controller = new $controllerClass();
 
         if (method_exists($controller, $action)) {
-            (isset($params[0])) ? $controller->$action($params) : $controller->$action();
+            (isset($params[0])) ? call_user_func_array([$controller, $action], $params) : $controller->$action();
         } else {
             http_response_code(404);
             echo "La page recherchée n'existe pas";

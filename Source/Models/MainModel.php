@@ -113,4 +113,15 @@ class MainModel extends Database
             return $this->database->query($sql);
         }
     }
+
+    public function hydrate(array $data)
+    {
+        foreach($data as $key => $value){
+            $setter = 'set'.ucfirst($key);
+            if(method_exists($this, $setter)){
+                $this->$setter($value);
+            }
+        }
+        return $this;
+    }
 }
