@@ -39,21 +39,21 @@ class AdminUserController extends AdminController
     {
         $form = new Form;
 
-        $form->startForm('POST', '#', [])
+        $form->startForm('POST', '/adminUser')
 
-            ->startDiv(['id' => 'input_create_username'])
+            ->startDiv(['id' => 'div_create_username'])
             ->addInput('text', 'username', ['id' => 'username', 'placeholder' => 'Nom', 'required'])
             ->endDiv()
 
-            ->startDiv(['id' => 'input_create_email'])
+            ->startDiv(['id' => 'div_create_email'])
             ->addInput('email', 'email', ['id' => 'email', 'placeholder' => 'Email', 'required'])
             ->endDiv()
 
-            ->startDiv(['id' => 'input_create_password'])
+            ->startDiv(['id' => 'div_create_password'])
             ->addInput('password', 'password', ['id' => 'password', 'placeholder' => 'Mot de passe'])
             ->endDiv()
             
-            ->startDiv(['id' => 'input_create_role'])
+            ->startDiv(['id' => 'div_create_role'])
             ->addSelect('roleName', ['Admin', 'Employer', 'Vétérinaire'], ['required'])
             ->endDiv()
 
