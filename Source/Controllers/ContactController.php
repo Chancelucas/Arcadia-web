@@ -2,7 +2,7 @@
 
 namespace Source\Controllers;
 
-class MainController extends Controller
+class ContactController extends Controller
 {
 
     /**
@@ -11,6 +11,6 @@ class MainController extends Controller
      */
     public function index()
     {
-        $this->render('main/welcome');
+        $this->render('contact/contact', [] , 'defaultPublicPage');
     }
 }

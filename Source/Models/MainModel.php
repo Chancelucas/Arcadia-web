@@ -19,6 +19,7 @@ class MainModel extends Database
 {
     protected $table;
     private $database;
+    protected $id;
 
     public function getId($id, $table)
     {
@@ -44,26 +45,25 @@ class MainModel extends Database
         }
 
         $fieldsString = implode(' AND ', $fields);
-        
         return $this->request('SELECT * FROM ' .$this->table.' WHERE '.$fieldsString, $values)->fetchAll();
     }
 
     //find
     public function find(int $id)
     {
-        return $this->request('SELECT * FROM'. $this->table . "WHERE id = ". $id)->fetch();
+        return $this->request('SELECT * FROM '. $this->table . "WHERE id = ". $id)->fetch();
     }
 
     //create
-    public function create(MainModel $model)
+    public function create()
     {
         $fields = [];
         $in = [];
         $values = [];
 
-        foreach($model as $field => $value){
+        foreach($this as $field => $value){
 
-            if($value != null && $field != 'database' && $field != 'table')
+            if($value !== null && $field != 'database' && $field != 'table')
             $fields[] = "$field";
             $in[] = "?";
             $values[] = $value;
@@ -76,19 +76,19 @@ class MainModel extends Database
     }
 
     //update
-    public function update(int $id, MainModel $model)
+    public function update()
     {
         $fields = [];
         $values = [];
 
-        foreach($model as $field => $value){
+        foreach($this as $field => $value){
 
             if($value !== null && $field != 'database' && $field != 'table')
             $fields[] = "$field = ?";
             $values[] = $value;
         }
 
-        $value[] = $id;
+        $values[] = $this->id;
         $fieldsString = implode(', ', $fields);
 
         return $this->request('UPDATE ' .$this->table.' SET '.$fieldsString. ' WHERE id = ?' , $values);
@@ -114,7 +114,7 @@ class MainModel extends Database
         }
     }
 
-    public function hydrate(array $data)
+    public function hydrate($data)
     {
         foreach($data as $key => $value){
             $setter = 'set'.ucfirst($key);

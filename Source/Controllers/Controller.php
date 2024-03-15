@@ -3,7 +3,7 @@
 namespace Source\Controllers;
 
 /**
- * Controller princial
+ * Controller princial for web site
  * 
  */
 

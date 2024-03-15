@@ -21,10 +21,9 @@ class Autoloader
             $file = ROOT . DIRECTORY_SEPARATOR . $content . DIRECTORY_SEPARATOR . $class . '.php';
             if (file_exists($file)) {
                 require_once $file;
-                return; 
+                return;
             }
         }
         echo "Le fichier de classe pour $class n'a pas été trouvé dans les dossiers racines spécifiés.";
     }
 }
-

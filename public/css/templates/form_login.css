@@ -1,101 +1,35 @@
 @import url(/css/config/config.css);
 
-
-@media screen and (max-width : 768px) {
-    
-    #main_login_page > #form_login_page > #form_login {
+#main_login_page > #form_login_page > #form_login {
     display: flex;
     flex-direction: column;
     align-items: center;
-    }
-
-    .formulaire > .input_login > input {
-        border-radius: 3px;
-        background-color: var(--main-clear-color);
-        padding: 0.5rem 5rem 0.5rem 1rem;
-        margin-bottom: 10px;
-        border: none;
-        color: var(--main-shadow-color);
-    }
-
-    .formulaire > .input_login > input::placeholder {
-        color: var(--main-shadow-color);
-    }
-
-    .formulaire > .input_btn_login > input {
-        margin: 20px 0 20px 0;
-        padding: 5px 50px 5px 50px;
-        border-radius: 20px;
-    }
-
-    #link_forgot_login_page > #link_login {
-        color: var(--main-normal-color);
-        text-decoration: none;
-        font-size: 12px;
-    }
 }
 
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-    #main_login_page > #form_login_page > #form_login {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .formulaire > .input_login > input {
-        border-radius: 3px;
-        background-color: var(--main-clear-color);
-        padding: 0.5rem 6rem 0.5rem 1rem;
-        margin-bottom: 10px;
-        border: none;
-        color: var(--main-shadow-color);
-    }
-    
-    .formulaire > .input_login > input::placeholder {
-        color: var(--main-shadow-color);
-    }
-    
-    .formulaire > .input_btn_login > input {
-        margin: 20px 0 20px 0;
-        padding: 5px 50px 5px 50px;
-        border-radius: 20px;
-    }
-
-    #link_forgot_login_page > #link_login {
-        color: var(--main-normal-color);
-        text-decoration: none;
-        font-size: 12px;
-    }
+.formulaire > .input_login > .input_text_login {
+    border-radius: 3px;
+    background-color: var(--main-clear-color);
+    padding: 0.5rem 10rem 0.5rem 1rem;
+    margin-bottom: 10px;
+    border: none;
+    color: var(--main-shadow-color);
 }
 
-@media screen and (min-width: 1025px) {
-    #main_login_page > #form_login_page > #form_login {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .formulaire > .input_login > input {
-        border-radius: 3px;
-        background-color: var(--main-clear-color);
-        padding: 0.5rem 10rem 0.5rem 1rem;
-        margin-bottom: 10px;
-        border: none;
-        color: var(--main-shadow-color);
-    }
-    
-    .formulaire > .input_login > input::placeholder {
-        color: var(--main-shadow-color);
-    }
-    
-    .formulaire > .input_btn_login > input {
-        margin: 20px 0 20px 0;
-        padding: 5px 50px 5px 50px;
-        border-radius: 20px;
-    }
-    #link_forgot_login_page > #link_login {
-        color: var(--main-normal-color);
-        text-decoration: none;
-        font-size: 12px;
-    }
+.formulaire > .input_login > .input_text_login::placeholder {
+    color: var(--main-shadow-color);
+}
+
+.formulaire > .input_btn_login > #btn_connect_login {
+    margin: 20px 0 20px 0;
+    padding: 5px 50px 5px 50px;
+    border-radius: 20px;
+    border: none;
+    background-color: var(--main-clear-color);
+    color: var(--main-shadow-color);
+    cursor: pointer;
+}
+#link_forgot_login_page > #link_login {
+    color: var(--main-normal-color);
+    text-decoration: none;
+    font-size: 12px;
 }

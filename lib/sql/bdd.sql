@@ -59,6 +59,8 @@ INSERT INTO User (username, email, password, role) VALUES ('fregreaagera', 'admi
 INSERT INTO User (username, email, password, role) VALUES ('Admgferazfgerain', 'Employerr@Employerr.com', 'azerty', 'Employer');
 INSERT INTO User (username, email, password, role) VALUES ('Agreagreadmin', 'Vétérinaire@Vétérinaire.com', 'azerty', 'Vétérinaire');
 INSERT INTO User (username, email, password, role) VALUES ('Admgreagreain', 'Vétérinairee@Vétérinairee.com', 'azerty', 'Vétérinaire');
+INSERT INTO User (username, email, password, role) VALUES ('gtrzgtrz', 'a@a', 'a', 'Admin');
+
 
 
 

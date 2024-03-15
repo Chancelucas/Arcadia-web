@@ -14,15 +14,13 @@
         <?php require_once ROOT . '/Source/Views/public/templates/navbar.php'; ?>
     </header>
 
-    <main>
-        <div class="container">
-            <?= $containe; ?>
-        </div>
-    </main>
+    <?= $containe ;?>
 
     <footer>
         <?php require_once ROOT . '/Source/Views/public/templates/footer.php'; ?>
     </footer>
+
+<script src="/js/pages/menu_script.js"></script>
 
 </body>
 

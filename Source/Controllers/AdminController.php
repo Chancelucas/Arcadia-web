@@ -2,21 +2,25 @@
 
 namespace Source\Controllers;
 
-use Source\Controllers\Controller;
+/**
+ * Controller princial for web site
+ * 
+ */
 
-class AdminController extends Controller
+abstract class AdminController 
 {
-    public function index()
+    public function render(string $file, array $data = [], string $template = 'defaultSessionPage')
     {
-        // if($this->isAdmin()){
-            
-        // }
-    }
 
-    public function idAdmin()
-    {
-        if(isset($_SESSION['user']) && in_array('nameRole', $_SESSION['user']['role'])){
-            
-        }
+        extract($data);
+
+        ob_start();
+
+        require_once ROOT . '/Source/Views/Session/'.$file. '.php';
+
+        $containe = ob_get_clean(); 
+
+        require_once ROOT . '/Source/Views/Session/' . $template . '.php';
+
     }
 }
