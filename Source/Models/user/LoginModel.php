@@ -8,7 +8,7 @@ use Source\Models\user\UserModel;
 class LoginModel extends MainModel
 {
 
-    protected $table = 'user';
+    protected $table = 'User';
     protected $userModel;
 
     public function __construct()

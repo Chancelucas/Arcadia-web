@@ -1,4 +1,4 @@
-<form action="/app/views/pages/admin/admin_create_user.php" method="POST">
+<form action="/app/views/pages/admin/admin_create_user.php" method="POST" >
     <div>
         <input type="text" id="username" name="username" placeholder="Nom" required>
     </div>

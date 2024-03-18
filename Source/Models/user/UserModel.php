@@ -32,6 +32,18 @@ class UserModel extends MainModel
         ];
     }
 
+    public function getAllUser()
+    {
+        $usersModel = $this->findAll();
+        return $usersModel;
+    }
+
+    public function createUser()
+    {
+        $createUser = $this->create();
+        return $createUser;
+    }
+
     /**
      * Get the value of id_user
      */ 
