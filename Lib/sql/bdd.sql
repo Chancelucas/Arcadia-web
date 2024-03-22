@@ -1,6 +1,6 @@
 CREATE TABLE Role (
     id_Role INT PRIMARY KEY AUTO_INCREMENT,
-    role VARCHAR(50) UNIQUE NOT NULL
+    role VARCHAR(50)UNIQUE NOT NULL
 );
 
 
@@ -9,7 +9,7 @@ CREATE TABLE User (
     username VARCHAR(50) UNIQUE NOT NULL,
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    role VARCHAR(50),
+    role VARCHAR(50) NOT NULL,
     FOREIGN KEY (role) REFERENCES Role(role)
 );
 
@@ -55,16 +55,10 @@ CREATE TABLE Service (
 
 INSERT INTO Role (role) VALUES ('Admin'), ('Employer'), ('Vétérinaire');
 
-INSERT INTO User (username, email, password, role) VALUES ('fregreaagera', 'admin@admin.com', 'azerty', 'Admin');
-INSERT INTO User (username, email, password, role) VALUES ('Admgferazfgerain', 'Employerr@Employerr.com', 'azerty', 'Employer');
-INSERT INTO User (username, email, password, role) VALUES ('Agreagreadmin', 'Vétérinaire@Vétérinaire.com', 'azerty', 'Vétérinaire');
-INSERT INTO User (username, email, password, role) VALUES ('Admgreagreain', 'Vétérinairee@Vétérinairee.com', 'azerty', 'Vétérinaire');
-INSERT INTO User (username, email, password, role) VALUES ('gtrzgtrz', 'a@a', 'a', 'Admin');
-
-
-
-
-
-
+-- INSERT INTO User (username, email, password, role) VALUES ('fregreaagera', 'admin@admin.com', 'azerty', 'Admin');
+-- INSERT INTO User (username, email, password, role) VALUES ('Admgferazfgerain', 'Employerr@Employerr.com', 'azerty', 'Employer');
+-- INSERT INTO User (username, email, password, role) VALUES ('Agreagreadmin', 'Vétérinaire@Vétérinaire.com', 'azerty', 'Vétérinaire');
+-- INSERT INTO User (username, email, password, role) VALUES ('Admgreagreain', 'Vétérinairee@Vétérinairee.com', 'azerty', 'Vétérinaire');
+-- INSERT INTO User (username, email, password, role) VALUES ('gtrzgtrz', 'a@a', 'a', 'Admin');
 
 

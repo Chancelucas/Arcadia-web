@@ -3,47 +3,36 @@
 namespace Source\Controllers;
 
 use Lib\config\Form;
+use Source\Models\MainModel;
 use Source\Models\user\UserModel;
 use Source\Controllers\AdminController;
+
 
 class AdminUserController extends AdminController
 {
     /**
-     * Affiche tout les employer de la BDD
-     * 
+     * Affiche tous les employés de la BDD avec le formulaire de création d'utilisateur.
      */
     public function index()
     {
-        $valideForm = $this->createUser();
         $createUserForm = $this->generateCreateUserForm();
         $users = $this->showAllUsers();
-        $this->render('adminUser/adminUser',['createUserForm' => $createUserForm, 'users' => $users]);
+        $deleteUser = $this->deleteUser();
+        $updateUser = $this->updateUser();
+        $this->render('adminUser/adminUser', ['createUserForm' => $createUserForm, 'users' => $users, 'deleteUser' => $deleteUser, 'updateUser' => $updateUser]);
     }
 
-    //validedForm
-    public function validedForm()
-    {
-        if (Form::validate($_POST, ['username', 'email', 'password'])) {
-            $username = strip_tags($_POST['username']);
-            $email = strip_tags($_POST['email']);
-            $pass = password_hash($_POST['password'], PASSWORD_BCRYPT);
-
-            $user = new UserModel;
-
-            $user->setEmail($email)
-                ->setPassword($pass)
-                ->setUsername($username);
-
-            $user->create();
-        }
-    }
-
-    //generateCreateUserForm
+    /**
+     * Génère le formulaire de création d'utilisateur.
+     */
     public function generateCreateUserForm()
     {
+        $createUser = $this->createUser();
+        $roles = $this->getRolesFromDatabase();
+
         $form = new Form;
 
-        $form->startForm('POST', '/adminUser')
+        $form->startForm('POST', '')
             ->startDiv(['id' => 'div_create_username', 'class' => 'div_create'])
             ->addInput('text', 'username', ['id' => 'username', 'placeholder' => 'Nom', 'required'])
             ->endDiv()
@@ -54,54 +43,109 @@ class AdminUserController extends AdminController
             ->addInput('password', 'password', ['id' => 'password', 'placeholder' => 'Mot de passe'])
             ->endDiv()
             ->startDiv(['id' => 'div_create_role', 'class' => 'div_create'])
-            ->addSelect('roleName', ['Admin', 'Employer', 'Vétérinaire'], ['required'])
+            ->addSelect('role', $roles, ['required'])
             ->endDiv()
             ->startDiv(['class' => 'input_btn_login input_login div_create'])
-            ->addBouton('Crée', ['type' => 'submit', 'value' => 'Create_employee', 'name' => 'Create_employee', 'id' => 'btn_add_user'])
+            ->addBouton('Créer', ['type' => 'submit', 'value' => 'submit', 'id' => 'btn_add_user', 'name' => 'createUser'])
             ->endDiv()
             ->endForm();
 
-            return $form->create();
+
+        return $form->create();
     }
 
-    //createUser
+    /**
+     * Traite la soumission du formulaire de création d'utilisateur.
+     */
     public function createUser()
     {
-        if (Form::validate($_POST, ['username', 'email', 'password', 'roleName'])) {
-            $username = strip_tags($_POST['username']);
-            $email = strip_tags($_POST['email']);
-            $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-            $role = strip_tags($_POST['roleName']);
+        if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST['createUser'])) {
+            $username = $_POST['username'];
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            $role = $_POST['role'];
 
-            $user = new UserModel;
-            $user->setUsername($username)
-                ->setEmail($email)
-                ->setPassword($password)
-                ->setRole($role)
-                ->create();
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            header('Location: /adminUser');
-            exit;
+            $existingUser = (new UserModel)->findOneByEmail($email);
+
+            if ($role === '1') {
+                $roleName = 'Admin';
+            } elseif ($role === '2') {
+                $roleName = 'Employer';
+            } elseif ($role === '3') {
+                $roleName = 'Vétérinaire';
+            } else {
+                echo "Rôle non reconnu";
+                return;
+            }
+
+            if ($existingUser) {
+                echo "Le nom d'utilisateur ou l'adresse e-mail est déjà utilisé.";
+            } else {
+                try {
+                    $user = new UserModel;
+
+                    $user->setUsername($username)
+                        ->setEmail($email)
+                        ->setPassword($hashedPassword)
+                        ->setRole($roleName);
+
+                    $user->createUser();
+
+                    $_SESSION['message'] = "L'utilisateur a été créé avec succès.";
+                } catch (\Exception $e) {
+
+                    $_SESSION['error'] = "Une erreur s'est produite lors de la création de l'utilisateur : " . $e->getMessage();
+                }
+            }
         } else {
-            $_SESSION['error'] = "Le formulaire est incomplet";
+            $_SESSION['error'] = "Aucun utilisateur n'a été renseigné";
         }
     }
 
 
-    public function updateUser()
-    {
-
-    }
-
-    public function deleteUser()
-    {
-
-    }
-
+    /**
+     * Affiche tous les utilisateurs de la base de données.
+     */
     public function showAllUsers()
     {
         $usersModel = new UserModel;
-        $users =  $usersModel->getAllUser();
-        return $users;
+        return $usersModel->getAllUser();
+    }
+
+    //getRolesFromDatabase
+    public function getRolesFromDatabase()
+    {
+        $rolesModel = new MainModel;
+        $roles = $rolesModel->findAll('Role');
+        $roleOptions = [];
+
+        foreach ($roles as $role) {
+            $roleOptions[$role->id_Role] = $role->role;
+        }
+
+        return $roleOptions;
+    }
+
+    //deleteUser
+    public function deleteUser()
+    {
+        if (isset($_POST['deleteUser'])) {
+            $userId = new UserModel; 
+            $getIdUser = $userId->findOneById($userId);
+            $deleteUser = $userModel->delete($userId); 
+
+            if ($deleteUser) {
+                $_SESSION['message'] = "Utilisateur supprimé avec succès.";
+            } else {
+                $_SESSION['error'] = "Une erreur s'est produite lors de la suppression de l'utilisateur.";
+            }
+        }
+    }
+
+    //updateUser
+    public function updateUser()
+    {
     }
 }
