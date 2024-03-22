@@ -16,7 +16,7 @@ class AdminUserController extends AdminController
     public function index()
     {
         $createUserForm = $this->generateCreateUserForm();
-        $users = $this->showAllUsers();
+        $users = $this->getAllUsers();
         $deleteUser = $this->deleteUser();
         $updateUser = $this->updateUser();
         $this->render('adminUser/adminUser', ['createUserForm' => $createUserForm, 'users' => $users, 'deleteUser' => $deleteUser, 'updateUser' => $updateUser]);
@@ -106,9 +106,9 @@ class AdminUserController extends AdminController
 
 
     /**
-     * Affiche tous les utilisateurs de la base de données.
+     * Récupère tous les utilisateurs de la base de données.
      */
-    public function showAllUsers()
+    public function getAllUsers()
     {
         $usersModel = new UserModel;
         return $usersModel->getAllUser();
@@ -132,9 +132,9 @@ class AdminUserController extends AdminController
     public function deleteUser()
     {
         if (isset($_POST['deleteUser'])) {
-            $userId = new UserModel; 
-            $getIdUser = $userId->findOneById($userId);
-            $deleteUser = $userModel->delete($userId); 
+            $userModel = new UserModel;
+            $userId = intval($_POST['id_user']);
+            $deleteUser = $userModel->delete($userId);
 
             if ($deleteUser) {
                 $_SESSION['message'] = "Utilisateur supprimé avec succès.";

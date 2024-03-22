@@ -50,11 +50,10 @@ class UserModel extends MainModel
         return $this->create();
     }
 
-    public function getDeleteUser()
+    public function delete(int $id)
     {
-        return $this->delete($this->id_user);
+        return $this->request("DELETE FROM {$this->table} WHERE id_User = ?", [$id])->fetch();
     }
-
 
     public function updateUser()
     {

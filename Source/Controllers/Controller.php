@@ -21,7 +21,7 @@ abstract class Controller
 
         require_once ROOT . '/Source/Views/Public/'.$file. '.php';
 
-        $containe = ob_get_clean(); 
+        $containe = ob_get_clean();
 
         require_once ROOT . '/Source/Views/Public/' . $template . '.php';
 

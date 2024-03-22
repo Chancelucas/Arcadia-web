@@ -7,8 +7,16 @@ namespace Source\Controllers;
  * 
  */
 
-abstract class AdminController 
+abstract class AdminController
 {
+
+    public function index()
+    {
+        // SESSION ??
+        return true;
+        return false;
+    }
+
     public function render(string $file, array $data = [], string $template = 'defaultSessionPage')
     {
 
@@ -16,11 +24,10 @@ abstract class AdminController
 
         ob_start();
 
-        require_once ROOT . '/Source/Views/Session/'.$file. '.php';
+        require_once ROOT . '/Source/Views/Session/' . $file . '.php';
 
-        $containe = ob_get_clean(); 
+        $containe = ob_get_clean();
 
         require_once ROOT . '/Source/Views/Session/' . $template . '.php';
-
     }
 }

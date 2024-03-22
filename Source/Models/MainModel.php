@@ -98,10 +98,7 @@ class MainModel extends Database
     }
 
     //delete
-    public function delete(int $id)
-    {
-        return $this->request("DELETE FROM {$this->table} WHERE id = ?", [$id]);
-    }
+    // abstract protected function delete(int $id);
 
     //request
     public function request(string $sql, array $attributes = null)
