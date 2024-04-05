@@ -18,24 +18,16 @@ class LoginModel extends MainModel
 
     //authenticate
     public function authenticate(string $email, string $password)
-{
-    $user = $this->userModel->findOneByEmail($email);
+    {
+        $user = $this->userModel->findOneByEmail($email);
 
-    if ($user && password_verify($password, $user->password)) {
+        if ($user && password_verify($password, $user->getPassword())) {
 
-        $_SESSION['user'] = [
-            'id_user' => $user->id_user,
-            'email' => $user->email,
-            'username' => $user->username,
-            'role' => $user->role,
-        ];
+            $user->setSession();
 
-        return true;
+            return true;
+        }
+
+        return false;
     }
-
-    return false;
 }
-
-}
-
-

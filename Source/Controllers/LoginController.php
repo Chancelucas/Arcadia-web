@@ -91,11 +91,4 @@ class LoginController extends Controller
         $this->render('login/login', ['loginForm' => $form->create()]);
     }
 
-    //logout
-    static public function logout()
-    {
-        unset($_SESSION['user']);
-        header('Location: /login') ;
-        exit;
-    }
 }

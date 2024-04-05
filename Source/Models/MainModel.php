@@ -11,27 +11,24 @@ use Lib\config\Database;
  * findBy() - 
  * find() - 
  * create() - 
- * update() -
- * delete () -
  * 
  *  
  * */
-class MainModel extends Database
+abstract class MainModel
 {
     protected $table;
     private $database;
     protected $id;
 
-    public function getId($id, $table)
+    public function getId()
     {
-        return $id . '_' . $table;
+        return $this->id;
     }
 
-    //findAll
-    public function findAll($table)
+    public function setId($id)
     {
-        $query = $this->request('SELECT * FROM ' . $table);
-        return $query->fetchAll();
+        $this->id = $id;
+        return $this;
     }
 
     //findBy
@@ -50,12 +47,17 @@ class MainModel extends Database
     }
 
     //find
-    public function find(int $id)
+    public function findOneById(int $id)
     {
-        return $this->request('SELECT * FROM ' . $this->table . " WHERE id = " . $id)->fetch();
+        $data = $this->request("SELECT * FROM {$this->table} WHERE id = ?", [$id])->fetch();
+        $this->hydrate($data);
+
+        return $this;
     }
 
-    //create
+    /**
+     * Main function create in MainModel
+     */
     public function create()
     {
         $fields = [];
@@ -78,27 +80,10 @@ class MainModel extends Database
         return $this->request('INSERT INTO ' . $this->table . ' (' . $fieldsString . ')VALUES(' . $inString . ')', $values);
     }
 
-    //update
-    public function update()
+    public function delete()
     {
-        $fields = [];
-        $values = [];
-
-        foreach ($this as $field => $value) {
-
-            if ($value !== null && $field != 'database' && $field != 'table')
-                $fields[] = "$field = ?";
-            $values[] = $value;
-        }
-
-        $values[] = $this->id;
-        $fieldsString = implode(', ', $fields);
-
-        return $this->request('UPDATE ' . $this->table . ' SET ' . $fieldsString . ' WHERE id = ?', $values);
+        return $this->request("DELETE FROM {$this->table} WHERE id = ?", [$this->id])->fetch();
     }
-
-    //delete
-    // abstract protected function delete(int $id);
 
     //request
     public function request(string $sql, array $attributes = null)
@@ -117,11 +102,45 @@ class MainModel extends Database
     public function hydrate($data)
     {
         foreach ($data as $key => $value) {
-            $setter = 'set' . ucfirst($key);
+            $setter = $this->convertBddKeyToSetterMethod($key);
+
             if (method_exists($this, $setter)) {
                 $this->$setter($value);
             }
         }
         return $this;
     }
+
+    private function convertBddKeyToSetterMethod($bddKey)
+    {
+        return 'set' . str_replace(" ", "", ucwords(str_replace("_", " ", $bddKey)));
+    }
+
+    /*
+
+    //Take this methode UPDATE for other Model and update id_table
+    public function update()
+    {
+        $fields = [];
+        $values = [];
+
+        foreach ($this as $field => $value) {
+
+            if ($value !== null && $field != 'database' && $field != 'table')
+                $fields[] = "$field = ?";
+            $values[] = $value;
+        }
+
+        $values[] = $this->id;
+        $fieldsString = implode(', ', $fields);
+
+        return $this->request('UPDATE ' . $this->table . ' SET ' . $fieldsString . ' WHERE id_table = ?', $values);
+    }
+
+    //Take this methode DELETE for other Model and update id_table
+    public function delete(int $id)
+    {
+        return $this->request("DELETE FROM {$this->table} WHERE id_table = ?", [$id])->fetch();
+    }
+    */
 }

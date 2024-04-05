@@ -1,5 +1,4 @@
 <main>
-    <h3>Gestion des salariés</h3>
 
     <div id="form_create_admin">
         <?= $createUserForm; ?>
@@ -15,10 +14,11 @@
                 <div class="btn_gestion_user">
                     <form method="POST" action="">
                         <button type="submit" class="delete-user-btn" name="deleteUser">Supprimer</button>
-                        <input type="hidden" name="id_user" id="id_user" value="<?php echo $user->id_User ?>">
+                        <input type="hidden" name="id_user" value="<?php echo $user->id_User ?>">
                     </form>
-                    <form method="POST" action="">
+                    <form method="POST" action="/adminUpdateUser">
                         <button type="submit" class="edit-user-btn" name="updateUser">Modifier</button>
+                        <input type="hidden" name="id_user" value="<?php echo $user->id_User ?>">
                     </form>
                 </div>
             </div>

@@ -3,61 +3,96 @@
 namespace Source\Models\user;
 
 use Source\Models\MainModel;
+use Source\Models\role\RoleModel;
 
 class UserModel extends MainModel
 {
-    protected $id_user;
     protected $username;
     protected $email;
     protected $password;
-    protected $role;
+    protected $id_Role;
 
+    /**
+     * Init user model on table User
+     */
     public function __construct()
     {
         $this->table = 'User';
     }
 
+    /**
+     * Find one entity by email
+     */
     public function findOneByEmail(string $email)
     {
-        return $this->request("SELECT * FROM {$this->table} WHERE email = ?", [$email])->fetch();
+        $userData = $this->request("SELECT * FROM {$this->table} WHERE email = ?", [$email])->fetch();
+
+        if ($userData === false) {
+            return null;
+        }
+
+        $this->hydrate($userData);
+        return $this;
     }
 
-    public function findOneById(int $id)
-    {
-        return $this->request("SELECT * FROM {$this->table} WHERE id_User = ?", [$id])->fetch();
-    }
 
+    /**
+     * config session
+     */
     public function setSession()
     {
         $_SESSION['user'] = [
-            'id_user' => $this->id_user,
+            'id_user' => $this->id,
             'email' => $this->email,
             'username' => $this->username,
-            'role' => $this->role,
+            'roleId' => $this->id_Role,
+            'role' => $this->getRole(),
         ];
 
         $_SESSION['error'] = "";
         $_SESSION['message'] = "";
     }
 
-    public function getAllUser()
+    /**
+     * Get all role on table Role
+     */
+    public function getAll()
     {
-        return $this->findAll($this->table);
+        $query = $this->request("SELECT * FROM {$this->table}");
+        $allData = $query->fetchAll();
+
+        $models = [];
+        foreach ($allData as $data) {
+            $self = new self();
+            $self->hydrate($data);
+            array_push($models, $self);
+        }
+        return $models;
     }
 
+    /**
+     * Create one user on table User
+     */
     public function createUser()
     {
         return $this->create();
     }
 
-    public function delete(int $id)
+    /**
+     * Update one user on table User
+     */
+    public function update()
     {
-        return $this->request("DELETE FROM {$this->table} WHERE id_User = ?", [$id])->fetch();
-    }
+        $sql = "UPDATE {$this->table} SET username = :username, email = :email, password = :password, id_role = :id_role WHERE id = :id_user";
+        $values = [
+            ':username' => $this->username,
+            ':email' => $this->email,
+            ':password' => $this->password,
+            ':id_role' => $this->id_Role,
+            ':id_user' => $this->id,
+        ];
 
-    public function updateUser()
-    {
-        return $this->update();
+        return $this->request($sql, $values);
     }
 
     /**
@@ -65,7 +100,7 @@ class UserModel extends MainModel
      */
     public function getIdUser()
     {
-        return $this->id_user;
+        return $this->id;
     }
 
     /**
@@ -75,7 +110,7 @@ class UserModel extends MainModel
      */
     public function setIdUser($id_user)
     {
-        $this->id_user = $id_user;
+        $this->id = $id_user;
 
         return $this;
     }
@@ -140,16 +175,24 @@ class UserModel extends MainModel
         return $this;
     }
 
+    public function getIdRole()
+    {
+        return $this->id_Role;
+    }
+
+    public function setIdRole($id_Role)
+    {
+        $this->id_Role = $id_Role;
+
+        return $this;
+    }
+
     /**
      * Get the value of role
      */
     public function getRole()
     {
-        $role = $this->role;
-
-        $role[] = 'role';
-
-        return array_unique($role);
+        return (new RoleModel())->findOneById($this->id_Role)->getRole();
     }
 
     /**
@@ -157,10 +200,8 @@ class UserModel extends MainModel
      *
      * @return  self
      */
-    public function setRole($role)
-    {
-        $this->role = $role;
-
-        return $this;
-    }
+    // public function setRole($role)
+    // {
+    //     return (new RoleModel())->findOneById($this->id_Role)->setRole($role);
+    // }
 }

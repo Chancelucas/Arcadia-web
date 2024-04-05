@@ -5,8 +5,8 @@ namespace Source\Controllers;
 use Lib\config\Form;
 use Source\Models\MainModel;
 use Source\Models\user\UserModel;
+use Source\Models\role\RoleModel;
 use Source\Controllers\AdminController;
-
 
 class AdminUserController extends AdminController
 {
@@ -18,8 +18,7 @@ class AdminUserController extends AdminController
         $createUserForm = $this->generateCreateUserForm();
         $users = $this->getAllUsers();
         $deleteUser = $this->deleteUser();
-        $updateUser = $this->updateUser();
-        $this->render('adminUser/adminUser', ['createUserForm' => $createUserForm, 'users' => $users, 'deleteUser' => $deleteUser, 'updateUser' => $updateUser]);
+        $this->render('adminUser/adminUser', ['createUserForm' => $createUserForm, 'users' => $users, 'deleteUser' => $deleteUser]);
     }
 
     /**
@@ -28,6 +27,7 @@ class AdminUserController extends AdminController
     public function generateCreateUserForm()
     {
         $createUser = $this->createUser();
+
         $roles = $this->getRolesFromDatabase();
 
         $form = new Form;
@@ -63,33 +63,24 @@ class AdminUserController extends AdminController
             $username = $_POST['username'];
             $email = $_POST['email'];
             $password = $_POST['password'];
-            $role = $_POST['role'];
-
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            $id_Role = $_POST['role'];
 
             $existingUser = (new UserModel)->findOneByEmail($email);
 
-            if ($role === '1') {
-                $roleName = 'Admin';
-            } elseif ($role === '2') {
-                $roleName = 'Employer';
-            } elseif ($role === '3') {
-                $roleName = 'Vétérinaire';
-            } else {
-                echo "Rôle non reconnu";
-                return;
-            }
-
-            if ($existingUser) {
+            if (!is_null($existingUser)) {
                 echo "Le nom d'utilisateur ou l'adresse e-mail est déjà utilisé.";
+                return;
             } else {
+
+                $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
                 try {
                     $user = new UserModel;
 
                     $user->setUsername($username)
                         ->setEmail($email)
                         ->setPassword($hashedPassword)
-                        ->setRole($roleName);
+                        ->setIdRole($id_Role);
 
                     $user->createUser();
 
@@ -106,35 +97,55 @@ class AdminUserController extends AdminController
 
 
     /**
-     * Récupère tous les utilisateurs de la base de données.
+     * Get all user with role(label) on database
      */
     public function getAllUsers()
     {
-        $usersModel = new UserModel;
-        return $usersModel->getAllUser();
+        $model = new UserModel;
+        $usersModel = $model->getAll();
+
+        $allUsers = [];
+        foreach ($usersModel as $userModel) {
+            $user = new \stdClass();
+            $user->id_User = $userModel->getId();
+            $user->username = $userModel->getUsername();
+            $user->email = $userModel->getEmail();
+            $user->password = $userModel->getPassword();
+            $user->id_Role = $userModel->getIdRole();
+            $user->role = $userModel->getRole();
+            $allUsers[] = $user;
+        }
+
+        return $allUsers;
     }
 
-    //getRolesFromDatabase
+    /**
+     * Get all Roles on database
+     */
     public function getRolesFromDatabase()
     {
-        $rolesModel = new MainModel;
-        $roles = $rolesModel->findAll('Role');
+        $roleModel = new RoleModel;
+        $roles = $roleModel->getAll();
         $roleOptions = [];
 
         foreach ($roles as $role) {
-            $roleOptions[$role->id_Role] = $role->role;
+            $roleOptions[$role->getId()] = $role->getRole();
         }
 
         return $roleOptions;
     }
 
-    //deleteUser
+    /**
+     * Delete One User
+     */
     public function deleteUser()
     {
         if (isset($_POST['deleteUser'])) {
             $userModel = new UserModel;
             $userId = intval($_POST['id_user']);
-            $deleteUser = $userModel->delete($userId);
+
+            $userModel->setId($userId);
+            $deleteUser = $userModel->delete();
 
             if ($deleteUser) {
                 $_SESSION['message'] = "Utilisateur supprimé avec succès.";
@@ -142,10 +153,5 @@ class AdminUserController extends AdminController
                 $_SESSION['error'] = "Une erreur s'est produite lors de la suppression de l'utilisateur.";
             }
         }
-    }
-
-    //updateUser
-    public function updateUser()
-    {
     }
 }

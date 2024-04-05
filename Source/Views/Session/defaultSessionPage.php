@@ -14,7 +14,13 @@
         <?php require_once ROOT . '/Source/Views/Session/templates/admin_navbar.php'; ?>
     </header>
 
-    <?= $containe ;?>
+    <div style="width: 100%;min-height:40px;border:solid 1px red;">
+        <?= $_SESSION["message"] ?>
+        <br>
+        <?= $_SESSION["error"] ?>
+    </div>
+
+    <?= $containe; ?>
 
     <footer>
         <?php require_once ROOT . '/Source/Views/Session/templates/admin_footer.php'; ?>

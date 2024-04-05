@@ -5,11 +5,13 @@ namespace Source\Routers;
 use Source\Controllers\MainController;
 
 /**
- * 
  * Router principal
  */
 class MainRouter
 {
+    /**
+     * Start router, start session
+     */
     public function start()
     {
         session_start();
@@ -36,6 +38,9 @@ class MainRouter
         }
     }
 
+    /**
+     * 
+     */
     private function handlePostRequest($params)
     {
         if (!empty($params)) {
@@ -55,6 +60,9 @@ class MainRouter
         }
     }
 
+    /**
+     * 
+     */
     private function handleGetRequest($params)
     {
         if (!empty($params[0])) {

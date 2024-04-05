@@ -1,0 +1,65 @@
+@import url(/css/config/config.css);
+
+@media screen and (max-width : 768px) {
+
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+
+}
+
+@media screen and (min-width: 1025px) {
+    #container_update_user {
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    
+    #container_update_user > #form_update_user {
+        margin-top: 5%;
+        background-color: var(--main-clear-color);
+        display: flex;
+        flex-direction: column;
+        width: 50vw;
+        max-width: 1110px;
+        padding: 1rem 1rem 1rem 1rem;
+        border-radius: 5px;
+    }
+
+    #container_update_user > #form_update_user > .div_form_update_user{
+        margin: 5px 0 5px 0;
+        display: flex;
+        justify-content: space-around;
+
+
+    }
+
+    #container_update_user > #form_update_user > .div_form_update_user > .input_class_update_user{
+        background-color: var(--main-white-color);
+        border: none;
+        padding: 5px 10px 5px 10px;
+        border-radius: 5px;
+        width: 50%;
+        color: var(--main-shadow-color);
+
+    }
+
+    #container_update_user > #form_update_user > .div_class_update_user {
+        display: flex;
+        justify-content: center;
+    }
+
+    #container_update_user > #form_update_user > .div_class_update_user > #btn_update_user{
+        background-color: var(--main-shadow-color);
+        border: none;
+        padding: 5px 20px 5px 20px;
+        border-radius: 5px;
+        color: var(--main-white-color);
+        cursor: pointer;
+        margin-top: 2%;
+    }
+
+
+}
