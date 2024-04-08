@@ -2,13 +2,14 @@
 
 namespace Source\Models\templates;
 
+use Source\Models\MainModel;
 
 /**
  * Habitat Object
  * @var 
  */
 
-class Habitat 
+class HabitatModel extends MainModel
 {
     //propriétés
 

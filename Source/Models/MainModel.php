@@ -31,7 +31,9 @@ abstract class MainModel
         return $this;
     }
 
-    //findBy
+    /**
+     * Main function find by 
+     */
     public function findBy(array $criteria)
     {
         $fields = [];
@@ -46,7 +48,9 @@ abstract class MainModel
         return $this->request('SELECT * FROM ' . $this->table . ' WHERE ' . $fieldsString, $values)->fetchAll();
     }
 
-    //find
+    /**
+     * Main function find one by Id 
+     */
     public function findOneById(int $id)
     {
         $data = $this->request("SELECT * FROM {$this->table} WHERE id = ?", [$id])->fetch();
@@ -80,12 +84,17 @@ abstract class MainModel
         return $this->request('INSERT INTO ' . $this->table . ' (' . $fieldsString . ')VALUES(' . $inString . ')', $values);
     }
 
+    /**
+     * Main function Delete by Id 
+     */
     public function delete()
     {
         return $this->request("DELETE FROM {$this->table} WHERE id = ?", [$this->id])->fetch();
     }
 
-    //request
+    /**
+     * Main function request
+     */
     public function request(string $sql, array $attributes = null)
     {
         $this->database = Database::getInstance();
@@ -99,6 +108,9 @@ abstract class MainModel
         }
     }
 
+    /**
+     * Main function Hydrate
+     */
     public function hydrate($data)
     {
         foreach ($data as $key => $value) {
@@ -111,6 +123,10 @@ abstract class MainModel
         return $this;
     }
 
+
+    /** 
+     * Main function Convert method for hydrate function
+    */
     private function convertBddKeyToSetterMethod($bddKey)
     {
         return 'set' . str_replace(" ", "", ucwords(str_replace("_", " ", $bddKey)));

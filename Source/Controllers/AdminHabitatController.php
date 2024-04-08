@@ -3,8 +3,9 @@
 namespace Source\Controllers;
 
 use Lib\config\Form;
-use Source\Models\MainModel;
+use Source\Models\user\UserModel;
 use Source\Controllers\AdminController;
+use Source\Models\templates\AnimalModel;
 
 class AdminHabitatController extends AdminController
 {
@@ -38,12 +39,13 @@ class AdminHabitatController extends AdminController
 
     public function getAnimalsFromDatabas()
     {
-        $animalsModel = new MainModel;
-        $animals = $animalsModel->findAll('Animal');
+        $animalModel = new UserModel;
+        $animals = $animalModel->getAll();
+
         $animalsList = [];
 
         foreach ($animals as $animal){
-            $animalsList[$animals->id_animal] = $animal->animal;
+            $animalsList[$animal->getId()] = $animal->animal;
         }
         return $animalsList;
     }
