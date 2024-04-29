@@ -9,86 +9,93 @@ use Lib\config\Form;
 
 class LoginController extends Controller
 {
-    private $loginModel;
+  private $loginModel;
 
-    public function __construct()
-    {
-        $this->loginModel = new LoginModel();
-    }
+  public function __construct()
+  {
+    $this->loginModel = new LoginModel();
+  }
 
-    public function index()
-    {
+  public function index()
+  {
+    $this->generateLoginForm();
+  }
 
-        $this->generateLoginForm();
-        $this->login();
-        $this->render('login/login');
+  public function login()
+  {
+    // --> A mettre dans setup
+    // $firstLogin = Database::firstLogin();
 
-    }
+    // if ($firstLogin) {
+    //   Database::createAdminUser();
+    // }
+    // <--
 
-    public function login()
-    {
-        $firstLogin = Database::firstLogin();
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      if (Form::validate($_POST, ['email', 'password'])) {
+        $email = strip_tags($_POST['email']);
+        $password = $_POST['password'];
 
-        if ($firstLogin) {
-            Database::createAdminUser();
-        }
-
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' && Form::validate($_POST, ['email', 'password'])) {
-
-            $email = strip_tags($_POST['email']);
-            $password = $_POST['password'];
-
-            if ($this->loginModel->authenticate($email, $password)) {
-                $this->redirectBasedOnRole();
-                exit;
-            } else {
-                $_SESSION['error'] = 'L\'adresse e-mail et/ou le mot de passe est incorrect';
-                header('Location: /login');
-                exit;
-            }
-        }
-    }
-
-    private function redirectBasedOnRole()
-    {
-        $role = $_SESSION['user']['role'];
-        if ($role === 'Admin') {
-            header('Location: /adminDashboard');
-            exit;
-        } elseif ($role === 'Employer') {
-            header('Location: /employeeDashboard');
-            exit;
-        } elseif ($role === 'Vétérinaire') {
-            header('Location: /vetDashboard');
-            exit;
+        if ($this->loginModel->authenticate($email, $password)) {
+          $this->redirectBasedOnRole();
+          exit;
         } else {
-            $_SESSION['error'] = "Rôle non reconnu";
-            header('Location: /login');
-            exit;
+          $_SESSION['error'] = '⚠️ login/login en POST... L\'adresse e-mail et/ou le mot de passe est incorrect';
+          header('Location: /login');
+          exit;
         }
+      }
+
+      $_SESSION['error'] = '⚠️ login/login en POST... Formulaire invalide';
+      header('Location: /login');
+      exit;
     }
 
-    private function generateLoginForm()
-    {
-        $form = new Form;
+    $_SESSION['error'] = '⚠️ login/login en GET...';
+    header('Location: /login');
+    exit;
+  }
 
-        $form->startForm('POST', '/login', ['class' => 'formulaire', 'id' => 'form_login'])
+  private function redirectBasedOnRole()
+  {
+    $role = $_SESSION['user']['role'];
 
-            ->startDiv(['class' => 'input_login'])
-            ->addInput('email', 'email', ['class' => 'input_text_login', 'id' => 'input_email_login', 'placeholder' => 'Email'])
-            ->endDiv()
-
-            ->startDiv(['class' => 'input_login'])
-            ->addInput('password', 'password', ['class' => 'input_text_login', 'id' => 'input_password_login', 'placeholder' => 'Mot de passe'])
-            ->endDiv()
-
-            ->startDiv(['class' => 'input_btn_login input_login'])
-            ->addBouton('Connexion', ['class' => 'btn', 'id' => 'btn_connect_login'])
-            ->endDiv()
-
-            ->endForm();
-
-        $this->render('login/login', ['loginForm' => $form->create()]);
+    if ($role === 'Admin') {
+      header('Location: /adminDashboard');
+      exit;
+    } elseif ($role === 'Employer') {
+      header('Location: /employeeDashboard');
+      exit;
+    } elseif ($role === 'Vétérinaire') {
+      header('Location: /vetDashboard');
+      exit;
+    } else {
+      $_SESSION['error'] = "Rôle non reconnu";
+      header('Location: /login');
+      exit;
     }
+  }
 
+  private function generateLoginForm()
+  {
+    $form = new Form;
+
+    $form->startForm('POST', 'login/login', ['class' => 'formulaire', 'id' => 'form_login'])
+
+      ->startDiv(['class' => 'input_login'])
+      ->addInput('email', 'email', ['class' => 'input_text_login', 'id' => 'input_email_login', 'placeholder' => 'Email'])
+      ->endDiv()
+
+      ->startDiv(['class' => 'input_login'])
+      ->addInput('password', 'password', ['class' => 'input_text_login', 'id' => 'input_password_login', 'placeholder' => 'Mot de passe'])
+      ->endDiv()
+
+      ->startDiv(['class' => 'input_btn_login input_login'])
+      ->addBouton('Connexion', ['class' => 'btn', 'id' => 'btn_connect_login'])
+      ->endDiv()
+
+      ->endForm();
+
+    $this->render('login/login', ['loginForm' => $form->create()]);
+  }
 }

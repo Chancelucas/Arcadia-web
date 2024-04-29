@@ -1,11 +1,10 @@
 <main>
 
-<div>
-    <a href="/adminUser">Retour</a>
-</div>
+    <div>
+        <a href="/adminUser">Retour</a>
+    </div>
     <div id="container_update_user">
-        <?= $updateUser; ?>
-        <?= $getUser; ?>
+        <?= $userForm; ?>
     </div>
 
 </main>

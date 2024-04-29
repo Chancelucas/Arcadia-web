@@ -5,6 +5,9 @@
         <li><a class="link" href="/adminHabitat"><img src="../../../assets/images/icons/habitat.svg" alt="">Habitats</a></li>
         <li><a class="link" href="/adminAnimal"><img src="../../../assets/images/icons/animal.svg" alt="">Animaux</a></li>
         <li><a class="link" href="/adminService"><img src="../../../assets/images/icons/service.svg" alt="">Services</a></li>
+        <li><a class="link" href="/adminHour"><img src="../../../assets/images/icons/service.svg" alt="">Horaire</a></li>
+        <li><a class="link" href="/animalReport"><img src="../../../assets/images/icons/service.svg" alt="">Comptes rendus</a></li>
+
         <li></li>
     </ul>
 </nav>

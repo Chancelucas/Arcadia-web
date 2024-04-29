@@ -7,25 +7,22 @@ namespace Source\Controllers;
  * 
  */
 
-abstract class Controller 
+abstract class Controller
 {
-    
 
 
-    public function render(string $file, array $data = [], string $template = 'defaultPublicPage')
-    {
 
-        extract($data);
+  public function render(string $file, array $data = [], string $template = 'defaultPublicPage')
+  {
 
-        ob_start();
+    extract($data);
 
-        require_once ROOT . '/Source/Views/Public/'.$file. '.php';
+    ob_start();
 
-        $containe = ob_get_clean();
+    require_once ROOT . '/Source/Views/Public/' . $file . '.php';
 
-        require_once ROOT . '/Source/Views/Public/' . $template . '.php';
+    $containe = ob_get_clean();
 
-    }
-
-    
+    require_once ROOT . '/Source/Views/Public/' . $template . '.php';
+  }
 }

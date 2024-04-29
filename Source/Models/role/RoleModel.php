@@ -55,17 +55,8 @@ class RoleModel extends MainModel
     return $this->create();
   }
 
-  /**
-   * Update one role on table Role
-   */
-  // public function update(int $id)
-  // {
-  //   $sql = "UPDATE {$this->table} SET WHERE id_Role = :id_Role";
-  //   $values = [
-  //   ];
+  /////////////////// GETTER and SETTER /////////////////////
 
-  //   return $this->request($sql, $values);
-  // }
 
   /**
    * Get the value of role

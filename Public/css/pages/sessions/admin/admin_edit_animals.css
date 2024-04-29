@@ -1,0 +1,40 @@
+@import url(/css/config/config.css);
+@import url(/css//templates/sessions/admin/admin_form_habitat.css);
+
+
+@media screen and (max-width : 768px) {
+
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+
+}
+
+@media screen and (min-width: 1025px) {
+  #main_edit_habitats{ 
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+#main_edit_habitats > #container_form_habitat_admin {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 300px;
+    background-color: var(--main-clear-color);
+    width: auto;
+    max-width: 1440px;
+    border-radius: 5px;
+    flex-direction: column;
+    padding: 0 20px 0px 20px;
+    margin: 20px 0 20px 0;
+    border: 1px solid var(--main-shadow-color);
+}
+  #main_container_animal > #form_create_animal > #form_animal {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--main-clear-color);
+  }
+}

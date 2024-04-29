@@ -14,13 +14,17 @@
         <?php require_once ROOT . '/Source/Views/public/templates/navbar.php'; ?>
     </header>
 
-    <?= $containe ;?>
+    <div style="width: 100%;min-height:40px;border:solid 1px red;">
+        <?php var_dump($_SESSION) ?>
+    </div>
+
+    <?= $containe; ?>
 
     <footer>
         <?php require_once ROOT . '/Source/Views/public/templates/footer.php'; ?>
     </footer>
 
-<script src="/js/pages/menu_script.js"></script>
+    <script src="/js/pages/menu_script.js"></script>
 
 </body>
 

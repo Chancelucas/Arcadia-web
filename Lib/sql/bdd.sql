@@ -16,13 +16,14 @@ CREATE TABLE `Habitat` (
     `id` INT PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(255),
     `description` TEXT,
-    `photo_url` VARCHAR(255)
+    `picture_url` VARCHAR(255)
 );
 
 CREATE TABLE `Animal` (
     `id` INT PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(255),
     `breed` VARCHAR(255),
+    `picture_url` VARCHAR(255)
     `id_habitat` INT,
     FOREIGN KEY (`id_habitat`) REFERENCES `Habitat`(`id`)
 );
@@ -48,8 +49,17 @@ CREATE TABLE `Review` (
 CREATE TABLE `Service` (
     `id` INT PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(255),
-    `description` TEXT
+    `description` TEXT,
+    `picture_url`VARCHAR(255),
 );
+
+CREATE TABLE `Hour`(
+    `id` INT PRIMARY KEY AUTO_INCREMENT,
+    `day`VARCHAR(20) NOT NULL,
+    `opening_time` TIME NOT NULL,
+    `closing_time` TIME NOT NULL
+ 
+)
 
 INSERT INTO `Role` (`role`)
 VALUES
@@ -57,8 +67,13 @@ VALUES
     ('Employer'),
     ('Vétérinaire');
 
--- INSERT INTO User (username, email, password, role) VALUES ('fregreaagera', 'admin@admin.com', 'azerty', 'Admin');
--- INSERT INTO User (username, email, password, role) VALUES ('Admgferazfgerain', 'Employerr@Employerr.com', 'azerty', 'Employer');
--- INSERT INTO User (username, email, password, role) VALUES ('Agreagreadmin', 'Vétérinaire@Vétérinaire.com', 'azerty', 'Vétérinaire');
--- INSERT INTO User (username, email, password, role) VALUES ('Admgreagreain', 'Vétérinairee@Vétérinairee.com', 'azerty', 'Vétérinaire');
--- INSERT INTO User (username, email, password, role) VALUES ('gtrzgtrz', 'a@a', 'a', 'Admin');
+
+
+INSERT INTO Animal (name, breed) VALUES ('Léo', 'Lion');
+INSERT INTO Habitat (name, description) VALUES ('Terre Chaude', 'blablabla');
+
+SELECT * 
+FROM `Habitat` h  
+LEFT JOIN `Animal` a 
+ON a.id_habitat = h.id
+
