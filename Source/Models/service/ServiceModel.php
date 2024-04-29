@@ -6,6 +6,7 @@ use Source\Models\MainModel;
 
 class ServiceModel extends MainModel
 {
+  protected $id_Service;
   protected $name;
   protected $description;
   protected $picture_url;

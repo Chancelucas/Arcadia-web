@@ -31,7 +31,7 @@ class AdminUpdateAnimalController extends AdminController
 
     $form = new Form;
 
-    $form->startForm('POST', "adminUpdateAnimal/updateAnimal/{$animalId}", ['id' => 'form_update_animal'])
+    $form->startForm('POST', "/adminUpdateAnimal/updateAnimal/{$animalId}", ['id' => 'form_update_animal'])
       ->startDiv(['class' => 'div_form_update_animal'])
       ->addLabelFor('name', 'Nom :')
       ->addInput('text', 'name', ['id' => 'name', 'class' => 'input_class_update_animal', 'value' => $name, 'required' => true])

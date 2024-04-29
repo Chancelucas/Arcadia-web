@@ -10,7 +10,7 @@
 - Installer cloudinary : 
     1 - https://github.com/cloudinary/cloudinary_php?tab=readme-ov-file
     2 - commande dans le terminal : composer require "cloudinary/cloudinary_php"
-    3 - Dans le dossier config du projet crée un fichier : config.php avec ils info fourni par cloudinary :
+    3 - Dans le dossier config du projet crée un fichier : config.php avec les info fourni par cloudinary :
         3.1 - a inscrire dans ce fichier : 
             use Cloudinary\Configuration\Configuration;
 

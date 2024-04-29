@@ -34,7 +34,7 @@ class AdminUpdateServiceController extends AdminController
 
     $form = new Form;
 
-    $form->startForm('POST', "adminUpdateService/updateService/{$serviceId}", ['id' => 'form_update_service'])
+    $form->startForm('POST', "/adminUpdateService/updateService/{$serviceId}", ['id' => 'form_update_service'])
       ->startDiv(['class' => 'div_form_update_service'])
       ->addLabelFor('name', 'Nom :')
       ->addInput('text', 'name', ['id' => 'name', 'class' => 'input_class_update_service', 'value' => $name, 'required' => true])

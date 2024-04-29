@@ -3,8 +3,9 @@
 namespace Source\Controllers;
 
 use Lib\config\Form;
-use Source\Controllers\AdminController;
+use Lib\config\CloudinaryManager;
 use Source\Models\animal\AnimalModel;
+use Source\Controllers\AdminController;
 use Source\Models\habitat\HabitatModel;
 
 class AdminHabitatController extends AdminController
@@ -44,15 +45,26 @@ class AdminHabitatController extends AdminController
     return $form->create();
   }
 
-  /**
-   * Function create habitat
-   */
+
   public function createHabitat()
   {
     if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST['createHabitat'])) {
       $name = $_POST['habitat_name'];
       $description = $_POST['habitat_description'];
-      $picture = $_POST['habitat_picture'];
+
+      // Vérifie si un fichier a été téléchargé
+      if (!empty($_FILES['habitat_picture']['tmp_name'])) {
+        // Télécharge l'image sur Cloudinary
+        $imageUrl = CloudinaryManager::uploadImage($_FILES['habitat_picture']['tmp_name']);
+        if (!$imageUrl) {
+          $_SESSION['error'] = "Une erreur s'est produite lors du téléchargement de l'image.";
+          header("Location: /adminHabitat");
+          exit;
+        }
+      } else {
+        // Si aucune image n'a été téléchargée, définissez une valeur par défaut ou une URL vide
+        $imageUrl = 'URL est vide'; // Définissez une valeur par défaut ou une URL vide
+      }
 
       $existingHabitat = (new HabitatModel)->findOneByName($name);
 
@@ -66,7 +78,7 @@ class AdminHabitatController extends AdminController
 
           $habitat->setName($name)
             ->setDescription($description)
-            ->setPicture($picture);
+            ->setPicture($imageUrl);
 
           $habitat->createHabitat();
 
@@ -83,6 +95,46 @@ class AdminHabitatController extends AdminController
     header("Location: /adminHabitat");
     exit;
   }
+
+  /**
+   * Function create habitat
+   */
+  // public function createHabitat()
+  // {
+  //   if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST['createHabitat'])) {
+  //     $name = $_POST['habitat_name'];
+  //     $description = $_POST['habitat_description'];
+  //     $picture = $_POST['habitat_picture'];
+
+  //     $existingHabitat = (new HabitatModel)->findOneByName($name);
+
+  //     if (!is_null($existingHabitat)) {
+  //       echo "Le nom de l'habitat existe déjà.";
+  //       return;
+  //     } else {
+
+  //       try {
+  //         $habitat = new HabitatModel;
+
+  //         $habitat->setName($name)
+  //           ->setDescription($description)
+  //           ->setPicture($picture);
+
+  //         $habitat->createHabitat();
+
+  //         $_SESSION['message'] = "L'habitat a été créé avec succès.";
+  //       } catch (\Exception $e) {
+
+  //         $_SESSION['error'] = "Une erreur s'est produite lors de la création de l'habitat : " . $e->getMessage();
+  //       }
+  //     }
+  //   } else {
+  //     $_SESSION['error'] = "Aucun habitat n'a été renseigné";
+  //   }
+
+  //   header("Location: /adminHabitat");
+  //   exit;
+  // }
 
   /**
    * function get one animal from database
@@ -153,7 +205,7 @@ class AdminHabitatController extends AdminController
         $_SESSION['error'] = "❌ Une erreur s'est produite lors de la suppression de l'habitat.";
       }
     }
-    
+
     // AJOUTER UNE ERREUR SI ON ESSAYE DE SUPPRMIER UN HABITAT ALORS QU'IL Y A ANIMAL ENCORE ASSOCIER A CETTE HABITAT.
 
     Header("Location: /adminHabitat");

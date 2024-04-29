@@ -15,7 +15,7 @@
             <button type="submit" class="delete-hour-btn" name="deleteHour">Supprimer</button>
           </form>
 
-          <a href="/adminUpdateHour/updateHour/<?= $hour->id_Hour ?>">Modifier</a>
+          <a href="/adminUpdateHour/index/<?= $hour->id_Hour ?>">Modifier</a>
 
         </div>
 

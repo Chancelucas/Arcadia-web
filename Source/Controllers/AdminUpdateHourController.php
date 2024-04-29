@@ -73,7 +73,6 @@ class AdminUpdateHourController extends AdminController
         ->setOpeningTime($openingTime)
         ->setClosingTime($closingTime);
 
-
       $updateResult = $hourModel->update($hourId);
 
       if ($updateResult) {

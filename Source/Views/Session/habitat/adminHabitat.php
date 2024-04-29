@@ -21,7 +21,7 @@
             </td>
 
             <td id="image_habitat_view"> 
-              <img src="<?= $habitat->photo_url ?>" alt="Photo habitat">
+              <img src="<?= $habitat->picture_url ?>" alt="Photo habitat">
             </td>
 
             <td id="description_habitat_view"><?= $habitat->description ?></td>
