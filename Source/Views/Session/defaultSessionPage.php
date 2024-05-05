@@ -15,13 +15,19 @@
   </header>
 
   <div style="width: 100%;min-height:40px;border:solid 2px red;">
-    <?php
-    var_dump("SESSION User : {$_SESSION['user']}");
-    echo "<br>";
-    var_dump("SESSION Erreur : {$_SESSION['error']}");
-    echo "<br>";
-    var_dump("SESSION Message : {$_SESSION['message']}");
-    ?>
+    SESSION User :
+    <pre>
+      <?= var_dump($_SESSION['user']); ?>
+    </pre>
+    SESSION Erreur :
+    <pre>
+      <?= var_dump($_SESSION['error']); ?>
+    </pre>
+    SESSION Message :
+    <pre>
+      <?= var_dump($_SESSION['message']); ?>
+    </pre>
+
   </div>
 
   <?= $containe; ?>

@@ -28,14 +28,14 @@ class AdminHabitatController extends AdminController
   {
     $form = new Form;
 
-    $form->startForm('POST', 'adminHabitat/createHabitat', ['id' => 'form_habitat'])
+    $form->startForm('POST', 'adminHabitat/createHabitat', ['id' => 'form_habitat', 'enctype' => 'multipart/form-data'])
 
       ->addInput('text', 'habitat_name', ['class' => 'habitat_form_input', 'id' => 'habitat_name', 'placeholder' => 'Ajouter un nom', 'required' => true])
 
       ->addTextarea('habitat_description', '', ['class' => 'habitat_form_input', 'id' => 'habitat_description', 'name' => 'description', 'placeholder' => 'Ajouter une description', 'required' => true])
 
       ->startDiv(['id' => 'div_add_doc_habitat'])
-      ->addInput('file', 'habitat_picture', ['id' => 'habitat_add_picture', 'class' => 'habitat_form_input', 'multiple' => true, 'accept' => '.png, .jpeg, .jpg'])
+      ->addInput('file', 'picture', ['id' => 'habitat_add_picture', 'class' => 'habitat_form_input', 'multiple' => true, 'accept' => '.png, .jpeg, .jpg'])
       ->endDiv()
 
       ->addBouton('Créer', ['type' => 'submit', 'value' => 'submit', 'id' => 'habitat_btn_save', 'name' => 'createHabitat', 'class' => 'habitat_form_input'])
@@ -45,6 +45,16 @@ class AdminHabitatController extends AdminController
     return $form->create();
   }
 
+  // public function createHabitat()
+  // {
+  //   header('Content-Type: application/json');
+
+  //   if (isset($_SESSION["user"])) {
+  //     echo json_encode($_SESSION);
+  //   } else {
+  //     echo '{"status":"error", "description": "ta fait de la merde, recommence boulet !!"}';
+  //   }
+  // }
 
   public function createHabitat()
   {
@@ -52,18 +62,18 @@ class AdminHabitatController extends AdminController
       $name = $_POST['habitat_name'];
       $description = $_POST['habitat_description'];
 
+
+      $imageUrl = NULL; // Définissez une valeur par défaut ou une URL vide
+
       // Vérifie si un fichier a été téléchargé
-      if (!empty($_FILES['habitat_picture']['tmp_name'])) {
+      if (!empty($_FILES['picture']['tmp_name'])) {
         // Télécharge l'image sur Cloudinary
-        $imageUrl = CloudinaryManager::uploadImage($_FILES['habitat_picture']['tmp_name']);
+        $imageUrl = CloudinaryManager::uploadImage($_FILES['picture']['tmp_name']);
         if (!$imageUrl) {
           $_SESSION['error'] = "Une erreur s'est produite lors du téléchargement de l'image.";
           header("Location: /adminHabitat");
           exit;
         }
-      } else {
-        // Si aucune image n'a été téléchargée, définissez une valeur par défaut ou une URL vide
-        $imageUrl = 'URL est vide'; // Définissez une valeur par défaut ou une URL vide
       }
 
       $existingHabitat = (new HabitatModel)->findOneByName($name);
@@ -95,46 +105,6 @@ class AdminHabitatController extends AdminController
     header("Location: /adminHabitat");
     exit;
   }
-
-  /**
-   * Function create habitat
-   */
-  // public function createHabitat()
-  // {
-  //   if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST['createHabitat'])) {
-  //     $name = $_POST['habitat_name'];
-  //     $description = $_POST['habitat_description'];
-  //     $picture = $_POST['habitat_picture'];
-
-  //     $existingHabitat = (new HabitatModel)->findOneByName($name);
-
-  //     if (!is_null($existingHabitat)) {
-  //       echo "Le nom de l'habitat existe déjà.";
-  //       return;
-  //     } else {
-
-  //       try {
-  //         $habitat = new HabitatModel;
-
-  //         $habitat->setName($name)
-  //           ->setDescription($description)
-  //           ->setPicture($picture);
-
-  //         $habitat->createHabitat();
-
-  //         $_SESSION['message'] = "L'habitat a été créé avec succès.";
-  //       } catch (\Exception $e) {
-
-  //         $_SESSION['error'] = "Une erreur s'est produite lors de la création de l'habitat : " . $e->getMessage();
-  //       }
-  //     }
-  //   } else {
-  //     $_SESSION['error'] = "Aucun habitat n'a été renseigné";
-  //   }
-
-  //   header("Location: /adminHabitat");
-  //   exit;
-  // }
 
   /**
    * function get one animal from database

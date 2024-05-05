@@ -2,8 +2,70 @@
 @import url(/css//templates/sessions/admin/admin_form_habitat.css);
 
 
-@media screen and (max-width : 768px) {
+#main_container_animal{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+}
 
+#form_create_animal{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: auto;
+  background-color: var(--main-clear-color);
+  width: 80vw;
+  max-width: 768px;
+  border-radius: 5px;
+  flex-direction: column;
+  padding: 0px 20px;
+  margin: 20px 0px;
+  border: 1px solid var(--main-shadow-color);
+}
+
+#form_animal{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+#form_animal > input,
+#form_animal > select {
+  margin: 2px 0px;
+  background-color: var(--main-white-color);
+  border: none;
+  width: 100%;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: var(--main-shadow-color);
+}
+
+#form_animal > input::placeholder {
+  color: var(--main-shadow-color);
+
+}
+
+#animal_add_picture {
+  background-color: var(--main-clear-color);
+  border: none;
+  padding: 5px 20px;
+  border-radius: 5px;
+  color: var(--main-white-color);
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#animal_btn_save {
+  background-color: var(--main-shadow-color);
+  border: none;
+  padding: 5px 20px;
+  border-radius: 5px;
+  color: var(--main-white-color);
+  cursor: pointer;
+  margin-top: 10px;
 }
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
@@ -11,30 +73,8 @@
 }
 
 @media screen and (min-width: 1025px) {
-  #main_edit_habitats{ 
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    height: 100vh;
+  
 }
 
-#main_edit_habitats > #container_form_habitat_admin {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    height: 300px;
-    background-color: var(--main-clear-color);
-    width: auto;
-    max-width: 1440px;
-    border-radius: 5px;
-    flex-direction: column;
-    padding: 0 20px 0px 20px;
-    margin: 20px 0 20px 0;
-    border: 1px solid var(--main-shadow-color);
-}
-  #main_container_animal > #form_create_animal > #form_animal {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--main-clear-color);
-  }
-}
+
+

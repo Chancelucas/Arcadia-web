@@ -71,7 +71,7 @@ class Form
   }
 
   //addTextarea
-  public function addTextarea(string $name, string $value = '', array $params = []): self
+  public function addTextarea(string $name, ?string $value = '', array $params = []): self
   {
     $this->formCode .= "<textarea name='$name'";
     $this->formCode .= $params ? $this->addParams($params) : '';

@@ -3,6 +3,7 @@
 namespace Source\Controllers;
 
 use Lib\config\Form;
+use Lib\config\CloudinaryManager;
 use Source\Models\animal\AnimalModel;
 use Source\Controllers\AdminController;
 use Source\Models\habitat\HabitatModel;
@@ -27,7 +28,7 @@ class AdminAnimalController extends AdminController
     $habitats = $this->getHabitatsFromDatabase();
     $form = new Form;
 
-    $form->startForm('POST', 'adminAnimal/createAnimal', ['id' => 'form_animal'])
+    $form->startForm('POST', 'adminAnimal/createAnimal', ['id' => 'form_animal', 'enctype' => 'multipart/form-data'])
 
       ->addInput('text', 'name', ['class' => 'animal_form_input', 'id' => 'animal_name', 'placeholder' => 'Ajouter un nom', 'required'])
 
@@ -54,8 +55,21 @@ class AdminAnimalController extends AdminController
     if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST['createAnimal'])) {
       $name = $_POST['name'];
       $breed = $_POST['breed'];
-      $picture = $_POST['picture'];
       $id_Habitat = $_POST['habitat'];
+
+
+      $imageUrl = NULL; // Définissez une valeur par défaut ou une URL vide
+
+      // Vérifie si un fichier a été téléchargé
+      if (!empty($_FILES['picture']['tmp_name'])) {
+        // Télécharge l'image sur Cloudinary
+        $imageUrl = CloudinaryManager::uploadImage($_FILES['picture']['tmp_name']);
+        if (!$imageUrl) {
+          $_SESSION['error'] = "Une erreur s'est produite lors du téléchargement de l'image.";
+          header("Location: /adminHabitat");
+          exit;
+        }
+      }
 
       $existingAnimal = (new AnimalModel)->findOneByBreed($breed);
 
@@ -69,7 +83,7 @@ class AdminAnimalController extends AdminController
 
           $animal->setName($name)
             ->setBreed($breed)
-            ->setPicture($picture)
+            ->setPictureUrl($imageUrl)
             ->setIdHabitat($id_Habitat);
 
           $animal->createAnimal();
@@ -142,7 +156,7 @@ class AdminAnimalController extends AdminController
       $animal->id_Animal = $animalModel->getId();
       $animal->name = $animalModel->getName();
       $animal->breed = $animalModel->getBreed();
-      $animal->picture = $animalModel->getPicture();
+      $animal->picture = $animalModel->getPictureUrl();
       $animal->id_Habitat = $animalModel->getIdHabitat();
       $animal->habitat = $animalModel->getHabitat();
 
@@ -151,5 +165,4 @@ class AdminAnimalController extends AdminController
 
     return $allanimals;
   }
-
 }

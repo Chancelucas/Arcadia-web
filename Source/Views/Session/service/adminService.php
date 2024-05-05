@@ -1,7 +1,10 @@
 <main>
-  <div id="form_create_animal">
-    <?= $createServiceForm; ?>
-  </div>
+
+  <?php if ($isAdmin) : ?>
+    <div id="form_create_animal">
+      <?= $createServiceForm; ?>
+    </div>
+  <?php endif; ?>
 
   <?php foreach ($services as $service) : ?>
 
@@ -12,7 +15,7 @@
         <div class="item service"><?= $service->picture_url; ?></div>
 
         <div class="btn_gestion_service">
-          <form method="POST" action="/adminService/deleteService/<?= $service->id_Service ;?>">
+          <form method="POST" action="/adminService/deleteService/<?= $service->id_Service; ?>">
             <button type="submit" class="delete-service-btn" name="deleteService">Supprimer</button>
           </form>
 

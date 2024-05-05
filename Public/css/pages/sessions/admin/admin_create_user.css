@@ -1,122 +1,131 @@
 @import url(/css/config/config.css);
 
-
-@media screen and (max-width : 768px) {
-
+#main_admin_user{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
 }
 
-@media screen and (min-width: 769px) and (max-width: 1024px) {
+#form_create_admin {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: auto;
+    background-color: var(--main-clear-color);
+    width: 80vw;
+    max-width: 768px;
+    border-radius: 5px;
+    flex-direction: column;
+    padding: 0px 20px;
+    margin: 20px 0px;
+    border: 1px solid var(--main-shadow-color);
+}
 
+#form_create_admin > form {
+    width: 100%;
+}
+
+.div_create {
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
+#form_create_admin > form > .div_create > input,
+#form_create_admin > form > .div_create > select {
+    background-color: var(--main-white-color);
+    border: none;
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: var(--main-shadow-color);
+}
+
+#form_create_admin > form > .div_create > input::placeholder {
+    color: var(--main-shadow-color);
+}
+
+#form_create_admin > form > .div_create > #btn_add_user {
+    background-color: var(--main-shadow-color);
+    border: none;
+    padding: 5px 20px;
+    border-radius: 5px;
+    color: var(--main-white-color);
+    cursor: pointer;
+    margin: 10px 0px;
+}
+
+#container_user_admin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+
+#user_creaded_admin{
+    background-color: var(--main-clear-color);
+    border-radius: 5px;
+    margin: 10px 0px;
+    padding: 10px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 80%;
+    max-width: 900px;
+}
+
+#user_creaded_admin > .item {
+    background-color: var(--main-white-color);
+    margin: 5px 10px 5px 10px;
+    padding: 0 10px 0 10px;
+    border-radius: 5px;
+    width: 80%;
+}
+#user_creaded_admin > .role {
+    background-color: var(--main-white-color);
+    margin: 5px 10px 5px 10px;
+    border-radius: 5px;
+    width: 80%;
+}
+
+.btn_gestion_user {
+    display: flex;
+}
+
+#user_creaded_admin > .btn_gestion_user > form {
+    margin: 0px 5px 0px 5px;
+}
+
+.edit-user-btn {
+    background-color: var(--main-normal-color);
+    border: none;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    color: var(--main-white-color);
+    cursor: pointer;
+}
+
+.delete-user-btn {
+    background-color: var(--main-red-color);
+    border: none;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    color: var(--main-white-color);
+    cursor: pointer;
+}
+
+@media screen and (min-width: 769px)  {
+    #user_creaded_admin {
+        flex-direction: row;
+        margin: 5px 0px;
+        padding: 0px 10px;
+    }
 }
 
 @media screen and (min-width: 1025px) {
-    #form_create_admin {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    #form_create_admin > form {
-        display: flex;
-        flex-direction: row;
-        background-color: var(--main-clear-color);
-        border-radius: 5px;
-        padding: 0 20px 0 20px;
-        margin: 30px 0 30px 0;
-        border: var(--main-shadow-color) solid 1px;
-        align-items: center;
-    }
-
-    #form_create_admin > form > .div_create {
-        margin: 20px 5px 20px 5px;
-    }
-
-    #form_create_admin > form > .div_create > input {
-        background-color: var(--main-white-color);
-        border: none;
-        padding: 5px 0px 5px 10px;
-        border-radius: 5px;
-    }
-
-    #form_create_admin > form > .div_create > input::placeholder {
-        color: var(--main-shadow-color);
-    }
-
-    #form_create_admin > form > .div_create > select {
-        background-color: var(--main-white-color);
-        border: none;
-        padding: 5px 0px 5px 10px;
-        border-radius: 5px;
-        color: var(--main-shadow-color);
-        margin-right: 10px;
-    }
-
-    #form_create_admin > form > .div_create > #btn_add_user {
-        background-color: var(--main-shadow-color);
-        border: none;
-        padding: 5px 20px 5px 20px;
-        border-radius: 5px;
-        color: var(--main-white-color);
-        cursor: pointer;
-
-    }
-
-    #container_user_admin {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    #user_creaded_admin{
-        background-color: var(--main-clear-color);
-        border-radius: 5px;
-        margin: 2px 0px 2px 0px;
-        padding: 0 5px 0 5px;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        width: 80%;
-        max-width: 900px;
-    }
-
-    #user_creaded_admin > .item {
-        background-color: var(--main-white-color);
-        margin: 5px 10px 5px 10px;
-        padding: 0 10px 0 10px;
-        border-radius: 5px;
-        width: 30%;
-    }
-    #user_creaded_admin > .role {
-        background-color: var(--main-white-color);
-        margin: 5px 10px 5px 10px;
-        border-radius: 5px;
-        width: 12%;
-    }
-
-    #user_creaded_admin > .btn_gestion_user {
-        display: flex;
-    }
-
-    #user_creaded_admin > .btn_gestion_user > form {
-        margin: 0px 5px 0px 5px;
-    }
-
-    #user_creaded_admin > .btn_gestion_user > form > .edit-user-btn {
-        background-color: var(--main-normal-color);
-        border: none;
-        padding: 5px 10px 5px 10px;
-        border-radius: 5px;
-        color: var(--main-white-color);
-        cursor: pointer;
-    }
-
-    #user_creaded_admin > .btn_gestion_user > form > .delete-user-btn {
-        background-color: var(--main-red-color);
-        border: none;
-        padding: 5px 10px 5px 10px;
-        border-radius: 5px;
-        color: var(--main-white-color);
-        cursor: pointer;
-    }
+    
 
 }

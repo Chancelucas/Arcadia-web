@@ -1,65 +1,88 @@
 @import url(/css/config/config.css);
 
-@media screen and (max-width : 768px) {
+/* Styles généraux pour les appareils mobiles */
 
+#main_admin_update_user {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-
+#admin_update_user_link_back{
+    display: flex;
+    width: 100%;
 }
 
-@media screen and (min-width: 1025px) {
-    #container_update_user {
-        height: 100vh;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-    }
+#container_update_user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--main-clear-color);
+    width: 80vw;
+    max-width: 700px;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 30px 0;
+    border: var(--main-shadow-color) solid 1px;
+}
+
+#form_update_user{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#form_update_user > .div_form_update_user {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 5px 0px;
     
-    #container_update_user > #form_update_user {
-        margin-top: 5%;
-        background-color: var(--main-clear-color);
-        display: flex;
-        flex-direction: column;
-        width: 50vw;
-        max-width: 1110px;
-        padding: 1rem 1rem 1rem 1rem;
-        border-radius: 5px;
+}
+
+#form_update_user > .div_form_update_user > .input_class_update_user {
+    width: 100%;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--main-white-color);
+    color: var(--main-shadow-color);
+}
+
+#btn_update_user {
+    border: none;
+    background-color: var(--main-shadow-color);
+    color: var(--main-white-color);
+    border-radius: 5px;
+    margin: 10px 0px;
+    padding: 5px 15px;
+}
+
+
+/* Media query pour les écrans de taille moyenne (769px - 1024px) */
+@media screen and (min-width: 769px)  {
+    #form_update_user > .div_form_update_user {
+        flex-direction: row;
     }
 
-    #container_update_user > #form_update_user > .div_form_update_user{
-        margin: 5px 0 5px 0;
-        display: flex;
-        justify-content: space-around;
-
-
+    #form_update_user > .div_form_update_user > .input_class_update_user {
+        width: 82%;
     }
 
-    #container_update_user > #form_update_user > .div_form_update_user > .input_class_update_user{
-        background-color: var(--main-white-color);
-        border: none;
-        padding: 5px 10px 5px 10px;
-        border-radius: 5px;
-        width: 50%;
-        color: var(--main-shadow-color);
-
-    }
-
-    #container_update_user > #form_update_user > .div_class_update_user {
-        display: flex;
-        justify-content: center;
-    }
-
-    #container_update_user > #form_update_user > .div_class_update_user > #btn_update_user{
-        background-color: var(--main-shadow-color);
-        border: none;
-        padding: 5px 20px 5px 20px;
-        border-radius: 5px;
-        color: var(--main-white-color);
-        cursor: pointer;
-        margin-top: 2%;
+    #form_update_user > .div_form_update_user > .input_class_update_user > #roleId {
+        width: 100%;
     }
 
 
+}
+
+/* Media query pour les écrans larges (> 1024px) */
+@media screen and (min-width: 1025px) {
+    
 }

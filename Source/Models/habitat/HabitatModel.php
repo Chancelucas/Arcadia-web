@@ -118,11 +118,11 @@ class HabitatModel extends MainModel
    */
   public function update()
   {
-    $sql = "UPDATE {$this->table} SET name = :name, description = :description, picture_url = :picture_url WHERE id = :id_habitat";
+    $sql = "UPDATE {$this->table} SET name = :name, description = :description, picture_url = :picture_url  WHERE id = :id_habitat";
     $values = [
       ':name' => $this->name,
       ':description' => $this->description,
-      ':picture_url' => $this->picture_url,
+      ':picture_url' => $this->picture_url, 
       ':id_habitat' => $this->id,
     ];
 

@@ -12,7 +12,8 @@ class AdminServiceController extends AdminController
   {
     $createServiceForm = $this->generateCreateServiceForm();
     $services = $this->getAllServices();
-    $this->render('service/adminService', ['createServiceForm' => $createServiceForm, 'services' => $services]);
+
+    $this->render('service/adminService', ['createServiceForm' => $createServiceForm, 'services' => $services, 'isAdmin' => $this->isAdmin()]);
   }
 
   /**
@@ -41,7 +42,6 @@ class AdminServiceController extends AdminController
       ->endDiv()
 
       ->endForm();
-
 
     return $form->create();
   }
@@ -74,7 +74,7 @@ class AdminServiceController extends AdminController
 
           $_SESSION['message'] = "Le service a été créé avec succès.";
         } catch (\Exception $e) {
-          
+
           $_SESSION['error'] = "Une erreur s'est produite lors de la création du service : " . $e->getMessage();
         }
       }
@@ -91,7 +91,10 @@ class AdminServiceController extends AdminController
    */
   public function deleteService(int $serviceId)
   {
-    if (isset($_POST['deleteService'])) {
+    $isAdmin = $this->isAdmin();
+
+
+    if ($isAdmin && isset($_POST['deleteService'])) {
       $serviceModel = new ServiceModel;
 
       $serviceModel->setId($serviceId);
@@ -129,5 +132,4 @@ class AdminServiceController extends AdminController
 
     return $allServices;
   }
-
 }

@@ -1,5 +1,6 @@
-<main>
+<main id="main_admin_user">
   <div id="form_create_admin">
+    <h3>Créer un employé</h3>
     <?= $createUserForm; ?>
   </div>
 

@@ -11,6 +11,10 @@
         <div class="item"><?= $animal->breed; ?></div>
         <div class="item habitat"><?= $animal->habitat; ?></div>
 
+        <div id="image_animal_view">
+          <img src="<?= $animal->picture ?>" alt="Photo animal" width="100%">
+        </div>
+
         <div class="btn_gestion_animal">
           <form method="POST" action="adminAnimal/deleteAnimal/<?= $animal->id_Animal ?>">
             <button type="submit" class="delete-animal-btn" name="deleteAnimal">Supprimer</button>

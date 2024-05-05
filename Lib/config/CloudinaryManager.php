@@ -2,8 +2,6 @@
 
 namespace Lib\config;
 
-require_once __DIR__ . '/Public/vendor/autoload.php';
-
 use Cloudinary\Api\Upload\UploadApi;
 
 class CloudinaryManager
@@ -28,4 +26,3 @@ class CloudinaryManager
         // Implémentez la logique pour récupérer l'URL d'une image sur Cloudinary
     }
 }
-

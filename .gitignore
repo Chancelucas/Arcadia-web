@@ -1,5 +1,5 @@
 lib/config/Database.php
 lib/config/connect_api.php
-public/vendor/
+Lib/vendor/
 composer.json
 composer.lock

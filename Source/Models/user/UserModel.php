@@ -10,7 +10,7 @@ class UserModel extends MainModel
   protected $username;
   protected $email;
   protected $password;
-  protected $id_Role;
+  protected $id_role;
 
   /**
    * Init user model on table User
@@ -47,12 +47,22 @@ class UserModel extends MainModel
       'id_user' => $this->id,
       'email' => $this->email,
       'username' => $this->username,
-      'roleId' => $this->id_Role,
+      'roleId' => $this->id_role,
       'role' => $this->getRole(),
     ];
 
     $_SESSION['error'] = "";
     $_SESSION['message'] = "";
+  }
+
+  public function fromSession()
+  {
+    $user = $_SESSION['user'];
+    $this->setIdUser($user['id_user']);
+    $this->setUsername($user['username']);
+    $this->setEmail($user['email']);
+    $this->setIdRole($user['roleId']);
+    return $this;
   }
 
   /**
@@ -72,7 +82,7 @@ class UserModel extends MainModel
     return $models;
   }
 
-  
+
 
   /**
    * Create one user on table User
@@ -92,14 +102,12 @@ class UserModel extends MainModel
       ':username' => $this->username,
       ':email' => $this->email,
       ':password' => $this->password,
-      ':id_role' => $this->id_Role,
+      ':id_role' => $this->id_role,
       ':id_user' => $this->id,
     ];
 
     return $this->request($sql, $values);
   }
-
-
 
 
   /////////////////// GETTER and SETTER /////////////////////
@@ -186,12 +194,12 @@ class UserModel extends MainModel
 
   public function getIdRole()
   {
-    return $this->id_Role;
+    return $this->id_role;
   }
 
   public function setIdRole($id_Role)
   {
-    $this->id_Role = $id_Role;
+    $this->id_role = $id_Role;
 
     return $this;
   }
@@ -201,7 +209,7 @@ class UserModel extends MainModel
    */
   public function getRole()
   {
-    return (new RoleModel())->findOneById($this->id_Role)->getRole();
+    return (new RoleModel())->findOneById($this->id_role)->getRole();
   }
 
   /**

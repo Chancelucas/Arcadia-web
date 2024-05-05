@@ -31,6 +31,8 @@ class AdminUpdateHabitatController extends AdminController
 
     $form = new Form;
 
+  
+
     $form->startForm('POST', "/adminUpdateHabitat/updateHabitat/{$habitatId}", ['id' => 'form_update_habitat'])
 
       ->startDiv(['class' => 'div_form_update_habitat'])
@@ -40,7 +42,7 @@ class AdminUpdateHabitatController extends AdminController
 
       ->startDiv(['class' => 'div_form_update_habitat'])
       ->addLabelFor('description', 'Description :')
-      ->addInput('text', 'description', ['id' => 'description', 'class' => 'input_class_update_habitat', 'value' => $description, 'required' => true])
+      ->addTextarea('description', $description, ['id' => 'description', 'class' => 'input_class_update_habitat', 'required' => true])
       ->endDiv()
 
       ->startDiv(['id' => 'div_id_update_habitat', 'class' => 'div_class_update_habitat'])
@@ -48,6 +50,8 @@ class AdminUpdateHabitatController extends AdminController
       ->endDiv()
 
       ->endForm();
+
+      
 
     return $form->create();
   }

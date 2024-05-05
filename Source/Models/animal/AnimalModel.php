@@ -38,8 +38,8 @@ class AnimalModel extends MainModel
   public function findOneByBreed(string $breed)
   {
     $breedData = $this->request("SELECT * FROM {$this->table} WHERE breed = ?", [$breed])->fetch();
-    
-    if($breedData === false) {
+
+    if ($breedData === false) {
       return null;
     }
 
@@ -113,7 +113,7 @@ class AnimalModel extends MainModel
 
     return $this;
   }
-  
+
   /**
    * Get the value of name
    */
@@ -154,12 +154,12 @@ class AnimalModel extends MainModel
     return $this;
   }
 
-  
+
 
   /**
    * Get the value of picture
-   */ 
-  public function getPicture()
+   */
+  public function getPictureUrl()
   {
     return $this->picture_url;
   }
@@ -168,8 +168,8 @@ class AnimalModel extends MainModel
    * Set the value of picture
    *
    * @return  self
-   */ 
-  public function setPicture($picture)
+   */
+  public function setPictureUrl($picture)
   {
     $this->picture_url = $picture;
 

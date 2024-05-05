@@ -1,16 +1,68 @@
 @import url(/css/config/config.css);
 
-@media screen and (max-width : 768px) {
+#container_update_habitat {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#form_update_habitat {
+  margin-top: 5%;
+  background-color: var(--main-clear-color);
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  max-width: 1110px;
+  padding: 1rem 1rem 1rem 1rem;
+  border-radius: 5px;
+}
+
+.div_form_update_habitat{
+  margin: 5px 0 5px 0;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+
+.div_form_update_habitat > .input_class_update_habitat{
+  background-color: var(--main-white-color);
+  border: none;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  width: 80%;
+  color: var(--main-shadow-color);
 
 }
 
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-
+.div_form_update_habitat > #description {
+  height: 100px;
 }
 
-@media screen and (min-width: 1025px) {
-  #main_update_habitat{
-    background-color: red;
+#form_update_habitat > .div_class_update_habitat {
+  display: flex;
+  justify-content: center;
+}
+
+#form_update_habitat > .div_class_update_habitat > #btn_update_habitat{
+  background-color: var(--main-shadow-color);
+  border: none;
+  padding: 5px 20px 5px 20px;
+  border-radius: 5px;
+  color: var(--main-white-color);
+  cursor: pointer;
+  margin-top: 2%;
+}
+
+@media screen and (min-width: 769px)  {
+  .div_form_update_habitat{
+    margin: 5px 0 5px 0;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: flex-start;
   }
-
 }
+
