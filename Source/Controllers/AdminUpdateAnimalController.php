@@ -20,7 +20,7 @@ class AdminUpdateAnimalController extends AdminController
     $breed = $animal->getBreed();
 
     $animalForm = $this->createForm($id, $name, $breed);
-    $this->render('adminUpdateAnimal/adminUpdateAnimal', ['animalForm' => $animalForm]);
+    $this->render('animal/adminUpdateAnimal', ['animalForm' => $animalForm]);
   }
 
   /**

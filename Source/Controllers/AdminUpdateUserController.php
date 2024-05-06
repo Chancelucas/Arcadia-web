@@ -15,7 +15,7 @@ class AdminUpdateUserController extends AdminController
   public function index()
   {
     $userForm = $this->getOneUser();
-    $this->render('adminUpdateUser/adminUpdateUser', ['userForm' => $userForm]);
+    $this->render('user/adminUpdateUser', ['userForm' => $userForm]);
   }
 
   /**

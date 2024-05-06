@@ -1,5 +1,5 @@
-<main>
-    <div id="form_create_hour">
+<main id="main_edit_hour">
+    <div id="div_form_create_hour">
         <?= $createHourForm; ?>
     </div>
 
@@ -15,7 +15,7 @@
             <button type="submit" class="delete-hour-btn" name="deleteHour">Supprimer</button>
           </form>
 
-          <a href="/adminUpdateHour/index/<?= $hour->id_Hour ?>">Modifier</a>
+          <a href="/adminUpdateHour/index/<?= $hour->id_Hour ?>" class="link_update_hour">Modifier</a>
 
         </div>
 

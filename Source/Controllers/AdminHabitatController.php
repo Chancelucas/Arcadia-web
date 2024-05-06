@@ -88,7 +88,7 @@ class AdminHabitatController extends AdminController
 
           $habitat->setName($name)
             ->setDescription($description)
-            ->setPicture($imageUrl);
+            ->setPictureUrl($imageUrl);
 
           $habitat->createHabitat();
 

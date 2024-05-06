@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" media="screen" href="/css/style.css" type="text/css">
-  <title> Admin Arcadia</title>
+  <title>Admin Arcadia</title>
 </head>
 
 <body>
@@ -32,9 +32,6 @@
 
   <?= $containe; ?>
 
-  <footer>
-    <?php require_once ROOT . '/Source/Views/Session/templates/admin_footer.php'; ?>
-  </footer>
 
 </body>
 

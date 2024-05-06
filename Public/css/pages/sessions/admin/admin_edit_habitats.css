@@ -30,7 +30,7 @@
     flex-direction: column;
     margin: 20px 0 20px 0;
     width: 100%;
-    align-items: center
+    align-items: center;
 }
 
 #form_habitat > .habitat_form_input{

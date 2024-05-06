@@ -3,8 +3,9 @@
 namespace Source\Controllers;
 
 use Lib\config\Form;
-use Source\Models\service\ServiceModel;
+use Lib\config\CloudinaryManager;
 use Source\Controllers\AdminController;
+use Source\Models\service\ServiceModel;
 
 class AdminServiceController extends AdminController
 {
@@ -13,7 +14,7 @@ class AdminServiceController extends AdminController
     $createServiceForm = $this->generateCreateServiceForm();
     $services = $this->getAllServices();
 
-    $this->render('service/adminService', ['createServiceForm' => $createServiceForm, 'services' => $services, 'isAdmin' => $this->isAdmin()]);
+    $this->render('service/adminService', ['createServiceForm' => $createServiceForm, 'services' => $services]);
   }
 
   /**
@@ -23,22 +24,22 @@ class AdminServiceController extends AdminController
   {
     $form = new Form;
 
-    $form->startForm('POST', 'adminService/createService')
+    $form->startForm('POST', 'adminService/createService', ['id' => 'form_create_service', 'enctype' => 'multipart/form-data'])
 
-      ->startDiv(['id' => 'div_create_service', 'class' => 'div_create'])
+      ->startDiv(['id' => 'div_create_service', 'class' => 'div_create_service'])
       ->addInput('text', 'name', ['id' => 'name', 'placeholder' => 'Nom du service', 'required'])
       ->endDiv()
 
-      ->startDiv(['id' => 'div_create_description', 'class' => 'div_create'])
-      ->addInput('description', 'description', ['id' => 'description', 'placeholder' => 'Description'])
+      ->startDiv(['id' => 'div_create_description', 'class' => 'div_create_service'])
+      ->addTextarea('description', '', ['class' => 'service_form_input', 'id' => 'description', 'name' => 'description', 'placeholder' => 'Ajouter une description', 'required' => true])
       ->endDiv()
 
       ->startDiv(['id' => 'div_add_picture_service'])
       ->addInput('file', 'picture', ['id' => 'service_add_picture', 'class' => 'service_form_input', 'placeholder' => 'Choisir des photos', 'multiple'])
       ->endDiv()
 
-      ->startDiv(['class' => 'input_btn_login input_login div_create'])
-      ->addBouton('Créer', ['type' => 'submit', 'value' => 'submit', 'id' => 'btn_add_service', 'name' => 'createservice'])
+      ->startDiv(['class' => 'input_btn_login div_create_service'])
+      ->addBouton('Créer', ['type' => 'submit', 'value' => 'submit', 'id' => 'btn_add_service', 'name' => 'createService'])
       ->endDiv()
 
       ->endForm();
@@ -51,10 +52,23 @@ class AdminServiceController extends AdminController
    */
   public function createService()
   {
-    if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST['createservice'])) {
+    if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST['createService'])) {
       $name = $_POST['name'];
       $description = $_POST['description'];
       $picture_url = $_POST['picture'];
+
+      $imageUrl = NULL; // Définissez une valeur par défaut ou une URL vide
+
+      // Vérifie si un fichier a été téléchargé
+      if (!empty($_FILES['picture']['tmp_name'])) {
+        // Télécharge l'image sur Cloudinary
+        $imageUrl = CloudinaryManager::uploadImage($_FILES['picture']['tmp_name']);
+        if (!$imageUrl) {
+          $_SESSION['error'] = "Une erreur s'est produite lors du téléchargement de l'image.";
+          header("Location: /adminService");
+          exit;
+        }
+      }
 
       $existingService = (new ServiceModel)->findOneByName($name);
 
@@ -68,7 +82,7 @@ class AdminServiceController extends AdminController
 
           $service->setName($name)
             ->setDescription($description)
-            ->setPicture($picture_url);
+            ->setPictureUrl($imageUrl);
 
           $service->createService();
 
@@ -91,10 +105,8 @@ class AdminServiceController extends AdminController
    */
   public function deleteService(int $serviceId)
   {
-    $isAdmin = $this->isAdmin();
 
-
-    if ($isAdmin && isset($_POST['deleteService'])) {
+    if (isset($_POST['deleteService'])) {
       $serviceModel = new ServiceModel;
 
       $serviceModel->setId($serviceId);
@@ -125,7 +137,7 @@ class AdminServiceController extends AdminController
       $service->id_Service = $serviceModel->getId();
       $service->name = $serviceModel->getName();
       $service->description = $serviceModel->getDescription();
-      $service->picture_url = $serviceModel->getPicture();
+      $service->picture = $serviceModel->getPictureUrl();
 
       $allServices[] = $service;
     }

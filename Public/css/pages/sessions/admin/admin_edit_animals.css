@@ -66,7 +66,80 @@
   color: var(--main-white-color);
   cursor: pointer;
   margin-top: 10px;
+  
 }
+
+#container_animal_admin {
+display: flex;
+justify-content: center;
+align-items: center;
+width: 90%;
+max-width: 1440px;
+}
+
+#animal_creaded_admin{
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  background-color: var(--main-clear-color);
+  color: var(--main-shadow-color);
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 5px 0;
+  height: 155px;
+}
+
+#animal_creaded_admin > .item{
+  background-color: var(--main-white-color);
+  color: var(--main-shadow-color);
+  border-radius: 5px;
+  width: 80%;
+  margin: 0px 5px;
+  padding-left: 5px ;
+}
+
+#image_animal_view{
+  max-width: 90px;
+  display: flex;
+  align-items: center;
+  margin: 0px 5px;
+  flex-direction: column;
+}
+
+#image_animal_view > img{
+  border-radius: 5px;
+  width: 100%;
+
+}
+
+.btn_gestion_animal{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.delete-animal-btn{
+  background-color: var(--main-red-color);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  color: var(--main-white-color);
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.link_update_animal{
+  background-color: var(--main-normal-color);
+  border-radius: 5px;
+  color: var(--main-white-color);
+  cursor: pointer;
+  width: 100%;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+}
+
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
 

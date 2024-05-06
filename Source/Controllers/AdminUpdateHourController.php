@@ -19,7 +19,7 @@ class AdminUpdateHourController extends AdminController
 
     $hourForm = $this->createForm($id, $day, $openingTime, $closingTime);
 
-    $this->render('adminUpdateHour/adminUpdateHour', ['hourForm' => $hourForm]);
+    $this->render('hour/adminUpdateHour', ['hourForm' => $hourForm]);
   }
 
   /**

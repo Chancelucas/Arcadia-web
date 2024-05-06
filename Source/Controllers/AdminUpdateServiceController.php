@@ -21,7 +21,7 @@ class AdminUpdateServiceController extends AdminController
     $description = $service->getDescription();
 
     $serviceForm = $this->createForm($id, $name, $description);
-    $this->render('adminUpdateService/adminUpdateService', ['serviceForm' => $serviceForm]);
+    $this->render('service/adminUpdateService', ['serviceForm' => $serviceForm]);
   }
 
 
@@ -35,14 +35,17 @@ class AdminUpdateServiceController extends AdminController
     $form = new Form;
 
     $form->startForm('POST', "/adminUpdateService/updateService/{$serviceId}", ['id' => 'form_update_service'])
+
       ->startDiv(['class' => 'div_form_update_service'])
       ->addLabelFor('name', 'Nom :')
       ->addInput('text', 'name', ['id' => 'name', 'class' => 'input_class_update_service', 'value' => $name, 'required' => true])
       ->endDiv()
+
       ->startDiv(['class' => 'div_form_update_service'])
       ->addLabelFor('description', 'description :')
-      ->addInput('text', 'description', ['id' => 'description', 'class' => 'input_class_update_service', 'value' => $description, 'required' => true])
+      ->addTextarea('description', $description, ['id' => 'description', 'class' => 'input_class_update_service', 'required' => true])
       ->endDiv()
+
       ->startDiv(['id' => 'div_id_update_service', 'class' => 'div_class_update_service'])
       ->addBouton('Enregistrer', ['type' => 'submit', 'name' => 'save_changes', 'id' => 'btn_update_service'])
       ->endDiv()

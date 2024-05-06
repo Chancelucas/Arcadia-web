@@ -27,14 +27,14 @@
     width: 100%;
 }
 
-.div_create {
+.div_create_user {
     margin: 10px 0;
     display: flex;
     justify-content: center;
 }
 
-#form_create_admin > form > .div_create > input,
-#form_create_admin > form > .div_create > select {
+#form_create_admin > form > .div_create_user > input,
+#form_create_admin > form > .div_create_user > select {
     background-color: var(--main-white-color);
     border: none;
     width: 100%;
@@ -43,11 +43,11 @@
     color: var(--main-shadow-color);
 }
 
-#form_create_admin > form > .div_create > input::placeholder {
+#form_create_admin > form > .div_create_user > input::placeholder {
     color: var(--main-shadow-color);
 }
 
-#form_create_admin > form > .div_create > #btn_add_user {
+#form_create_admin > form > .div_create_user > #btn_add_user {
     background-color: var(--main-shadow-color);
     border: none;
     padding: 5px 20px;

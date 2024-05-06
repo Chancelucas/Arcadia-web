@@ -19,11 +19,15 @@ class AdminHourController extends AdminController
   {
     $form = new Form;
 
-    $form->startForm('POST', 'adminHour/createHour')
+    $form->startForm('POST', 'adminHour/createHour', ['id' => 'form_create_hour'])
 
-      ->addInput('text', 'day', ['id' => 'day', 'placeholder' => 'Jour', 'required' => true])
-      ->addInput('time', 'opening_time', ['id' => 'opening_time', 'placeholder' => 'Heure d\'ouverture', 'required' => true])
-      ->addInput('time', 'closing_time', ['id' => 'closing_time', 'placeholder' => 'Heure de fermeture', 'required' => true])
+      ->addInput('text', 'day', ['id' => 'day', 'placeholder' => 'Jour', 'required' => true, 'class' => 'input_create_hour'])
+
+      ->addLabelFor('opening_time', 'Heure d\'ouverture :')
+      ->addInput('time', 'opening_time', ['id' => 'opening_time', 'placeholder' => 'Heure d\'ouverture', 'required' => true, 'class' => 'input_create_hour'])
+
+      ->addLabelFor('closing_time', 'Heure de fermeture :')
+      ->addInput('time', 'closing_time', ['id' => 'closing_time', 'placeholder' => 'Heure de fermeture', 'required' => true, 'class' => 'input_create_hour'])
 
       ->addBouton('Créer', ['type' => 'submit', 'value' => 'submit', 'id' => 'btn_add_hour', 'name' => 'createHour']);
 

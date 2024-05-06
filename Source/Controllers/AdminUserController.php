@@ -16,7 +16,7 @@ class AdminUserController extends AdminController
   {
     $createUserForm = $this->generateCreateUserForm();
     $users = $this->getAllUsers();
-    $this->render('adminUser/adminUser', ['createUserForm' => $createUserForm, 'users' => $users]);
+    $this->render('user/adminUser', ['createUserForm' => $createUserForm, 'users' => $users]);
   }
 
   /**
@@ -30,23 +30,23 @@ class AdminUserController extends AdminController
 
     $form->startForm('POST', 'adminUser/createUser')
 
-      ->startDiv(['id' => 'div_create_username', 'class' => 'div_create'])
+      ->startDiv(['id' => 'div_create_username', 'class' => 'div_create_user'])
       ->addInput('text', 'username', ['id' => 'username', 'placeholder' => 'Nom', 'required' => true])
       ->endDiv()
 
-      ->startDiv(['id' => 'div_create_email', 'class' => 'div_create'])
+      ->startDiv(['id' => 'div_create_email', 'class' => 'div_create_user'])
       ->addInput('email', 'email', ['id' => 'email', 'placeholder' => 'Email', 'required' => true])
       ->endDiv()
 
-      ->startDiv(['id' => 'div_create_password', 'class' => 'div_create'])
+      ->startDiv(['id' => 'div_create_password', 'class' => 'div_create_user'])
       ->addInput('password', 'password', ['id' => 'password', 'placeholder' => 'Mot de passe'])
       ->endDiv()
 
-      ->startDiv(['id' => 'div_create_role', 'class' => 'div_create'])
+      ->startDiv(['id' => 'div_create_role', 'class' => 'div_create_user'])
       ->addSelect('role', $roles, ['required'])
       ->endDiv()
 
-      ->startDiv(['class' => 'input_btn_login input_login div_create'])
+      ->startDiv(['class' => 'input_btn_login input_login div_create_user'])
       ->addBouton('Créer', ['type' => 'submit', 'value' => 'submit', 'id' => 'btn_add_user', 'name' => 'createUser'])
       ->endDiv()
 

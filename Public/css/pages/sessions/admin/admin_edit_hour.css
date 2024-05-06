@@ -1,0 +1,113 @@
+@import url(/css/config/config.css);
+
+#main_edit_hour{ 
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+#div_form_create_hour{
+  background-color: var(--main-clear-color);
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0 20px 0;
+  padding: 20px 0;
+  width: 80%;
+  max-width: 769px;
+  align-items: center;
+  border-radius: 5px;
+  border: solid 1px var(--main-shadow-color);
+}
+
+#form_create_hour{
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.input_create_hour{
+  margin: 5px 0px 5px 0px;
+  padding: 5px 0px 5px 0px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--main-white-color);
+  color: var(--main-shadow-color);
+  font-family: var(--font-family);
+  width: 80%;
+}
+
+.input_create_hour::placeholder{
+  color: var(--main-shadow-color);
+}
+
+#form_create_hour > #btn_add_hour{
+  background-color: var(--main-shadow-color);
+  color: var(--main-white-color);
+  margin-top: 10px;
+  border: none;
+  width: 80%;
+  border-radius: 5px;
+  padding: 5px 0;
+}
+
+#container_hour_admin{
+  width: 90%;
+  max-width: 1440px;
+  display: flex;
+  align-items: center;
+  height: auto;
+  justify-content: center;
+  background-color: var(--main-clear-color);
+  margin: 5px 0;
+  border-radius: 5px;
+
+}
+
+#hour_creaded_admin {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  justify-content: center;
+}
+
+#hour_creaded_admin > .item {
+  margin: 5px;
+  background-color: var(--main-white-color);
+  padding: 5px;
+  border-radius: 5px;
+  min-width: 70px;
+}
+
+
+/* Tout les boutons */
+
+.btn_gestion_hour  {
+  display: flex;
+}
+
+.delete-hour-btn {
+  margin: 0 5px;
+  border: none;
+  background-color: var(--main-red-color);
+  color: var(--main-white-color);
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.link_update_hour{
+  text-decoration: none;
+  color: var(--main-white-color);
+  background-color: var(--main-normal-color);
+  border-radius: 5px;
+  padding: 0 5px;
+}
+
+
+
+

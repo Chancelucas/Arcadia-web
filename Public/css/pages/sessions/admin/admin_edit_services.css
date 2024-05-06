@@ -1,0 +1,135 @@
+@import url(/css/config/config.css);
+
+#main_edit_service {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+#div_form_create_service{
+  background-color: var(--main-clear-color);
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0 20px 0;
+  padding: 20px 0;
+  width: 80%;
+  max-width: 769px;
+  align-items: center;
+  border-radius: 5px;
+  border: solid 1px var(--main-shadow-color);
+}
+
+#form_create_service{
+width: 80%;
+}
+
+.div_create_service > input{
+  margin-bottom: 10px;
+}
+
+.div_create_service > input,
+.div_create_service > textarea{
+  background-color: var(--main-white-color);
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  width: 100%;
+  color: var(--main-shadow-color);
+  font-family: var(--font-family);
+}
+
+.div_create_service > input::placeholder,
+.div_create_service > textarea::placeholder{
+  color: var(--main-shadow-color);
+}
+
+.input_btn_login{
+  display: flex;
+  justify-content: center;
+}
+
+#btn_add_service{
+  background-color: var(--main-shadow-color);
+  color: var(--main-white-color);
+  border: none;
+  width: 100%;
+  border-radius: 5px;
+  padding: 5px 0;
+  margin-top: 10px;
+}
+
+#container_service_admin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  max-width: 1440px;
+}
+
+#service_creaded_admin{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--main-clear-color);
+  color: var(--main-shadow-color);
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 5px 0;
+  height: auto;
+}
+
+#service_creaded_admin > .item{
+  background-color: var(--main-white-color);
+  color: var(--main-shadow-color);
+  border-radius: 5px;
+  width: 80%;
+  margin: 5px;
+  padding-left: 5px ;
+}
+
+#picture_service_view{
+  max-width: 90px;
+  display: flex;
+  align-items: center;
+  margin: 5px;
+  flex-direction: column;
+}
+
+#picture_service_view > img{
+  border-radius: 5px;
+  width: 100%;
+
+}
+
+.btn_gestion_service{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+}
+
+.delete-service-btn{
+  background-color: var(--main-red-color);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  color: var(--main-white-color);
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.link_update_service{
+  background-color: var(--main-normal-color);
+  border-radius: 5px;
+  color: var(--main-white-color);
+  cursor: pointer;
+  width: 100%;
+  text-decoration: none;
+  display: flex;
+  padding: 3px;
+  justify-content: center;
+}

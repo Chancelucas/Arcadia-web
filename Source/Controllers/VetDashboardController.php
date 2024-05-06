@@ -3,9 +3,9 @@
 namespace Source\Controllers;
 
 use Lib\config\Form;
-use Source\Controllers\AdminController;
+use Source\Controllers\VetController;
 
-class VetDashboardController extends AdminController
+class VetDashboardController extends VetController
 {
 
   /**

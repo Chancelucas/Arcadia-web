@@ -1,0 +1,55 @@
+@import url(/css/config/config.css);
+
+#container_update_hour {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#form_update_hour{
+  background-color: var(--main-clear-color);
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0 20px 0;
+  padding: 20px 0;
+  width: 80%;
+  max-width: 769px;
+  align-items: center;
+  border-radius: 5px;
+  border: solid 1px var(--main-shadow-color);
+}
+
+.div_form_update_hour{
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input_form_update_hour{
+  margin: 5px 0px 5px 0px;
+  padding: 5px 0px 5px 0px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--main-white-color);
+  color: var(--main-shadow-color);
+  font-family: var(--font-family);
+  width: 80%;
+  padding-left: 10px;
+}
+
+#div_id_update_hour{
+  width: 80%;
+  display: flex;
+  justify-content: center;
+}
+
+#btn_update_hour{
+  background-color: var(--main-shadow-color);
+  color: var(--main-white-color);
+  margin-top: 10px;
+  border: none;
+  width: 80%;
+  border-radius: 5px;
+  padding: 5px 0;
+}

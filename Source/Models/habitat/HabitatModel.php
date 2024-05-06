@@ -175,7 +175,7 @@ class HabitatModel extends MainModel
   /**
    * Get the value of picture
    */
-  public function getPicture()
+  public function getPictureUrl()
   {
     return $this->picture_url;
   }
@@ -185,7 +185,7 @@ class HabitatModel extends MainModel
    *
    * @return  self
    */
-  public function setPicture($picture)
+  public function setPictureUrl($picture)
   {
     $this->picture_url = $picture;
 

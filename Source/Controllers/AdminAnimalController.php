@@ -37,7 +37,7 @@ class AdminAnimalController extends AdminController
       ->addSelect('habitat', $habitats, ['id' => 'animals_add_habitat', 'class' => 'animal_form_input'])
 
       ->startDiv(['id' => 'div_add_doc_animal'])
-      ->addInput('file', 'picture', ['id' => 'animal_add_picture', 'class' => 'animal_form_input', 'multiple'])
+      ->addInput('file', 'picture', ['id' => 'animal_add_picture', 'class' => 'animal_form_input', 'multiple' => true])
       ->endDiv()
 
       ->addBouton('Créer', ['type' => 'submit', 'value' => 'submit', 'id' => 'animal_btn_save', 'name' => 'createAnimal', 'class' => 'animal_form_input'])
@@ -66,7 +66,7 @@ class AdminAnimalController extends AdminController
         $imageUrl = CloudinaryManager::uploadImage($_FILES['picture']['tmp_name']);
         if (!$imageUrl) {
           $_SESSION['error'] = "Une erreur s'est produite lors du téléchargement de l'image.";
-          header("Location: /adminHabitat");
+          header("Location: /adminAnimal");
           exit;
         }
       }
@@ -143,7 +143,6 @@ class AdminAnimalController extends AdminController
   /**
    * Get all Animals 
    * 
-   * A FINIR pour afficher correctement tout les animaux des les habitat afficher
    */
   public function getAllAnimals()
   {

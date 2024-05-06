@@ -20,7 +20,7 @@ class AdminUpdateHabitatController extends AdminController
     $name = $habitat->getName();
 
     $habitatForm = $this->createForm($id, $description, $name);
-    $this->render('adminUpdateHabitat/adminUpdateHabitat', ['habitatForm' => $habitatForm]);
+    $this->render('habitat/adminUpdateHabitat', ['habitatForm' => $habitatForm]);
   }
 
   /**

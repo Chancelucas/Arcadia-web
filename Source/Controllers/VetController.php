@@ -2,19 +2,19 @@
 
 namespace Source\Controllers;
 
-use Source\Models\user\UserModel;
 
 /**
  * Controller princial for admin part
  * 
  */
 
-abstract class AdminController
+abstract class VetController
 {
+
   /**
    * Show admin template (navbar & footer)
    */
-  public function render(string $file, array $data = [], string $template = 'defaultAdminPage')
+  public function render(string $file, array $data = [], string $template = 'defaultVetPage')
   {
 
     extract($data);
@@ -27,5 +27,6 @@ abstract class AdminController
 
     require_once ROOT . '/Source/Views/Session/' . $template . '.php';
   }
+
 
 }

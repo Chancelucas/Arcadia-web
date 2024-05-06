@@ -1,0 +1,68 @@
+@import url(/css/config/config.css);
+
+#container_update_service {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#form_update_service {
+  margin-top: 5%;
+  background-color: var(--main-clear-color);
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  max-width: 1110px;
+  padding: 1rem 1rem 1rem 1rem;
+  border-radius: 5px;
+}
+
+.div_form_update_service{
+  margin: 5px 0 5px 0;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+
+.div_form_update_service > .input_class_update_service{
+  background-color: var(--main-white-color);
+  border: none;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  width: 80%;
+  color: var(--main-shadow-color);
+
+}
+
+.div_form_update_service > #description {
+  height: 100px;
+}
+
+#form_update_service > .div_class_update_service {
+  display: flex;
+  justify-content: center;
+}
+
+#form_update_service > .div_class_update_service > #btn_update_service{
+  background-color: var(--main-shadow-color);
+  border: none;
+  padding: 5px 20px 5px 20px;
+  border-radius: 5px;
+  color: var(--main-white-color);
+  cursor: pointer;
+  margin-top: 2%;
+}
+
+@media screen and (min-width: 769px)  {
+  .div_form_update_service{
+    margin: 5px 0 5px 0;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
