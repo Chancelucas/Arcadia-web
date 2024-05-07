@@ -129,6 +129,18 @@ class HabitatModel extends MainModel
     return $this->request($sql, $values);
   }
 
+  public function getAllNameHabitat()
+  {
+    $habitats = $this->getAll();
+
+    $habitatList = [];
+
+    foreach ($habitats as $habitat) {
+      $habitatList[$habitat->getId()] = $habitat->getName();
+    }
+    return $habitatList;
+  }
+
 
   /////////////////// GETTER and SETTER /////////////////////
 

@@ -90,6 +90,47 @@ class AnimalModel extends MainModel
     return $this->request($sql, $values);
   }
 
+  /**
+   * Get all Animals 
+   * 
+   */
+  public function getAllAnimals()
+  {
+    $model = new AnimalModel;
+    $animalsModel = $model->getAll();
+
+    $allanimals = [];
+    foreach ($animalsModel as $animalModel) {
+      $animal = new \stdClass();
+      $animal->id_Animal = $animalModel->getId();
+      $animal->name = $animalModel->getName();
+      $animal->breed = $animalModel->getBreed();
+      $animal->picture = $animalModel->getPictureUrl();
+      $animal->id_Habitat = $animalModel->getIdHabitat();
+      $animal->habitat = $animalModel->getHabitat();
+
+      $allanimals[] = $animal;
+    }
+
+    return $allanimals;
+  }
+
+  /**
+   * function get one animal from database
+   */
+  public function getAllBreedAnimals()
+  {
+    $model = new AnimalModel;
+    $animals = $model->getAll();
+
+    $animalsList = [];
+
+    foreach ($animals as $animal) {
+      $animalsList[$animal->getId()] = $animal->getBreed();
+    }
+    return $animalsList;
+  }
+
 
 
   /////////////////// GETTER and SETTER /////////////////////

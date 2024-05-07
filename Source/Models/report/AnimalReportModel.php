@@ -9,7 +9,7 @@ use Source\Models\MainModel;
  * @var 
  */
 
-class ReportModel extends MainModel
+class AnimalReportModel extends MainModel
 {
   protected $id_Report;
   protected $state;
@@ -30,9 +30,9 @@ class ReportModel extends MainModel
   /**
    * Find one report by id_Animal
    */
-  public function findOneByIdAnimal(int $id_Animal)
+  public function findOneById(int $id)
   {
-    $habitatData = $this->request("SELECT * FROM {$this->table} WHERE name = ?", [$id_Animal])->fetch();
+    $habitatData = $this->request("SELECT * FROM {$this->table} WHERE name = ?", [$id])->fetch();
 
     if ($habitatData === false) {
       return null;
@@ -95,7 +95,7 @@ class ReportModel extends MainModel
   /**
    * Get the value of id_Report
    */ 
-  public function getId_Report()
+  public function getIdReport()
   {
     return $this->id_Report;
   }
@@ -105,7 +105,7 @@ class ReportModel extends MainModel
    *
    * @return  self
    */ 
-  public function setId_Report($id_Report)
+  public function setIdReport($id_Report)
   {
     $this->id_Report = $id_Report;
 
@@ -135,7 +135,7 @@ class ReportModel extends MainModel
   /**
    * Get the value of proposed_food
    */ 
-  public function getProposed_food()
+  public function getProposedFood()
   {
     return $this->proposed_food;
   }
@@ -145,7 +145,7 @@ class ReportModel extends MainModel
    *
    * @return  self
    */ 
-  public function setProposed_food($proposed_food)
+  public function setProposedFood($proposed_food)
   {
     $this->proposed_food = $proposed_food;
 
@@ -155,7 +155,7 @@ class ReportModel extends MainModel
   /**
    * Get the value of food_amount
    */ 
-  public function getFood_amount()
+  public function getFoodAmount()
   {
     return $this->food_amount;
   }
@@ -165,7 +165,7 @@ class ReportModel extends MainModel
    *
    * @return  self
    */ 
-  public function setFood_amount($food_amount)
+  public function setFoodAmount($food_amount)
   {
     $this->food_amount = $food_amount;
 
@@ -175,7 +175,7 @@ class ReportModel extends MainModel
   /**
    * Get the value of passage_date
    */ 
-  public function getPassage_date()
+  public function getPassageDate()
   {
     return $this->passage_date;
   }
@@ -185,7 +185,7 @@ class ReportModel extends MainModel
    *
    * @return  self
    */ 
-  public function setPassage_date($passage_date)
+  public function setPassageDate($passage_date)
   {
     $this->passage_date = $passage_date;
 
@@ -195,7 +195,7 @@ class ReportModel extends MainModel
   /**
    * Get the value of state_detail
    */ 
-  public function getState_detail()
+  public function getStateDetail()
   {
     return $this->state_detail;
   }
@@ -205,7 +205,7 @@ class ReportModel extends MainModel
    *
    * @return  self
    */ 
-  public function setState_detail($state_detail)
+  public function setStateDetail($state_detail)
   {
     $this->state_detail = $state_detail;
 
@@ -215,7 +215,7 @@ class ReportModel extends MainModel
   /**
    * Get the value of id_animal
    */ 
-  public function getId_animal()
+  public function getIdAnimal()
   {
     return $this->id_animal;
   }
@@ -225,7 +225,7 @@ class ReportModel extends MainModel
    *
    * @return  self
    */ 
-  public function setId_animal($id_animal)
+  public function setIdAnimal($id_animal)
   {
     $this->id_animal = $id_animal;
 

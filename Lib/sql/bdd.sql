@@ -39,6 +39,16 @@ CREATE TABLE `AnimalReport` (
     FOREIGN KEY (`id_animal`) REFERENCES `Animal`(`id`)
 );
 
+CREATE TABLE `HabitatReport` (
+    `id` INT PRIMARY KEY AUTO_INCREMENT,
+    `opinion` VARCHAR(255),
+    `state` VARCHAR(255),
+    `improvement` VARCHAR(255),
+    `date` DATE,
+    `id_habitat` INT,
+    FOREIGN KEY (`id_habitat`) REFERENCES `Habitat`(`id`)
+);
+
 CREATE TABLE `Review` (
     `id` INT PRIMARY KEY AUTO_INCREMENT,
     `pseudo` VARCHAR(255),

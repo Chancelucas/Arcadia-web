@@ -16,7 +16,7 @@ class AdminAnimalController extends AdminController
   public function index()
   {
     $createAnimalForm = $this->generateCreateAnimalForm();
-    $animals = $this->getAllAnimals();
+    $animals = $this->getAllAnimalsFromDatabase();
     $this->render('animal/adminAnimal', ['createAnimalForm' => $createAnimalForm, 'animals' => $animals]);
   }
 
@@ -30,9 +30,9 @@ class AdminAnimalController extends AdminController
 
     $form->startForm('POST', 'adminAnimal/createAnimal', ['id' => 'form_animal', 'enctype' => 'multipart/form-data'])
 
-      ->addInput('text', 'name', ['class' => 'animal_form_input', 'id' => 'animal_name', 'placeholder' => 'Ajouter un nom', 'required'])
+      ->addInput('text', 'name', ['class' => 'animal_form_input', 'id' => 'animal_name', 'placeholder' => 'Ajouter un nom', 'required' => true])
 
-      ->addInput('text', 'breed', ['class' => 'animal_form_input', 'id' => 'animal_breed', 'name' => 'animal_breed', 'placeholder' => 'Ajouter une race animal', 'required'])
+      ->addInput('text', 'breed', ['class' => 'animal_form_input', 'id' => 'animal_breed', 'name' => 'animal_breed', 'placeholder' => 'Ajouter une race animal', 'required' => true])
 
       ->addSelect('habitat', $habitats, ['id' => 'animals_add_habitat', 'class' => 'animal_form_input'])
 
@@ -127,41 +127,23 @@ class AdminAnimalController extends AdminController
   /**
    * function get one animal from database
    */
-  public function getHabitatsFromDatabase()
+  private function getHabitatsFromDatabase()
   {
     $model = new HabitatModel;
-    $habitats = $model->getAll();
+    $habitats = $model->getAllNameHabitat();
 
-    $habitatList = [];
-
-    foreach ($habitats as $habitat) {
-      $habitatList[$habitat->getId()] = $habitat->getName();
-    }
-    return $habitatList;
+    return $habitats;
   }
 
   /**
    * Get all Animals 
    * 
    */
-  public function getAllAnimals()
+  public function getAllAnimalsFromDatabase()
   {
     $model = new AnimalModel;
-    $animalsModel = $model->getAll();
+    $animalsModel = $model->getAllAnimals();
 
-    $allanimals = [];
-    foreach ($animalsModel as $animalModel) {
-      $animal = new \stdClass();
-      $animal->id_Animal = $animalModel->getId();
-      $animal->name = $animalModel->getName();
-      $animal->breed = $animalModel->getBreed();
-      $animal->picture = $animalModel->getPictureUrl();
-      $animal->id_Habitat = $animalModel->getIdHabitat();
-      $animal->habitat = $animalModel->getHabitat();
-
-      $allanimals[] = $animal;
-    }
-
-    return $allanimals;
+    return $animalsModel;
   }
 }

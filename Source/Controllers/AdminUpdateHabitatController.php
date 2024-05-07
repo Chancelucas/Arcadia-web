@@ -28,10 +28,7 @@ class AdminUpdateHabitatController extends AdminController
    */
   public function createForm($habitatId, $description, $name)
   {
-
     $form = new Form;
-
-  
 
     $form->startForm('POST', "/adminUpdateHabitat/updateHabitat/{$habitatId}", ['id' => 'form_update_habitat'])
 

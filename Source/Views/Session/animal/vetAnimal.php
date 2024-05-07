@@ -1,27 +1,18 @@
-<main>
-<?php foreach ($animals as $animal) : ?>
+<main id="">
 
-<div id="container_animal_vet">
-  <div id="animal_creaded_vet">
-    <div class="item"><?= $animal->name; ?></div>
-    <div class="item"><?= $animal->breed; ?></div>
-    <div class="item habitat"><?= $animal->habitat; ?></div>
+  <div id="">
+    <h3>Liste des comptes rendu des animaux</h3>
+    <?php foreach ($reportsAnimal as $reportAnimal) : ?>
+      <div id="">
+        <div id=""><?= $reportAnimal->id_animal ?></div>
+        <div id=""><?= $reportAnimal->state ?></div>
+        <div id=""><?= $reportAnimal->proposed_food ?></div>
+        <div id=""><?= $reportAnimal->food_amount ?></div>
+        <div id=""><?= $reportAnimal->passage_date ?></div>
+        <div id=""><?= $reportAnimal->state_detail ?></div>
 
-    <div id="image_animal_view">
-      <img src="<?= $animal->picture ?>" alt="Photo animal" >
-    </div>
-
-    <div class="btn_gestion_animal">
-      <form method="POST" action="adminAnimal/deleteAnimal/<?= $animal->id_Animal ?>">
-        <button type="submit" class="delete-animal-btn" name="deleteAnimal">Supprimer</button>
-      </form>
-
-      <a href="/adminUpdateAnimal/index/<?= $animal->id_Animal ?>" class="link_update_animal">Modifier</a>
-
-      </form>
-    </div>
+      </div>
+    <?php endforeach; ?>
   </div>
-</div>
 
-<?php endforeach; ?>
 </main>

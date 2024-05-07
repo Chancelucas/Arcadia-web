@@ -45,16 +45,6 @@ class AdminHabitatController extends AdminController
     return $form->create();
   }
 
-  // public function createHabitat()
-  // {
-  //   header('Content-Type: application/json');
-
-  //   if (isset($_SESSION["user"])) {
-  //     echo json_encode($_SESSION);
-  //   } else {
-  //     echo '{"status":"error", "description": "ta fait de la merde, recommence boulet !!"}';
-  //   }
-  // }
 
   public function createHabitat()
   {
@@ -107,22 +97,6 @@ class AdminHabitatController extends AdminController
   }
 
   /**
-   * function get one animal from database
-   */
-  public function getAnimalsFromDatabase()
-  {
-    $model = new AnimalModel;
-    $animals = $model->getAll();
-
-    $animalsList = [];
-
-    foreach ($animals as $animal) {
-      $animalsList[$animal->getId()] = $animal->getBreed();
-    }
-    return $animalsList;
-  }
-
-  /**
    * Get all habitat 
    */
   private function getAllHabitats()
@@ -133,29 +107,6 @@ class AdminHabitatController extends AdminController
     return $allHabitats;
   }
 
-  /**
-   * Get all Animals 
-   */
-  public function getAllAnimals()
-  {
-    $model = new AnimalModel;
-    $animalsModel = $model->getAll();
-
-    $allanimals = [];
-    foreach ($animalsModel as $animalModel) {
-      $animal = new \stdClass();
-      $animal->id_Animal = $animalModel->getId();
-      $animal->name = $animalModel->getName();
-      $animal->breed = $animalModel->getBreed();
-      $animal->picture = $animalModel->getPicture();
-      $animal->id_Habitat = $animalModel->getIdHabitat();
-      $animal->habitat = $animalModel->getHabitat();
-
-      $allanimals[] = $animal;
-    }
-
-    return $allanimals;
-  }
 
   /**
    * Delete One habitat
