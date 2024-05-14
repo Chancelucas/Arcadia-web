@@ -2,6 +2,7 @@
 
 namespace Source\Models\report;
 
+use Source\Models\habitat\HabitatModel;
 use Source\Models\MainModel;
 
 /**
@@ -81,6 +82,32 @@ class HabitatReportModel extends MainModel
     ];
 
     return $this->request($sql, $values);
+  }
+
+  /**
+   * Get all user with role(label) on database
+   */
+  public function getAllHabitatReport()
+  {
+    $habitatsReportModel = $this->getAll();
+
+    $allHabitatReport = [];
+    
+    foreach ($habitatsReportModel as $habitatReportModel) {
+      $habitatReport = new \stdClass();
+      $habitatReport->id_Report = $habitatReportModel->getIdReport();
+      $habitatReport->opinion = $habitatReportModel->getAssessmentState();
+      $habitatReport->state = $habitatReportModel->getAssessmentState();
+      $habitatReport->improvement = $habitatReportModel->getImprovement();
+      $habitatReport->date = $habitatReportModel->getDate();
+      $habitatReport->id_habitat = $habitatReportModel->getIdHabitat();
+      $habitatReport->name_habitat = $habitatReportModel->getNameOfHabitat();
+
+
+      $allHabitatReport[] = $habitatReport;
+    }
+
+    return $allHabitatReport;
   }
 
 
@@ -214,6 +241,38 @@ class HabitatReportModel extends MainModel
     $this->id_habitat = $id_habitat;
 
     return $this;
+  }
+
+  /**
+   * Get the value of habitat
+   */
+  public function getAssessmentState()
+  {
+    return (new AssessmentModel())->findOneById($this->id)->getState();
+  }
+
+  /**
+   * Get the value of habitat
+   */
+  public function setAssessmentState($state)
+  {
+    return (new AssessmentModel())->findOneById($this->id)->setState($state);
+  }
+
+  /**
+   * Get the value of habitat
+   */
+  public function getNameOfHabitat()
+  {
+    return (new HabitatModel())->findOneById($this->id)->getName();
+  }
+
+  /**
+   * Get the value of habitat
+   */
+  public function setNameOfHabitat($name)
+  {
+    return (new HabitatModel())->findOneById($this->id)->setName($name);
   }
 
 }

@@ -3,11 +3,11 @@
 namespace Source\Controllers;
 
 use Lib\config\Form;
-use Source\Models\MainModel;
 use Source\Controllers\VetController;
 use Source\Models\animal\AnimalModel;
 use Source\Models\habitat\HabitatModel;
 use Source\Models\report\AnimalReportModel;
+use Source\Models\report\AssessmentModel;
 use Source\Models\report\HabitatReportModel;
 
 class VetReportController extends VetController
@@ -22,14 +22,34 @@ class VetReportController extends VetController
     $this->render('report/report', ['createReportHabitatForm' => $createReportHabitatForm, 'createReportAnimalForm' => $createReportAnimalForm]);
   }
 
+  private function getAllAssessment()
+  {
+    $model = new AssessmentModel;
+    $habitats = $model->getAllNameState();
+
+    return $habitats;
+  }
+
+   /** 
+   * Function get all habitat on habitat model
+   */
+  private function getHabitatsFromDatabase()
+  {
+    $model = new HabitatModel;
+    $habitats = $model->getAllNameHabitat();
+
+    return $habitats;
+  }
+
+
   ////////////////////// REPORT HABITAT ///////////////////
 
   /**
-   * Function with form for create Animal
+   * Function with form for create REPORT HABITAT
    */
   private function generateCreateReportHabitatForm()
   {
-    $state = ['Excellent', 'Moyen', 'Mauvais'];
+    $state = $this->getAllAssessment();
 
     $habitats = $this->getHabitatsFromDatabase();
 
@@ -101,25 +121,15 @@ class VetReportController extends VetController
     exit;
   }
 
-  /** 
-   * Function get all habitat on habitat model
-  */
-  private function getHabitatsFromDatabase()
-  {
-    $model = new HabitatModel;
-    $habitats = $model->getAllNameHabitat();
+ 
 
-    return $habitats;
-  }
 
   ////////////////////// REPORT ANIMAL ///////////////////////////
 
   private function generateCreateReportAnimalForm()
   {
-    $state = ['Excellent', 'Moyen', 'Mauvais'];
-
+    $state = $this->getAllAssessment();
     $animals = $this->getAllAnimalsFromDatabase();
-
 
     $form = new Form;
 
@@ -209,5 +219,25 @@ class VetReportController extends VetController
     return $animalsModel;
   }
 
+   /**
+   * Delete One animal
+   */
+  public function deleteReportAnimal(int $animalReportId)
+  {
 
+    if (isset($_POST['deleteReportAnimal'])) {
+      $reportAnimalModel = new AnimalReportModel;
+      $reportAnimalModel->setId($animalReportId);
+      $deleteReportAnimal = $reportAnimalModel->delete();
+
+      if ($deleteReportAnimal) {
+        $_SESSION['message'] = "✅ Le rapport de l'animal à était supprimé avec succès.";
+      } else {
+        $_SESSION['error'] = "❌ Une erreur s'est produite lors de la suppression du rapport de l'animal.";
+      }
+    }
+
+    Header("Location: /vetAnimal");
+    exit;
+  }
 }

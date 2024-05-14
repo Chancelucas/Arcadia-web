@@ -132,31 +132,5 @@ abstract class MainModel
     return 'set' . str_replace(" ", "", ucwords(str_replace("_", " ", $bddKey)));
   }
 
-  /*
 
-    //Take this methode UPDATE for other Model and update id_table
-    public function update()
-    {
-        $fields = [];
-        $values = [];
-
-        foreach ($this as $field => $value) {
-
-            if ($value !== null && $field != 'database' && $field != 'table')
-                $fields[] = "$field = ?";
-            $values[] = $value;
-        }
-
-        $values[] = $this->id;
-        $fieldsString = implode(', ', $fields);
-
-        return $this->request('UPDATE ' . $this->table . ' SET ' . $fieldsString . ' WHERE id_table = ?', $values);
-    }
-
-    //Take this methode DELETE for other Model and update id_table
-    public function delete(int $id)
-    {
-        return $this->request("DELETE FROM {$this->table} WHERE id_table = ?", [$id])->fetch();
-    }
-    */
 }

@@ -3,6 +3,7 @@
 namespace Source\Models\report;
 
 use Source\Models\MainModel;
+use Source\Models\animal\AnimalModel;
 
 /**
  * Report Object
@@ -11,7 +12,7 @@ use Source\Models\MainModel;
 
 class AnimalReportModel extends MainModel
 {
-  protected $id_Report;
+  protected $id_AnimalReport;
   protected $state;
   protected $proposed_food;
   protected $food_amount;
@@ -27,19 +28,6 @@ class AnimalReportModel extends MainModel
     $this->table = 'AnimalReport';
   }
 
-  /**
-   * Find one report by id_Animal
-   */
-  public function findOneById(int $id)
-  {
-    $habitatData = $this->request("SELECT * FROM {$this->table} WHERE name = ?", [$id])->fetch();
-
-    if ($habitatData === false) {
-      return null;
-    }
-
-    return $this;
-  }
 
   /**
    * Get all report on table report
@@ -87,6 +75,32 @@ class AnimalReportModel extends MainModel
     return $this->request($sql, $values);
   }
 
+  /**
+   * Get all Animals 
+   * 
+   */
+  public function getAllAnimalsReports()
+  {
+    $animalsReportModel = $this->getAll();
+
+    $allAnimalsReports = [];
+    foreach ($animalsReportModel as $animalReportModel) {
+      $animalReport = new \stdClass();
+      $animalReport->id_AnimalReport = $animalReportModel->getId();
+      $animalReport->animalBreed = $animalReportModel->getAnimalBreed();
+      $animalReport->state = $animalReportModel->getAssessmentState();
+      $animalReport->proposed_food = $animalReportModel->getProposedFood();
+      $animalReport->food_amount = $animalReportModel->getFoodAmount();
+      $animalReport->passage_date = $animalReportModel->getPassageDate();
+      $animalReport->state_detail = $animalReportModel->getStateDetail();
+      $animalReport->id_animal = $animalReportModel->getIdAnimal();
+
+      $allAnimalsReports[] = $animalReport;
+    }
+
+    return $allAnimalsReports;
+  }
+
 
   /////////////////// GETTER and SETTER /////////////////////
 
@@ -95,9 +109,9 @@ class AnimalReportModel extends MainModel
   /**
    * Get the value of id_Report
    */ 
-  public function getIdReport()
+  public function getIdAnimalReport()
   {
-    return $this->id_Report;
+    return $this->id;
   }
 
   /**
@@ -105,12 +119,14 @@ class AnimalReportModel extends MainModel
    *
    * @return  self
    */ 
-  public function setIdReport($id_Report)
+  public function setIdAnimalReport($id_AnimalReport)
   {
-    $this->id_Report = $id_Report;
+    $this->id = $id_AnimalReport;
 
     return $this;
   }
+
+
 
   /**
    * Get the value of state
@@ -131,6 +147,7 @@ class AnimalReportModel extends MainModel
 
     return $this;
   }
+
 
   /**
    * Get the value of proposed_food
@@ -231,4 +248,38 @@ class AnimalReportModel extends MainModel
 
     return $this;
   }
+
+  /**
+   * Get the value of habitat
+   */
+  public function getAnimalBreed()
+  {
+    return (new AnimalModel())->findOneById($this->id_animal)->getBreed();
+  }
+
+  /**
+   * Get the value of habitat
+   */
+  public function setAnimalBreed($breed)
+  {
+    return (new AnimalModel())->findOneById($this->id_animal)->setBreed($breed);
+  }
+
+  /**
+   * Get the value of habitat
+   */
+  public function getAssessmentState()
+  {
+    return (new AssessmentModel())->findOneById($this->id)->getState();
+  }
+
+  /**
+   * Get the value of habitat
+   */
+  public function setAssessmentState($state)
+  {
+    return (new AssessmentModel())->findOneById($this->id)->setState($state);
+  }
+
+
 }

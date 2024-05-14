@@ -28,25 +28,33 @@ CREATE TABLE `Animal` (
     FOREIGN KEY (`id_habitat`) REFERENCES `Habitat`(`id`)
 );
 
+CREATE TABLE `Assessment`(
+    `id` INT PRIMARY KEY AUTO_INCREMENT,
+    `state`VARCHAR(20) NOT NULL
+);
+
 CREATE TABLE `AnimalReport` (
     `id` INT PRIMARY KEY AUTO_INCREMENT,
-    `state` VARCHAR(255),
+    `state` int,
     `proposed_food` VARCHAR(255),
     `food_amount` INT,
     `passage_date` DATE,
     `state_detail` TEXT,
     `id_animal` INT,
-    FOREIGN KEY (`id_animal`) REFERENCES `Animal`(`id`)
+    FOREIGN KEY (`id_animal`) REFERENCES `Animal`(`id`),
+    FOREIGN KEY (`state`) REFERENCES `Assessment`(`id`)
+
 );
 
 CREATE TABLE `HabitatReport` (
     `id` INT PRIMARY KEY AUTO_INCREMENT,
     `opinion` VARCHAR(255),
-    `state` VARCHAR(255),
+    `state` int,
     `improvement` VARCHAR(255),
     `date` DATE,
     `id_habitat` INT,
-    FOREIGN KEY (`id_habitat`) REFERENCES `Habitat`(`id`)
+    FOREIGN KEY (`id_habitat`) REFERENCES `Habitat`(`id`),
+    FOREIGN KEY (`state`) REFERENCES `Assessment`(`id`)
 );
 
 CREATE TABLE `Review` (
@@ -68,14 +76,21 @@ CREATE TABLE `Hour`(
     `day`VARCHAR(20) NOT NULL,
     `opening_time` TIME NOT NULL,
     `closing_time` TIME NOT NULL
- 
-)
+);
+
+
 
 INSERT INTO `Role` (`role`)
 VALUES
     ('Admin'),
     ('Employer'),
     ('Vétérinaire');
+
+INSERT INTO `Assessment` (`state`)
+VALUES
+    ('Excellent'),
+    ('Moyen'),
+    ('Mauvais');
 
 
 

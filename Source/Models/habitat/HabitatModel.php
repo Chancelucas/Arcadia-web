@@ -157,9 +157,9 @@ class HabitatModel extends MainModel
    *
    * @return  self
    */
-  public function setIdHabitat($id_habitat)
+  public function setIdHabitat($id_Habitat)
   {
-    $this->id = $id_habitat;
+    $this->id = $id_Habitat;
 
     return $this;
   }

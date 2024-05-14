@@ -63,7 +63,7 @@ class AdminUpdateUserController extends AdminController
       ->addInput('password', 'password', ['id' => 'password', 'class' => 'input_class_update_user', 'value' =>  $password, 'required' => true])
       ->endDiv()
       ->startDiv(['class' => 'div_form_update_user'])
-      ->addSelect('roleId', $roles, ['required', 'id' => 'roleId', 'class' => 'input_class_update_user'])
+      ->addSelect('roleId', $roles, ['required' => true, 'id' => 'roleId', 'class' => 'input_class_update_user'])
       ->endDiv()
       ->startDiv(['id' => 'div_id_update_user', 'class' => 'div_class_update_user'])
       ->addBouton('Enregistrer', ['type' => 'submit', 'name' => 'save_changes', 'id' => 'btn_update_user'])

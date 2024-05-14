@@ -99,7 +99,7 @@ class AnimalModel extends MainModel
     $model = new AnimalModel;
     $animalsModel = $model->getAll();
 
-    $allanimals = [];
+    $allAnimals = [];
     foreach ($animalsModel as $animalModel) {
       $animal = new \stdClass();
       $animal->id_Animal = $animalModel->getId();
@@ -109,10 +109,10 @@ class AnimalModel extends MainModel
       $animal->id_Habitat = $animalModel->getIdHabitat();
       $animal->habitat = $animalModel->getHabitat();
 
-      $allanimals[] = $animal;
+      $allAnimals[] = $animal;
     }
 
-    return $allanimals;
+    return $allAnimals;
   }
 
   /**
