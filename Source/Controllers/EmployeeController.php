@@ -10,21 +10,20 @@ use Source\Controllers\BackController;
  * 
  */
 
-abstract class VetController extends BackController
+abstract class EmployeeController extends BackController
 {
   function __construct()
   {
     parent::__construct();
 
-    if (!$this->isVeto()) {
+    if (!$this->isEmployee()) {
       header('Location: /login');
     }
   }
-
   /**
    * Show admin template (navbar & footer)
    */
-  public function render(string $file, array $data = [], string $template = 'defaultVetPage')
+  public function render(string $file, array $data = [], string $template = 'defaultEmployeePage')
   {
 
     extract($data);

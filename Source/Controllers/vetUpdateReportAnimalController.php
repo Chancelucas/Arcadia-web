@@ -4,67 +4,58 @@ namespace Source\Controllers;
 
 use Lib\config\Form;
 use Source\Controllers\VetController;
-use Source\Models\report\AnimalReportModel;
+use Source\Models\animal\AnimalModel;
 use Source\Models\report\AssessmentModel;
+use Source\Models\report\AnimalReportModel;
 
 class VetUpdateReportAnimalController extends VetController
 {
   /**
    * Show all animal en BDD with form create animal. 
    */
-  public function index()
+  public function index(int $id)
   {
-    $animalReportForm = $this->getOneAnimalReport();
+
+    $animalReportModel = new AnimalReportModel;
+    $animalReport = $animalReportModel->findOneById($id);
+
+    $breed = $animalReport->getAnimalBreed();
+    $proposedFood = $animalReport->getProposedFood();
+    $foodAmount = $animalReport->getFoodAmount();
+    $passageDate = $animalReport->getPassageDate();
+    $stateDetail = $animalReport->getStateDetail();
+
+    $animalReportForm = $this->createForm($id, $breed, $proposedFood, $foodAmount, $passageDate, $stateDetail);
+
     $this->render('animal/vetUpdateAnimal', ['animalReportForm' => $animalReportForm]);
   }
-
-  public function getOneAnimalReport()
-  {
-    if (isset($_POST['id_AnimalReport'])) {
-      $animalReportId = intval($_POST['id_AnimalReport']);
-
-      $animalReportModel = new AnimalReportModel;
-      $animalReport = $animalReportModel->findOneById($animalReportId);
-
-
-      $breed = $animalReport->getAnimalBreed();
-      $proposedFood = $animalReport->getProposedFood();
-      $foodAmount = $animalReport->getFoodAmount();
-      $passageDate = $animalReport->getPassageDate();
-      $stateDetail = $animalReport->getStateDetail();
-
-      $animalForm = $this->createForm($animalReportId, $breed, $proposedFood, $foodAmount, $passageDate, $stateDetail);
-
-      return $animalForm;
-    }
-  }
-
+  
   /**
    * Generate update user form
    */
-  public function createForm($animalReportId, $breed, $proposedFood, $foodAmount, $passageDate, $stateDetail)
+  public function createForm($idAnimalReport, $breed, $proposedFood, $foodAmount, $passageDate, $stateDetail)
   {
 
-    $getState = new AssessmentModel;
-    $state = $getState->getAllNameState();
+    $state = (new AssessmentModel)->getAllNameState();
+    $breedModel = (new AnimalModel)->getAllBreedAnimals();
 
     $form = new Form;
 
-    $form->startForm('POST', "vetUpdateAnimal/updateReportAnimal/{$animalReportId}", ['id' => '', 'enctype' => 'multipart/form-data'])
+    $form->startForm('POST', "/vetUpdateReportAnimal/updateReportAnimal/{$idAnimalReport}", ['id' => '', 'enctype' => 'multipart/form-data'])
 
-      ->addSelect('animal', $breed, ['class' => '', 'id' => '', '' => true])
+      ->addSelect('animal', $breedModel, ['class' => '', 'id' => '', 'required' => true, 'value' => $breed])
 
       ->addLabelFor('state', 'Etat de l\'animal')
-      ->addSelect('stateId', $state, ['class' => '', 'id' => '', 'required' => true])
+      ->addSelect('stateId', $state, ['class' => '', 'id' => '', 'required' => true, 'value' => $state])
 
       ->addLabelFor('proposed_food', 'Nourriture proposer')
-      ->addInput('text', $proposedFood, ['class' => '', 'id' => '', 'required' => true])
+      ->addInput('text', 'proposed_food', ['class' => '', 'id' => '', 'required' => true, 'value' => $proposedFood])
 
       ->addLabelFor('food_amount', 'Grammage')
-      ->addInput('text', $foodAmount, ['class' => '', 'id' => '', 'required' => true])
+      ->addInput('text', 'food_amount', ['class' => '', 'id' => '', 'required' => true, 'value' => $foodAmount])
 
       ->addLabelFor('passage_date', 'Date du passage')
-      ->addInput('date', $passageDate, ['class' => '', 'id' => '', 'required' => true])
+      ->addInput('date', 'passage_date', ['class' => '', 'id' => '', 'required' => true, 'value' => $passageDate])
 
       ->addLabelFor('state_detail', 'Information complémentaire')
       ->addTextarea('state_detail', $stateDetail, ['class' => '', 'id' => '', 'required' => true])
@@ -79,7 +70,7 @@ class VetUpdateReportAnimalController extends VetController
   /**
    * Update animal
    */
-  public function updateReportAnimal(int $animalReportId)
+  public function updateReportAnimal(int $idAnimalReport)
   {
     if (isset($_POST['save_changes'])) {
       $breed = $_POST['animal'];
@@ -90,7 +81,7 @@ class VetUpdateReportAnimalController extends VetController
       $stateDetail = $_POST['state_detail'];
 
       $animalReportModel = new AnimalReportModel;
-      $animalReportModel->findOneById($animalReportId);
+      $animalReportModel->findOneById($idAnimalReport);
       $assessmentModel = new AssessmentModel;
       $assessmentModel->setState($stateId);
 
@@ -100,7 +91,7 @@ class VetUpdateReportAnimalController extends VetController
       $animalReportModel->setPassageDate($passageDate);
       $animalReportModel->setStateDetail($stateDetail);
 
-      $updateResult = $animalReportModel->update($animalReportId);
+      $updateResult = $animalReportModel->update($idAnimalReport);
 
       if ($updateResult) {
         header("Location: /vetAnimal");

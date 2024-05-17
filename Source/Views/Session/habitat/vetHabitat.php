@@ -13,11 +13,13 @@
       </div>
 
       <div class="">
-        <form method="POST" action="vetHabitat/deleteReportHabitat/<?= $reportHabitat->id_ReportHabitat ?>">
+        <form method="POST" action="vetReport/deleteReportHabitat">
+          <input type="hidden" name="habitatReportId" value="<?= $reportHabitat->id_HabitatReport ?>">
           <button type="submit" class="" name="deleteReportHabitat">Supprimer</button>
         </form>
 
-        <a href="/adminUpdateReportHabitat/index/<?= $reportHabitat->id_ReportHabitat ?>" class="">Modifier</a>
+
+        <a href="/vetUpdateReportHabitat/index/<?= $reportHabitat->id_HabitatReport ?>" class="">Modifier</a>
       </div>
     <?php endforeach; ?>
   </div>

@@ -89,9 +89,10 @@ class VetReportController extends VetController
       $idHabitat = $_POST['habitat'];
       $improvement = $_POST['improvement'];
 
-      $existingReport = (new HabitatReportModel)->findOneByDate($date);
+      $existingReportDate = (new HabitatReportModel)->findOneByDate($date);
+      $existingReportHabitat = (new HabitatReportModel)->findOneByIdHabitat($idHabitat);
 
-      if (!is_null($existingReport)) {
+      if (!is_null($existingReportDate) && !is_null($existingReportHabitat)) {
         echo "Le rapport existe déjà.";
         return;
       } else {
@@ -121,7 +122,27 @@ class VetReportController extends VetController
     exit;
   }
 
- 
+  /**
+   * Delete One Habitat
+   */
+  public function deleteReportHabitat()
+{
+    if (isset($_POST['deleteReportHabitat'])) {
+        $habitatReportId = $_POST['habitatReportId'];
+        $reportHabitatModel = new HabitatReportModel;
+        $reportHabitatModel->setId($habitatReportId);
+        $deleteReportHabitat = $reportHabitatModel->delete();
+
+        if ($deleteReportHabitat) {
+            $_SESSION['message'] = "✅ Le rapport de l'habitat a été supprimé avec succès.";
+        } else {
+            $_SESSION['error'] = "❌ Une erreur s'est produite lors de la suppression du rapport de l'habitat.";
+        }
+    }
+
+    header("Location: /vetHabitat");
+    exit;
+}
 
 
   ////////////////////// REPORT ANIMAL ///////////////////////////
@@ -173,10 +194,10 @@ class VetReportController extends VetController
       $passage_date = $_POST['passage_date'];
       $state_detail = $_POST['state_detail'];
 
+      $existingReportDate = (new HabitatReportModel)->findOneByDate($passage_date);
+      $existingReportIdAnimal = (new AnimalReportModel)->findOneByIdAnimal($idAnimal);
 
-      $existingReport = (new HabitatReportModel)->findOneByDate($passage_date);
-
-      if (!is_null($existingReport)) {
+      if (!is_null($existingReportDate) && !is_null($existingReportIdAnimal)) {
         echo "Le rapport existe déjà.";
         return;
       } else {
@@ -224,7 +245,6 @@ class VetReportController extends VetController
    */
   public function deleteReportAnimal(int $animalReportId)
   {
-
     if (isset($_POST['deleteReportAnimal'])) {
       $reportAnimalModel = new AnimalReportModel;
       $reportAnimalModel->setId($animalReportId);

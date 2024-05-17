@@ -46,6 +46,20 @@ class AnimalReportModel extends MainModel
     return $models;
   }
 
+  /**
+   * Find one habitat by name
+   */
+  public function findOneByIdAnimal(string $id_animal)
+  {
+    $idAnimalData = $this->request("SELECT * FROM {$this->table} WHERE id_animal = ?", [$id_animal])->fetch();
+
+    if ($idAnimalData === false) {
+      return null;
+    }
+
+    return $this;
+  }
+
   
 
   /**

@@ -57,12 +57,15 @@ class UserModel extends MainModel
 
   public function fromSession()
   {
-    $user = $_SESSION['user'];
-    $this->setIdUser($user['id_user']);
-    $this->setUsername($user['username']);
-    $this->setEmail($user['email']);
-    $this->setIdRole($user['roleId']);
-    return $this;
+    if (isset($_SESSION['user'])) {
+      $user = $_SESSION['user'];
+      $this->setIdUser($user['id_user']);
+      $this->setUsername($user['username']);
+      $this->setEmail($user['email']);
+      $this->setIdRole($user['roleId']);
+      return $this;
+    }
+    return;
   }
 
   /**

@@ -2,21 +2,30 @@
 
 namespace Source\Controllers;
 
-use Source\Models\user\UserModel;
+use Source\Controllers\BackController;
 
 /**
  * Controller princial for admin part
  * 
  */
 
-abstract class AdminController
+abstract class AdminController extends BackController
 {
   /**
    * Show admin template (navbar & footer)
    */
+
+  function __construct()
+  {
+    parent::__construct();
+
+    if (!$this->isAdmin()) {
+      header('Location: /login');
+    }
+  }
+
   public function render(string $file, array $data = [], string $template = 'defaultAdminPage')
   {
-
     extract($data);
 
     ob_start();
@@ -27,5 +36,4 @@ abstract class AdminController
 
     require_once ROOT . '/Source/Views/Session/' . $template . '.php';
   }
-
 }

@@ -48,13 +48,14 @@ CREATE TABLE `AnimalReport` (
 
 CREATE TABLE `HabitatReport` (
     `id` INT PRIMARY KEY AUTO_INCREMENT,
-    `opinion` VARCHAR(255),
+    `opinion` int,
     `state` int,
     `improvement` VARCHAR(255),
     `date` DATE,
     `id_habitat` INT,
     FOREIGN KEY (`id_habitat`) REFERENCES `Habitat`(`id`),
-    FOREIGN KEY (`state`) REFERENCES `Assessment`(`id`)
+    FOREIGN KEY (`state`) REFERENCES `Assessment`(`id`),
+    Foreign Key (`opinion`) REFERENCES `Assessment`(`id`)
 );
 
 CREATE TABLE `Review` (

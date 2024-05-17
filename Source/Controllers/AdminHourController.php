@@ -15,6 +15,7 @@ class AdminHourController extends AdminController
     $this->render('hour/adminHour', ['createHourForm' => $createHourForm, 'hours' => $hours]);
   }
 
+
   public function generateHourForm()
   {
     $form = new Form;

@@ -131,8 +131,6 @@ class AnimalModel extends MainModel
     return $animalsList;
   }
 
-
-
   /////////////////// GETTER and SETTER /////////////////////
 
   /**

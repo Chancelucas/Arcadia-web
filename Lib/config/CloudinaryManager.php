@@ -16,13 +16,4 @@ class CloudinaryManager
         return $uploadResult['secure_url'] ?? null;
     }
 
-    public static function deleteImage($publicId)
-    {
-        // Implémentez la logique pour supprimer une image sur Cloudinary
-    }
-
-    public static function getImageUrl($publicId)
-    {
-        // Implémentez la logique pour récupérer l'URL d'une image sur Cloudinary
-    }
 }
