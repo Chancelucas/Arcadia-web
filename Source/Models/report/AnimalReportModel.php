@@ -115,6 +115,12 @@ class AnimalReportModel extends MainModel
     return $allAnimalsReports;
   }
 
+  public function getReportsByAnimalId($animalId)
+  {
+    // Implémentez la logique de récupération des rapports ici, par exemple :
+    return $this->request("SELECT * FROM AnimalReport WHERE id_animal = ?", [$animalId])->fetchAll();
+  }
+
 
   /////////////////// GETTER and SETTER /////////////////////
 

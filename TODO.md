@@ -20,7 +20,7 @@ un employé peut nourrir des animaux, modifier les services et valider les avis 
 
 - Nombre de consultation par animal ❌
 - Accés protégé (auth) ✅
-  - Uniquement l'admin peut accéder à cette page ❌
+  - Uniquement l'admin peut accéder à cette page  ✅
 
 ---
 
@@ -161,8 +161,8 @@ un employé peut nourrir des animaux, modifier les services et valider les avis 
 | Vétérinaire  |    ✖️     |
 | Employé      |    ✖️     |
 
-- -R-- sur les comptes rendus animaux (en **LECTURE** uniquement) ❌
-- -R-- sur les comptes rendus habitats (en **LECTURE** uniquement) ❌
+- -R-- sur les comptes rendus animaux (en **LECTURE** uniquement)  ✅
+- -R-- sur les comptes rendus habitats (en **LECTURE** uniquement)  ✅
 - Permettre de filter :
   - par date ❌
   - par race d'animal ❌
@@ -213,7 +213,7 @@ un employé peut nourrir des animaux, modifier les services et valider les avis 
 
 ---
 
-[Nourissage d'animaux](://localhost:8888/employeeReport)
+[Nourissage d'animaux](://localhost:8888/employeeAnimalFeed)
 
 | Type de user | A accès ? |
 | :----------- | :-------: |

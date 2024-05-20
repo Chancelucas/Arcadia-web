@@ -129,18 +129,7 @@ class AdminServiceController extends AdminController
   private function getAllServices()
   {
     $model = new ServiceModel;
-    $servicesModel = $model->getAll();
-
-    $allServices = [];
-    foreach ($servicesModel as $serviceModel) {
-      $service = new \stdClass();
-      $service->id_Service = $serviceModel->getId();
-      $service->name = $serviceModel->getName();
-      $service->description = $serviceModel->getDescription();
-      $service->picture = $serviceModel->getPictureUrl();
-
-      $allServices[] = $service;
-    }
+    $allServices = $model->getAllServices();
 
     return $allServices;
   }

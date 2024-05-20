@@ -1,3 +1,4 @@
+-- SQLBook: Code
 CREATE TABLE `Role` (
     `id` INT PRIMARY KEY AUTO_INCREMENT,
     `role` VARCHAR(50) UNIQUE NOT NULL

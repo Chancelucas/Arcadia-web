@@ -74,6 +74,24 @@ class ServiceModel extends MainModel
     return $this->request($sql, $values);
   }
 
+  public function getAllServices()
+  {
+    $services = $this->getAll();
+
+    $allServices = [];
+    foreach ($services as $serviceModel) {
+      $service = new \stdClass();
+      $service->id_Service = $serviceModel->getId();
+      $service->name = $serviceModel->getName();
+      $service->description = $serviceModel->getDescription();
+      $service->picture = $serviceModel->getPictureUrl();
+
+      $allServices[] = $service;
+    }
+
+    return $allServices;
+  }
+
 
   /////////////////// GETTER and SETTER /////////////////////
 

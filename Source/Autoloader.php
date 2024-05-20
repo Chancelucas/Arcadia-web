@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Source;
 
 class Autoloader

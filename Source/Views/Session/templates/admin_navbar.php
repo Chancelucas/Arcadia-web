@@ -6,7 +6,7 @@
         <li><a class="link" href="/adminAnimal">Animaux</a></li>
         <li><a class="link" href="/adminService">Services</a></li>
         <li><a class="link" href="/adminHour">Horaire</a></li>
-        <li><a class="link" href="/animalReport">Comptes rendus</a></li>
+        <li><a class="link" href="/adminReport">Comptes rendus</a></li>
 
         <li></li>
     </ul>
