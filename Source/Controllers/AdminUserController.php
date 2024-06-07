@@ -127,23 +127,9 @@ class AdminUserController extends AdminController
    */
   private function getAllUsers()
   {
-    $model = new UserModel;
-    $usersModel = $model->getAll();
-
-    $allUsers = [];
-    foreach ($usersModel as $userModel) {
-      $user = new \stdClass();
-      $user->id_User = $userModel->getId();
-      $user->username = $userModel->getUsername();
-      $user->email = $userModel->getEmail();
-      $user->password = $userModel->getPassword();
-      $user->id_Role = $userModel->getIdRole();
-      $user->role = $userModel->getRole();
-
-      $allUsers[] = $user;
-    }
-
-    return $allUsers;
+    $users = (new UserModel)->getAllUsers();
+   
+    return $users;
   }
 
   /**
@@ -151,14 +137,8 @@ class AdminUserController extends AdminController
    */
   public function getRolesFromDatabase()
   {
-    $roleModel = new RoleModel;
-    $roles = $roleModel->getAll();
-    $roleOptions = [];
-
-    foreach ($roles as $role) {
-      $roleOptions[$role->getId()] = $role->getRole();
-    }
-
-    return $roleOptions;
+    $role = (new RoleModel)->getAllRoles();
+   
+    return $role;
   }
 }

@@ -3,8 +3,9 @@
 namespace Source\Controllers;
 
 use Lib\config\Form;
-use Source\Controllers\EmployeeController;
 use Source\Models\animal\AnimalModel;
+use Source\Models\animal\FoodGivenModel;
+use Source\Controllers\EmployeeController;
 use Source\Models\report\AnimalReportModel;
 
 class EmployeeAnimalFeedController extends EmployeeController
@@ -19,11 +20,13 @@ class EmployeeAnimalFeedController extends EmployeeController
     $selectAnimalForm = $this->generateCreateSelectAnimalForm();
     $reportAnimal = $this->showAllReportsAboutOneAnimal();
     $animalsBreed = $this->showAnimalBreed();
+    $givenFoodForm = $this->generateCreateGivenFoodForm();
 
     $this->render('feed/employeeAnimalFeed', [
-      'selectAnimalForm' => $selectAnimalForm, 
+      'selectAnimalForm' => $selectAnimalForm,
       'reportAnimal' => $reportAnimal,
-      'animalsBreed' => $animalsBreed
+      'animalsBreed' => $animalsBreed,
+      'givenFoodForm' => $givenFoodForm
     ]);
   }
 
@@ -59,9 +62,9 @@ class EmployeeAnimalFeedController extends EmployeeController
 
   public function getAllAnimalsReports()
   {
-   $animalsReports = (new AnimalReportModel)->getAllAnimalsReports();
+    $animalsReports = (new AnimalReportModel)->getAllAnimalsReports();
 
-   return $animalsReports;
+    return $animalsReports;
   }
 
   public function getAnimalReports($animalId)
@@ -72,9 +75,8 @@ class EmployeeAnimalFeedController extends EmployeeController
   /**
    * Show all reports about the selected animal
    */
-  public function showAllReportsAboutOneAnimal()
+  private function showAllReportsAboutOneAnimal()
   {
-
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['animal'])) {
       $animalId = $_POST['animal'];
       return $this->getAnimalReports($animalId);
@@ -86,7 +88,7 @@ class EmployeeAnimalFeedController extends EmployeeController
   /**
    * Show the breed of the selected animal
    */
-  public function showAnimalBreed()
+  private function showAnimalBreed()
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['animal'])) {
       $animalId = $_POST['animal'];
@@ -97,5 +99,80 @@ class EmployeeAnimalFeedController extends EmployeeController
     return null;
   }
 
-  
+  private function generateCreateGivenFoodForm()
+  {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['animal'])) {
+
+      $form = new Form;
+
+      $form->startForm('POST', "/employeeAnimalFeed/createGivenFood", ['id' => 'form_report_habitat', 'enctype' => 'multipart/form-data'])
+
+        ->addLabelFor('for', 'A remplir par l\'employer : ')
+
+        ->addLabelFor('date', 'Date du repas : ')
+        ->addInput('date', 'date', ['class' => '', 'id' => '', 'required' => true])
+
+        ->addLabelFor('hour', 'Heure du repas : ')
+        ->addInput('time', 'hour', ['class' => '', 'id' => '', 'required' => true])
+
+        ->addLabelFor('food', 'Nourriture donnée : ')
+        ->addInput('text', 'food', ['class' => '', 'id' => '', 'required' => true])
+
+        ->addLabelFor('quantity', 'Quantité donnée (en gramme) : ')
+        ->addInput('text', 'quantity', ['class' => '', 'id' => '', 'required' => true])
+
+        ->addInput('hidden', 'animal', ['value' => $_POST['animal']])
+
+        ->addBouton('Crée', ['type' => 'submit', 'value' => 'submit', 'id' => '', 'name' => 'createGivenFood', 'class' => ''])
+
+        ->endForm();
+
+      return $form->create();
+    }
+    return null;
+  }
+
+  public function createGivenFood()
+  {
+    if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST['createGivenFood'])) {
+      $date = $_POST['date'];
+      $hour = $_POST['hour'];
+      $food = $_POST['food'];
+      $quantity = $_POST['quantity'];
+      $idAnimal = $_POST['animal'];
+      $employee = $_SESSION['user'];
+
+      //$existingUser = (new FoodGivenModel)->findOneByIdUser($employee);
+      //$existingIdAnimal = (new AnimalReportModel)->findOneByIdAnimal($idAnimal);
+      $existingDate = (new FoodGivenModel)->findOneByDate($date);
+
+      if (!is_null($existingDate)) {
+        echo "Le repas existe déjà.";
+        return;
+      } else {
+        try {
+          $foodGiven = new FoodGivenModel;
+
+          $foodGiven->setDay($date)
+            ->setHour($hour)
+            ->setFood($food)
+            ->setQuantity($quantity)
+            ->setIdAnimal($idAnimal)
+            ->setIdUser($employee['id_user']);
+
+          $foodGiven->createFoodGiven();
+
+          $_SESSION['message'] = "le compte rendu a été créé avec succès.";
+        } catch (\Exception $e) {
+
+          $_SESSION['error'] = "Une erreur s'est produite lors de la création de du compte rendu : " . $e->getMessage();
+        }
+      }
+    } else {
+      $_SESSION['error'] = "Aucun compte rendu n'a été renseigné";
+    }
+
+    header("Location: /employeeFoodGiven");
+    exit;
+  }
 }

@@ -57,7 +57,7 @@ class VetReportController extends VetController
 
     $form->startForm('POST', 'vetReport/createHabitatReport', ['id' => 'form_report_habitat', 'enctype' => 'multipart/form-data'])
 
-      ->addInput('date', 'date', ['class' => 'input_report_habitat', 'id' => 'input_report_habitat', 'required' => true])
+      ->addInput('date', 'date', ['class' => 'input_report_habitat', 'id' => 'input_report_habitat_date', 'required' => true])
 
       ->addSelect('habitat', $habitats, ['class' => 'input_report_habitat', 'id' => 'input_report_habitat', 'required' => true])
 
@@ -172,9 +172,9 @@ class VetReportController extends VetController
       ->addInput('date', 'passage_date', ['class' => 'input_report_animal', 'id' => 'input_report_animal_proposed_food', 'required' => true])
 
       ->addLabelFor('state_detail', 'Information complémentaire')
-      ->addTextarea('state_detail', '', ['class' => 'input_report_habitat', 'id' => 'input_report_habitat_improvement', 'required' => true])
+      ->addTextarea('state_detail', '', ['class' => 'input_report_animal', 'id' => 'input_report_habitat_improvement', 'required' => true])
 
-      ->addBouton('Créer', ['type' => 'submit', 'value' => 'submit', 'id' => 'btn_save_report_habitat', 'name' => 'createReportAnimal', 'class' => 'input_report_habitat'])
+      ->addBouton('Créer', ['type' => 'submit', 'value' => 'submit', 'id' => 'btn_save_report_animal', 'name' => 'createReportAnimal', 'class' => 'input_report_animal'])
 
       ->endForm();
 

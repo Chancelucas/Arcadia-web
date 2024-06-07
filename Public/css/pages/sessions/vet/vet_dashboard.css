@@ -1,4 +1,11 @@
 @import url(/css/config/config.css);
 @import url(/css/pages/sessions/vet/vet_manage_reports.css);
 @import url(/css/templates/sessions/vet/vet_navbar.css);
+@import url(/css/pages/sessions/vet/vet_animal_report.css);
+@import url(/css/pages/sessions/vet/vet_habitat_report.css);
+@import url(/css/pages/sessions/vet/vet_update_habitat_report.css);
+@import url(/css/pages/sessions/vet/vet_update_animal_report.css);
+
+
+
 

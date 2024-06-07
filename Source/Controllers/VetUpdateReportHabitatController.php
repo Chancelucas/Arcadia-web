@@ -17,13 +17,12 @@ class VetUpdateReportHabitatController extends VetController
    */
   public function index(int $id)
   {
-
     $habitatReportModel = new HabitatReportModel;
     $habitatReport = $habitatReportModel->findOneById($id);
 
-    $habitatName = $habitatReport->getNameOfHabitat();
-    $opinion = $habitatReport->getAssessmentOpinon();
-    $state = $habitatReport->getAssessmentState();
+    $habitatName = $habitatReport->getIdHabitat();
+    $opinion = $habitatReport->getAssessmentOpinonId();
+    $state = $habitatReport->getAssessmentStateId();
     $date = $habitatReport->getDate();
     $improvement = $habitatReport->getImprovement();
 
@@ -31,35 +30,34 @@ class VetUpdateReportHabitatController extends VetController
 
     $this->render('habitat/vetUpdateHabitat', ['habitatReportForm' => $habitatReportForm]);
   }
-  
+
   /**
    * Generate update user form
    */
   public function createForm($idHabitatReport, $habitatName, $opinion, $date, $state, $improvement)
   {
-
-    $state = (new AssessmentModel)->getAllNameState();
-    $habitatModel = (new HabitatModel)->getAllNameHabitat();
+    $stateList = (new AssessmentModel)->getAllNameState();
+    $habitatModelList = (new HabitatModel)->getAllNameHabitat();
 
     $form = new Form;
 
-    $form->startForm('POST', "/vetUpdateReportHabitat/updateReportHabitat/{$idHabitatReport}", ['id' => '', 'enctype' => 'multipart/form-data'])
+    $form->startForm('POST', "/vetUpdateReportHabitat/updateReportHabitat/{$idHabitatReport}", ['class' => 'form_update_habitat_vet'])
 
-      ->addSelect('habitat', $habitatModel, ['class' => '', 'id' => '', 'required' => true, 'value' => $habitatName])
+      ->addSelect('habitat', $habitatModelList, ['class' => 'label_update_vet_habitat', 'required' => true, 'value' => $habitatName])
 
       ->addLabelFor('state', 'Etat de l\'habitat')
-      ->addSelect('stateId', $state, ['class' => '', 'id' => '', 'required' => true, 'value' => $state])
+      ->addSelect('stateId', $stateList, ['class' => 'label_update_vet_habitat', 'required' => true, 'value' => $state])
 
-      ->addLabelFor('opinion', 'Etat de l\'animal')
-      ->addSelect('opinionId', $state, ['class' => '', 'id' => '', 'required' => true, 'value' => $opinion])
+      ->addLabelFor('opinion', 'Avis du vétérinaire')
+      ->addSelect('opinionId', $stateList, ['class' => 'label_update_vet_habitat', 'required' => true, 'value' => $opinion])
 
       ->addLabelFor('passage_date', 'Date du passage')
-      ->addInput('date', 'passage_date', ['class' => '', 'id' => '', 'required' => true, 'value' => $date])
+      ->addInput('date', 'passage_date', ['class' => 'label_update_vet_habitat', 'required' => true, 'value' => $date])
 
       ->addLabelFor('improvement', 'Information complémentaire')
-      ->addTextarea('improvement', $improvement, ['class' => '', 'id' => '', 'required' => true])
+      ->addTextarea('improvement', $improvement, ['class' => 'label_update_vet_habitat', 'required' => true])
 
-      ->addBouton('Enregister', ['type' => 'submit', 'value' => 'submit', 'id' => '', 'name' => 'save_changes', 'class' => ''])
+      ->addBouton('Enregister', ['type' => 'submit', 'value' => 'submit', 'name' => 'save_changes', 'class' => ''])
 
       ->endForm();
 
@@ -75,20 +73,19 @@ class VetUpdateReportHabitatController extends VetController
       $habitat = $_POST['habitat'];
       $state = $_POST['stateId'];
       $opinion = $_POST['opinionId'];
-      $date = $_POST['date'];
+      $date = $_POST['passage_date'];
       $improvement = $_POST['improvement'];
 
       $habitatReportModel = new HabitatReportModel;
       $habitatReportModel->findOneById($idHabitatReport);
-      $assessmentModel = new AssessmentModel;
-      $assessmentModel->setState($state);
 
-      $habitatReportModel->setIdHabitatReport($habitat);
+      $habitatReportModel->setIdHabitat($habitat);
       $habitatReportModel->setOpinion($opinion);
+      $habitatReportModel->setState($state);
       $habitatReportModel->setDate($date);
       $habitatReportModel->setImprovement($improvement);
 
-      $updateResult = $habitatReportModel->update($idHabitatReport);
+      $updateResult = $habitatReportModel->update();
 
       if ($updateResult) {
         header("Location: /vetHabitat");

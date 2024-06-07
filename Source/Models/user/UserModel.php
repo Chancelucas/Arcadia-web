@@ -112,6 +112,79 @@ class UserModel extends MainModel
     return $this->request($sql, $values);
   }
 
+  /**
+   * Get all user with role(label) on database
+   */
+  public function getAllUsers()
+  {
+    $model = new UserModel;
+    $usersModel = $model->getAll();
+
+    $allUsers = [];
+    foreach ($usersModel as $userModel) {
+      $user = new \stdClass();
+      $user->id_User = $userModel->getId();
+      $user->username = $userModel->getUsername();
+      $user->email = $userModel->getEmail();
+      $user->password = $userModel->getPassword();
+      $user->id_Role = $userModel->getIdRole();
+      $user->role = $userModel->getRole();
+
+      $allUsers[] = $user;
+    }
+
+    return $allUsers;
+  }
+
+  public function getAllUsernameEmployee()
+{
+    $allUsers = $this->getAll();
+
+    // Récupérer tous les rôles
+    $roleList = (new RoleModel)->getAllRoles();
+
+    $employeeRoleId = null;
+    foreach ($roleList as $roleId => $roleName) {
+        if ($roleName === 'Employer') {
+            $employeeRoleId = $roleId;
+            break;
+        }
+    }
+
+    if ($employeeRoleId === null) {
+        return [];
+    }
+
+    $employeeUsers = [];
+    foreach ($allUsers as $user) {
+        if ($user->getIdRole() == $employeeRoleId) {
+            $employeeUsers[$user->getIdUser()] = $user->getUsername();
+        }
+    }
+
+    return $employeeUsers;
+}
+
+
+
+  public function getAllAdminAndVet()
+  {
+  }
+
+
+
+  public function getAllUsername()
+  {
+    $users = $this->getAll();
+
+    $usernameList = [];
+
+    foreach ($users as $user) {
+      $usernameList[$user->getId()] = $user->getUsername();
+    }
+    return $usernameList;
+  }
+
 
   /////////////////// GETTER and SETTER /////////////////////
 
@@ -215,13 +288,5 @@ class UserModel extends MainModel
     return (new RoleModel())->findOneById($this->id_role)->getRole();
   }
 
-  /**
-   * Set the value of role
-   *
-   * @return  self
-   */
-  // public function setRole($role)
-  // {
-  //     return (new RoleModel())->findOneById($this->id_Role)->setRole($role);
-  // }
+
 }

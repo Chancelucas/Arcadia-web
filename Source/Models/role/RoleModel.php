@@ -55,8 +55,40 @@ class RoleModel extends MainModel
     return $this->create();
   }
 
+  public function getAllRoles(){
+    
+    $roleModel = new RoleModel;
+    $roles = $roleModel->getAll();
+    $roleOptions = [];
+
+    foreach ($roles as $role) {
+      $roleOptions[$role->getId()] = $role->getRole();
+    }
+
+    return $roleOptions;
+  }
+
   /////////////////// GETTER and SETTER /////////////////////
 
+  /**
+   * Get the value of id_Role
+   */
+  public function getIdRole()
+  {
+    return $this->id_Role;
+  }
+
+  /**
+   * Set the value of id_Role
+   *
+   * @return  self
+   */
+  public function setIdRole($id_Role)
+  {
+    $this->id_Role = $id_Role;
+
+    return $this;
+  }
 
   /**
    * Get the value of role

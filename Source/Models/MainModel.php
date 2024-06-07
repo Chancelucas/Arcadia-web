@@ -131,6 +131,4 @@ abstract class MainModel
   {
     return 'set' . str_replace(" ", "", ucwords(str_replace("_", " ", $bddKey)));
   }
-
-
 }

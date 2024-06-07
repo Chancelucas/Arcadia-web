@@ -85,7 +85,11 @@ class Form
     $this->formCode .= "<select name='$name'";
     $this->formCode .= $params ? $this->addParams($params) . '>' : '>';
     foreach ($options as $value => $texte) {
-      $this->formCode .= "<option value='$value'>$texte</option>";
+      if (isset($params['value']) && $params['value'] == $value) {
+        $this->formCode .= "<option selected value='$value'>$texte</option>";
+      } else {
+        $this->formCode .= "<option value='$value'>$texte</option>";
+      }
     }
     $this->formCode .= '</select>';
     return $this;

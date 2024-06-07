@@ -10,14 +10,13 @@
     padding: 0;
     box-sizing: border-box;
     line-height: inherit;
-    
 }
 
 body {
     background-color: var(--main-white-color);
     color: var(--main-shadow-color);
     font-family: var(--font-family);
-
+    margin-top: 80px;
 }
 
 @media screen and (max-width : 768px) {

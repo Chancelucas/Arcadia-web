@@ -11,9 +11,11 @@
     <?php if ($reportAnimal) : ?>
       <?php foreach ($reportAnimal as $report) : ?>
         <div>
-          <p>Date du rapport: <?= $report->passage_date; ?></p>
-          <p>Aliment à donné: <?= $report->proposed_food; ?></p>
-          <p>Quantité à donnée en gramme: <?= $report->food_amount; ?></p>
+          <p>Date du rapport : <?= $report->passage_date; ?></p>
+          <p>Aliment à donné : <?= $report->proposed_food; ?></p>
+          <p>Quantité à donnée en gramme : <?= $report->food_amount; ?></p>
+          <p>Note du vétérinaire : <?= $report->state_detail; ?></p>
+
         </div>
       <?php endforeach; ?>
     <?php else : ?>
@@ -22,12 +24,8 @@
   </div>
 
 <div>
-  <p>A remplir par l'employer</p>
   <div>
-    <p>Date du nourrisage : </p>
-    <p>Heure du nourrisage : </p>
-    <p>Nourriture donnée : </p>
-    <p>Quantité donnée (en gramme) : </p>
+    <?= $givenFoodForm; ?>
   </div>
 </div>
 

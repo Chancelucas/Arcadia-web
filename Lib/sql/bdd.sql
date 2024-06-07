@@ -80,6 +80,18 @@ CREATE TABLE `Hour`(
     `closing_time` TIME NOT NULL
 );
 
+CREATE TABLE `FoodGiven`(
+    `id` INT PRIMARY KEY AUTO_INCREMENT,
+    `day`VARCHAR(20) NOT NULL,
+    `hour` TIME NOT NULL,
+    `food` VARCHAR(255) NOT NULL,
+    `quantity` VARCHAR(255) NOT NULL,
+    `id_user` INT,
+    `id_animal` INT,
+    FOREIGN KEY (`id_user`) REFERENCES `User`(`id`),
+    FOREIGN KEY (`id_animal`) REFERENCES `Animal`(`id`)
+);
+
 
 
 INSERT INTO `Role` (`role`)

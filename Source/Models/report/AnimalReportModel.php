@@ -60,7 +60,7 @@ class AnimalReportModel extends MainModel
     return $this;
   }
 
-  
+
 
   /**
    * Function for create one report
@@ -80,9 +80,9 @@ class AnimalReportModel extends MainModel
       ':state' => $this->state,
       ':proposed_food' => $this->proposed_food,
       ':food_amount' => $this->food_amount,
-      ':passage_date' => $this->passage_date, 
+      ':passage_date' => $this->passage_date,
       ':state_detail' => $this->state_detail,
-      ':id_animal' => $this->id_animal, 
+      ':id_animal' => $this->id_animal,
       ':id_report' => $this->id,
     ];
 
@@ -117,18 +117,17 @@ class AnimalReportModel extends MainModel
 
   public function getReportsByAnimalId($animalId)
   {
-    // Implémentez la logique de récupération des rapports ici, par exemple :
     return $this->request("SELECT * FROM AnimalReport WHERE id_animal = ?", [$animalId])->fetchAll();
   }
 
 
   /////////////////// GETTER and SETTER /////////////////////
 
- 
+
 
   /**
    * Get the value of id_Report
-   */ 
+   */
   public function getIdAnimalReport()
   {
     return $this->id;
@@ -138,7 +137,7 @@ class AnimalReportModel extends MainModel
    * Set the value of id_Report
    *
    * @return  self
-   */ 
+   */
   public function setIdAnimalReport($id_AnimalReport)
   {
     $this->id = $id_AnimalReport;
@@ -150,7 +149,7 @@ class AnimalReportModel extends MainModel
 
   /**
    * Get the value of state
-   */ 
+   */
   public function getState()
   {
     return $this->state;
@@ -160,7 +159,7 @@ class AnimalReportModel extends MainModel
    * Set the value of state
    *
    * @return  self
-   */ 
+   */
   public function setState($state)
   {
     $this->state = $state;
@@ -171,7 +170,7 @@ class AnimalReportModel extends MainModel
 
   /**
    * Get the value of proposed_food
-   */ 
+   */
   public function getProposedFood()
   {
     return $this->proposed_food;
@@ -181,7 +180,7 @@ class AnimalReportModel extends MainModel
    * Set the value of proposed_food
    *
    * @return  self
-   */ 
+   */
   public function setProposedFood($proposed_food)
   {
     $this->proposed_food = $proposed_food;
@@ -191,7 +190,7 @@ class AnimalReportModel extends MainModel
 
   /**
    * Get the value of food_amount
-   */ 
+   */
   public function getFoodAmount()
   {
     return $this->food_amount;
@@ -201,7 +200,7 @@ class AnimalReportModel extends MainModel
    * Set the value of food_amount
    *
    * @return  self
-   */ 
+   */
   public function setFoodAmount($food_amount)
   {
     $this->food_amount = $food_amount;
@@ -211,7 +210,7 @@ class AnimalReportModel extends MainModel
 
   /**
    * Get the value of passage_date
-   */ 
+   */
   public function getPassageDate()
   {
     return $this->passage_date;
@@ -221,7 +220,7 @@ class AnimalReportModel extends MainModel
    * Set the value of passage_date
    *
    * @return  self
-   */ 
+   */
   public function setPassageDate($passage_date)
   {
     $this->passage_date = $passage_date;
@@ -231,7 +230,7 @@ class AnimalReportModel extends MainModel
 
   /**
    * Get the value of state_detail
-   */ 
+   */
   public function getStateDetail()
   {
     return $this->state_detail;
@@ -241,7 +240,7 @@ class AnimalReportModel extends MainModel
    * Set the value of state_detail
    *
    * @return  self
-   */ 
+   */
   public function setStateDetail($state_detail)
   {
     $this->state_detail = $state_detail;
@@ -251,7 +250,7 @@ class AnimalReportModel extends MainModel
 
   /**
    * Get the value of id_animal
-   */ 
+   */
   public function getIdAnimal()
   {
     return $this->id_animal;
@@ -261,7 +260,7 @@ class AnimalReportModel extends MainModel
    * Set the value of id_animal
    *
    * @return  self
-   */ 
+   */
   public function setIdAnimal($id_animal)
   {
     $this->id_animal = $id_animal;
@@ -290,16 +289,15 @@ class AnimalReportModel extends MainModel
    */
   public function getAssessmentState()
   {
-    return (new AssessmentModel())->findOneById($this->id)->getState();
+    return (new AssessmentModel())->findOneById($this->state)->getState();
   }
 
   /**
    * Get the value of habitat
    */
-  public function setAssessmentState($state)
-  {
-    return (new AssessmentModel())->findOneById($this->id)->setState($state);
-  }
-
-
+  // ??????
+  // public function setAssessmentState($state)
+  // {
+  //   return (new AssessmentModel())->findOneById($this->id)->setState($state);
+  // }
 }

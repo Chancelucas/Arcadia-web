@@ -13,13 +13,11 @@ use Source\Models\report\AssessmentModel;
 
 class HabitatReportModel extends MainModel
 {
-  protected $id_HabitatReport;
   protected $opinion;
   protected $state;
   protected $improvement;
   protected $date;
   protected $id_habitat;
-
 
   /**
    * Init Habitat model on table Habitat
@@ -88,12 +86,13 @@ class HabitatReportModel extends MainModel
    */
   public function update()
   {
-    $sql = "UPDATE {$this->table} SET opinion = :opinion, state = :state, improvement = :improvement, id_habitat = :id_habitat WHERE id = :id_report";
+    $sql = "UPDATE {$this->table} SET opinion = :opinion, state = :state, improvement = :improvement, date = :date, id_habitat = :id_habitat WHERE id = :id_report";
     $values = [
       ':opinion' => $this->opinion,
       ':state' => $this->state,
       ':improvement' => $this->improvement,
-      ':id_habitat' => $this->id_habitat, 
+      ':date' => $this->date,
+      ':id_habitat' => $this->id_habitat,
       ':id_report' => $this->id,
     ];
 
@@ -108,7 +107,7 @@ class HabitatReportModel extends MainModel
     $habitatsReportModel = $this->getAll();
 
     $allHabitatReport = [];
-    
+
     foreach ($habitatsReportModel as $habitatReportModel) {
       $habitatReport = new \stdClass();
       $habitatReport->id_HabitatReport = $habitatReportModel->getId();
@@ -130,29 +129,29 @@ class HabitatReportModel extends MainModel
 
   /**
    * Get the value of id_Report
-   */ 
+   */
   public function getIdHabitatReport()
   {
-    return $this->id_HabitatReport;
+    return $this->id;
   }
 
   /**
    * Set the value of id_Report
    *
    * @return  self
-   */ 
+   */
   public function setIdHabitatReport($id_HabitatReport)
   {
-    $this->id_HabitatReport = $id_HabitatReport;
+    $this->id = $id_HabitatReport;
 
     return $this;
   }
-  
+
   /**
    * Set the value of opinion
    *
    * @return  self
-   */ 
+   */
   public function getOpinion()
   {
     return $this->opinion;
@@ -162,7 +161,7 @@ class HabitatReportModel extends MainModel
    * Set the value of opinion
    *
    * @return  self
-   */ 
+   */
   public function setOpinion($opinion)
   {
     $this->opinion = $opinion;
@@ -174,7 +173,7 @@ class HabitatReportModel extends MainModel
    * Set the value of state
    *
    * @return  self
-   */ 
+   */
   public function getState()
   {
     return $this->state;
@@ -184,7 +183,7 @@ class HabitatReportModel extends MainModel
    * Set the value of state
    *
    * @return  self
-   */ 
+   */
   public function setState($state)
   {
     $this->state = $state;
@@ -196,7 +195,7 @@ class HabitatReportModel extends MainModel
    * Set the value of improvement
    *
    * @return  self
-   */ 
+   */
   public function getImprovement()
   {
     return $this->improvement;
@@ -206,7 +205,7 @@ class HabitatReportModel extends MainModel
    * Set the value of improvement
    *
    * @return  self
-   */ 
+   */
   public function setImprovement($improvement)
   {
     $this->improvement = $improvement;
@@ -214,11 +213,11 @@ class HabitatReportModel extends MainModel
     return $this;
   }
 
-   /**
+  /**
    * Set the value of id_habitat
    *
    * @return  self
-   */ 
+   */
   public function getDate()
   {
     return $this->date;
@@ -228,7 +227,7 @@ class HabitatReportModel extends MainModel
    * Set the value of id_habitat
    *
    * @return  self
-   */ 
+   */
   public function setDate($date)
   {
     $this->date = $date;
@@ -236,11 +235,11 @@ class HabitatReportModel extends MainModel
     return $this;
   }
 
-   /**
+  /**
    * Set the value of id_habitat
    *
    * @return  self
-   */ 
+   */
   public function getIdHabitat()
   {
     return $this->id_habitat;
@@ -250,7 +249,7 @@ class HabitatReportModel extends MainModel
    * Set the value of id_habitat
    *
    * @return  self
-   */ 
+   */
   public function setIdHabitat($id_habitat)
   {
     $this->id_habitat = $id_habitat;
@@ -261,6 +260,11 @@ class HabitatReportModel extends MainModel
   /**
    * Get the value of habitat
    */
+  public function getAssessmentStateId()
+  {
+    return $this->state;
+  }
+
   public function getAssessmentState()
   {
     return (new AssessmentModel())->findOneById($this->state)->getState();
@@ -277,6 +281,11 @@ class HabitatReportModel extends MainModel
   /**
    * Get the value of habitat
    */
+  public function getAssessmentOpinonId()
+  {
+    return $this->opinion;
+  }
+
   public function getAssessmentOpinon()
   {
     return (new AssessmentModel())->findOneById($this->opinion)->getState();
@@ -306,5 +315,4 @@ class HabitatReportModel extends MainModel
   {
     return (new HabitatModel())->findOneById($this->id_habitat)->setName($name);
   }
-
 }

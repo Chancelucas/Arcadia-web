@@ -9,6 +9,8 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    margin-top: 80px;
+
 }
 
 #admin_update_user_link_back{
