@@ -61,9 +61,6 @@
 
 /* Tablet Styles */
 @media screen and (min-width: 769px) {
-  .navbar_public {
-    height: 10vh;
-  }
 
   .div_nav_public {
     justify-content: space-between;

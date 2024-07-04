@@ -33,11 +33,7 @@ class EmployeeReviewController extends EmployeeController
 
       $reviewModel->setStatus(!$reviewModel->getStatus());
 
-
       $updateResult = $reviewModel->update();
-
- 
-
 
       if (!$updateResult) {
         $_SESSION['error'] = "Une erreur s'est produite lors de la modification de l'avis client.";
