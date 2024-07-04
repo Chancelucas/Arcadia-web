@@ -32,7 +32,7 @@ abstract class MainModel
   }
 
   /**
-   * Main function find by 
+   * Main function find by
    */
   public function findBy(array $criteria)
   {

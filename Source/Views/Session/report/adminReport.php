@@ -4,29 +4,43 @@
   </div>
 
   <div>
-    <?php foreach ($animalsReport as $animalReport) : ?>
-
-      <div id="">
-        <div id=""><?= $animalReport->animalBreed ?></div>
-        <div id=""><?= $animalReport->state ?></div>
-        <div id=""><?= $animalReport->proposed_food ?></div>
-        <div id=""><?= $animalReport->food_amount ?></div>
-        <div id=""><?= $animalReport->passage_date ?></div>
-        <div id=""><?= $animalReport->state_detail ?></div>
-      </div>
-    <?php endforeach; ?>
+    <?= $filterFormReportAnimal; ?>
   </div>
-  
+
   <div>
-    <?php foreach ($reportsHabitat as $reportHabitat) : ?>
-      <div id="">
-        <div id=""><?= $reportHabitat->name_habitat ?></div>
-        <div id=""><?= $reportHabitat->opinion ?></div>
-        <div id=""><?= $reportHabitat->state ?></div>
-        <div id=""><?= $reportHabitat->improvement ?></div>
-        <div id=""><?= $reportHabitat->date ?></div>
-      </div>
-    <?php endforeach; ?>
+    <?php if ($animalsReport) : ?>
+      <?php foreach ($animalsReport as $animalReport) : ?>
+        <div>
+          <p>L'animal :<?= $animalReport->animalBreed ?></p>
+          <p>Son etat :<?= $animalReport->state ?></p>
+          <p>Nourriture :<?= $animalReport->proposed_food ?></p>
+          <p>Quantité :<?= $animalReport->food_amount ?></p>
+          <p>Date de passage :<?= $animalReport->passage_date ?></p>
+          <p>Commentaire :<?= $animalReport->state_detail ?></p>
+        </div>
+      <?php endforeach; ?>
+    <?php endif; ?>
+
+  </div>
+
+
+  <div>
+    <?= $filterFormReportHabitat; ?>
+  </div>
+
+  <div>
+    <?php if ($reportsHabitat) : ?>
+      <?php foreach ($reportsHabitat as $reportHabitat) : ?>
+        <div id="">
+          <div id=""><?= $reportHabitat->name_habitat ?></div>
+          <div id=""><?= $reportHabitat->opinion ?></div>
+          <div id=""><?= $reportHabitat->state ?></div>
+          <div id=""><?= $reportHabitat->improvement ?></div>
+          <div id=""><?= $reportHabitat->date ?></div>
+        </div>
+      <?php endforeach; ?>
+    <?php endif; ?>
+
   </div>
 
 

@@ -5,170 +5,130 @@
 @import url(/css/pages/sessions/employee/employee_dashboard.css);
 @import url(/css/pages/sessions/vet/vet_dashboard.css);
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    line-height: inherit;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: inherit;
 }
 
 body {
-    background-color: var(--main-white-color);
-    color: var(--main-shadow-color);
-    font-family: var(--font-family);
-    margin-top: 80px;
+  background-color: var(--white);
+  color: var(--shadow);
+  font-family: var(--font-baloo);
 }
 
-@media screen and (max-width : 768px) {
-
+.body_home {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(https://res.cloudinary.com/dnelvhydy/image/upload/v1719929635/tmi0godsaaiibnhyakkp.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
 }
 
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-
+.title_welcome {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  color: var(--white);
+  font-size: 3em;
 }
 
-@media screen and (min-width: 1025px) {
-    
-    #body_home{
-        background: linear-gradient(0deg,rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) , url(https://res.cloudinary.com/dnelvhydy/image/upload/v1708608309/samples/animals/mike-marrah-gRB4Euk4BYQ-unsplash_1_sdxsql.jpg);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: auto, cover;
-        height: 100vh;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        align-content: center;
-        flex-direction: column;
-    }
-    
-    h1 {
-        display: flex;
-        justify-content: center;
-        align-content: center;
-        color: var(--main-white-color);
-        font-size: 10em;
-    
-    }
-    
-    .button {
-        height: 50px;
-        width: 200px;
-        position: relative;
-        background-color: transparent;
-        cursor: pointer;
-        border: 2px solid var(--main-white-color);
-        overflow: hidden;
-        border-radius: 30px;
-        color: var(--main-white-color);
-        transition: all 0.5s ease-in-out;
-        z-index: 50;
-    }
-    
-    .btn-txt {
-        z-index: 1;
-        font-weight: 800;
-        letter-spacing: 4px;
-    }
-    
-    .type1::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0;
-        transition: all 0.5s ease-in-out;
-        background-color: var(--main-white-color);
-        border-radius: 30px;
-        visibility: hidden;
-        height: 10px;
-        width: 10px;
-        z-index: -1;
-    }
-    
-    .button:hover {
-        box-shadow: 1px 1px 200px var(--main-white-color);
-        color: var(--main-white-color);
-        border: none;
-    }
-    
-    .type1:hover::after {
-        visibility: visible;
-        transform: scale(100) translateX(2px);
-    }
+.letter_title_welcome {
+  display: inline-block;
+  opacity: 0;
+  animation: fadeInLeft 1s forwards;
 }
 
-
-
-body {
-    background-color: var(--main-white-color);
-    color: var(--main-shadow-color);
-    font-family: var(--font-family);
-
+.letter_title_welcome:nth-child(1) {
+  animation-delay: 0.3s;
 }
 
-#body_home{
-    background: linear-gradient(0deg,rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) , url(https://res.cloudinary.com/dnelvhydy/image/upload/v1708608309/samples/animals/mike-marrah-gRB4Euk4BYQ-unsplash_1_sdxsql.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: auto, cover;
-    height: 100vh;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    align-content: center;
-    flex-direction: column;
+.letter_title_welcome:nth-child(2) {
+  animation-delay: 0.6s;
 }
 
-h1 {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    color: var(--main-white-color);
-    font-size: 10em;
-
+.letter_title_welcome:nth-child(3) {
+  animation-delay: 0.9s;
 }
 
-.button {
-    height: 50px;
-    width: 200px;
-    position: relative;
-    background-color: transparent;
-    cursor: pointer;
-    border: 2px solid var(--main-white-color);
-    overflow: hidden;
-    border-radius: 30px;
-    color: var(--main-white-color);
-    transition: all 0.5s ease-in-out;
-    z-index: 50;
+.letter_title_welcome:nth-child(4) {
+  animation-delay: 1.2s;
 }
 
-.btn-txt {
-    z-index: 1;
-    font-weight: 800;
-    letter-spacing: 4px;
+.letter_title_welcome:nth-child(5) {
+  animation-delay: 1.5s;
+}
+
+.letter_title_welcome:nth-child(6) {
+  animation-delay: 1.8s;
+}
+
+.letter_title_welcome:nth-child(7) {
+  animation-delay: 2.1s;
+}
+
+.button_access_website {
+  height: 50px;
+  width: 200px;
+  position: relative;
+  background-color: transparent;
+  cursor: pointer;
+  border: 2px solid var(--white);
+  overflow: hidden;
+  border-radius: 30px;
+  color: var(--white);
+  transition: all 0.5s ease-in-out;
+  z-index: 50;
+}
+
+.btn_txt_website {
+  z-index: 1;
+  font-weight: 800;
+  letter-spacing: 4px;
 }
 
 .type1::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    transition: all 0.5s ease-in-out;
-    background-color: var(--main-white-color);
-    border-radius: 30px;
-    visibility: hidden;
-    height: 10px;
-    width: 10px;
-    z-index: -1;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: all 0.5s ease-in-out;
+  background-color: var(--white);
+  border-radius: 30px;
+  visibility: hidden;
+  height: 10px;
+  width: 10px;
+  z-index: -1;
 }
 
-.button:hover {
-    box-shadow: 1px 1px 200px var(--main-white-color);
-    color: var(--main-white-color);
-    border: none;
+.button_access_website:hover {
+  box-shadow: 1px 1px 200px var(--white);
+  color: var(--shadow);
+  border: none;
 }
 
 .type1:hover::after {
-    visibility: visible;
-    transform: scale(100) translateX(2px);
+  visibility: visible;
+  transform: scale(100) translateX(2px);
+}
+
+/* Tablet Styles */
+@media screen and (min-width: 769px) {
+  .title_welcome {
+    font-size: 6em;
+  }
+}
+
+/* Desktop Styles */
+@media screen and (min-width: 1025px) {
+  .title_welcome {
+    font-size: 10em;
+  }
 }

@@ -2,6 +2,11 @@
 
 namespace Source\Controllers;
 
+use Source\Controllers\Controller;
+use Source\Models\habitat\HabitatModel;
+use Source\Models\reviews\ReviewsModel;
+use Source\Models\service\ServiceModel;
+
 class HomeController extends Controller
 {
 
@@ -11,6 +16,40 @@ class HomeController extends Controller
    */
   public function index()
   {
-    $this->render('home/home', [], 'defaultPublicPage');
+
+    $habitat = $this->getAllHabitat();
+    $services = $this->getAllServices();
+    $reviews = $this->getAllValableReview();
+
+    $this->render('home/home', [
+      'allHabitats' => $habitat,
+      'allServices' => $services,
+      'allReviews' => $reviews,
+    ]);
   }
+
+  private function getAllHabitat()
+  {
+    $model = new HabitatModel;
+    $allHabitats = $model->getAllWithAnimals();
+
+    return $allHabitats;
+  }
+
+  private function getAllServices()
+  {
+    $model = new ServiceModel;
+    $allServices = $model->getAllServices();
+
+    return $allServices;
+  }
+
+  private function getAllValableReview()
+  {
+    $enableReviews = (new ReviewsModel)->findBy(['status' => true]);
+    // et voilà bah ca marche passsss, a si
+    return $enableReviews;
+  }
+
+  
 }

@@ -3,7 +3,6 @@
 namespace Source\Models\role;
 
 use Source\Models\MainModel;
-use Source\Models\user\UserModel;
 
 class RoleModel extends MainModel
 {

@@ -18,7 +18,10 @@ class AdminHabitatController extends AdminController
   {
     $createHabitatForm = $this->generateCreateHabitatForm();
     $habitats = $this->getAllHabitats();
-    $this->render('habitat/adminHabitat', ['createHabitatForm' => $createHabitatForm, 'habitats' => $habitats]);
+    $this->render('habitat/adminHabitat', [
+      'createHabitatForm' => $createHabitatForm, 
+      'habitats' => $habitats
+    ]);
   }
 
   /**
@@ -101,8 +104,7 @@ class AdminHabitatController extends AdminController
    */
   private function getAllHabitats()
   {
-    $model = new HabitatModel;
-    $allHabitats = $model->getAllWithAnimals();
+    $allHabitats = (new HabitatModel)->getAllWithAnimals();
 
     return $allHabitats;
   }

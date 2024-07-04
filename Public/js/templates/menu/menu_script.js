@@ -1,6 +1,6 @@
-const iconMenu = document.getElementById('icon_menu');
-const iconClose = document.getElementById('icon_close');
-const menuLinks = document.getElementById('ul_links_pulic');
+const iconMenu = document.querySelector('.icon_menu');
+const iconClose = document.querySelector('.icon_close');
+const menuLinks = document.querySelector('.ul_links_public_nav');
 
 iconMenu.addEventListener('click', () => {
     menuLinks.style.display = 'flex';

@@ -2,6 +2,11 @@
 
 namespace Source\Controllers;
 
+use Source\Controllers\Controller;
+use Source\Models\animal\AnimalModel;
+use Source\Models\habitat\HabitatModel;
+use Source\Models\hour\HourModel;
+
 class HabitatController extends Controller
 {
 
@@ -11,6 +16,60 @@ class HabitatController extends Controller
    */
   public function index()
   {
-    $this->render('habitat/habitat', [], 'defaultPublicPage');
+    $habitat = $this->getAllHabitat();
+
+    $this->render('habitat/habitat', [
+      'allHabitats' => $habitat,
+
+    ]);
+  }
+
+  public function page(int $idHabitat)
+  {
+    $habitat = $this->getIdHabitat($idHabitat);
+    $animalsInHabitat = $this->showHabitatWithAnimals($idHabitat);
+
+
+    $this->render('habitat/page', [
+      'habitat' => $habitat,
+      'animalsInHabitat' => $animalsInHabitat
+
+    ]);
+  }
+
+  private function getAllHabitat()
+  {
+    $model = new HabitatModel;
+    $allHabitats = $model->getAllWithAnimals();
+
+    return $allHabitats;
+  }
+
+  private function getIdHabitat(int $idHabitat)
+  {
+    $model = (new HabitatModel)->findBy(['id' => $idHabitat])[0];
+
+    return $model;
+  }
+
+  private function showHabitatWithAnimals($idHabitat)
+  {
+    $habitatModel = new HabitatModel();
+    $habitat = $habitatModel->findOneById($idHabitat);
+
+    if (!$habitat) {
+      $_SESSION['error'] = "Aucun habitat n'a était trouvé";
+    }
+
+    $animalModel = new AnimalModel();
+    $allAnimals = $animalModel->getAllAnimals();
+
+    $animalsInHabitat = [];
+    foreach ($allAnimals as $animal) {
+      if ($animal->id_Habitat == $idHabitat) {
+        $animalsInHabitat[] = $animal;
+      }
+    }
+    return $animalsInHabitat;
   }
 }

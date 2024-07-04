@@ -142,9 +142,7 @@ class EmployeeAnimalFeedController extends EmployeeController
       $idAnimal = $_POST['animal'];
       $employee = $_SESSION['user'];
 
-      //$existingUser = (new FoodGivenModel)->findOneByIdUser($employee);
-      //$existingIdAnimal = (new AnimalReportModel)->findOneByIdAnimal($idAnimal);
-      $existingDate = (new FoodGivenModel)->findOneByDate($date);
+      $existingDate = (new FoodGivenModel)->findOneByDateAndAnimal($date, $idAnimal);
 
       if (!is_null($existingDate)) {
         echo "Le repas existe déjà.";

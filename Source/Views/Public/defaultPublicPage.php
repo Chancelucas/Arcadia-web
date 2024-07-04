@@ -15,17 +15,15 @@
         <?php require_once ROOT . '/Source/Views/public/templates/navbar.php'; ?>
     </header>
 
-    <div style="width: 100%;min-height:40px;border:solid 1px red;">
-        <?php var_dump($_SESSION) ?>
-    </div>
-
     <?= $containe; ?>
 
-    <footer>
+    <footer class="footer_public">
         <?php require_once ROOT . '/Source/Views/public/templates/footer.php'; ?>
     </footer>
 
     <script src="/js/templates/menu/menu_script.js"></script>
+    <script src="/js/templates/welcome/anime_welcome_page.js"></script>
+
 </body>
 
 </html>

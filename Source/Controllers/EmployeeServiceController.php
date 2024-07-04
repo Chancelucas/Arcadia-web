@@ -15,13 +15,15 @@ class EmployeeServiceController extends EmployeeController
   {
     $services = $this->getAllService();
 
-    $this->render('service/employeeService', ['services' => $services]);
+    $this->render('service/employeeService', [
+      'services' => $services
+    ]);
   }
 
   public function getAllService()
   {
-    $model = new ServiceModel;
-    $allServices = $model->getAllServices();
+    $allServices = (new ServiceModel)->getAllServices();
+
 
     return $allServices;
   }

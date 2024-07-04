@@ -11,3 +11,12 @@ Autoloader::register();
 
 // Exécuter la méthode fixtureAdmin
 Database::fixtureAdmin();
+
+
+    // --> A mettre dans setup
+    // $firstLogin = Database::firstLogin();
+
+    // if ($firstLogin) {
+    //   Database::createAdminUser();
+    // }
+    // <--

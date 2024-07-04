@@ -17,7 +17,7 @@
           <img src="<?= $service->picture; ?>" alt="Photo du service"">
         </div>
 
-        <div class="btn_gestion_service">
+        <div class=" btn_gestion_service">
           <form method="POST" action="/adminService/deleteService/<?= $service->id_Service; ?>">
             <button type="submit" class="delete-service-btn" name="deleteService">Supprimer</button>
           </form>
@@ -31,3 +31,31 @@
 
   <?php endforeach; ?>
 </main>
+
+<script>
+  const nameElement = document.querySelector('#name')
+  const slugElement = document.querySelector('#slug')
+
+  const createSlug = (name) => {
+    // Convertir la chaîne de caractères en minuscules
+    let slug = name.toLowerCase();
+
+    // Remplacer les caractères spéciaux et les accents
+    slug = slug.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+    // Remplacer les espaces et autres caractères non désirés par des tirets
+    slug = slug.replace(/[^a-z0-9]+/g, '-');
+
+    // Supprimer les tirets en début et fin de chaîne
+    slug = slug.replace(/^-+|-+$/g, '');
+
+    return slug;
+  }
+
+  const slugify = (e) => {
+    const name = e.target.value
+    slugElement.value = createSlug(name)
+  }
+
+  nameElement.addEventListener('keyup', slugify)
+</script>

@@ -55,7 +55,7 @@ class HabitatModel extends MainModel
     return $models;
   }
 
-  public function getAllWithAnimals()
+  public function getAllWithAnimals() 
   {
     $query = $this->request("
       SELECT
@@ -75,6 +75,7 @@ class HabitatModel extends MainModel
     $habitats = [];
     foreach ($allData as $data) {
       $habitatId = $data->habitat_id;
+
 
       // Check if habitat already exists in $habitats
       if (!isset($habitats[$habitatId])) {
@@ -140,6 +141,7 @@ class HabitatModel extends MainModel
     }
     return $habitatList;
   }
+
 
 
   /////////////////// GETTER and SETTER /////////////////////

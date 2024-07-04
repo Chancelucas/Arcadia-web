@@ -3,6 +3,7 @@
 namespace Source\Models\animal;
 
 use Source\Models\MainModel;
+use Source\Helpers\CacheHelper;
 use Source\Models\user\UserModel;
 use Source\Models\animal\AnimalModel;
 
@@ -76,6 +77,23 @@ class FoodGivenModel extends MainModel
     return $this;
   }
 
+  public function findOneByDateAndAnimal(string $date, string $id_animal)
+  {
+    $sql = "SELECT * FROM {$this->table} WHERE day = :date AND id_animal = :id_animal";
+    $values = [
+      ':date' => $date,
+      ':id_animal' => $id_animal
+    ];
+
+    $data = $this->request($sql, $values)->fetch();
+
+    if ($data === false) {
+      return null;
+    }
+
+    return $this;
+  }
+
 
 
   /**
@@ -83,7 +101,17 @@ class FoodGivenModel extends MainModel
    */
   public function createFoodGiven()
   {
-    return $this->create();
+    //1. créer la ressource
+    $resulat = $this->create();
+
+    //2. tester si la création de la ressource a fonctionné
+    //2.1. invalider le cache
+    if ($resulat === true) {
+      CacheHelper::delete($this->table);
+    }
+
+    //3. retourner le résultat de la création de ressource
+    return $resulat;
   }
 
   /**
@@ -101,7 +129,13 @@ class FoodGivenModel extends MainModel
       ':id_animal' => $this->id_animal,
     ];
 
-    return $this->request($sql, $values);
+    $resulat = $this->request($sql, $values);
+
+    if ($resulat === true) {
+      CacheHelper::delete($this->table);
+    }
+
+    return $resulat;
   }
 
   /**
@@ -121,8 +155,20 @@ class FoodGivenModel extends MainModel
       $foodGiven->hour = $foodGivenModel->getHour();
       $foodGiven->food = $foodGivenModel->getFood();
       $foodGiven->quantity = $foodGivenModel->getQuantity();
-      $foodGiven->user = $foodGivenModel->getUser();
-      $foodGiven->animal = $foodGivenModel->getAnimal();
+
+      $user = $foodGivenModel->getUser();
+      // $foodGiven->user = $foodGivenModel->getUser();
+
+      $foodGiven->user = new \stdClass();
+      $foodGiven->user->id = $user->getId();
+      $foodGiven->user->username = $user->getUsername();
+
+      $animal = $foodGivenModel->getAnimal();
+      // $foodGiven->animal = $foodGivenModel->getAnimal();
+
+      $foodGiven->animal = new \stdClass();
+      $foodGiven->animal->id = $animal->getId();
+      $foodGiven->animal->breed = $animal->getBreed();
 
       $allFoodGiven[] = $foodGiven;
     }
@@ -286,5 +332,10 @@ class FoodGivenModel extends MainModel
   public function getUser()
   {
     return (new UserModel())->findOneById($this->id_user);
+  }
+
+  public function getCacheKey()
+  {
+    return $this->table;
   }
 }

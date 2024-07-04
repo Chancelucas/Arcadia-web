@@ -8,6 +8,7 @@ class ServiceModel extends MainModel
 {
   protected $id_Service;
   protected $name;
+  protected $slug;
   protected $description;
   protected $picture_url;
 
@@ -29,7 +30,7 @@ class ServiceModel extends MainModel
     if ($serviceData === false) {
       return null;
     }
-    
+
     return $this;
   }
 

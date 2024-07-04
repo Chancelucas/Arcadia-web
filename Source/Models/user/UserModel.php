@@ -85,8 +85,6 @@ class UserModel extends MainModel
     return $models;
   }
 
-
-
   /**
    * Create one user on table User
    */
@@ -136,42 +134,24 @@ class UserModel extends MainModel
     return $allUsers;
   }
 
-  public function getAllUsernameEmployee()
-{
-    $allUsers = $this->getAll();
-
-    // Récupérer tous les rôles
-    $roleList = (new RoleModel)->getAllRoles();
-
-    $employeeRoleId = null;
-    foreach ($roleList as $roleId => $roleName) {
-        if ($roleName === 'Employer') {
-            $employeeRoleId = $roleId;
-            break;
-        }
-    }
-
-    if ($employeeRoleId === null) {
-        return [];
-    }
-
-    $employeeUsers = [];
-    foreach ($allUsers as $user) {
-        if ($user->getIdRole() == $employeeRoleId) {
-            $employeeUsers[$user->getIdUser()] = $user->getUsername();
-        }
-    }
-
-    return $employeeUsers;
-}
-
-
-
-  public function getAllAdminAndVet()
+  public function getAllByRole($roleId)
   {
+    $sql ="SELECT * FROM {$this->table} WHERE id_role = :id_role";
+    $values = [
+      ':id_role' => $roleId
+    ];
+
+    $query = $this->request($sql, $values);
+    $allData = $query->fetchAll();
+
+    $models = [];
+    foreach ($allData as $data) {
+      $self = new self();
+      $self->hydrate($data);
+      array_push($models, $self);
+    }
+    return $models;
   }
-
-
 
   public function getAllUsername()
   {
@@ -287,6 +267,4 @@ class UserModel extends MainModel
   {
     return (new RoleModel())->findOneById($this->id_role)->getRole();
   }
-
-
 }

@@ -1,11 +1,288 @@
 @import url(/css/templates/navbar.css);
+@import url(/css/templates/footer.css);
 @import url(/css/config/config.css);
 @import url(/css/pages/services_page.css);
 @import url(/css/pages/habitats_page.css);
 @import url(/css/pages/login_page.css);
 @import url(/css/pages/forgot_password_page.css);
 @import url(/css/pages/contact_page.css);
+@import url(/css/pages/animal_page.css);
+
+/* Toute la page accueil */
+.main_home_page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Titre de la page + le background */
+.first_section_home_page {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://res.cloudinary.com/dnelvhydy/image/upload/v1719845961/rg9kgmcn7va38ogcubkj.jpg");
+  background-size: cover;
+  background-position: center;
+  justify-content: center;
+}
+
+.title_home_page {
+  font-size: 2em;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+
+/* Titre de la section */
+.section_title {
+  font-size: 2em;
+  color: var(--shadow);
+  margin: 40px 20px;
+}
+
+/* Section des habitats, services et avis */
+.habitats_section,
+.services_section,
+.reviews_section {
+  width: 100%;
+  max-width: 1440px;
+  padding-bottom: 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reviews_section {
+  background-color: var(--clear);
+}
+
+.review {
+  background-color: var(--normal);
+  color: var(--white);
+}
+
+/* Habitat */
+.habitat {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Nom d'un habitat */
+.habitat_name {
+  font-size: 1.5em;
+  margin: 80px 0 20px 0;
+  color: var(--shadow);
+}
+
+.see_more {
+  text-decoration: none;
+}
+
+/* Image d'un habitat ou d'un service */
+.habitat_image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+/* Conteneur des animaux, services et avis */
+.animals_container {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+}
+
+/* Animal, service, et avis */
+.animal,
+.service {
+  width: 90%;
+  height: 200px; /* Hauteur fixe pour que l'image de fond soit bien visible */
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+  background-size: cover; /* Pour que l'image couvre toute la div */
+  background-position: center; /* Pour centrer l'image */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  aspect-ratio: 1 / 1;
+  height: 100px;
+}
+
+.service {
+  margin: 5px 0;
+}
+
+/* Effet au survol pour les animaux et services */
+.animal:hover,
+.service:hover {
+  transform: scale(1.05);
+}
+
+/* Texte pour la race d'un animal */
+.animal_breed,
+.service_name {
+  border-radius: 5px;
+  color: var(--white);
+  background: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  box-shadow: 4px 4px 4px -2px rgba(0, 0, 0, 0.2);
+}
+
+.service_name {
+  align-items: center;
+}
+
+.service_image {
+  border-radius: 20px;
+  width: 100%;
+  object-fit: cover;
+}
 
 
+.review_pseudo {
+  font-weight: bold;
+}
 
+.review_text {
+  font-weight: lighter;
+}
 
+/* Boutons voir plus, voir tout, et laisser un avis */
+.see_all,
+.leave_review {
+  display: block;
+  margin: 20px 0;
+  font-size: 12px;
+  padding: 5px 20px;
+  background-color: var(--shadow);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 50px;
+  transition: var(--normal) 0.9s;
+}
+
+.see_all {
+  margin-top: 40px;
+}
+
+/* Effet au survol pour les boutons */
+.see_all:hover,
+.leave_review:hover {
+  background-color: var(--normal);
+}
+
+/* Séparateur des avis */
+.review_separator {
+  margin: 20px 0;
+}
+
+/* Styles pour tablettes */
+@media screen and (min-width: 769px) {
+  .section_title {
+    font-size: 3em;
+  }
+
+  .habitat_name {
+    font-size: 2em;
+  }
+}
+
+/* Styles pour ordinateurs */
+@media screen and (min-width: 1025px) {
+  .section_title {
+    font-size: 4em;
+  }
+
+  .habitat_name {
+    font-size: 2.5em;
+  }
+
+  .reviews_container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .review {
+    width: 45%;
+  }
+}
+
+/* Styles pour le carrousel des avis clients */
+/* Animation */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-1000px * 4)); }
+}
+
+/* Conteneur du slider */
+.slider {
+  height: 200px;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+}
+
+.slider::before,
+.slider::after {
+  content: "";
+  height: 200px;
+  position: absolute;
+  width: 200px;
+  z-index: 2;
+}
+
+.slider::after {
+  right: 0;
+  top: 0;
+  transform: rotateZ(180deg);
+}
+
+.slider::before {
+  left: 0;
+  top: 0;
+}
+
+.slide-track {
+  display: flex;
+  animation: scroll 60s linear infinite;
+  width: calc(1000px * 8); /* Ajustez cette valeur selon le nombre de slides */
+}
+
+.slide {
+  height: 200px;
+  width: 250px; /* Ajustez cette valeur selon vos besoins */
+}
+
+/* Styles pour les avis */
+.review {
+  background-color: var(--normal);
+  color: var(--white);
+  border-radius: 5px;
+  margin: 0 5px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.review_pseudo {
+  font-weight: bold;
+}
+
+.review_text {
+  font-weight: lighter;
+}

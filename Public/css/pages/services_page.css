@@ -1,2 +1,7 @@
 @import url(/css/templates/navbar.css);
 @import url(/css/config/config.css);
+
+.image{
+  height: 50px;
+   
+}

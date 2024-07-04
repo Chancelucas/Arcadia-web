@@ -27,7 +27,11 @@ class AdminServiceController extends AdminController
     $form->startForm('POST', 'adminService/createService', ['id' => 'form_create_service', 'enctype' => 'multipart/form-data'])
 
       ->startDiv(['id' => 'div_create_service', 'class' => 'div_create_service'])
-      ->addInput('text', 'name', ['id' => 'name', 'placeholder' => 'Nom du service', 'required'])
+      ->addInput('text', 'name', ['id' => 'name', 'placeholder' => 'Nom du service', 'required' => true])
+      ->endDiv()
+
+      ->startDiv(['id' => 'div_create_slug', 'class' => 'div_create_service'])
+      ->addInput('hidden', 'slug', ['id' => 'slug', 'placeholder' => '***', 'required' => true, 'disabled' => true])
       ->endDiv()
 
       ->startDiv(['id' => 'div_create_description', 'class' => 'div_create_service'])
@@ -35,7 +39,7 @@ class AdminServiceController extends AdminController
       ->endDiv()
 
       ->startDiv(['id' => 'div_add_picture_service'])
-      ->addInput('file', 'picture', ['id' => 'service_add_picture', 'class' => 'service_form_input', 'placeholder' => 'Choisir des photos', 'multiple'])
+      ->addInput('file', 'picture', ['id' => 'service_add_picture', 'class' => 'service_form_input', 'placeholder' => 'Choisir des photos', 'multiple' => true])
       ->endDiv()
 
       ->startDiv(['class' => 'input_btn_login div_create_service'])
