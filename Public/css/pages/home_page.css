@@ -13,6 +13,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 /* Titre de la page + le background */
@@ -49,7 +50,6 @@
 .services_section,
 .reviews_section {
   width: 100%;
-  max-width: 1440px;
   padding-bottom: 30px;
   text-align: center;
   display: flex;
@@ -58,13 +58,9 @@
 }
 
 .reviews_section {
-  background-color: var(--clear);
+  background-color: var(--brown);
 }
 
-.review {
-  background-color: var(--normal);
-  color: var(--white);
-}
 
 /* Habitat */
 .habitat {
@@ -239,8 +235,8 @@
 
 /* Styles pour les avis */
 .review {
-  background-color: var(--normal);
-  color: var(--white);
+  background-color: var(--white);
+  color: var(--shadow);
   border-radius: 5px;
   margin: 0 5px;
   padding: 20px;
@@ -256,11 +252,8 @@
 }
 
 
-
-
-
 /* Styles pour tablettes */
-@media screen and (min-width: 769px) and (max-width: 1024px) {
+@media screen and (min-width: 769px)  {
 
   .first_section_home_page {
     width: 100%;
@@ -276,6 +269,7 @@
     width: 90vw;
     border-radius: 5px;
     margin-bottom: 20px;
+    max-width: 1440px;
   }
 
   .animals_container {
@@ -290,6 +284,7 @@
 
   .service{
     width: 90%;
+    max-width: 1440px;
   }
 
   .reviews_section {
@@ -305,53 +300,4 @@
 
 
 
-/* Styles pour ordinateurs */
-@media screen and (min-width: 1025px) {
-  
-  .title_home_page {
-    font-size: 3.5em;
-  }
-
-  .habitats_section,
-  .services_section,
-  .reviews_section {
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-
-  .habitat {
-    width: 45%;
-    flex-direction: column;
-  }
-
-  .habitat_image {
-    width: 100%;
-    height: 200px;
-  }
-
-  .animals_container {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .animal,
-  .service {
-    width: 30%;
-    height: 200px;
-  }
-
-  .review {
-    width: 30%;
-    height: auto;
-    margin-bottom: 30px;
-  }
-  
-  .slider {
-    max-width: 70%;
-  }
-
-  .slide {
-    width: 300px; /* Ajustez cette valeur selon vos besoins */
-  }
-}
 
