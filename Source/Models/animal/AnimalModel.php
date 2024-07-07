@@ -29,7 +29,7 @@ class AnimalModel extends MainModel
 
   public function findOneByName(string $name)
   {
-    $animalData = $this->request("SELECT * FROM {$this->table} WHERE name = ?", [$name])->fetch();
+    $animalData = $this->request("SELECT * FROM {$this->table} WHERE name = :name", [':name' => $name])->fetch();
     $this->hydrate($animalData);
 
     return $this;
@@ -37,7 +37,7 @@ class AnimalModel extends MainModel
 
   public function findOneByBreed(string $breed)
   {
-    $breedData = $this->request("SELECT * FROM {$this->table} WHERE breed = ?", [$breed])->fetch();
+    $breedData = $this->request("SELECT * FROM {$this->table} WHERE breed = :breed", [':breed' => $breed])->fetch();
 
     if ($breedData === false) {
       return null;

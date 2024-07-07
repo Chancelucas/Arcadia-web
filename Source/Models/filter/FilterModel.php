@@ -77,7 +77,7 @@ class FilterModel extends MainModel
     return $dates;
   }
 
-  ///////////////////  Filtre for vet report Animal////////////////////
+  ///////////////////  Filtre for vet report Animal ////////////////////
 
   public function filterReportAnimalVet()
   {
@@ -118,7 +118,7 @@ class FilterModel extends MainModel
     return $dates;
   }
 
-  ///////////////////  Filtre for vet report Habitat////////////////////
+  ///////////////////  Filtre for vet report Habitat ////////////////////
 
 
   public function filterReportHabitatVet()
@@ -145,7 +145,7 @@ class FilterModel extends MainModel
     $dateMatch = !$selectedDate || $entry->date === $selectedDate;
     $habitatMatch = !$selectedHabitat || $entry->id_habitat === $selectedHabitat;
 
-    return$dateMatch && $habitatMatch;
+    return $dateMatch && $habitatMatch;
   }
 
   public function getAllNameHabitat()
@@ -163,5 +163,21 @@ class FilterModel extends MainModel
     }
 
     return $dates;
+  }
+
+  /////////////////// Filtre for user role ////////////////////
+
+
+  public function filterAllUserOfRole($selectedRole)
+  {
+    $users = (new UserModel())->getAllUsers();
+
+    if ($selectedRole === 'Tous' || is_null($selectedRole)) {
+      return $users;
+    }
+
+    return array_filter($users, function ($user) use ($selectedRole) {
+      return $user->role === $selectedRole;
+    });
   }
 }

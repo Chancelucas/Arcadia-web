@@ -54,7 +54,7 @@ class FoodGivenModel extends MainModel
    */
   public function findOneByIdUser(string $id_user)
   {
-    $idUserData = $this->request("SELECT * FROM {$this->table} WHERE id_user = ?", [$id_user])->fetch();
+    $idUserData = $this->request("SELECT * FROM {$this->table} WHERE id_user = :id_user", [':id_user' => $id_user])->fetch();
 
     if ($idUserData === false) {
       return null;

@@ -51,7 +51,7 @@ class AnimalReportModel extends MainModel
    */
   public function findOneByIdAnimal(string $id_animal)
   {
-    $idAnimalData = $this->request("SELECT * FROM {$this->table} WHERE id_animal = ?", [$id_animal])->fetch();
+    $idAnimalData = $this->request("SELECT * FROM {$this->table} WHERE id_animal = :id_animal", [':id_animal' => $id_animal])->fetch();
 
     if ($idAnimalData === false) {
       return null;

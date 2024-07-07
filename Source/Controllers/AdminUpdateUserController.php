@@ -49,7 +49,7 @@ class AdminUpdateUserController extends AdminController
 
     $form = new Form;
 
-    $form->startForm('POST', "adminUpdateUser/updateUser/{$userId}", ['id' => 'form_update_user'])
+    $form->startForm('POST', "adminUpdateUser/updateUser/{$userId}", ['class' => 'form_update_user'])
       ->startDiv(['class' => 'div_form_update_user'])
       ->addLabelFor('username', 'Nom : ')
       ->addInput('text', 'username', ['id' => 'username', 'class' => 'input_class_update_user', 'value' => $username, 'required' => true])
@@ -66,7 +66,7 @@ class AdminUpdateUserController extends AdminController
       ->addSelect('roleId', $roles, ['required' => true, 'id' => 'roleId', 'class' => 'input_class_update_user'])
       ->endDiv()
       ->startDiv(['id' => 'div_id_update_user', 'class' => 'div_class_update_user'])
-      ->addBouton('Enregistrer', ['type' => 'submit', 'name' => 'save_changes', 'id' => 'btn_update_user'])
+      ->addBouton('Enregistrer', ['type' => 'submit', 'name' => 'save_changes', 'class' => 'btn'])
       ->endDiv()
 
       ->endForm();

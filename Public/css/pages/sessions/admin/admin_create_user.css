@@ -1,6 +1,6 @@
 @import url(/css/config/config.css);
 
-#main_admin_user{
+.main-admin-user {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -8,64 +8,138 @@
     width: 100%;
 }
 
-#form_create_admin {
-    display: flex;
+/* Styles pour la pop-up */
+.form-create-admin {
+    display: none; /* Masqué par défaut */
     justify-content: space-evenly;
     align-items: center;
     height: auto;
-    background-color: var(--main-clear-color);
+    background-color: var(--white);
     width: 80vw;
     max-width: 768px;
     border-radius: 5px;
     flex-direction: column;
-    padding: 0px 20px;
-    margin: 20px 0px;
-    border: 1px solid var(--main-shadow-color);
+    padding: 20px;
+    margin: 0; 
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    z-index: 1000; 
+    box-shadow: 0 0 10px var(--overlay); 
 }
 
-#form_create_admin > form {
+.icon_close_admin {
+    cursor: pointer;
+}
+
+.overlay {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
+    background-color: var(--overlay); 
+    z-index: 999; 
 }
 
-.div_create_user {
+
+.form-user-admin {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form-group{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 0;
+}
+
+.form-control{
+    width: 100%;
+    border: none;
+    padding: 5px 0 5px 10px;
+    border-radius: 5px;
+    color: var(--shadow);
+    border: solid 1px var(--brown);
+
+}
+
+.section-filter-admin-user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    max-width: 800px;
+}
+
+
+.form-filter-role{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+
+}
+
+.btn-filter-admin-user{
+    width: 150px;
+    border: solid 1px var(--brown);
+    background-color: var(--ClearWhite);
+    border-radius: 5px;
+    display: block;
+    margin: 20px 0;
+    font-size: 12px;
+    padding: 5px 20px;
+    color: var(--shadow);
+}
+
+.btn-filter-admin-user:hover{
+    background-color: var(--brown);
+}
+
+.div-create-user {
     margin: 10px 0;
     display: flex;
     justify-content: center;
 }
 
-#form_create_admin > form > .div_create_user > input,
-#form_create_admin > form > .div_create_user > select {
-    background-color: var(--main-white-color);
+.form-create-admin > form > .div-create-user > input,
+.form-create-admin > form > .div-create-user > select {
+    background-color: var(--white);
     border: none;
     width: 100%;
     padding: 5px 10px;
     border-radius: 5px;
-    color: var(--main-shadow-color);
+    color: var(--shadow);
 }
 
-#form_create_admin > form > .div_create_user > input::placeholder {
-    color: var(--main-shadow-color);
+.form-create-admin > form > .div-create-user > input::placeholder {
+    color: var(--shadow);
 }
 
-#form_create_admin > form > .div_create_user > #btn_add_user {
-    background-color: var(--main-shadow-color);
+.form-create-admin > form > .div-create-user > .btn-add-user {
+    background-color: var(--shadow);
     border: none;
     padding: 5px 20px;
     border-radius: 5px;
-    color: var(--main-white-color);
+    color: var(--white);
     cursor: pointer;
     margin: 10px 0px;
 }
 
-#container_user_admin {
+.container-user-admin {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 80%;
 }
 
-#user_creaded_admin{
-    background-color: var(--main-clear-color);
+.user-created-admin {
     border-radius: 5px;
     margin: 10px 0px;
     padding: 10px 0px;
@@ -73,52 +147,53 @@
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
-    width: 80%;
+    width: 100%;
     max-width: 900px;
+    border: solid 1px var(--brown);
+    background-color: var(--ClearWhite);
 }
 
-#user_creaded_admin > .item {
-    background-color: var(--main-white-color);
+.user-created-admin > .user-item {
     margin: 5px 10px 5px 10px;
     padding: 0 10px 0 10px;
     border-radius: 5px;
     width: 80%;
 }
-#user_creaded_admin > .role {
-    background-color: var(--main-white-color);
+
+.user-created-admin > .role {
     margin: 5px 10px 5px 10px;
     border-radius: 5px;
     width: 80%;
 }
 
-.btn_gestion_user {
+.btn-gestion-user {
     display: flex;
 }
 
-#user_creaded_admin > .btn_gestion_user > form {
+.user-created-admin > .btn-gestion-user > form {
     margin: 0px 5px 0px 5px;
 }
 
 .edit-user-btn {
-    background-color: var(--main-normal-color);
+    background-color: var(--normal);
     border: none;
     padding: 5px 10px 5px 10px;
     border-radius: 5px;
-    color: var(--main-white-color);
+    color: var(--white);
     cursor: pointer;
 }
 
 .delete-user-btn {
-    background-color: var(--main-red-color);
+    background-color: var(--red);
     border: none;
     padding: 5px 10px 5px 10px;
     border-radius: 5px;
-    color: var(--main-white-color);
+    color: var(--white);
     cursor: pointer;
 }
 
-@media screen and (min-width: 769px)  {
-    #user_creaded_admin {
+@media screen and (min-width: 769px) {
+    .user-created-admin {
         flex-direction: row;
         margin: 5px 0px;
         padding: 0px 10px;
@@ -126,6 +201,5 @@
 }
 
 @media screen and (min-width: 1025px) {
-    
-
+    /* Ajoutez des styles supplémentaires si nécessaire */
 }

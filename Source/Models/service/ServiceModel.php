@@ -25,7 +25,7 @@ class ServiceModel extends MainModel
    */
   public function findOneByName(string $name)
   {
-    $serviceData = $this->request("SELECT * FROM {$this->table} WHERE name = ?", [$name])->fetch();
+    $serviceData = $this->request("SELECT * FROM {$this->table} WHERE name = :name", [':name' => $name])->fetch();
 
     if ($serviceData === false) {
       return null;

@@ -27,7 +27,7 @@ class AssessmentModel extends MainModel
    */
   public function findOneByState(int $state)
   {
-    $assessmentData = $this->request("SELECT * FROM {$this->table} WHERE state = ?", [$state])->fetch();
+    $assessmentData = $this->request("SELECT * FROM {$this->table} WHERE state = :state", [':state' => $state])->fetch();
 
     if ($assessmentData === false) {
       return null;

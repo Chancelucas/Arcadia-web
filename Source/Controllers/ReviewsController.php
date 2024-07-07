@@ -53,7 +53,7 @@ class ReviewsController extends Controller
     if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST['createReviews'])) {
       $pseudo = $_POST['pseudo'];
       $comment = $_POST['review'];
-      $status = 0;
+      $status = false;
 
       $existingReviews = (new ReviewsModel)->findOneByPseudo($pseudo);
 

@@ -1,20 +1,42 @@
-:root { 
-/* Color */
-    --white: #FAF1E4;
-    --clear: #CEDEBD;
-    --normal: #9EB384;
+:root {
+    /* Color */
+    --ClearWhite: #fef8f1;
+    --white: #faf1e4;
+    --brown: #e7d4b5;
+
+    --overlay:  rgba(0, 0, 0, 0.5);
+
+    --clear: #cedebd;
+    --normal: #9eb384;
     --shadow: #435334;
+
     --grey: rgba(224, 224, 224, 0.703);
+
     --red: #960000;
     --yellow: #e9b80f;
-    --brown: #E7D4B5;
-    --clear-yellow: #FFFED3;
-    --blue: #219C90;
+    --ClearYellow: #fffed3;
+    --blue: #219c90;
 
+    /* font */
+    --font-baloo: "Baloo Paaji 2", sans-serif;
+}
 
+/* Componant */
+.btn {
+    display: block;
+    margin: 20px 0;
+    font-size: 12px;
+    padding: 5px 20px;
+    background-color: var(--shadow);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 50px;
+    transition: var(--normal) 0.9s;
+    border: none;
 
+}
 
-/* font */
-    --font-baloo: 'Baloo Paaji 2', sans-serif;
+.btn:hover {
+  background-color: var(--normal);
 
 }

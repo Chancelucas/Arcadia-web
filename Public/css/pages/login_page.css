@@ -43,7 +43,7 @@
 }
 
 .input_text_login::placeholder {
-  color: var(--shadow-);
+  color: var(--shadow);
 }
 
 .btn_connexion {
@@ -56,8 +56,18 @@
   cursor: pointer;
 }
 
+.btn_connexion:hover{
+  background-color: var(--shadow);
+  color: var(--white);
+}
+
 .link_forgot_pass {
   color: var(--normal);
   text-decoration: none;
   font-size: 12px;
+}
+
+.link_forgot_pass:hover {
+  color: var(--shadow);
+
 }

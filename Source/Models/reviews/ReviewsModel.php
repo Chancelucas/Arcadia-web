@@ -29,7 +29,7 @@ class ReviewsModel extends MainModel
    */
   public function findOneByPseudo(string $pseudo)
   {
-    $reviewsData = $this->request("SELECT * FROM {$this->table} WHERE pseudo = ?", [$pseudo])->fetch();
+    $reviewsData = $this->request("SELECT * FROM {$this->table} WHERE pseudo = :pseudo", [':pseudo' => $pseudo])->fetch();
 
     if ($reviewsData === false) {
       return null;

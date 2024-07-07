@@ -22,7 +22,7 @@
         </div>
       <?php endforeach; ?>
     <?php endif; ?>
-    <a class="see_all" href="/habitat">Voir tous les habitats</a>
+    <a class="btn see_all" href="/habitat">Voir tous les habitats</a>
   </section>
 
   <section class="services_section">
@@ -34,7 +34,7 @@
         </div>
       <?php endforeach; ?>
     <?php endif; ?>
-    <a class="see_all" href="/services">Voir tous les services</a>
+    <a class="btn see_all" href="/services">Voir tous les services</a>
   </section>
 
   <section class="reviews_section">
@@ -53,7 +53,7 @@
         <?php endif; ?>
       </div>
     </div>
-    <a class="see_all" href="/reviews">Laissez un commentaire</a>
+    <a class="btn see_all" href="/reviews">Laissez un commentaire</a>
   </section>
 
 </main>

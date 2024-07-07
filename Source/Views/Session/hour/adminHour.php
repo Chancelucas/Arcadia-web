@@ -1,4 +1,4 @@
-<main id="main_edit_hour">
+<div id="main_edit_hour">
     <div id="div_form_create_hour">
         <?= $createHourForm; ?>
     </div>
@@ -22,4 +22,4 @@
       </div>
     </div>
     <?php endforeach; ?>
-</main>
+</div>

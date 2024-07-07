@@ -37,6 +37,9 @@ class EmployeeDashboardController extends EmployeeController
       ->addBouton('Déconnexion', ['type' => 'submit'])
       ->endForm();
 
-    $this->render('dashboard/employeeDashboard', ['logoutForm' => $form->create()]);
+    $this->render('dashboard/employeeDashboard', [
+      'logoutForm' => $form->create(),
+      'user' => $this->user
+    ]);
   }
 }

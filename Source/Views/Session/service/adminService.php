@@ -1,4 +1,4 @@
-<main id="main_edit_service">
+<div id="main_edit_service">
 
 
   <div id="div_form_create_service">

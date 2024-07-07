@@ -6,62 +6,74 @@ use Lib\config\Form;
 use Source\Models\user\UserModel;
 use Source\Models\role\RoleModel;
 use Source\Controllers\AdminController;
+use Source\Models\filter\FilterModel;
 
 class AdminUserController extends AdminController
 {
-  /**
-   * Show all employee in BDD with form create user. 
-   */
   public function index()
   {
+    $filterUser = [];
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $selectedRole = $_POST['roleFilter'] ?? null;
+      $filterUser = (new FilterModel())->filterAllUserOfRole($selectedRole);
+    }
+
+    
+    $filterFormUser = $this->createFilterUser();
+
     $createUserForm = $this->generateCreateUserForm();
-    $users = $this->getAllUsers();
-    $this->render('user/adminUser', ['createUserForm' => $createUserForm, 'users' => $users]);
+
+
+    $users = empty($filterUser) ? $this->getAllUsers() : $filterUser;
+
+    $this->render('user/adminUser', [
+      'createUserForm' => $createUserForm,
+      'users' => $users,
+      'filterFormUser' => $filterFormUser
+    ]);
   }
 
-  /**
-   * Generate form for create user.
-   */
   private function generateCreateUserForm()
   {
     $roles = $this->getRolesFromDatabase();
 
     $form = new Form;
 
-    $form->startForm('POST', 'adminUser/createUser')
+    $form->startForm('POST', 'adminUser/createUser', ['class' => 'form-user-admin'])
 
-      ->startDiv(['id' => 'div_create_username', 'class' => 'div_create_user'])
-      ->addInput('text', 'username', ['id' => 'username', 'placeholder' => 'Nom', 'required' => true])
+      ->startDiv(['class' => 'form-group'])
+      ->addInput('text', 'username', ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Nom', 'required' => true])
       ->endDiv()
 
-      ->startDiv(['id' => 'div_create_email', 'class' => 'div_create_user'])
-      ->addInput('email', 'email', ['id' => 'email', 'placeholder' => 'Email', 'required' => true])
+      ->startDiv(['class' => 'form-group'])
+      ->addInput('email', 'email', ['id' => 'email', 'class' => 'form-control', 'placeholder' => 'Email', 'required' => true])
       ->endDiv()
 
-      ->startDiv(['id' => 'div_create_password', 'class' => 'div_create_user'])
-      ->addInput('password', 'password', ['id' => 'password', 'placeholder' => 'Mot de passe'])
+      ->startDiv(['class' => 'form-group'])
+      ->addInput('password', 'password', ['id' => 'password', 'class' => 'form-control', 'placeholder' => 'Mot de passe'])
       ->endDiv()
 
-      ->startDiv(['id' => 'div_create_role', 'class' => 'div_create_user'])
-      ->addSelect('role', $roles, ['required'])
+      ->startDiv(['class' => 'form-group'])
+      ->addSelect('role', $roles, ['class' => 'form-control', 'required'])
       ->endDiv()
 
-      ->startDiv(['class' => 'input_btn_login input_login div_create_user'])
-      ->addBouton('Créer', ['type' => 'submit', 'value' => 'submit', 'id' => 'btn_add_user', 'name' => 'createUser'])
+      ->startDiv(['class' => 'form-group'])
+      ->addBouton('Créer', ['type' => 'submit', 'class' => 'btn btn-create-user', 'id' => 'btn_add_user', 'name' => 'createUser'])
       ->endDiv()
 
       ->endForm();
 
-
     return $form->create();
   }
 
-  /**
-   * Traite la soumission du formulaire de création d'utilisateur.
-   */
   public function createUser()
   {
+    error_log("createUser called"); // Vérifier si la méthode est appelée
+
     if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST['createUser'])) {
+      error_log("POST data received"); // Vérifier si les données POST sont reçues
+
       $username = $_POST['username'];
       $email = $_POST['email'];
       $password = $_POST['password'];
@@ -73,26 +85,25 @@ class AdminUserController extends AdminController
         echo "Le nom d'utilisateur ou l'adresse e-mail est déjà utilisé.";
         return;
       } else {
-
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         try {
-          $user = new UserModel;
+          $newUser = new UserModel;
 
-          $user->setUsername($username)
+          $newUser->setUsername($username)
             ->setEmail($email)
             ->setPassword($hashedPassword)
             ->setIdRole($id_Role);
 
-          $user->createUser();
+          $newUser->createUser();
 
           $_SESSION['message'] = "L'utilisateur a été créé avec succès.";
         } catch (\Exception $e) {
-
           $_SESSION['error'] = "Une erreur s'est produite lors de la création de l'utilisateur : " . $e->getMessage();
         }
       }
     } else {
+      error_log("No POST data or createUser not set"); // Vérifier pourquoi la condition échoue
       $_SESSION['error'] = "Aucun utilisateur n'a été renseigné";
     }
 
@@ -100,9 +111,6 @@ class AdminUserController extends AdminController
     exit;
   }
 
-  /**
-   * Delete One User
-   */
   public function deleteUser(int $userId)
   {
     if (isset($_POST['deleteUser'])) {
@@ -122,23 +130,30 @@ class AdminUserController extends AdminController
     exit;
   }
 
-  /**
-   * Get all user with role(label) on database
-   */
+  private function createFilterUser()
+  {
+    $form = new Form();
+
+    $form->startForm('POST', '', ['class' => 'form-filter-role'])
+
+      ->addBouton('Tous', ['type' => 'submit', 'value' => 'Tous', 'name' => 'roleFilter', 'class' => 'btn-filter-admin-user'])
+      ->addBouton('Employer', ['type' => 'submit', 'value' => 'Employer', 'name' => 'roleFilter', 'class' => 'btn-filter-admin-user'])
+      ->addBouton('Vétérinaire', ['type' => 'submit', 'value' => 'Vétérinaire', 'name' => 'roleFilter', 'class' => 'btn-filter-admin-user'])
+
+      ->endForm();
+
+    return $form->create();
+  }
+
   private function getAllUsers()
   {
     $users = (new UserModel)->getAllUsers();
-   
     return $users;
   }
 
-  /**
-   * Get all Roles on database
-   */
   public function getRolesFromDatabase()
   {
-    $role = (new RoleModel)->getAllRoles();
-   
+    $role = (new RoleModel())->getAllRoles();
     return $role;
   }
 }

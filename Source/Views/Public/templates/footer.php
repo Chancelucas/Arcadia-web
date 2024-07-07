@@ -33,9 +33,9 @@
     <span class="bloc_contain_nav_footer">
       <div class="footer_section">
         <ul class="ul_links_pulic_footer">
-          <li class="li_link_public_footer"><a class="link_footer" href="/templates/legalnotices">Mentions legales</a></li>
-          <li class="li_link_public_footer"><a class="link_footer" href="/templates/cookies">Gestion des cookies</a></li>
-          <li class="li_link_public_footer"><a class="link_footer" href="/templates/terms">Conditions générales</a></li>
+          <li class="li_link_public_footer"><a class="link_footer" href="/templates/PageLegalNotices">Mentions legales</a></li>
+          <li class="li_link_public_footer"><a class="link_footer" href="/templates/PageCookies">Gestion des cookies</a></li>
+          <li class="li_link_public_footer"><a class="link_footer" href="/templates/PageTerms">Conditions générales</a></li>
         </ul>
       </div>
     </span>

@@ -1,70 +1,193 @@
-@import url(/css/config/config.css);
+/* Mobile First Styles */
+.admin_navbar {
+  background-color: var(--shadow);
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+}
+
+.div_nav_admin {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.user_dashboard{
+  display: none;
+}
+
+.name_user_dashboard{
+  font-weight: bolder;
+}
+
+.icons_menu_admin {
+  display: flex;
+  position: relative;
+  right: 0;
+}
+
+.icon_close_admin {
+  display: none;
+  position: relative;
+  right: 0;
+  top:0;
+
+}
+
+.ul_links_admin_nav {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 90vh;
+  width: 100vw;
+  left: 0;
+  top: 10vh;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: var(--normal);
+  z-index: 100;
+}
+
+.li_link_admin_nav {
+  padding: 10px 0;
+}
+
+.li_link_admin_nav > a {
+  text-decoration: none;
+  color: var(--white);
+  font-size: 20px;
+}
+
+.li_link_admin_nav > a:hover,
+.link_logout:hover {
+  color: var(--overlay);
+}
+
+.link_logout{
+  color: var(--shadow);
+  text-decoration: none;
+  background-color: var(--clear);
+  border: solid 1px var(--normal);
+  border-radius: 5px;
+  font-size: large;
+  display: flex;
+  width: 100%;
+  min-width: 105px;
+  max-width: 150px;
+  justify-content: center;
+}
 
 
-#admin_navbar {
-    background-color: var(--main-shadow-color);
-    position: fixed;
-    height: 80px;
-    z-index: 100;
-    width: 100%;
-    top: 0;
+
+/* Tablet Styles */
+@media screen and (min-width: 769px) {
+  .div_nav_admin {
+    justify-content: space-between;
+    padding: 0 30px;
+  }
+
+  .icons_menu_admin {
     display: flex;
+    position: relative;
+    right: 0;
+  }
+
+  .icon_close {
+    display: none;
+  }
+
+  .ul_links_admin_nav {
+    display: none;
+    flex-direction: column;
     justify-content: center;
-
-}
-
-#ul_links_admin {
-    list-style: none;
-    text-align: center;
-    display: flex;
     align-items: center;
-    min-width: 300px;
-    max-width: 1440px;
-    height: 100%;
+    position: absolute;
+    height: 90vh;
+    width: 100vw;
+    top: 10vh;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: var(--normal);
+  }
+
+  .li_link_admin_nav {
+    padding: 10px 0;
+  }
+
+  .li_link_admin_nav > a {
+    font-size: 20px;
+  }
 }
 
-#ul_links_admin > li {
-    display: inline-block;
-    font-size: 10px;
-}
+/* Desktop Styles */
+@media screen and (min-width: 1025px) {
+  .user_dashboard{
+    color: var(--white);
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  }
 
-#ul_links_admin > li > a > img {
-    height: 30px;
-}
+  .admin_navbar {
+    width: 250px;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: var(--shadow);
+  }
 
-#ul_links_admin > li > .link:link,
-#ul_links_admin > li > .link:visited {
+  .div_nav_admin {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding: 20px;
+    height: 100vh;
+  }
+
+  .icons_menu_admin {
+    display: none;
+  }
+
+  .ul_links_admin_nav {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    list-style: none;
+    position: static;
+    height: auto;
+    width: 100%;
+    background-color: transparent;
+  }
+
+  .li_link_admin_nav {
+    width: 100%;
+    padding: 15px 0;
+  }
+
+  .li_link_admin_nav > a {
     cursor: pointer;
     text-decoration: none;
-    color: var(--main-white-color);
-    padding: 0 1em 0 1em;
+    color: var(--white);
+    width: 100%;
+  }
+
+  .link_logout{
+    max-width: 300px;
+  }
 }
-
-#ul_links_admin > li > .link:hover,
-#ul_links_admin > li > .link:active,
-#ul_links_admin > li > .link:focus {
-    color: var(--main-clear-color);
-    border-radius: 10px;
-}
-
-@media screen and (min-width: 769px) {
-    
-    #ul_links_admin > li {
-        font-size: 16px;
-        margin: 0 10px;
-    }
-
-    #ul_links_admin > li > a > img {
-        display: none;
-    }
-
-    #ul_links_admin > li > .link:link,
-    #ul_links_admin > li > .link:visited {
-        display: block;
-        padding: 0 10px 0 10px;
-    }
-}
-
-

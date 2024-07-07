@@ -23,7 +23,7 @@ class RoleModel extends MainModel
    */
   public function findOneByRole(string $role)
   {
-    $roleData = $this->request("SELECT * FROM {$this->table} WHERE role = ?", [$role])->fetch();
+    $roleData = $this->request("SELECT * FROM {$this->table} WHERE role = :role", [':role' => $role])->fetch();
     $this->hydrate($roleData);
 
     return $this;

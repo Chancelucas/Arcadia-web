@@ -1,4 +1,4 @@
-<main>
+<div>
   <div>
     <h2>Liste de tout les comptes rendu des vétérinaires</h2>
   </div>
@@ -44,4 +44,4 @@
   </div>
 
 
-</main>
+</div>

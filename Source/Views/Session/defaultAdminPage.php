@@ -14,24 +14,13 @@
     <?php require_once ROOT . '/Source/Views/Session/templates/admin_navbar.php'; ?>
   </header>
 
-  <div style="width: 100%;min-height:40px;border:solid 2px red;margin-top:80px;">
-    SESSION User :
-    <pre>
-      <?= var_dump($_SESSION['user']); ?>
-    </pre>
-    SESSION Erreur :
-    <pre>
-      <?= var_dump($_SESSION['error']); ?>
-    </pre>
-    SESSION Message :
-    <pre>
-      <?= var_dump($_SESSION['message']); ?>
-    </pre>
 
-  </div>
-
+  <main class="main_dashboard_admin">
   <?= $containe; ?>
+  </main>
 
+
+  <script src="/js/templates/menu/menu_script_admin.js"></script>
 
 </body>
 

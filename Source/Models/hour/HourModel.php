@@ -24,7 +24,7 @@ class HourModel extends MainModel
    */
   public function findOneByDay(string $day)
   {
-    $serviceData = $this->request("SELECT * FROM {$this->table} WHERE day = ?", [$day])->fetch();
+    $serviceData = $this->request("SELECT * FROM {$this->table} WHERE day = :day", [':day' => $day])->fetch();
 
     if ($serviceData === false) {
       return null;

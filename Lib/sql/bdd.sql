@@ -63,7 +63,7 @@ CREATE TABLE `Review` (
     `id` INT PRIMARY KEY AUTO_INCREMENT,
     `pseudo` VARCHAR(255),
     `review` TEXT,
-    `status` BOOLEAN
+    `status` BIT
 );
 
 CREATE TABLE `Service` (

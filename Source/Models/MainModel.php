@@ -2,6 +2,7 @@
 
 namespace Source\Models;
 
+use PDO;
 use Lib\config\Database;
 
 /**
@@ -40,8 +41,8 @@ abstract class MainModel
     $values = [];
 
     foreach ($criteria as $field => $value) {
-      $fields[] = "$field = ?";
-      $values[] = $value;
+      $fields[] = "$field = :$field";
+      $values[":$field"] = $value;
     }
 
     $fieldsString = implode(' AND ', $fields);
@@ -53,7 +54,7 @@ abstract class MainModel
    */
   public function findOneById(int $id)
   {
-    $data = $this->request("SELECT * FROM {$this->table} WHERE id = ?", [$id])->fetch();
+    $data = $this->request("SELECT * FROM {$this->table} WHERE id = :id", [':id' => $id])->fetch();
     $this->hydrate($data);
 
     return $this;
@@ -89,7 +90,7 @@ abstract class MainModel
    */
   public function delete()
   {
-    return $this->request("DELETE FROM {$this->table} WHERE id = ?", [$this->id])->fetch();
+    return $this->request("DELETE FROM {$this->table} WHERE id = :id", [':id' => $this->id])->fetch();
   }
 
   /**
@@ -101,7 +102,21 @@ abstract class MainModel
 
     if ($attributes !== null) {
       $query = $this->database->prepare($sql);
-      $query->execute($attributes);
+
+      foreach ($attributes as $key => &$value) {
+        $type = PDO::PARAM_STR;
+        if (is_int($value)) {
+          $type = PDO::PARAM_INT;
+        } elseif (is_bool($value)) {
+          $type = PDO::PARAM_BOOL;
+        } elseif (is_null($value)) {
+          $type = PDO::PARAM_NULL;
+        }
+
+        $query->bindParam($key, $value, $type);
+      }
+
+      $query->execute();
       return $query;
     } else {
       return $this->database->query($sql);

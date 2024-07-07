@@ -30,6 +30,7 @@
 
 .icon_close {
   display: none;
+  top: 0;
 }
 
 .ul_links_public_nav {
@@ -57,6 +58,10 @@
   text-decoration: none;
   color: var(--white);
   font-size: 20px;
+}
+
+.li_link_public_nav > a:hover {
+  color: var(--overlay);
 }
 
 /* Tablet Styles */
@@ -97,7 +102,6 @@
 
   .li_link_public_nav > a {
     font-size: 20px;
-    font-weight: bold;
   }
 }
 

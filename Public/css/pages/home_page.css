@@ -156,29 +156,10 @@
   font-weight: lighter;
 }
 
-/* Boutons voir plus, voir tout, et laisser un avis */
-.see_all,
-.leave_review {
-  display: block;
-  margin: 20px 0;
-  font-size: 12px;
-  padding: 5px 20px;
-  background-color: var(--shadow);
-  color: var(--white);
-  text-decoration: none;
-  border-radius: 50px;
-  transition: var(--normal) 0.9s;
-}
-
 .see_all {
   margin-top: 40px;
 }
 
-/* Effet au survol pour les boutons */
-.see_all:hover,
-.leave_review:hover {
-  background-color: var(--normal);
-}
 
 /* Séparateur des avis */
 .review_separator {

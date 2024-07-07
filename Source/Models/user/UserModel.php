@@ -25,7 +25,7 @@ class UserModel extends MainModel
    */
   public function findOneByEmail(string $email)
   {
-    $userData = $this->request("SELECT * FROM {$this->table} WHERE email = ?", [$email])->fetch();
+    $userData = $this->request("SELECT * FROM {$this->table} WHERE email = :email", [':email' => $email])->fetch();
 
     if ($userData === false) {
       return null;
@@ -136,7 +136,7 @@ class UserModel extends MainModel
 
   public function getAllByRole($roleId)
   {
-    $sql ="SELECT * FROM {$this->table} WHERE id_role = :id_role";
+    $sql = "SELECT * FROM {$this->table} WHERE id_role = :id_role";
     $values = [
       ':id_role' => $roleId
     ];

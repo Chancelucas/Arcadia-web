@@ -26,6 +26,8 @@ abstract class AdminController extends BackController
 
   public function render(string $file, array $data = [], string $template = 'defaultAdminPage')
   {
+    $data['user'] = $this->user;
+
     extract($data);
 
     ob_start();

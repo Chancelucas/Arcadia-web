@@ -1,5 +1,4 @@
-<main>
-
+<div>
     <div>
         <a href="/adminAnimal">Retour</a>
     </div>
@@ -7,4 +6,4 @@
         <?= $animalForm; ?>
     </div>
 
-</main>
+</div>

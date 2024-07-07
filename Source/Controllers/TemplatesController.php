@@ -7,14 +7,14 @@ use Source\Controllers\Controller;
 class TemplatesController extends Controller
 {
 
-  public function showPageCookies()
+  public function PageCookies()
   {
     $this->render('templates/cookies', [
     
     ]);
   }
 
-  public function showPageLegalNotice()
+  public function PageLegalNotices()
   {
     $show = $this->show();
 
@@ -24,7 +24,7 @@ class TemplatesController extends Controller
     ]);
   }
 
-  public function showPageTerms()
+  public function PageTerms()
   {
     $this->render('templates/terms', [
     

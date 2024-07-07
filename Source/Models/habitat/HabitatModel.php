@@ -29,7 +29,7 @@ class HabitatModel extends MainModel
    */
   public function findOneByName(string $name)
   {
-    $habitatData = $this->request("SELECT * FROM {$this->table} WHERE name = ?", [$name])->fetch();
+    $habitatData = $this->request("SELECT * FROM {$this->table} WHERE name = :name", [':name' => $name])->fetch();
 
     if ($habitatData === false) {
       return null;

@@ -4,6 +4,7 @@ namespace Source\Controllers;
 
 use Lib\config\Form;
 use Source\Controllers\AdminController;
+use Source\Models\user\UserModel;
 
 class AdminDashboardController extends AdminController
 {
@@ -37,6 +38,8 @@ class AdminDashboardController extends AdminController
       ->addBouton('Déconnexion', ['type' => 'submit'])
       ->endForm();
 
-    $this->render('dashboard/adminDashboard', ['logoutForm' => $form->create()]);
+    $this->render('dashboard/adminDashboard', [
+      'logoutForm' => $form->create(),
+    ]);
   }
 }

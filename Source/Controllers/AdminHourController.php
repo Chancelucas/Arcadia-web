@@ -12,7 +12,10 @@ class AdminHourController extends AdminController
   {
     $createHourForm = $this->generateHourForm();
     $hours = $this->getAllHours();
-    $this->render('hour/adminHour', ['createHourForm' => $createHourForm, 'hours' => $hours]);
+    $this->render('hour/adminHour', [
+      'createHourForm' => $createHourForm, 
+      'hours' => $hours
+    ]);
   }
 
 

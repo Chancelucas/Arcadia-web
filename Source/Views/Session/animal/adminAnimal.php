@@ -1,4 +1,4 @@
-<main id="main_container_animal">
+<div id="main_container_animal">
   <div id="form_create_animal">
     <?= $createAnimalForm; ?>
   </div>
@@ -27,4 +27,4 @@
     </div>
 
   <?php endforeach; ?>
-</main>
+</div>

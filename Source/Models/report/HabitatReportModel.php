@@ -49,7 +49,7 @@ class HabitatReportModel extends MainModel
    */
   public function findOneByDate(string $date)
   {
-    $habitatData = $this->request("SELECT * FROM {$this->table} WHERE date = ?", [$date])->fetch();
+    $habitatData = $this->request("SELECT * FROM {$this->table} WHERE date = :date", [':date' => $date])->fetch();
 
     if ($habitatData === false) {
       return null;
@@ -63,7 +63,7 @@ class HabitatReportModel extends MainModel
    */
   public function findOneByIdHabitat(string $id_habitat)
   {
-    $habitatData = $this->request("SELECT * FROM {$this->table} WHERE id_habitat = ?", [$id_habitat])->fetch();
+    $habitatData = $this->request("SELECT * FROM {$this->table} WHERE id_habitat = :id_habitat", [':id_habitat' => $id_habitat])->fetch();
 
     if ($habitatData === false) {
       return null;

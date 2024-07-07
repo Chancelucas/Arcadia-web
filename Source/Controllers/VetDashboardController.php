@@ -8,6 +8,8 @@ use Source\Controllers\VetController;
 use Source\Models\filter\FilterModel;
 use Source\Models\animal\FoodGivenModel;
 
+use Source\Models\user\UserModel;
+
 class VetDashboardController extends VetController
 {
 
@@ -16,15 +18,14 @@ class VetDashboardController extends VetController
    */
   public function index()
   {
-
     $filterFoodGiven = $this->filterFoodGiven();
     $filterForm = $this->createFilterForm();
 
     $this->render('dashboard/vetDashboard', [
       'allFoodGiven' => $filterFoodGiven,
-      'filterForm' => $filterForm
+      'filterForm' => $filterForm,
+      'user' => $this->user
     ]);
-
   }
 
   /**
@@ -49,9 +50,8 @@ class VetDashboardController extends VetController
       ->addBouton('Déconnexion', ['type' => 'submit'])
 
       ->endForm();
-    
-      return $form->create();
 
+    return $form->create();
   }
 
   private function createFilterForm()
@@ -95,21 +95,17 @@ class VetDashboardController extends VetController
   private function getAllAnimalBreeds()
   {
     return (new FilterModel([]))->getAllAnimalBreeds();
-    
   }
 
   private function getAllDates()
   {
     return (new FilterModel([]))->getAllDatesFoodGiven();
-   
   }
 
 
   private function allFoodGivenReport()
   {
-   $allFoodeGiven = (new FoodGivenModel())->getAllFoodGiven();
-   return $allFoodeGiven;
+    $allFoodeGiven = (new FoodGivenModel())->getAllFoodGiven();
+    return $allFoodeGiven;
   }
 }
-
-

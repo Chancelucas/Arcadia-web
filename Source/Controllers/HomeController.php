@@ -16,7 +16,6 @@ class HomeController extends Controller
    */
   public function index()
   {
-
     $habitat = $this->getAllHabitat();
     $services = $this->getAllServices();
     $reviews = $this->getAllValableReview();
@@ -47,9 +46,6 @@ class HomeController extends Controller
   private function getAllValableReview()
   {
     $enableReviews = (new ReviewsModel)->findBy(['status' => true]);
-    // et voilà bah ca marche passsss, a si
     return $enableReviews;
   }
-
-  
 }

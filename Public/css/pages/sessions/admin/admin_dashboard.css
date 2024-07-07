@@ -11,6 +11,17 @@
 @import url(/css/pages/sessions/admin/admin_update_services.css);
 @import url(/css/pages/sessions/admin/admin_update_hour.css);
 
+.main_dashboard_admin {
+  margin-top: 10vh; 
+}
 
 
+/* Add margin to main content to avoid being covered by the sidebar */
+@media screen and (min-width: 1025px) {
+  .main_dashboard_admin {
+    margin-top: 0;
+    margin-left: 250px; /* The width of the sidebar */
+    padding: 20px; 
+  }
+}
 

@@ -1,9 +1,7 @@
-<main id="main_edit_habitats">
+<div id="main_edit_habitats">
   <div id="container_form_habitat_admin">
     <h3>Crée un habitat</h3>
     <?= $createHabitatForm; ?>
-
-    <div id="loading" style="display: none;">LOADING...</div>
 
   </div>
   <div id="habitats-list">
@@ -41,6 +39,6 @@
     <?php endforeach; ?>
   </div>
 
-</main>
+</div>
 
 <!-- <script src="js/pages/sessions/admin/habitat.js"></script> -->

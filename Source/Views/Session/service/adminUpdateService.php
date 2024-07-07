@@ -1,4 +1,4 @@
-<main>
+<div>
 
     <div>
         <a href="/adminService">Retour</a>
@@ -7,4 +7,4 @@
         <?= $serviceForm; ?>
     </div>
 
-</main>
+</div>

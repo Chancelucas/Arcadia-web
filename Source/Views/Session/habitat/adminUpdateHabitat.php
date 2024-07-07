@@ -1,4 +1,4 @@
-<main id="main_update_habitat">
+<div id="main_update_habitat">
 
     <div>
         <a href="/adminHabitat">Retour</a>
@@ -7,4 +7,4 @@
         <?= $habitatForm; ?>
     </div>
 
-</main>
+</div>
