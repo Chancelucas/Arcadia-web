@@ -40,6 +40,8 @@ class LoginController extends Controller
                 // Récupère le mot de passe de l'utilisateur
                 $password = $_POST['password'];
 
+
+
                 // Authentifie l'utilisateur avec l'email et le mot de passe
                 if ($this->loginModel->authenticate($email, $password)) {
                     // Redirige l'utilisateur en fonction de son rôle
@@ -82,6 +84,12 @@ class LoginController extends Controller
     {
         // Récupère le rôle de l'utilisateur depuis la session
         $role = $_SESSION['user']['role'];
+        $active = $_SESSION['user']['active'];
+
+        if ($active === 0) {
+            header('Location: /errorPage');
+            exit;
+        }
 
         // Redirige en fonction du rôle de l'utilisateur
         if ($role === 'Admin') {

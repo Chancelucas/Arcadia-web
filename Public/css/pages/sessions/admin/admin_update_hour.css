@@ -1,14 +1,13 @@
 @import url(/css/config/config.css);
 
-#container_update_hour {
+.container_update_hour_admin {
   width: 100%;
   display: flex;
   justify-content: center;
-
 }
 
-#form_update_hour{
-  background-color: var(--main-clear-color);
+.form_update_hour_admin{
+  background-color: var(--ClearWhite);
   display: flex;
   flex-direction: column;
   margin: 20px 0 20px 0;
@@ -17,40 +16,43 @@
   max-width: 769px;
   align-items: center;
   border-radius: 5px;
-  border: solid 1px var(--main-shadow-color);
+  border: solid 1px var(--brown);
 }
 
-.div_form_update_hour{
-  width: 80%;
+.div_form_update_hour_admin{
+  width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
-.input_form_update_hour{
+.input_form_update_hour_admin{
   margin: 5px 0px 5px 0px;
   padding: 5px 0px 5px 0px;
   border: none;
   border-radius: 5px;
-  background-color: var(--main-white-color);
-  color: var(--main-shadow-color);
-  font-family: var(--font-family);
+  background-color: var(--white);
+  color: var(--shadow);
+  font-family: var(--font-baloo);
   width: 80%;
   padding-left: 10px;
 }
 
-#div_id_update_hour{
-  width: 80%;
-  display: flex;
-  justify-content: center;
-}
+@media screen and (min-width: 768px) {
 
-#btn_update_hour{
-  background-color: var(--main-shadow-color);
-  color: var(--main-white-color);
-  margin-top: 10px;
-  border: none;
-  width: 80%;
-  border-radius: 5px;
-  padding: 5px 0;
+  .div_form_update_hour_admin{
+    width: 90%;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .btn_update_hour_admin{
+    display: flex;
+    justify-content: center;
+    }
+
+  .input_form_update_hour_admin{
+   width: 70%;
+  }
 }

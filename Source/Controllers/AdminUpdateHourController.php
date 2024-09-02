@@ -30,25 +30,25 @@ class AdminUpdateHourController extends AdminController
 
     $form = new Form;
 
-    $form->startForm('POST', "/adminUpdateHour/updateHour/{$hourId}", ['id' => 'form_update_hour'])
+    $form->startForm('POST', "/adminUpdateHour/updateHour/{$hourId}", ['class' => 'form_update_hour_admin'])
 
-      ->startDiv(['class' => 'div_form_update_hour'])
+      ->startDiv(['class' => 'div_form_update_hour_admin'])
       ->addLabelFor('day', 'Jour :')
-      ->addInput('text', 'day', ['id' => 'day', 'class' => 'input_form_update_hour', 'value' => $day, 'required' => true])
+      ->addInput('text', 'day', ['class' => 'input_form_update_hour_admin', 'value' => $day, 'required' => true])
       ->endDiv()
 
-      ->startDiv(['class' => 'div_form_update_hour'])
+      ->startDiv(['class' => 'div_form_update_hour_admin'])
       ->addLabelFor('opening_time', 'Heure d\'ouvertrure :')
-      ->addInput('time', 'opening_time', ['id' => 'opening_time', 'class' => 'input_form_update_hour', 'value' => $openingTime, 'required' => true])
+      ->addInput('time', 'opening_time', ['class' => 'input_form_update_hour_admin', 'value' => $openingTime, 'required' => true])
       ->endDiv()
 
-      ->startDiv(['class' => 'div_form_update_hour'])
+      ->startDiv(['class' => 'div_form_update_hour_admin'])
       ->addLabelFor('closing_time', 'Heure de fermeture :')
-      ->addInput('time', 'closing_time', ['id' => 'closing_time', 'class' => 'input_form_update_hour', 'value' => $closingTime, 'required' => true])
+      ->addInput('time', 'closing_time', ['class' => 'input_form_update_hour_admin', 'value' => $closingTime, 'required' => true])
       ->endDiv()
 
-      ->startDiv(['id' => 'div_id_update_hour', 'class' => 'div_class_update_hour'])
-      ->addBouton('Enregistrer', ['type' => 'submit', 'name' => 'save_changes', 'id' => 'btn_update_hour'])
+      ->startDiv(['class' => 'div_form_update_hour_admin btn_update_hour_admin'])
+      ->addBouton('Enregistrer', ['type' => 'submit', 'name' => 'save_changes', 'class' => 'btn '])
       ->endDiv()
 
       ->endForm();

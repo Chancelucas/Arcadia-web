@@ -2,7 +2,6 @@
 
 namespace Source\Controllers;
 
-use GuzzleHttp\Psr7\Header;
 use Source\Controllers\Controller;
 use Source\Models\service\ServiceModel;
 

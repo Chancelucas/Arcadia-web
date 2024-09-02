@@ -1,8 +1,4 @@
-@import url(/css/config/config.css);
-@import url(/css//templates/sessions/admin/admin_form_habitat.css);
-
-
-#main_container_animal{
+.main_container_animal_admin {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -11,144 +7,158 @@
 
 }
 
-#form_create_animal{
+.form_create_animal_admin {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   height: auto;
-  background-color: var(--main-clear-color);
   width: 80vw;
   max-width: 768px;
   border-radius: 5px;
   flex-direction: column;
   padding: 0px 20px;
   margin: 20px 0px;
-  border: 1px solid var(--main-shadow-color);
+  background-color: var(--ClearWhite);
+  border: solid 1px var(--brown);
 }
 
-#form_animal{
+.form_animal_admin {
   width: 100%;
   display: flex;
   flex-direction: column;
   margin: 20px;
 }
 
-#form_animal > input,
-#form_animal > select {
+.div_btn_add_animal {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.animal_form_input_admin {
   margin: 2px 0px;
-  background-color: var(--main-white-color);
+  background-color: var(--white);
   border: none;
   width: 100%;
   padding: 5px 10px;
   border-radius: 5px;
-  color: var(--main-shadow-color);
+  color: var(--shadow);
 }
 
-#form_animal > input::placeholder {
-  color: var(--main-shadow-color);
+.animal_form_input_admin::placeholder {
+  color: var(--shadow);
 
 }
 
-#animal_add_picture {
-  background-color: var(--main-clear-color);
+
+.animal_btn_save_admin {
+  background-color: var(--shadow);
   border: none;
   padding: 5px 20px;
   border-radius: 5px;
-  color: var(--main-white-color);
+  color: var(--white);
   cursor: pointer;
   margin-top: 10px;
+
 }
 
-#animal_btn_save {
-  background-color: var(--main-shadow-color);
-  border: none;
-  padding: 5px 20px;
-  border-radius: 5px;
-  color: var(--main-white-color);
-  cursor: pointer;
-  margin-top: 10px;
-  
-}
-
-#container_animal_admin {
-display: flex;
-justify-content: center;
-align-items: center;
-width: 90%;
-max-width: 1440px;
-}
-
-#animal_creaded_admin{
+.container_animal_admin {
   display: flex;
-  flex-direction: row-reverse;
+  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  background-color: var(--main-clear-color);
-  color: var(--main-shadow-color);
+  width: 90%;
+  max-width: 1440px;
+}
+
+.animal_creaded_admin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--ClearWhite);
+  border: 1px solid var(--brown);
+  color: var(--shadow);
   width: 100%;
   border-radius: 5px;
   padding: 10px;
   margin: 5px 0;
-  height: 155px;
+  height: auto;
+  max-width: 290px;
 }
 
-#animal_creaded_admin > .item{
-  background-color: var(--main-white-color);
-  color: var(--main-shadow-color);
+.item_animal_admin {
+  background-color: var(--white);
+  color: var(--shadow);
   border-radius: 5px;
   width: 80%;
-  margin: 0px 5px;
-  padding-left: 5px ;
+  margin: 5px 0;
+  padding-left: 10px;
 }
 
-#image_animal_view{
-  max-width: 90px;
+.image_animal_view_admin {
   display: flex;
   align-items: center;
   margin: 0px 5px;
   flex-direction: column;
+  width: 80%;
+  margin: 10px 0;
 }
 
-#image_animal_view > img{
+.image_animal_view_admin>img {
   border-radius: 5px;
   width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
 
 }
 
-.btn_gestion_animal{
+.btn_gestion_animal {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  margin: 10px 0;
 }
 
-.delete-animal-btn{
-  background-color: var(--main-red-color);
+.delete-animal-btn-admin {
+  background-color: var(--red);
   border: none;
-  padding: 10px;
+  color: var(--white);
   border-radius: 5px;
-  color: var(--main-white-color);
-  cursor: pointer;
-  margin-bottom: 5px;
+  padding: 7px 11px;
+
 }
 
-.link_update_animal{
-  background-color: var(--main-normal-color);
+.link_update_animal_admin {
+  background-color: var(--shadow);
+  color: var(--white);
   border-radius: 5px;
-  color: var(--main-white-color);
-  cursor: pointer;
-  width: 100%;
+  padding: 1.5px 15px;
   text-decoration: none;
-  display: flex;
-  justify-content: center;
+  font-size: 15px;
 }
 
 
-@media screen and (min-width: 769px) and (max-width: 1024px) {
+@media screen and (min-width: 769px) {
+
+  .container_animal_admin {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    justify-items: center;
+    align-items: center;
+  }
 
 }
 
-@media screen and (min-width: 1025px) {
-  
+@media screen and (min-width: 1440px) {
+
+  .container_animal_admin {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    justify-items: center;
+    align-items: center;
+  }
 }
-
-
-

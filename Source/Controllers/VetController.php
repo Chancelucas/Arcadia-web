@@ -27,6 +27,8 @@ abstract class VetController extends BackController
   public function render(string $file, array $data = [], string $template = 'defaultVetPage')
   {
 
+    $data['user'] = $this->user;
+
     extract($data);
 
     ob_start();

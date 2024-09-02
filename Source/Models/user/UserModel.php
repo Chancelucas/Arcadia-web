@@ -11,6 +11,7 @@ class UserModel extends MainModel
   protected $email;
   protected $password;
   protected $id_role;
+  protected $active;
 
   /**
    * Init user model on table User
@@ -49,6 +50,7 @@ class UserModel extends MainModel
       'username' => $this->username,
       'roleId' => $this->id_role,
       'role' => $this->getRole(),
+      'active' => $this->getActive(),
     ];
 
     $_SESSION['error'] = "";
@@ -98,13 +100,15 @@ class UserModel extends MainModel
    */
   public function update()
   {
-    $sql = "UPDATE {$this->table} SET username = :username, email = :email, password = :password, id_role = :id_role WHERE id = :id_user";
+    $sql = "UPDATE {$this->table} SET username = :username, email = :email, password = :password, id_role = :id_role, active = :active WHERE id = :id_user";
     $values = [
       ':username' => $this->username,
       ':email' => $this->email,
       ':password' => $this->password,
       ':id_role' => $this->id_role,
       ':id_user' => $this->id,
+      ':active' => $this->active,
+
     ];
 
     return $this->request($sql, $values);
@@ -127,6 +131,7 @@ class UserModel extends MainModel
       $user->password = $userModel->getPassword();
       $user->id_Role = $userModel->getIdRole();
       $user->role = $userModel->getRole();
+      $user->active = $userModel->getActive();
 
       $allUsers[] = $user;
     }
@@ -259,6 +264,27 @@ class UserModel extends MainModel
 
     return $this;
   }
+
+  /**
+   * Get the value of active
+   */
+  public function getActive()
+  {
+    return $this->active;
+  }
+
+  /**
+   * Set the value of active
+   *
+   * @return  self
+   */
+  public function setActive($active)
+  {
+    $this->active = $active;
+
+    return $this;
+  }
+
 
   /**
    * Get the value of role

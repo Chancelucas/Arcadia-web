@@ -10,7 +10,7 @@ use Source\Controllers\MainController;
 class MainRouter
 {
 
-  
+
   /**
    * Initialise la session et gère les requêtes HTTP.
    *
@@ -70,28 +70,31 @@ class MainRouter
    */
   private function handlePostRequest($params)
   {
-    if (!empty($params)) {
-      // Construit le nom du contrôleur basé sur le premier paramètre
-      $controller = '\\Source\\Controllers\\' . ucfirst(array_shift($params)) . 'Controller';
-      // Instancie le contrôleur
-      $controller = new $controller;
-      // Détermine l'action à appeler, par défaut 'index' si non spécifiée
-      $action = (isset($params[0])) ? array_shift($params) : 'index';
+    try {
+      if (!empty($params)) {
+        // Construit le nom du contrôleur basé sur le premier paramètre
+        $controller = '\\Source\\Controllers\\' . ucfirst(array_shift($params)) . 'Controller';
+        // Instancie le contrôleur
+        $controller = new $controller;
+        // Détermine l'action à appeler, par défaut 'index' si non spécifiée
+        $action = (isset($params[0])) ? array_shift($params) : 'index';
 
-      // Vérifie si l'action existe dans le contrôleur
-      if (method_exists($controller, $action)) {
-        // Appelle l'action avec les paramètres s'ils existent
-        (isset($params[0])) ? call_user_func_array([$controller, $action], $params) : $controller->$action();
+        // Vérifie si l'action existe dans le contrôleur
+        if (method_exists($controller, $action)) {
+          // Appelle l'action avec les paramètres s'ils existent
+          (isset($params[0])) ? call_user_func_array([$controller, $action], $params) : $controller->$action();
+        } else {
+          // Renvoie une réponse 404 si l'action n'existe pas
+          $this->handle404();
+        }
       } else {
-        // Renvoie une réponse 404 si l'action n'existe pas
-        http_response_code(404);
-        echo "La page recherchée n'existe pas";
+        // Utilise le contrôleur par défaut 'MainController' si aucun paramètre n'est fourni
+        $controller = new MainController;
+        // Appelle l'action 'index' du contrôleur par défaut
+        $controller->index();
       }
-    } else {
-      // Utilise le contrôleur par défaut 'MainController' si aucun paramètre n'est fourni
-      $controller = new MainController;
-      // Appelle l'action 'index' du contrôleur par défaut
-      $controller->index();
+    } catch (\Throwable $th) {
+      $this->handle404();
     }
   }
 
@@ -107,28 +110,44 @@ class MainRouter
    */
   private function handleGetRequest($params)
   {
-    if (!empty($params[0])) {
-      // Construit le nom du contrôleur basé sur le premier paramètre
-      $controller = '\\Source\\Controllers\\' . ucfirst(array_shift($params)) . 'Controller';
-      // Instancie le contrôleur
-      $controller = new $controller;
-      // Détermine l'action à appeler, par défaut 'index' si non spécifiée
-      $action = (isset($params[0])) ? array_shift($params) : 'index';
+    try {
+      if (!empty($params[0])) {
+        // Construit le nom du contrôleur basé sur le premier paramètre
+        $controller = '\\Source\\Controllers\\' . ucfirst(array_shift($params)) . 'Controller';
+        // Instancie le contrôleur
+        $controller = new $controller;
+        // Détermine l'action à appeler, par défaut 'index' si non spécifiée
+        $action = (isset($params[0])) ? array_shift($params) : 'index';
 
-      // Vérifie si l'action existe dans le contrôleur
-      if (method_exists($controller, $action)) {
-        // Appelle l'action avec les paramètres s'ils existent
-        (isset($params[0])) ? call_user_func_array([$controller, $action], $params) : $controller->$action();
+        // Vérifie si l'action existe dans le contrôleur
+        if (method_exists($controller, $action)) {
+          // Appelle l'action avec les paramètres s'ils existent
+          (isset($params[0])) ? call_user_func_array([$controller, $action], $params) : $controller->$action();
+        } else {
+          // Renvoie une réponse 404 si l'action n'existe pas
+          $this->handle404();
+        }
       } else {
-        // Renvoie une réponse 404 si l'action n'existe pas
-        http_response_code(404);
-        echo "La page recherchée n'existe pas";
+        // Utilise le contrôleur par défaut 'MainController' si aucun paramètre n'est fourni
+        $controller = new MainController;
+        // Appelle l'action 'index' du contrôleur par défaut
+        $controller->index();
       }
-    } else {
-      // Utilise le contrôleur par défaut 'MainController' si aucun paramètre n'est fourni
-      $controller = new MainController;
-      // Appelle l'action 'index' du contrôleur par défaut
-      $controller->index();
+    } catch (\Throwable $th) {
+      $this->handle404();
     }
+  }
+
+  private function handle404()
+  {
+    http_response_code(404);
+    // Construit le nom du contrôleur basé sur le premier paramètre
+    $controller = '\\Source\\Controllers\\Page404Controller';
+    // Instancie le contrôleur
+    $controller = new $controller;
+    // Détermine l'action à appeler, par défaut 'index' si non spécifiée
+    $action = 'index';
+
+    $controller->$action();
   }
 }

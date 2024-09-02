@@ -26,6 +26,8 @@ abstract class EmployeeController extends BackController
   public function render(string $file, array $data = [], string $template = 'defaultEmployeePage')
   {
 
+    $data['user'] = $this->user;
+
     extract($data);
 
     ob_start();

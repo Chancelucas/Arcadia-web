@@ -1,5 +1,5 @@
 /* Mobile First Styles */
-.admin_navbar {
+.session_navbar {
   background-color: var(--shadow);
   height: 10vh;
   display: flex;
@@ -11,7 +11,7 @@
   z-index: 100;
 }
 
-.div_nav_admin {
+.div_nav_session {
   display: flex;
   align-items: center;
   width: 100%;
@@ -27,13 +27,13 @@
   font-weight: bolder;
 }
 
-.icons_menu_admin {
+.icons_menu_session {
   display: flex;
   position: relative;
   right: 0;
 }
 
-.icon_close_admin {
+.icon_close_session {
   display: none;
   position: relative;
   right: 0;
@@ -41,7 +41,7 @@
 
 }
 
-.ul_links_admin_nav {
+.ul_links_session_nav {
   display: none;
   flex-direction: column;
   justify-content: center;
@@ -58,17 +58,17 @@
   z-index: 100;
 }
 
-.li_link_admin_nav {
+.li_link_session_nav {
   padding: 10px 0;
 }
 
-.li_link_admin_nav > a {
+.li_link_session_nav > a {
   text-decoration: none;
   color: var(--white);
   font-size: 20px;
 }
 
-.li_link_admin_nav > a:hover,
+.li_link_session_nav > a:hover,
 .link_logout:hover {
   color: var(--overlay);
 }
@@ -91,12 +91,12 @@
 
 /* Tablet Styles */
 @media screen and (min-width: 769px) {
-  .div_nav_admin {
+  .div_nav_session {
     justify-content: space-between;
     padding: 0 30px;
   }
 
-  .icons_menu_admin {
+  .icons_menu_session {
     display: flex;
     position: relative;
     right: 0;
@@ -106,7 +106,7 @@
     display: none;
   }
 
-  .ul_links_admin_nav {
+  .ul_links_session_nav {
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -121,11 +121,11 @@
     background-color: var(--normal);
   }
 
-  .li_link_admin_nav {
+  .li_link_session_nav {
     padding: 10px 0;
   }
 
-  .li_link_admin_nav > a {
+  .li_link_session_nav > a {
     font-size: 20px;
   }
 }
@@ -140,7 +140,7 @@
   width: 100%;
   }
 
-  .admin_navbar {
+  .session_navbar {
     width: 250px;
     height: 100vh;
     top: 0;
@@ -151,7 +151,7 @@
     background-color: var(--shadow);
   }
 
-  .div_nav_admin {
+  .div_nav_session {
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
@@ -159,11 +159,11 @@
     height: 100vh;
   }
 
-  .icons_menu_admin {
+  .icons_menu_session {
     display: none;
   }
 
-  .ul_links_admin_nav {
+  .ul_links_session_nav {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -175,12 +175,12 @@
     background-color: transparent;
   }
 
-  .li_link_admin_nav {
+  .li_link_session_nav {
     width: 100%;
     padding: 15px 0;
   }
 
-  .li_link_admin_nav > a {
+  .li_link_session_nav > a {
     cursor: pointer;
     text-decoration: none;
     color: var(--white);

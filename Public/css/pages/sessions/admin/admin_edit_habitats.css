@@ -1,103 +1,203 @@
 @import url(/css/config/config.css);
-@import url(/css//templates/sessions/admin/admin_form_habitat.css);
+@import url(/css/templates/sessions/admin/admin_form_habitat.css);
 
-#main_edit_habitats{ 
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+.main-edit-habitats-admin {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container-form-habitat-admin {
+  display: flex;
+  align-items: center;
+  height: auto;
+  background-color: var(--ClearWhite);
+  width: 90%;
+  max-width: 769px;
+  border-radius: 5px;
+  flex-direction: column;
+  padding: 20px 0px;
+  margin: 20px 0px;
+  border: 1px solid var(--brown);
+}
+
+.form-habitat-admin {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0 20px 0;
+  width: 100%;
+  align-items: center;
+}
+
+.div-add-doc-habitat-admin {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.btn_add_habitat-admin {
+  margin-bottom: 0;
+}
+
+.habitat-form-input-admin {
+  margin: 5px 0px 5px 0px;
+  padding: 5px 0px 5px 0px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--white);
+  color: var(--shadow);
+  font-family: var(--font-baloo);
+  width: 80%;
+}
+
+.habitat-form-input-admin::placeholder {
+  color: var(--shadow);
+}
+
+.habitat-btn-save-admin {
+  background-color: var(--shadow);
+  color: var(--white);
+  margin-top: 10px;
+}
+
+.habitats-list-admin {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  max-width: 1440px;
+}
+
+.habitat-admin {
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  grid-template-columns: repeat(1, 1fr);
+  grid-auto-rows: minmax(50px, auto);
+  gap: 10px;
+  background-color: var(--ClearWhite);
+  margin: 20px 0 20px 0;
+  max-width: 1440px;
+  position: relative;
+  padding: 30px 40px 30px 40px;
+  border-radius: 5px;
+  width: 100%;
+  margin: 20px 0px;
+  border: 1px solid var(--brown);
+}
+
+.title-habitat-admin {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Boutons */
+.btns-habitat-view-admin {
+  display: flex;
+  position: absolute;
+  bottom: 10px;
+}
+
+.habitat-btn-admin {
+  margin: 0px 10px 0px 10px;
+  text-decoration: none;
+  border: none;
+  color: var(--white);
+  background-color: var(--normal);
+  border-radius: 5px;
+  padding: 0px 5px 0px 5px;
+}
+
+.delete-habitat-btn-admin {
+  background-color: var(--red);
+  border: none;
+  color: var(--white);
+  padding: 10px 5px 10px 5px;
+  border-radius: 5px;
+}
+
+/* Image */
+.image-habitat-view-admin {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  width: 100%;
+}
+
+.image-habitat-view-admin > img {
+  height: auto;
+  border-radius: 5px;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* Description */
+.description-habitat-view-admin {
+  grid-column: 1;
+  grid-row: 3;
+  background-color: var(--white);
+  border-radius: 5px;
+  padding: 50px 20px 50px 20px;
+  width: 100%;
+}
+
+/* Animals */
+.animals-habitat-view-admin {
+  grid-column: 1;
+  grid-row: 4;
+  background-color: var(--white);
+  border-radius: 5px;
+  padding: 50px 20px 50px 20px;
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.div-breed-animal-admin {
+  color: var(--white);
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background-color: var(--overlay);
+
 
 }
 
-#container_form_habitat_admin {
-    display: flex;
-    align-items: center;
-    height: auto;
-    background-color: var(--ClearWhite);
+@media screen and (min-width: 769px) {
+  .habitat-admin {
+    grid-template-columns: repeat(2, 1fr);
+    min-width: 769px;
     width: 80%;
-    max-width: 769px;
-    border-radius: 5px;
-    flex-direction: column;
-    padding: 20px 0px;
-    margin: 20px 0px;
-    border: 1px solid var(--brown);
-}
+  }
 
-#form_habitat{
-    display: flex;
-    flex-direction: column;
-    margin: 20px 0 20px 0;
-    width: 100%;
-    align-items: center;
-}
-
-#form_habitat > .habitat_form_input{
-    margin: 5px 0px 5px 0px;
-    padding: 5px 0px 5px 0px;
-    border: none;
-    border-radius: 5px;
-    background-color: var(--white);
-    color: var(--shadow);
-    font-family: var(--font-baloo);
-    width: 80%;
-}
-
-#form_habitat > .habitat_form_input::placeholder{
-    color: var(--shadow);
-}
-
-#form_habitat > #habitat_btn_save{
-    background-color: var(--shadow);
-    color: var(--white);
-    margin-top: 10px;
-}
-
-#habitats-list{
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: auto;
-
-}
-
-#habitat {
-    display: grid;
-    justify-content: center;
-    justify-items: center;
-    grid-template-columns: repeat(1, 1fr);
-    grid-auto-rows: minmax(50px, auto);
-    gap: 10px;
-    background-color: var(--clear);
-    margin: 20px 0 20px 0;
-    max-width: 1440px;
-    position: relative;
-    padding: 30px 40px 30px 40px;
-    border-radius: 5px;
-    width: 100%;
-    margin: 20px 0px;
-}
-
-#habitat > #title_habitat {
-    grid-column: 1;
+  .title-habitat-admin {
+    grid-column: 1/3;
     grid-row: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-}
+  }
 
-/* Tout les boutons */
-
-#habitat > #btns_habitat_view {
+  /* Boutons */
+  .btns-habitat-view-admin {
     display: flex;
     position: absolute;
-    right: 0%;
-    top: 1%;
-}
+  }
 
-#habitat > #btns_habitat_view > .habitat-btn{
+  .habitat-btn-admin {
     margin: 0px 10px 0px 10px;
     text-decoration: none;
     border: none;
@@ -105,172 +205,34 @@
     background-color: var(--normal);
     border-radius: 5px;
     padding: 0px 5px 0px 5px;
-}
+  }
 
-#habitat > #btns_habitat_view > form > #delete-habitat-btn {
+  .delete-habitat-btn-admin {
     background-color: var(--red);
     border: none;
     color: var(--white);
     padding: 10px 5px 10px 5px;
     border-radius: 5px;
-}
+  }
 
-/* image */
+  /* Image */
+  .image-habitat-view-admin {
+    grid-column: 1/3;
+    grid-row: 2;
+  }
 
-#habitat > #image_habitat_view {
+  /* Description */
+  .description-habitat-view-admin {
     grid-column: 1/2;
-    grid-row: 2/3;
-    display: flex;
-    justify-content: center;
-    height: 100px;
-    width: 100%;
-
-}
-
-#habitat > #image_habitat_view > img {
-    height: auto;
-    border-radius: 5px;
-    object-fit: cover;
-    width: 100%;
-
-}
-
-/* Description */
-
-#habitat > #description_habitat_view {
-    grid-column: 1;
     grid-row: 3;
-    background-color: var(--white);  
-    border-radius: 5px;
-    padding: 50px 20px 50px 20px;
-    width: 100%;
+  }
 
-}
-
-/* Animals */
-
-#habitat > #animals_habitat_view {
-    grid-column: 1;
-    grid-row: 4;
-    background-color: var(--white);  
-    border-radius: 5px;
-    padding: 50px 20px 50px 20px;
-    width: 100%;
-    display: grid;
-    justify-items: center;
+  /* Animals */
+  .animals-habitat-view-admin {
+    grid-column: 2/2;
+    grid-row: 3;
     grid-template-columns: repeat(2, 1fr);
-
-    
-}
-
-#habitat > #animals_habitat_view > #image_animal_view {
-   display: flex;
-   margin: 5px;
-   background-color: var(--overlay);
-   border-radius: 5px;
-   position: relative;
-   height: 100px;
-   width: 100px;
-
-}
-
-#habitat > #animals_habitat_view > #image_animal_view > img {
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
-    border-radius: 5px;
-    opacity : 90%;
-}
-
-#habitat > #animals_habitat_view > #image_animal_view > #div_breed_animal {
-    color: var(--white);
-    position: absolute;
-    bottom: 0%;
-    left: 5%;
-}
-
-@media screen and (min-width: 769px) {
-
-    #habitat {
-        grid-template-columns: repeat(2, 1fr);
-        min-width: 769px;
-        width: 80%;
-    }
-    
-    #habitat > #title_habitat {
-        grid-column: 1/3;
-        grid-row: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    /* Tout les boutons */
-    
-    #habitat > #btns_habitat_view {
-        display: flex;
-        position: absolute;
-
-    }
-    
-    #habitat > #btns_habitat_view > .habitat-btn{
-        margin: 0px 10px 0px 10px;
-        text-decoration: none;
-        border: none;
-        color: var(--white);
-        background-color: var(--normal);
-        border-radius: 5px;
-        padding: 0px 5px 0px 5px;
-    }
-    
-    #habitat > #btns_habitat_view > form > #delete-habitat-btn {
-        background-color: var(--red);
-        border: none;
-        color: var(--white);
-        padding: 10px 5px 10px 5px;
-        border-radius: 5px;
-    }
-    
-    /* image */
-    
-    #habitat > #image_habitat_view {
-        grid-column: 1/3;
-        grid-row: 2;
-    
-    }
-    
-    
-    /* Description */
-    
-    #habitat > #description_habitat_view {
-        grid-column: 1/2;
-        grid-row: 3;
-
-    }
-    
-    /* Animals */
-    
-    #habitat > #animals_habitat_view {
-        grid-column: 2/2;
-        grid-row: 3;
-
-    }
-
-    #habitat > #animals_habitat_view {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
+  }
 }
 
 
-
-
-@media screen and (min-width: 1600px) {
-
-    #habitat > #animals_habitat_view {
-        grid-template-columns: repeat(4, 1fr);
-
-    }
-
-
-}

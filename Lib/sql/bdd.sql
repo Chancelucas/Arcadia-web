@@ -9,6 +9,7 @@ CREATE TABLE `User` (
     `username` VARCHAR(50) UNIQUE NOT NULL,
     `email` VARCHAR(255) NOT NULL,
     `password` VARCHAR(255) NOT NULL,
+    `active` BIT NOT NULL DEFAULT 1,
     `id_role` INT NOT NULL,
     FOREIGN KEY (`id_role`) REFERENCES `Role`(`id`)
 );

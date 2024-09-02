@@ -1,30 +1,29 @@
-<div id="main_container_animal">
-  <div id="form_create_animal">
+<div class="main_container_animal_admin">
+  <div class="form_create_animal_admin">
     <?= $createAnimalForm; ?>
   </div>
 
-  <?php foreach ($animals as $animal) : ?>
 
-    <div id="container_animal_admin">
-      <div id="animal_creaded_admin">
-        <div class="item"><?= $animal->name; ?></div>
-        <div class="item"><?= $animal->breed; ?></div>
-        <div class="item habitat"><?= $animal->habitat; ?></div>
+  <div class="container_animal_admin">
+    <?php foreach ($animals as $animal) : ?>
+      <div class="animal_creaded_admin">
+        <div class="item_animal_admin"><?= $animal->name; ?></div>
+        <div class="item_animal_admin"><?= $animal->breed; ?></div>
+        <div class="item_animal_admin habitat_animal_admin"><?= $animal->habitat; ?></div>
 
-        <div id="image_animal_view">
+        <div class="image_animal_view_admin">
           <img src="<?= $animal->picture ?>" alt="Photo animal">
         </div>
 
         <div class="btn_gestion_animal">
-          
           <form method="POST" action="adminAnimal/deleteAnimal/<?= $animal->id_Animal ?>">
-            <button type="submit" class="delete-animal-btn" name="deleteAnimal">Supprimer</button>
+            <button type="submit" class="delete-animal-btn-admin" name="deleteAnimal">Supprimer</button>
           </form>
-
-          <a href="/adminUpdateAnimal/index/<?= $animal->id_Animal ?>" class="link_update_animal">Modifier</a>
+          <a href="/adminUpdateAnimal/index/<?= $animal->id_Animal ?>" class="link_update_animal_admin">Modifier</a>
         </div>
       </div>
-    </div>
+    <?php endforeach; ?>
+  </div>
+</div>
 
-  <?php endforeach; ?>
 </div>

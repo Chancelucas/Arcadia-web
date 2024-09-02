@@ -3,7 +3,7 @@
     <div>
         <a href="/adminService">Retour</a>
     </div>
-    <div id="container_update_service">
+    <div class="container_update_service_admin">
         <?= $serviceForm; ?>
     </div>
 

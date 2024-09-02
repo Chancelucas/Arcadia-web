@@ -1,0 +1,69 @@
+.main_report_admin{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.title_report_admin{
+  display: flex;
+  justify-content: center;
+}
+
+
+/* FORM REPORT */
+
+.container_form_report_admin{
+  display: flex;
+  justify-content: center;
+}
+
+.form_report_admin{
+  background-color: var(--ClearWhite);
+  border: 1px solid var(--brown);
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 5px;
+  padding: 10px 0;
+  align-items: center;
+  max-width: 540px;
+}
+
+.div_form_report_admin{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  max-width: 300px;
+  padding: 10px 20px;
+}
+
+.div_btn_form_report_admin{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.input_report_admin{
+  width: 50%;
+  display: flex;
+  border: 1px solid var(--brown);
+  background-color: var(--white);
+  color: var(--shadow);
+}
+
+
+
+/* END FORM */
+
+
+
+
+
+.container_items_animal_report_admin{
+
+}
+
+.all_elements_animal_report_admin{
+
+}

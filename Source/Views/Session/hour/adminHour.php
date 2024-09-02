@@ -1,25 +1,27 @@
-<div id="main_edit_hour">
-    <div id="div_form_create_hour">
-        <?= $createHourForm; ?>
-    </div>
+<div class="main_edit_hour_admin">
+  <div class="div_form_create_hour_admin">
+    <?= $createHourForm; ?>
+  </div>
 
+  <div class="container_hour_admin">
     <?php foreach ($hours as $hour) : ?>
-      <div id="container_hour_admin">
-      <div id="hour_creaded_admin">
-        <div class="item"><?= $hour->day; ?></div>
-        <div class="item"><?= $hour->opening_time; ?></div>
-        <div class="item service"><?= $hour->closing_time; ?></div>
 
-        <div class="btn_gestion_hour">
-          <form method="POST" action="/adminHour/deleteHour/<?= $hour->id_Hour ;?>">
-            <button type="submit" class="delete-hour-btn" name="deleteHour">Supprimer</button>
+      <div class="hour_creaded_admin">
+        <div class="item_hour_admin"><?= $hour->day; ?></div>
+        <div class="item_hour_admin"><?= $hour->opening_time; ?></div>
+        <div class="item_hour_admin"><?= $hour->closing_time; ?></div>
+
+        <div class="btn_gestion_hour_admin">
+          <form method="POST" action="/adminHour/deleteHour/<?= $hour->id_Hour; ?>">
+            <button type="submit" class="delete-hour-btn-admin" name="deleteHour">Supprimer</button>
           </form>
 
-          <a href="/adminUpdateHour/index/<?= $hour->id_Hour ?>" class="link_update_hour">Modifier</a>
+          <a href="/adminUpdateHour/index/<?= $hour->id_Hour ?>" class="link_update_hour_admin">Modifier</a>
 
         </div>
 
       </div>
-    </div>
     <?php endforeach; ?>
+
+  </div>
 </div>

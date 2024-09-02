@@ -1,6 +1,7 @@
 @import url(/css/config/config.css);
 @import url(/css/templates/navbar.css);
 @import url(/css/pages/home_page.css);
+@import url(/css/pages/sessions/allSession/all_session.css);
 @import url(/css/pages/sessions/admin/admin_dashboard.css);
 @import url(/css/pages/sessions/employee/employee_dashboard.css);
 @import url(/css/pages/sessions/vet/vet_dashboard.css);

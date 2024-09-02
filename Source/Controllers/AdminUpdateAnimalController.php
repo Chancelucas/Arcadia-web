@@ -31,17 +31,17 @@ class AdminUpdateAnimalController extends AdminController
 
     $form = new Form;
 
-    $form->startForm('POST', "/adminUpdateAnimal/updateAnimal/{$animalId}", ['id' => 'form_update_animal'])
-      ->startDiv(['class' => 'div_form_update_animal'])
+    $form->startForm('POST', "/adminUpdateAnimal/updateAnimal/{$animalId}", ['class' => 'form_update_animal_admin'])
+      ->startDiv(['class' => 'div_form_update_animal_admin'])
       ->addLabelFor('name', 'Nom :')
-      ->addInput('text', 'name', ['id' => 'name', 'class' => 'input_class_update_animal', 'value' => $name, 'required' => true])
+      ->addInput('text', 'name', ['id' => 'name', 'class' => 'input_class_update_animal_admin', 'value' => $name, 'required' => true])
       ->endDiv()
-      ->startDiv(['class' => 'div_form_update_animal'])
+      ->startDiv(['class' => 'div_form_update_animal_admin'])
       ->addLabelFor('breed', 'Race :')
-      ->addInput('text', 'breed', ['id' => 'breed', 'class' => 'input_class_update_animal', 'value' => $breed, 'required' => true])
+      ->addInput('text', 'breed', ['id' => 'breed', 'class' => 'input_class_update_animal_admin', 'value' => $breed, 'required' => true])
       ->endDiv()
-      ->startDiv(['id' => 'div_id_update_animal', 'class' => 'div_class_update_animal'])
-      ->addBouton('Enregistrer', ['type' => 'submit', 'name' => 'save_changes', 'id' => 'btn_update_animal'])
+      ->startDiv(['class' => 'div_id_update_animal_admin'])
+      ->addBouton('Enregistrer', ['type' => 'submit', 'name' => 'save_changes', 'class' => 'btn btn_update_animal_admin'])
       ->endDiv()
 
       ->endForm();

@@ -4,7 +4,6 @@ namespace Source\Controllers;
 
 use Lib\config\Form;
 use Source\Controllers\AdminController;
-use Source\Models\user\UserModel;
 
 class AdminDashboardController extends AdminController
 {

@@ -8,8 +8,6 @@ use Source\Controllers\VetController;
 use Source\Models\filter\FilterModel;
 use Source\Models\animal\FoodGivenModel;
 
-use Source\Models\user\UserModel;
-
 class VetDashboardController extends VetController
 {
 
@@ -58,18 +56,26 @@ class VetDashboardController extends VetController
   {
     $form = new Form();
 
-    $form->startForm('POST')
+    $form->startForm('POST', '' , ['class' => 'form_foodgiven_vet'])
 
+      ->startDiv(['class' => 'div_form_foodgiven_vet'])
       ->addLabelFor('employee', 'Employé')
-      ->addSelect('employee', $this->getAllUsername(), ['value' => $_POST['employee'] ?? null])
+      ->addSelect('employee', $this->getAllUsername(), ['value' => $_POST['employee'] ?? null, 'class' => 'input_foodgiven_vet'])
+      ->endDiv()
 
+      ->startDiv(['class' => 'div_form_foodgiven_vet'])
       ->addLabelFor('date', 'Date du repas')
-      ->addSelect('date', $this->getAllDates(), ['value' => $_POST['date'] ?? null])
-
+      ->addSelect('date', $this->getAllDates(), ['value' => $_POST['date'] ?? null, 'class' => 'input_foodgiven_vet'])
+      ->endDiv()
+      
+      ->startDiv(['class' => 'div_form_foodgiven_vet'])
       ->addLabelFor('animal', 'Animal nourri')
-      ->addSelect('animal', $this->getAllAnimalBreeds(), ['value' => $_POST['animal'] ?? null])
-
-      ->addBouton('Rechercher', ['type' => 'submit', 'value' => 'search', 'name' => 'createGivenFood'])
+      ->addSelect('animal', $this->getAllAnimalBreeds(), ['value' => $_POST['animal'] ?? null, 'class' => 'input_foodgiven_vet'])
+      ->endDiv()
+      
+      ->startDiv(['class' => 'div_btn_form_foodgiven_vet '])
+      ->addBouton('Rechercher', ['type' => 'submit', 'value' => 'search', 'name' => 'createGivenFood', 'class' => 'btn btn_search_foodgiven_vet'])
+      ->endDiv()
 
       ->endForm();
 

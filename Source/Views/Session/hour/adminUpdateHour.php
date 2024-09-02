@@ -1,9 +1,9 @@
-<div id="main_update_habitat">
+<div class="main_update_habitat_admin">
 
     <div>
         <a href="/adminHour">Retour</a>
     </div>
-    <div id="container_update_hour">
+    <div class="container_update_hour_admin">
         <?= $hourForm; ?>
     </div>
 

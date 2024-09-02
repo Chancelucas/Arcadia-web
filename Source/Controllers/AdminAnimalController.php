@@ -28,19 +28,21 @@ class AdminAnimalController extends AdminController
     $habitats = $this->getHabitatsFromDatabase();
     $form = new Form;
 
-    $form->startForm('POST', 'adminAnimal/createAnimal', ['id' => 'form_animal', 'enctype' => 'multipart/form-data'])
+    $form->startForm('POST', 'adminAnimal/createAnimal', ['class' => 'form_animal_admin', 'enctype' => 'multipart/form-data'])
 
-      ->addInput('text', 'name', ['class' => 'animal_form_input', 'id' => 'animal_name', 'placeholder' => 'Ajouter un nom', 'required' => true])
+      ->addInput('text', 'name', ['class' => 'animal_form_input_admin', 'placeholder' => 'Ajouter un nom', 'required' => true])
 
-      ->addInput('text', 'breed', ['class' => 'animal_form_input', 'id' => 'animal_breed', 'name' => 'animal_breed', 'placeholder' => 'Ajouter une race animal', 'required' => true])
+      ->addInput('text', 'breed', ['class' => 'animal_form_input_admin', 'name' => 'animal_breed', 'placeholder' => 'Ajouter une race animal', 'required' => true])
 
-      ->addSelect('habitat', $habitats, ['id' => 'animals_add_habitat', 'class' => 'animal_form_input'])
+      ->addSelect('habitat', $habitats, ['class' => 'animal_form_input_admin'])
 
-      ->startDiv(['id' => 'div_add_doc_animal'])
-      ->addInput('file', 'picture', ['id' => 'animal_add_picture', 'class' => 'animal_form_input', 'multiple' => true])
+      ->startDiv(['class' => 'div_add_doc_animal_admin'])
+      ->addInput('file', 'picture', ['class' => 'animal_form_input_admin', 'multiple' => true])
       ->endDiv()
 
-      ->addBouton('Créer', ['type' => 'submit', 'value' => 'submit', 'id' => 'animal_btn_save', 'name' => 'createAnimal', 'class' => 'animal_form_input'])
+      ->startDiv(['class' => 'div_btn_add_animal'])
+      ->addBouton('Créer', ['type' => 'submit', 'value' => 'submit', 'name' => 'createAnimal', 'class' => 'btn btn_create_animal_admin'])
+      ->endDiv()
 
       ->endForm();
 

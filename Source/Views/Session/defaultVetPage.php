@@ -14,25 +14,11 @@
     <?php require_once ROOT . '/Source/Views/Session/templates/vet_navbar.php'; ?>
   </header>
 
-  <div style="width: 100%;min-height:40px;border:solid 2px red;margin-top:80px;">
-    SESSION User :
-    <pre>
-      <?= var_dump($_SESSION['user']); ?>
-    </pre>
-    SESSION Erreur :
-    <pre>
-      <?= var_dump($_SESSION['error']); ?>
-    </pre>
-    SESSION Message :
-    <pre>
-      <?= var_dump($_SESSION['message']); ?>
-    </pre>
+  <main class="session_dashboard">
+    <?= $containe; ?>
+  </main>
 
-  </div>
-
-  <?= $containe; ?>
-
-
+  <script src="/js/templates/menu/menu_script_session.js"></script>
 </body>
 
 </html>

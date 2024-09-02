@@ -173,7 +173,15 @@ class FilterModel extends MainModel
     $users = (new UserModel())->getAllUsers();
 
     if ($selectedRole === 'Tous' || is_null($selectedRole)) {
-      return $users;
+      return array_filter($users, function ($user) use ($selectedRole) {
+        return $user->active === 1;
+      });
+    }
+
+    if ($selectedRole === 'Inactif') {
+      return array_filter($users, function ($user) use ($selectedRole) {
+        return $user->active === 0;
+      });
     }
 
     return array_filter($users, function ($user) use ($selectedRole) {

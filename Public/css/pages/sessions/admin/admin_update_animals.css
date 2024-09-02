@@ -1,17 +1,15 @@
-@import url(/css/config/config.css);
-
-#container_update_animal {
+.container_update_animal_admin {
   height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-
 }
 
-#form_update_animal {
+.form_update_animal_admin {
   margin-top: 5%;
-  background-color: var(--main-clear-color);
+  background-color: var(--ClearWhite);
+  border: 1px solid var(--brown);
   display: flex;
   flex-direction: column;
   width: 50vw;
@@ -20,7 +18,7 @@
   border-radius: 5px;
 }
 
-.div_form_update_animal{
+.div_form_update_animal_admin{
   margin: 5px 0 5px 0;
   display: flex;
   justify-content: space-around;
@@ -28,33 +26,30 @@
   align-items: center;
 }
 
-.div_form_update_animal > .input_class_update_animal{
-  background-color: var(--main-white-color);
+.input_class_update_animal_admin{
+  background-color: var(--brown);
   border: none;
   padding: 5px 10px 5px 10px;
   border-radius: 5px;
   width: 80%;
-  color: var(--main-shadow-color);
+  color: var(--shadow);
 
 }
 
-#form_update_animal > .div_class_update_animal {
+.div_class_update_animal_admin {
   display: flex;
   justify-content: center;
 }
 
-#form_update_animal > .div_class_update_animal > #btn_update_animal{
-  background-color: var(--main-shadow-color);
-  border: none;
-  padding: 5px 20px 5px 20px;
-  border-radius: 5px;
-  color: var(--main-white-color);
-  cursor: pointer;
-  margin-top: 2%;
+.div_id_update_animal_admin{
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
+
 @media screen and (min-width: 769px)  {
-  .div_form_update_animal{
+  .div_form_update_animal_admin{
     margin: 5px 0 5px 0;
     display: flex;
     justify-content: space-between;

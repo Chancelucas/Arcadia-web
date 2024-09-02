@@ -1,17 +1,23 @@
-<main>
-<a href="javascript:history.back()">Retour</a>
+<main class="main_element_on_click">
+  <a class="btn_back" href="javascript:history.back()">Retour</a>
 
-  <h3><?= $habitat->name ?></h3>
-  <?= $habitat->description ?>
-  <img class="image" src="<?= $habitat->picture_url; ?>" alt="<?= $habitat->name ?>"></img>
+  <div class="div_element_on_click">
+    <h3 class="name_element_on_click"><?= $habitat->name ?></h3>
+    <img class="img_element_on_click" src="<?= $habitat->picture_url; ?>" alt="<?= $habitat->name ?>"></img>
 
-  <?php if (isset($animalsInHabitat) && is_array($animalsInHabitat)) : ?>
-    <?php foreach ($animalsInHabitat as $animal) : ?>
-      <div onclick="location.href='/animal/page/<?= $animal->id_Animal ?>'">
-        <p><?= $animal->breed; ?></p>
-        <img class="image" src="<?= $animal->picture ?>" alt="<?= $animal->name ?>">
-      </div>
-    <?php endforeach; ?>
+    <p class="description_element_on_click"><?= $habitat->description ?></p>
 
-  <?php endif; ?>
+    <div class="animals_container">
+      <?php if (isset($animalsInHabitat) && is_array($animalsInHabitat)) : ?>
+        <?php foreach ($animalsInHabitat as $animal) : ?>
+          <div class="animal" onclick="location.href='/animal/page/<?= $animal->id_Animal ?>'" style="background-image: url('<?= $animal->picture; ?>');">
+            <p class="animal_breed"><?= $animal->breed; ?></p>
+          </div>
+        <?php endforeach; ?>
+      <?php endif; ?>
+    </div>
+
+
+  </div>
+
 </main>

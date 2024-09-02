@@ -1,28 +1,24 @@
-<main>
+<div class="main_container_vet">
+  <h2 class="title_page">Dashboard</h2>
+  <h3>Liste des repas donnée</h3>
 
-    <h2>Dashboard Vet</h2>
-    <a class="link" href="/vetDashboard/logout">Deconnexion</a>
-
-    <div>
-    <?= $filterForm ;?>
+  <div class="form_search_foodgiven_vet">
+    <?= $filterForm; ?>
   </div>
 
-    <div>
-    <p>Liste des repas donnée aux animaux</p>
+  <div class="container_foodgiven_vet">
     <?php if ($allFoodGiven) : ?>
       <?php foreach ($allFoodGiven as $foodGiven) : ?>
-        <div>
-          <p>L'animal nourrie : <?= $foodGiven->animal->breed; ?></p>
-          <p>Date du repas : <?= $foodGiven->day; ?></p>
-          <p>Heure du repas : <?= $foodGiven->hour; ?></p>
-          <p>Nourriture donnée : <?= $foodGiven->food; ?></p>
-          <p>Quantité donnée : <?= $foodGiven->quantity; ?></p>
-          <p>Qui a donnée : <?= $foodGiven->user->username; ?></p>
+        <div class="element_foodgiven_vet">
+          <div class="item_foodgiven_vet">L'animal nourrie : <?= $foodGiven->animal->breed; ?></div>
+          <div class="item_foodgiven_vet">Date du repas : <?= $foodGiven->day; ?></div>
+          <div class="item_foodgiven_vet">Heure du repas : <?= $foodGiven->hour; ?></div>
+          <div class="item_foodgiven_vet">Nourriture donnée : <?= $foodGiven->food; ?></div>
+          <div class="item_foodgiven_vet">Quantité donnée : <?= $foodGiven->quantity; ?></div>
+          <div class="item_foodgiven_vet">Qui a donnée : <?= $foodGiven->user->username; ?></div>
         </div>
-        <hr />
       <?php endforeach; ?>
     <?php endif; ?>
   </div>
 
-
-</main>
+</div>

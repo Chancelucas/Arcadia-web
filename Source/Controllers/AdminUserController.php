@@ -13,18 +13,12 @@ class AdminUserController extends AdminController
   public function index()
   {
     $filterUser = [];
+    $selectedRole = $_POST['roleFilter'] ?? null;
+    $filterUser = (new FilterModel())->filterAllUserOfRole($selectedRole);
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      $selectedRole = $_POST['roleFilter'] ?? null;
-      $filterUser = (new FilterModel())->filterAllUserOfRole($selectedRole);
-    }
-
-    
     $filterFormUser = $this->createFilterUser();
-
     $createUserForm = $this->generateCreateUserForm();
-
-
+    
     $users = empty($filterUser) ? $this->getAllUsers() : $filterUser;
 
     $this->render('user/adminUser', [
@@ -69,11 +63,7 @@ class AdminUserController extends AdminController
 
   public function createUser()
   {
-    error_log("createUser called"); // Vérifier si la méthode est appelée
-
-    if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST['createUser'])) {
-      error_log("POST data received"); // Vérifier si les données POST sont reçues
-
+    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['createUser'])) {
       $username = $_POST['username'];
       $email = $_POST['email'];
       $password = $_POST['password'];
@@ -84,26 +74,25 @@ class AdminUserController extends AdminController
       if (!is_null($existingUser)) {
         echo "Le nom d'utilisateur ou l'adresse e-mail est déjà utilisé.";
         return;
-      } else {
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+      }
 
-        try {
-          $newUser = new UserModel;
+      $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-          $newUser->setUsername($username)
-            ->setEmail($email)
-            ->setPassword($hashedPassword)
-            ->setIdRole($id_Role);
+      try {
+        $newUser = new UserModel;
 
-          $newUser->createUser();
+        $newUser->setUsername($username)
+          ->setEmail($email)
+          ->setPassword($hashedPassword)
+          ->setIdRole($id_Role);
 
-          $_SESSION['message'] = "L'utilisateur a été créé avec succès.";
-        } catch (\Exception $e) {
-          $_SESSION['error'] = "Une erreur s'est produite lors de la création de l'utilisateur : " . $e->getMessage();
-        }
+        $newUser->createUser();
+
+        $_SESSION['message'] = "L'utilisateur a été créé avec succès.";
+      } catch (\Exception $e) {
+        $_SESSION['error'] = "Une erreur s'est produite lors de la création de l'utilisateur : " . $e->getMessage();
       }
     } else {
-      error_log("No POST data or createUser not set"); // Vérifier pourquoi la condition échoue
       $_SESSION['error'] = "Aucun utilisateur n'a été renseigné";
     }
 
@@ -116,8 +105,12 @@ class AdminUserController extends AdminController
     if (isset($_POST['deleteUser'])) {
       $userModel = new UserModel;
 
-      $userModel->setId($userId);
-      $deleteUser = $userModel->delete();
+      $userModel->findOneById($userId);
+      $userModel->setActive(0);
+
+      $deleteUser = $userModel->update();
+
+
 
       if ($deleteUser) {
         $_SESSION['message'] = "✅ Utilisateur supprimé avec succès.";
@@ -139,6 +132,8 @@ class AdminUserController extends AdminController
       ->addBouton('Tous', ['type' => 'submit', 'value' => 'Tous', 'name' => 'roleFilter', 'class' => 'btn-filter-admin-user'])
       ->addBouton('Employer', ['type' => 'submit', 'value' => 'Employer', 'name' => 'roleFilter', 'class' => 'btn-filter-admin-user'])
       ->addBouton('Vétérinaire', ['type' => 'submit', 'value' => 'Vétérinaire', 'name' => 'roleFilter', 'class' => 'btn-filter-admin-user'])
+      ->addBouton('Inactif', ['type' => 'submit', 'value' => 'Inactif', 'name' => 'roleFilter', 'class' => 'btn-filter-admin-user'])
+
 
       ->endForm();
 

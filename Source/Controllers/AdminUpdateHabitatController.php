@@ -30,20 +30,20 @@ class AdminUpdateHabitatController extends AdminController
   {
     $form = new Form;
 
-    $form->startForm('POST', "/adminUpdateHabitat/updateHabitat/{$habitatId}", ['id' => 'form_update_habitat'])
+    $form->startForm('POST', "/adminUpdateHabitat/updateHabitat/{$habitatId}", ['class' => 'form_update_habitat_admin'])
 
-      ->startDiv(['class' => 'div_form_update_habitat'])
+      ->startDiv(['class' => 'div_form_update_habitat_admin'])
       ->addLabelFor('name', 'Titre :')
-      ->addInput('text', 'name', ['id' => 'name', 'class' => 'input_class_update_habitat', 'value' => $name, 'required' => true])
+      ->addInput('text', 'name', ['class' => 'input_class_update_habitat_admin title_update_habitat_admin', 'value' => $name, 'required' => true])
       ->endDiv()
 
-      ->startDiv(['class' => 'div_form_update_habitat'])
+      ->startDiv(['class' => 'div_form_update_habitat_admin'])
       ->addLabelFor('description', 'Description :')
-      ->addTextarea('description', $description, ['id' => 'description', 'class' => 'input_class_update_habitat', 'required' => true])
+      ->addTextarea('description', $description, ['class' => 'input_class_update_habitat_admin description_update_habitat_admin', 'required' => true])
       ->endDiv()
 
-      ->startDiv(['id' => 'div_id_update_habitat', 'class' => 'div_class_update_habitat'])
-      ->addBouton('Enregistrer', ['type' => 'submit', 'name' => 'save_changes', 'id' => 'btn_update_habitat'])
+      ->startDiv(['class' => 'div_class_update_habitat_admin'])
+      ->addBouton('Enregistrer', ['type' => 'submit', 'name' => 'save_changes', 'class' => 'btn btn_update_habitat_admin'])
       ->endDiv()
 
       ->endForm();

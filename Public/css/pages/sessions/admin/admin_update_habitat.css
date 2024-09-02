@@ -1,6 +1,6 @@
 @import url(/css/config/config.css);
 
-#container_update_habitat {
+.container_update_habitat_admin {
   height: 100vh;
   width: 100%;
   display: flex;
@@ -9,18 +9,20 @@
 
 }
 
-#form_update_habitat {
+.form_update_habitat_admin {
   margin-top: 5%;
-  background-color: var(--main-clear-color);
+  background-color: var(--ClearWhite);
   display: flex;
+  border: 1px solid var(--brown);
   flex-direction: column;
   width: 50vw;
   max-width: 1110px;
   padding: 1rem 1rem 1rem 1rem;
   border-radius: 5px;
+  width: 90%;
 }
 
-.div_form_update_habitat{
+.div_form_update_habitat_admin{
   margin: 5px 0 5px 0;
   display: flex;
   justify-content: space-between;
@@ -28,37 +30,32 @@
   align-items: center;
 }
 
-.div_form_update_habitat > .input_class_update_habitat{
-  background-color: var(--main-white-color);
+.input_class_update_habitat_admin{
+  background-color: var(--white);
   border: none;
   padding: 5px 10px 5px 10px;
   border-radius: 5px;
   width: 80%;
-  color: var(--main-shadow-color);
+  color: var(--shadow);
 
 }
 
-.div_form_update_habitat > #description {
+.input_class_update_habitat_admin {
+  height: auto;
+  background-color: var(--brown);
+}
+
+.description_update_habitat_admin{
   height: 100px;
 }
 
-#form_update_habitat > .div_class_update_habitat {
+.div_class_update_habitat_admin{
   display: flex;
   justify-content: center;
 }
 
-#form_update_habitat > .div_class_update_habitat > #btn_update_habitat{
-  background-color: var(--main-shadow-color);
-  border: none;
-  padding: 5px 20px 5px 20px;
-  border-radius: 5px;
-  color: var(--main-white-color);
-  cursor: pointer;
-  margin-top: 2%;
-}
-
 @media screen and (min-width: 769px)  {
-  .div_form_update_habitat{
+  .div_form_update_habitat_admin{
     margin: 5px 0 5px 0;
     display: flex;
     justify-content: space-between;

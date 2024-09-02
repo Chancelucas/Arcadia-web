@@ -23,6 +23,6 @@ class Autoloader
                 return;
             }
         }
-        echo "Le fichier de classe pour $class n'a pas été trouvé dans les dossiers racines spécifiés.";
+        // echo "Le fichier de classe pour $class n'a pas été trouvé dans les dossiers racines spécifiés.";
     }
 }

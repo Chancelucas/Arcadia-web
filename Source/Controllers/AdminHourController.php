@@ -13,7 +13,7 @@ class AdminHourController extends AdminController
     $createHourForm = $this->generateHourForm();
     $hours = $this->getAllHours();
     $this->render('hour/adminHour', [
-      'createHourForm' => $createHourForm, 
+      'createHourForm' => $createHourForm,
       'hours' => $hours
     ]);
   }
@@ -23,17 +23,26 @@ class AdminHourController extends AdminController
   {
     $form = new Form;
 
-    $form->startForm('POST', 'adminHour/createHour', ['id' => 'form_create_hour'])
+    $form->startForm('POST', 'adminHour/createHour', ['class' => 'form_create_hour_admin'])
 
-      ->addInput('text', 'day', ['id' => 'day', 'placeholder' => 'Jour', 'required' => true, 'class' => 'input_create_hour'])
+      ->startDiv(['class' => 'div_form_hour_admin'])
+      ->addInput('text', 'day', ['placeholder' => 'Jour', 'required' => true, 'class' => 'input_create_hour_admin'])
+      ->endDiv()
 
+      ->startDiv(['class' => 'div_form_hour_admin'])
       ->addLabelFor('opening_time', 'Heure d\'ouverture :')
-      ->addInput('time', 'opening_time', ['id' => 'opening_time', 'placeholder' => 'Heure d\'ouverture', 'required' => true, 'class' => 'input_create_hour'])
+      ->addInput('time', 'opening_time', ['placeholder' => 'Heure d\'ouverture', 'required' => true, 'class' => 'input_create_hour_admin'])
+      ->endDiv()
 
+
+      ->startDiv(['class' => 'div_form_hour_admin'])
       ->addLabelFor('closing_time', 'Heure de fermeture :')
-      ->addInput('time', 'closing_time', ['id' => 'closing_time', 'placeholder' => 'Heure de fermeture', 'required' => true, 'class' => 'input_create_hour'])
+      ->addInput('time', 'closing_time', ['placeholder' => 'Heure de fermeture', 'required' => true, 'class' => 'input_create_hour_admin'])
+      ->endDiv()
 
-      ->addBouton('Créer', ['type' => 'submit', 'value' => 'submit', 'id' => 'btn_add_hour', 'name' => 'createHour']);
+      ->startDiv(['class' => 'div_form_hour_admin'])
+      ->addBouton('Créer', ['type' => 'submit', 'value' => 'submit', 'class' => 'btn btn_add_hour_admin', 'name' => 'createHour'])
+      ->endDiv();
 
     return $form->create();
   }
@@ -118,6 +127,4 @@ class AdminHourController extends AdminController
     Header("Location: /adminHour");
     exit;
   }
-
-
 }

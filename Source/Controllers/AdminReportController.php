@@ -54,15 +54,21 @@ class AdminReportController extends AdminController
   {
     $form = new Form();
 
-    $form->startForm('POST')
+    $form->startForm('POST', '' ,['class' => 'form_report_admin'])
 
+      ->startDiv(['class' => 'div_form_report_admin'])
       ->addLabelFor('animal_date', 'Date du rapport')
-      ->addSelect('animal_date', $this->getAllDatesAnimalReport(), ['value' => $_POST['date'] ?? null])
+      ->addSelect('animal_date', $this->getAllDatesAnimalReport(), ['value' => $_POST['date'] ?? null, 'class' => 'input_report_admin'])
+      ->endDiv()
 
+      ->startDiv(['class' => 'div_form_report_admin'])
       ->addLabelFor('animal', 'Animal')
-      ->addSelect('animal', $this->getAllAnimalBreeds(), ['value' => $_POST['animal'] ?? null])
+      ->addSelect('animal', $this->getAllAnimalBreeds(), ['value' => $_POST['animal'] ?? null, 'class' => 'input_report_admin'])
+      ->endDiv()
 
-      ->addBouton('Rechercher', ['type' => 'submit', 'value' => 'search', 'name' => 'createGivenFood'])
+      ->startDiv(['class' => 'div_btn_form_report_admin'])
+      ->addBouton('Rechercher', ['type' => 'submit', 'value' => 'search', 'name' => 'createGivenFood', 'class' => 'btn btn_search_report_admin'])
+      ->endDiv()
 
       ->endForm();
 
@@ -73,16 +79,21 @@ class AdminReportController extends AdminController
   {
     $form = new Form();
 
-    $form->startForm('POST')
+    $form->startForm('POST', '' ,['class' => 'form_report_admin'])
 
+    ->startDiv(['class' => 'div_form_report_admin'])
       ->addLabelFor('habitat_date', 'Date du rapport')
-      ->addSelect('habitat_date', $this->getAllDatesHabitatReport(), ['value' => $_POST['date'] ?? null])
+      ->addSelect('habitat_date', $this->getAllDatesHabitatReport(), ['value' => $_POST['date'] ?? null, 'class' => 'input_report_admin'])
+      ->endDiv()
 
+      ->startDiv(['class' => 'div_form_report_admin'])
       ->addLabelFor('habitat', 'Habitat')
-      ->addSelect('habitat', $this->getAllNameHabitat(), ['value' => $_POST['habitat'] ?? null])
+      ->addSelect('habitat', $this->getAllNameHabitat(), ['value' => $_POST['habitat'] ?? null, 'class' => 'input_report_admin'])
+      ->endDiv()
 
-
-      ->addBouton('Rechercher', ['type' => 'submit', 'value' => 'search', 'name' => 'createGivenFood'])
+      ->startDiv(['class' => 'div_btn_form_report_admin'])
+      ->addBouton('Rechercher', ['type' => 'submit', 'value' => 'search', 'name' => 'createGivenFood', 'class' => 'btn btn_search_report_admin'])
+      ->endDiv()
 
       ->endForm();
 
@@ -92,27 +103,20 @@ class AdminReportController extends AdminController
   private function getAllDatesAnimalReport()
   {
     return (new FilterModel([]))->getAllReportAnimalDate();
-
   }
 
   private function getAllDatesHabitatReport()
   {
     return (new FilterModel([]))->getAllReportHabitatDate();
-
   }
 
   private function getAllAnimalBreeds()
   {
     return (new FilterModel([]))->getAllAnimalBreeds();
-
   }
 
   private function getAllNameHabitat()
   {
     return (new FilterModel([]))->getAllNameHabitat();
-
   }
-
-
-
 }

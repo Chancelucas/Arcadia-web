@@ -1,6 +1,6 @@
 @import url(/css/config/config.css);
 
-#main_edit_service {
+.main_edit_service_admin {
   height: 100%;
   width: 100%;
   display: flex;
@@ -10,8 +10,8 @@
 
 }
 
-#div_form_create_service{
-  background-color: var(--main-clear-color);
+.div_form_create_service_admin{
+  background-color: var(--ClearWhite);
   display: flex;
   flex-direction: column;
   margin: 20px 0 20px 0;
@@ -20,41 +20,40 @@
   max-width: 769px;
   align-items: center;
   border-radius: 5px;
-  border: solid 1px var(--main-shadow-color);
+  border: solid 1px var(--brown);
 }
 
-#form_create_service{
+.form_create_service_admin{
 width: 80%;
 }
 
-.div_create_service > input{
+.div_create_service_admin{
   margin-bottom: 10px;
 }
 
-.div_create_service > input,
-.div_create_service > textarea{
-  background-color: var(--main-white-color);
+.input_create_service_admin{
+  background-color: var(--white);
   border: none;
   padding: 5px 10px;
   border-radius: 5px;
   width: 100%;
-  color: var(--main-shadow-color);
-  font-family: var(--font-family);
+  color: var(--shadow);
+  font-family: var(--font-baloo);
 }
 
-.div_create_service > input::placeholder,
-.div_create_service > textarea::placeholder{
-  color: var(--main-shadow-color);
+.input_create_service_admin::placeholder{
+  color: var(--shadow);
 }
 
-.input_btn_login{
+
+.div_btn_create_service_admin{
   display: flex;
   justify-content: center;
 }
 
-#btn_add_service{
-  background-color: var(--main-shadow-color);
-  color: var(--main-white-color);
+.btn_add_service_admin{
+  background-color: var(--shadow);
+  color: var(--white);
   border: none;
   width: 100%;
   border-radius: 5px;
@@ -62,75 +61,116 @@ width: 80%;
   margin-top: 10px;
 }
 
-#container_service_admin {
+.container_service_admin {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 90%;
-  max-width: 1440px;
+  flex-direction: column;
+
+
 }
 
-#service_creaded_admin{
+.service_creaded_admin{
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--main-clear-color);
-  color: var(--main-shadow-color);
+  background-color: var(--ClearWhite);
+  color: var(--shadow);
+  border: var(--brown) 1px solid ; 
   width: 100%;
   border-radius: 5px;
   padding: 10px;
   margin: 5px 0;
   height: auto;
+  max-width: 390px;
 }
 
-#service_creaded_admin > .item{
-  background-color: var(--main-white-color);
-  color: var(--main-shadow-color);
+.item_service_admin{
+  background-color: var(--white);
+  color: var(--shadow);
   border-radius: 5px;
-  width: 80%;
+  width: 90%;
   margin: 5px;
   padding-left: 5px ;
 }
 
-#picture_service_view{
-  max-width: 90px;
+.title_service_admin{
+  font-weight: bolder;
+}
+
+.picture_service_view_admin{
   display: flex;
   align-items: center;
   margin: 5px;
   flex-direction: column;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  width: 90%;
 }
 
-#picture_service_view > img{
+.picture_service_admin{
   border-radius: 5px;
   width: 100%;
 
 }
 
-.btn_gestion_service{
+.btn_gestion_service_admin{
   display: flex;
   flex-direction: row;
   align-items: center;
-  align-content: center;
-}
-
-.delete-service-btn{
-  background-color: var(--main-red-color);
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  color: var(--main-white-color);
-  cursor: pointer;
-  margin-right: 20px;
-}
-
-.link_update_service{
-  background-color: var(--main-normal-color);
-  border-radius: 5px;
-  color: var(--main-white-color);
-  cursor: pointer;
+  justify-content: space-evenly;
   width: 100%;
+  margin: 10px 0;
+}
+
+.delete-service-btn-admin{
+  background-color: var(--red);
+  border: none;
+  color: var(--white);
+  border-radius: 5px;
+  padding: 7px 11px;
+}
+
+.link_update_service_admin{
+  background-color: var(--shadow);
+  color: var(--white);
+  border-radius: 5px;
+  padding: 1.5px 15px;
   text-decoration: none;
-  display: flex;
-  padding: 3px;
-  justify-content: center;
+  font-size: 15px;
+}
+
+@media screen and (min-width: 1024px) {
+
+  .container_service_admin {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    justify-items: center;
+    align-items: center;
+  }
+
+}
+
+@media screen and (min-width: 1700px) {
+
+  .container_service_admin {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    justify-items: center;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+
+  .container_service_admin {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    justify-items: center;
+    align-items: center;
+  }
 }

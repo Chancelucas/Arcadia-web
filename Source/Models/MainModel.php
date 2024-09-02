@@ -69,18 +69,18 @@ abstract class MainModel
     $in = [];
     $values = [];
 
+
     foreach ($this as $field => $value) {
 
       if ($value !== null && $field != 'database' && $field != 'table') {
         $fields[] = $field;
-        $in[] = "?";
-        $values[] = $value;
+        $in[] = ":$field";
+        $values[":$field"] = $value;
       }
     }
 
     $fieldsString = implode(', ', $fields);
     $inString = implode(', ', $in);
-
 
     return $this->request("INSERT INTO {$this->table} ($fieldsString) VALUES ($inString)", $values);
   }

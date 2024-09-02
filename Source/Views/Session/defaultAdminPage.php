@@ -15,13 +15,12 @@
   </header>
 
 
-  <main class="main_dashboard_admin">
-  <?= $containe; ?>
+  <main class="session_dashboard">
+    <?= $containe; ?>
   </main>
 
 
-  <script src="/js/templates/menu/menu_script_admin.js"></script>
-
+  <script src="/js/templates/menu/menu_script_session.js"></script>
 </body>
 
 </html>

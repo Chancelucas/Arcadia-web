@@ -24,26 +24,26 @@ class AdminServiceController extends AdminController
   {
     $form = new Form;
 
-    $form->startForm('POST', 'adminService/createService', ['id' => 'form_create_service', 'enctype' => 'multipart/form-data'])
+    $form->startForm('POST', 'adminService/createService', ['class' => 'form_create_service_admin', 'enctype' => 'multipart/form-data'])
 
-      ->startDiv(['id' => 'div_create_service', 'class' => 'div_create_service'])
-      ->addInput('text', 'name', ['id' => 'name', 'placeholder' => 'Nom du service', 'required' => true])
+      ->startDiv(['class' => 'div_create_service_admin'])
+      ->addInput('text', 'name', ['class' => 'input_create_service_admin', 'id' => 'name', 'placeholder' => 'Nom du service', 'required' => true])
       ->endDiv()
 
-      ->startDiv(['id' => 'div_create_slug', 'class' => 'div_create_service'])
-      ->addInput('hidden', 'slug', ['id' => 'slug', 'placeholder' => '***', 'required' => true, 'disabled' => true])
+      ->startDiv(['class' => 'div_create_service_admin'])
+      ->addInput('hidden', 'slug', ['class' => 'input_create_service_admin', 'id' => 'slug', 'placeholder' => '***', 'required' => true, 'disabled' => true])
       ->endDiv()
 
-      ->startDiv(['id' => 'div_create_description', 'class' => 'div_create_service'])
-      ->addTextarea('description', '', ['class' => 'service_form_input', 'id' => 'description', 'name' => 'description', 'placeholder' => 'Ajouter une description', 'required' => true])
+      ->startDiv(['class' => 'div_create_service_admin'])
+      ->addTextarea('description', '', ['class' => 'input_create_service_admin', 'id' => 'description', 'name' => 'description', 'placeholder' => 'Ajouter une description', 'required' => true])
       ->endDiv()
 
-      ->startDiv(['id' => 'div_add_picture_service'])
-      ->addInput('file', 'picture', ['id' => 'service_add_picture', 'class' => 'service_form_input', 'placeholder' => 'Choisir des photos', 'multiple' => true])
+      ->startDiv(['class' => 'div_create_service_admin '])
+      ->addInput('file', 'picture', ['class' => 'service_form_input', 'placeholder' => 'Choisir des photos', 'multiple' => true])
       ->endDiv()
 
-      ->startDiv(['class' => 'input_btn_login div_create_service'])
-      ->addBouton('Créer', ['type' => 'submit', 'value' => 'submit', 'id' => 'btn_add_service', 'name' => 'createService'])
+      ->startDiv(['class' => 'div_btn_create_service_admin'])
+      ->addBouton('Créer', ['class' => 'btn btn_create_service_admin', 'type' => 'submit', 'value' => 'submit', 'id' => 'btn_add_service', 'name' => 'createService'])
       ->endDiv()
 
       ->endForm();
