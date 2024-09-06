@@ -1,6 +1,4 @@
-@import url(/css/config/config.css);
-
-#main_vet_report{
+.main_vet_report{
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -8,41 +6,50 @@
   align-items: center;
 }
 
-#form_create_report_habitat_vet, 
-#form_create_report_animal_vet{
-  background-color: var(--main-clear-color);
+.div_form_create_report_vet{
+  background-color: var(--ClearWhite);
   display: flex;
   flex-direction: column;
   width: 80%;
-  max-width: 769px;
+  max-width: 450px;
   align-items: center;
   padding: 20px;
   border-radius: 5px;
   margin: 10px 0;
-  border: solid 1px var(--main-shadow-color);
+  border: solid 1px var(--brown);
+
 }
 
-#form_report_habitat,
-#form_report_animal{
+.form_create_report_vet{
   display: flex;
   flex-direction: column;
   width: 80%;
   margin: 10px 0;
 }
 
-#form_report_habitat > .input_report_habitat,
-#form_report_animal > .input_report_animal{
- border: none;
- border-radius: 5px;
- background-color: var(--main-white-color);
- color: var(--main-shadow-color);
- padding: 5px;
- margin-bottom: 5px;
+.label_create_report_vet{
+  font-weight: 600;
 }
 
-#form_report_habitat > #btn_save_report_habitat,
-#form_report_animal > #btn_save_report_animal{
-  background-color: var(--main-shadow-color);
-  color: var(--main-white-color);
-  padding: 10px 0;
+.input_create_report_vet{
+  border: 1px solid var(--brown);
+  border-radius: 5px;
+  color: var(--shadow);
+  padding: 5px;
+  margin-bottom: 5px;
 }
+
+.form_create_report_vet > textarea {
+  height: 200px;
+}
+
+@media screen and (min-width: 1440px) {
+  .main_vet_report {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    justify-items: center;
+    align-items: center;
+  }
+}
+

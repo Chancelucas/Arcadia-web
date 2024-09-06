@@ -12,9 +12,9 @@
         </div>
         <div class="btns-habitat-view-admin">
           <form method="POST" action="adminHabitat/deleteHabitat/<?= $habitat->id ?>">
-            <button type="submit" class="habitat-btn-admin delete-habitat-btn-admin" name="deleteHabitat">Supprimer</button>
+            <button type="submit" class="delete_btn" name="deleteHabitat">Supprimer</button>
           </form>
-          <a href="/adminUpdateHabitat/index/<?= $habitat->id ?>" class="habitat-btn-admin update-habitat-btn-admin">Modifier</a>
+          <a href="/adminUpdateHabitat/index/<?= $habitat->id ?>" class="link_update">Modifier</a>
         </div>
         <div class="image-habitat-view-admin">
           <img src="<?= $habitat->picture_url ?>" alt="Photo habitat">

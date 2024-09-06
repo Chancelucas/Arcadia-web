@@ -13,10 +13,10 @@
 
         <div class="btn_gestion_hour_admin">
           <form method="POST" action="/adminHour/deleteHour/<?= $hour->id_Hour; ?>">
-            <button type="submit" class="delete-hour-btn-admin" name="deleteHour">Supprimer</button>
+            <button type="submit" class="delete_btn" name="deleteHour">Supprimer</button>
           </form>
 
-          <a href="/adminUpdateHour/index/<?= $hour->id_Hour ?>" class="link_update_hour_admin">Modifier</a>
+          <a href="/adminUpdateHour/index/<?= $hour->id_Hour ?>" class="link_update">Modifier</a>
 
         </div>
 

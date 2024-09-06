@@ -67,8 +67,6 @@ width: 80%;
   align-items: center;
   width: 90%;
   flex-direction: column;
-
-
 }
 
 .service_creaded_admin{
@@ -82,7 +80,7 @@ width: 80%;
   border-radius: 5px;
   padding: 10px;
   margin: 5px 0;
-  height: auto;
+  height: 762px;
   max-width: 390px;
 }
 
@@ -93,6 +91,11 @@ width: 80%;
   width: 90%;
   margin: 5px;
   padding-left: 5px ;
+}
+
+.texte_service_admin{
+  height: 300px;
+  overflow: scroll;
 }
 
 .title_service_admin{
@@ -112,6 +115,8 @@ width: 80%;
 .picture_service_admin{
   border-radius: 5px;
   width: 100%;
+  max-height: 330px;
+  object-fit: cover;
 
 }
 
@@ -122,23 +127,6 @@ width: 80%;
   justify-content: space-evenly;
   width: 100%;
   margin: 10px 0;
-}
-
-.delete-service-btn-admin{
-  background-color: var(--red);
-  border: none;
-  color: var(--white);
-  border-radius: 5px;
-  padding: 7px 11px;
-}
-
-.link_update_service_admin{
-  background-color: var(--shadow);
-  color: var(--white);
-  border-radius: 5px;
-  padding: 1.5px 15px;
-  text-decoration: none;
-  font-size: 15px;
 }
 
 @media screen and (min-width: 1024px) {

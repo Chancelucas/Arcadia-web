@@ -1,10 +1,10 @@
-<main>
+<div>
 
     <div>
-        <a href="/employeeService">Retour</a>
+        <a class="link_back_btn" href="javascript:history.back()">Retour</a>
     </div>
-    <div id="container_update_service">
+    <div class="container_update_service">
         <?= $serviceForm; ?>
     </div>
 
-</main>
+</div>

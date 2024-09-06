@@ -1,7 +1,7 @@
 <div class="main_admin_update_user">
 
     <div class="admin_update_user_link_back">
-        <a href="/adminUser" >Retour</a>
+        <a class="link_back_btn" href="javascript:history.back()" >Retour</a>
     </div>
     <div class="container_update_user">
         <?= $userForm; ?>

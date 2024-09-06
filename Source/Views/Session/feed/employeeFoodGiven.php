@@ -1,14 +1,13 @@
-<main>
+<div class="main_food_given_employee">
 
-  <div>
+  <div class="div_form_food_given_employee">
     <?= $filterForm; ?>
   </div>
 
-  <div>
-    <p>Liste des repas donnée aux animaux</p>
+  <div class="all_food_given_employee">
     <?php if ($allFoodGiven) : ?>
       <?php foreach ($allFoodGiven as $foodGiven) : ?>
-        <div>
+        <div class="one_food_given_employee">
           <p>L'animal nourrie : <?= $foodGiven->animal->breed; ?></p>
           <p>Date du repas : <?= $foodGiven->day; ?></p>
           <p>Heure du repas : <?= $foodGiven->hour; ?></p>
@@ -19,4 +18,4 @@
       <?php endforeach; ?>
     <?php endif; ?>
   </div>
-</main>
+</div>

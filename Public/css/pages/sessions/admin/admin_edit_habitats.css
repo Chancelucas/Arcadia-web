@@ -105,24 +105,6 @@
   bottom: 10px;
 }
 
-.habitat-btn-admin {
-  margin: 0px 10px 0px 10px;
-  text-decoration: none;
-  border: none;
-  color: var(--white);
-  background-color: var(--normal);
-  border-radius: 5px;
-  padding: 0px 5px 0px 5px;
-}
-
-.delete-habitat-btn-admin {
-  background-color: var(--red);
-  border: none;
-  color: var(--white);
-  padding: 10px 5px 10px 5px;
-  border-radius: 5px;
-}
-
 /* Image */
 .image-habitat-view-admin {
   grid-column: 1/2;
@@ -197,23 +179,6 @@
     position: absolute;
   }
 
-  .habitat-btn-admin {
-    margin: 0px 10px 0px 10px;
-    text-decoration: none;
-    border: none;
-    color: var(--white);
-    background-color: var(--normal);
-    border-radius: 5px;
-    padding: 0px 5px 0px 5px;
-  }
-
-  .delete-habitat-btn-admin {
-    background-color: var(--red);
-    border: none;
-    color: var(--white);
-    padding: 10px 5px 10px 5px;
-    border-radius: 5px;
-  }
 
   /* Image */
   .image-habitat-view-admin {

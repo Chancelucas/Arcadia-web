@@ -4,10 +4,8 @@ namespace Source\Controllers;
 
 use Lib\config\Form;
 use Source\Controllers\VetController;
-use Source\Models\animal\AnimalModel;
 use Source\Models\habitat\HabitatModel;
 use Source\Models\report\AssessmentModel;
-use Source\Models\report\AnimalReportModel;
 use Source\Models\report\HabitatReportModel;
 
 class VetUpdateReportHabitatController extends VetController
@@ -28,7 +26,9 @@ class VetUpdateReportHabitatController extends VetController
 
     $habitatReportForm = $this->createForm($id, $habitatName, $opinion, $date, $state, $improvement);
 
-    $this->render('habitat/vetUpdateHabitat', ['habitatReportForm' => $habitatReportForm]);
+    $this->render('habitat/vetUpdateHabitat', [
+      'habitatReportForm' => $habitatReportForm
+    ]);
   }
 
   /**
@@ -41,23 +41,23 @@ class VetUpdateReportHabitatController extends VetController
 
     $form = new Form;
 
-    $form->startForm('POST', "/vetUpdateReportHabitat/updateReportHabitat/{$idHabitatReport}", ['class' => 'form_update_habitat_vet'])
+    $form->startForm('POST', "/vetUpdateReportHabitat/updateReportHabitat/{$idHabitatReport}", ['class' => 'form_update_report_vet'])
 
-      ->addSelect('habitat', $habitatModelList, ['class' => 'label_update_vet_habitat', 'required' => true, 'value' => $habitatName])
+      ->addSelect('habitat', $habitatModelList, ['class' => 'label_update_report_vet', 'required' => true, 'value' => $habitatName])
 
       ->addLabelFor('state', 'Etat de l\'habitat')
-      ->addSelect('stateId', $stateList, ['class' => 'label_update_vet_habitat', 'required' => true, 'value' => $state])
+      ->addSelect('stateId', $stateList, ['class' => 'label_update_report_vet', 'required' => true, 'value' => $state])
 
       ->addLabelFor('opinion', 'Avis du vétérinaire')
-      ->addSelect('opinionId', $stateList, ['class' => 'label_update_vet_habitat', 'required' => true, 'value' => $opinion])
+      ->addSelect('opinionId', $stateList, ['class' => 'label_update_report_vet', 'required' => true, 'value' => $opinion])
 
       ->addLabelFor('passage_date', 'Date du passage')
-      ->addInput('date', 'passage_date', ['class' => 'label_update_vet_habitat', 'required' => true, 'value' => $date])
+      ->addInput('date', 'passage_date', ['class' => 'label_update_report_vet', 'required' => true, 'value' => $date])
 
       ->addLabelFor('improvement', 'Information complémentaire')
-      ->addTextarea('improvement', $improvement, ['class' => 'label_update_vet_habitat', 'required' => true])
+      ->addTextarea('improvement', $improvement, ['class' => 'label_update_report_vet', 'required' => true])
 
-      ->addBouton('Enregister', ['type' => 'submit', 'value' => 'submit', 'name' => 'save_changes', 'class' => ''])
+      ->addBouton('Enregister', ['type' => 'submit', 'value' => 'submit', 'name' => 'save_changes', 'class' => 'btn'])
 
       ->endForm();
 

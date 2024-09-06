@@ -33,14 +33,49 @@
   border-radius: 50px;
   transition: var(--normal) 0.9s;
   border: none;
-
 }
 
 .btn:hover {
   background-color: var(--normal);
-
 }
 
-.title_page{
+.delete_btn {
+  background-color: var(--red);
+  border: none;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  color: var(--white);
+  cursor: pointer;
+}
+
+.btn_update {
+  background-color: var(--normal);
+  border: none;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  color: var(--white);
+  cursor: pointer;
+}
+
+.link_update {
+  background-color: var(--normal);
+  color: var(--white);
+  border-radius: 5px;
+  padding: 1.5px 15px;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.div_back_btn {
+}
+
+.link_back_btn {
+  color: var(--shadow);
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.title_page {
   padding: 10px 0;
 }

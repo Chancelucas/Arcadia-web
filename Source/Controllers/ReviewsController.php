@@ -15,9 +15,12 @@ class ReviewsController extends Controller
   public function index()
   {
     $formReviews = $this->generateFormReviews();
+    $reviews = $this->getAllValableReview();
+
 
     $this->render('reviews/reviews', [
       'formReviews' => $formReviews,
+      'allReviews' => $reviews,
 
     ]);
   }
@@ -28,18 +31,18 @@ class ReviewsController extends Controller
 
     $form = new Form;
 
-    $form->startForm('POST', 'reviews/createReviews')
+    $form->startForm('POST', 'reviews/createReviews', ['class' => 'form_reviews_page'])
 
-      ->startDiv(['class' => 'div_create_user'])
-      ->addInput('text', 'pseudo', ['id' => 'pseudo', 'placeholder' => 'Nom', 'required' => true])
+      ->startDiv(['class' => 'div_form_reviews_page'])
+      ->addInput('text', 'pseudo', ['id' => 'pseudo', 'placeholder' => 'Nom', 'required' => true, 'class' => 'input_form_reviews_page'])
       ->endDiv()
 
-      ->startDiv(['class' => 'div_create_user'])
-      ->addInput('text', 'review', ['placeholder' => 'Commentaire', 'required' => true])
+      ->startDiv(['class' => 'div_form_reviews_page'])
+      ->addInput('text', 'review', ['placeholder' => 'Commentaire', 'required' => true, 'class' => 'input_form_reviews_page reviews_input'])
       ->endDiv()
 
-      ->startDiv(['class' => 'input_btn_login input_login div_create_user'])
-      ->addBouton('Envoyer', ['type' => 'submit', 'value' => 'submit', 'name' => 'createReviews'])
+      ->startDiv(['class' => 'div_form_reviews_page'])
+      ->addBouton('Envoyer', ['type' => 'submit', 'value' => 'submit', 'name' => 'createReviews', 'class' => 'btn'])
       ->endDiv()
 
       ->endForm();
@@ -83,5 +86,11 @@ class ReviewsController extends Controller
 
     header("Location: /reviews");
     exit;
+  }
+
+  private function getAllValableReview()
+  {
+    $enableReviews = (new ReviewsModel)->findBy(['status' => true]);
+    return $enableReviews;
   }
 }

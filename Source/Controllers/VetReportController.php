@@ -55,22 +55,22 @@ class VetReportController extends VetController
 
     $form = new Form;
 
-    $form->startForm('POST', 'vetReport/createHabitatReport', ['id' => 'form_report_habitat', 'enctype' => 'multipart/form-data'])
+    $form->startForm('POST', 'vetReport/createHabitatReport', ['class' => 'form_create_report_vet', 'enctype' => 'multipart/form-data'])
 
-      ->addInput('date', 'date', ['class' => 'input_report_habitat', 'id' => 'input_report_habitat_date', 'required' => true])
+      ->addInput('date', 'date', ['class' => 'input_create_report_vet', 'required' => true])
 
-      ->addSelect('habitat', $habitats, ['class' => 'input_report_habitat', 'id' => 'input_report_habitat', 'required' => true])
+      ->addSelect('habitat', $habitats, ['class' => 'input_create_report_vet', 'required' => true])
 
-      ->addLabelFor('opinion', 'Avis du vétérinaire')
-      ->addSelect('opinion', $state, ['class' => 'input_report_habitat', 'id' => 'input_report_habitat_opinon', 'required' => true])
+      ->addLabelFor('opinion', 'Avis du vétérinaire', ['class' => 'label_create_report_vet'])
+      ->addSelect('opinion', $state, ['class' => 'input_create_report_vet', 'required' => true])
 
-      ->addLabelFor('state', 'Etat de l\'habitat')
-      ->addSelect('state', $state, ['class' => 'input_report_habitat', 'id' => 'input_report_habitat_state', 'required' => true])
+      ->addLabelFor('state', 'Etat de l\'habitat', ['class' => 'label_create_report_vet'])
+      ->addSelect('state', $state, ['class' => 'input_create_report_vet', 'required' => true])
 
-      ->addLabelFor('improvement', 'Amélioration à apporté')
-      ->addTextarea('improvement', '', ['class' => 'input_report_habitat', 'id' => 'input_report_habitat_improvement', 'required' => true])
+      ->addLabelFor('improvement', 'Amélioration à apporté', ['class' => 'label_create_report_vet'])
+      ->addTextarea('improvement', '', ['class' => 'input_create_report_vet',  'required' => true])
 
-      ->addBouton('Créer', ['type' => 'submit', 'value' => 'submit', 'id' => 'btn_save_report_habitat', 'name' => 'createReportHabitat', 'class' => 'input_report_habitat'])
+      ->addBouton('Créer', ['type' => 'submit', 'value' => 'submit', 'name' => 'createReportHabitat', 'class' => 'btn'])
 
       ->endForm();
 
@@ -154,27 +154,27 @@ class VetReportController extends VetController
 
     $form = new Form;
 
-    $form->startForm('POST', 'vetReport/createAnimalReport', ['id' => 'form_report_animal', 'enctype' => 'multipart/form-data'])
+    $form->startForm('POST', 'vetReport/createAnimalReport', ['class' => 'form_create_report_vet', 'enctype' => 'multipart/form-data'])
 
 
-      ->addSelect('animal', $animals, ['class' => 'input_report_animal', 'id' => '', 'required' => true])
+      ->addSelect('animal', $animals, ['class' => 'input_create_report_vet', 'required' => true])
 
-      ->addLabelFor('state', 'Etat de l\'animal')
-      ->addSelect('state', $state, ['class' => 'input_report_animal', 'id' => 'input_report_animal_state', 'required' => true])
+      ->addLabelFor('state', 'Etat de l\'animal', ['class' => 'label_create_report_vet'])
+      ->addSelect('state', $state, ['class' => 'input_create_report_vet', 'required' => true])
 
-      ->addLabelFor('proposed_food', 'Nourriture proposer')
-      ->addInput('text', 'proposed_food', ['class' => 'input_report_animal', 'id' => 'input_report_animal_food_amount', 'required' => true])
+      ->addLabelFor('proposed_food', 'Nourriture proposer', ['class' => 'label_create_report_vet'])
+      ->addInput('text', 'proposed_food', ['class' => 'input_create_report_vet', 'required' => true])
 
-      ->addLabelFor('food_amount', 'Grammage')
-      ->addInput('text', 'food_amount', ['class' => 'input_report_animal', 'id' => 'input_report_animal_proposed_food', 'required' => true])
+      ->addLabelFor('food_amount', 'Grammage', ['class' => 'label_create_report_vet'])
+      ->addInput('text', 'food_amount', ['class' => 'input_create_report_vet', 'required' => true])
 
-      ->addLabelFor('passage_date', 'Date du passage')
-      ->addInput('date', 'passage_date', ['class' => 'input_report_animal', 'id' => 'input_report_animal_proposed_food', 'required' => true])
+      ->addLabelFor('passage_date', 'Date du passage', ['class' => 'label_create_report_vet'])
+      ->addInput('date', 'passage_date', ['class' => 'input_create_report_vet', 'required' => true])
 
-      ->addLabelFor('state_detail', 'Information complémentaire')
-      ->addTextarea('state_detail', '', ['class' => 'input_report_animal', 'id' => 'input_report_habitat_improvement', 'required' => true])
+      ->addLabelFor('state_detail', 'Information complémentaire', ['class' => 'label_create_report_vet'])
+      ->addTextarea('state_detail', '', ['class' => 'input_create_report_vet', 'required' => true])
 
-      ->addBouton('Créer', ['type' => 'submit', 'value' => 'submit', 'id' => 'btn_save_report_animal', 'name' => 'createReportAnimal', 'class' => 'input_report_animal'])
+      ->addBouton('Créer', ['type' => 'submit', 'value' => 'submit', 'name' => 'createReportAnimal', 'class' => 'btn'])
 
       ->endForm();
 

@@ -1,23 +1,21 @@
-<main id="main_edit_service">
-  <?php foreach ($services as $service) : ?>
+<div class="main_edit_service_admin">
 
-    <div id="container_service_admin">
-      <div id="service_creaded_admin">
-        <div class="item"><?= $service->name; ?></div>
-        <div class="item"><?= $service->description; ?></div>
+  <div class="container_service_admin">
+    <?php foreach ($services as $service) : ?>
 
-        <div id="picture_service_view">
-          <img src="<?= $service->picture; ?>" alt="Photo du service"">
+      <div class="service_creaded_admin">
+        <p class="item_service_admin title_service_admin"><?= $service->name; ?></p>
+        <p class="item_service_admin texte_service_admin"><?= $service->description; ?></p>
+
+        <div class="picture_service_view_admin">
+          <img class="picture_service_admin" src="<?= $service->picture; ?>" alt="Photo du service"">
         </div>
 
-
-          <a href="/employeeUpdateService/index/<?= $service->id_Service ?>" class="link_update_service">Modifier</a>
-
+          <a href=" /employeeUpdateService/index/<?= $service->id_Service ?>" class="link_update">Modifier</a>
         </div>
-
-      </div>
+    <?php endforeach; ?>
     </div>
 
-  <?php endforeach; ?>
+  </div>
 
-</main>
+</div>

@@ -13,7 +13,7 @@
 
       <div class="footer_section contact_section">
         <a href="tel:+33610101010" class="link_footer">
-          <p>+33 6 10 10 10 10</p>
+          <p>+33 (0)6 10 10 10 10</p>
         </a>
       </div>
 
@@ -42,7 +42,7 @@
   </div>
 
   <div class="footer_section copy_right">
-    <p>© Création du site par - Lucas CHANCEL - ECF STUDI Décembre 2024 </p>
+    <p>© Création du site par - <a href="https://github.com/Chancelucas" class="link_copyright">Lucas CHANCEL</a> - ECF STUDI Décembre 2024 </p>
   </div>
 
 

@@ -1,10 +1,9 @@
-<main id="main_update_habitat_vet">
+<div class="main_update_report_vet">
 
-    <div>
-        <a href="/vetHabitat">Retour</a>
-    </div>
-    <div id="container_form_update_habitat_vet">
+    <a class="link_back_btn" href="javascript:history.back()">Retour</a>
+
+    <div class="container_form_update_report_vet">
         <?= $habitatReportForm; ?>
     </div>
 
-</main>
+</div>

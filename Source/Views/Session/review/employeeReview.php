@@ -1,20 +1,19 @@
-<main>
-  <h3>Avis des clients</h3>
+<div class="main_review_employee">
+  <h3 class="title_review_employee">Avis des clients</h3>
 
-  <div>
-
+  <div class="container_all_review_employee">
     <?php foreach ($allReviews as $reviews) : ?>
-
       <?php $label = $reviews->status == 1 ? "Désactiver" : "Activer" ?>
-
-      <div><?= $reviews->pseudo ?></div>
-      <div><?= $reviews->review ?></div>
-
-      <form method="POST" action="employeeReview/toggleStatus/<?= $reviews->id ?>">
-        <button type="submit" name="toggleStatusReviews"><?= $label; ?></button>
-      </form>
+      <div class="one_review_employee">
+        <p class="text_review_employee"><?= $reviews->pseudo ?></p>
+        <p class="text_review_employee"><?= $reviews->review ?></p>
+        <form method="POST" action="employeeReview/toggleStatus/<?= $reviews->id ?>">
+          <button class="btn_reviews_employee" type="submit" name="toggleStatusReviews"><?= $label; ?></button>
+        </form>
+      </div>
 
     <?php endforeach; ?>
-
   </div>
-</main>
+</div>
+
+<!-- <script src="/js/pages/sessions/employee/btn_active_reviews.js"></script> -->

@@ -174,23 +174,7 @@
     margin: 0px 5px 0px 5px;
 }
 
-.edit-user-btn {
-    background-color: var(--normal);
-    border: none;
-    padding: 5px 10px 5px 10px;
-    border-radius: 5px;
-    color: var(--white);
-    cursor: pointer;
-}
 
-.delete-user-btn {
-    background-color: var(--red);
-    border: none;
-    padding: 5px 10px 5px 10px;
-    border-radius: 5px;
-    color: var(--white);
-    cursor: pointer;
-}
 
 @media screen and (min-width: 769px) {
     .user-created-admin {

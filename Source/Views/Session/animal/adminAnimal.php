@@ -17,9 +17,9 @@
 
         <div class="btn_gestion_animal">
           <form method="POST" action="adminAnimal/deleteAnimal/<?= $animal->id_Animal ?>">
-            <button type="submit" class="delete-animal-btn-admin" name="deleteAnimal">Supprimer</button>
+            <button type="submit" class="delete_btn" name="deleteAnimal">Supprimer</button>
           </form>
-          <a href="/adminUpdateAnimal/index/<?= $animal->id_Animal ?>" class="link_update_animal_admin">Modifier</a>
+          <a href="/adminUpdateAnimal/index/<?= $animal->id_Animal ?>" class="link_update">Modifier</a>
         </div>
       </div>
     <?php endforeach; ?>

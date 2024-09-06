@@ -47,3 +47,9 @@
   font-size: 10px;
   margin-top: 10px;
 }
+
+.link_copyright{
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}

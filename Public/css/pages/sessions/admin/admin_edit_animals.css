@@ -121,25 +121,6 @@
   margin: 10px 0;
 }
 
-.delete-animal-btn-admin {
-  background-color: var(--red);
-  border: none;
-  color: var(--white);
-  border-radius: 5px;
-  padding: 7px 11px;
-
-}
-
-.link_update_animal_admin {
-  background-color: var(--shadow);
-  color: var(--white);
-  border-radius: 5px;
-  padding: 1.5px 15px;
-  text-decoration: none;
-  font-size: 15px;
-}
-
-
 @media screen and (min-width: 769px) {
 
   .container_animal_admin {

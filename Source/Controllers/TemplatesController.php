@@ -16,11 +16,9 @@ class TemplatesController extends Controller
 
   public function PageLegalNotices()
   {
-    $show = $this->show();
 
     $this->render('templates/legal_notices', [
-      'show' => $show
-    
+  
     ]);
   }
 
@@ -31,10 +29,6 @@ class TemplatesController extends Controller
     ]);
   }
 
-  function show()
-  {
-    echo "Hello world";
-  }
 
 
 }

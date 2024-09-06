@@ -34,20 +34,20 @@ class EmployeeUpdateServiceController extends EmployeeController
 
     $form = new Form;
 
-    $form->startForm('POST', "/employeeUpdateService/updateService/{$serviceId}", ['id' => 'form_update_service'])
+    $form->startForm('POST', "/employeeUpdateService/updateService/{$serviceId}", ['class' => 'form_update_service_admin'])
 
-      ->startDiv(['class' => 'div_form_update_service'])
+      ->startDiv(['class' => 'div_form_update_service_admin'])
       ->addLabelFor('name', 'Nom :')
-      ->addInput('text', 'name', ['id' => 'name', 'class' => 'input_class_update_service', 'value' => $name, 'required' => true])
+      ->addInput('text', 'name', ['id' => 'name', 'class' => 'input_class_update_service_admin', 'value' => $name, 'required' => true])
       ->endDiv()
 
-      ->startDiv(['class' => 'div_form_update_service'])
+      ->startDiv(['class' => 'div_form_update_service_admin'])
       ->addLabelFor('description', 'description :')
-      ->addTextarea('description', $description, ['id' => 'description', 'class' => 'input_class_update_service', 'required' => true])
+      ->addTextarea('description', $description, ['id' => 'description', 'class' => 'input_update_service_admin input_class_update_service_admin', 'required' => true])
       ->endDiv()
 
-      ->startDiv(['id' => 'div_id_update_service', 'class' => 'div_class_update_service'])
-      ->addBouton('Enregistrer', ['type' => 'submit', 'name' => 'save_changes', 'id' => 'btn_update_service'])
+      ->startDiv(['class' => 'div_form_update_service_admin div_btns_update_service_admin'])
+      ->addBouton('Enregistrer', ['type' => 'submit', 'name' => 'save_changes', 'id' => 'btn btn_update_service'])
       ->endDiv()
 
       ->endForm();

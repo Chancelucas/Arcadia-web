@@ -1,7 +1,7 @@
 <div class="main_update_habitat_admin">
 
     <div>
-        <a href="/adminHabitat">Retour</a>
+        <a class="link_back_btn" href="javascript:history.back()">Retour</a>
     </div>
     <div class="container_update_habitat_admin">
         <?= $habitatForm; ?>

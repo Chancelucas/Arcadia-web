@@ -1,10 +1,8 @@
-<main>
+<div class="main_update_report_vet">
 
-    <div>
-        <a href="/vetAnimal">Retour</a>
-    </div>
-    <div>
+    <a class="link_back_btn" href="javascript:history.back()">Retour</a>
+    <div class="container_form_update_report_vet">
         <?= $animalReportForm; ?>
     </div>
 
-</main>
+</div>

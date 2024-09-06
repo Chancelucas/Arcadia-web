@@ -23,18 +23,18 @@ class EmployeeFoodGivenController extends EmployeeController
   {
     $form = new Form();
 
-    $form->startForm('POST')
+    $form->startForm('POST', '' ,['class' => 'form_food_given_employee'])
 
       ->addLabelFor('employee', 'Employé')
-      ->addSelect('employee', $this->getAllUsername(), ['value' => $_POST['employee'] ?? null])
+      ->addSelect('employee', $this->getAllUsername(), ['value' => $_POST['employee'] ?? null, 'class' => 'select_food_given' ])
 
       ->addLabelFor('date', 'Date du repas')
-      ->addSelect('date', $this->getAllDates(), ['value' => $_POST['date'] ?? null])
+      ->addSelect('date', $this->getAllDates(), ['value' => $_POST['date'] ?? null, 'class' => 'select_food_given'])
 
       ->addLabelFor('animal', 'Animal nourri')
-      ->addSelect('animal', $this->getAllAnimalBreeds(), ['value' => $_POST['animal'] ?? null])
+      ->addSelect('animal', $this->getAllAnimalBreeds(), ['value' => $_POST['animal'] ?? null, 'class' => 'select_food_given'])
 
-      ->addBouton('Rechercher', ['type' => 'submit', 'value' => 'search', 'name' => 'createGivenFood'])
+      ->addBouton('Rechercher', ['type' => 'submit', 'value' => 'search', 'name' => 'createGivenFood', 'class' => 'btn'])
 
       ->endForm();
 

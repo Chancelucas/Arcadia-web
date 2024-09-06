@@ -21,10 +21,10 @@
         <div class="user-item role"><?= $u->role; ?></div>
         <div class="btn-gestion-user">
           <form method="POST" action="adminUser/deleteUser/<?= $u->id_User ?>">
-            <button type="submit" class="delete-user-btn" name="deleteUser">Supprimer</button>
+            <button type="submit" class="delete_btn" name="deleteUser">Supprimer</button>
           </form>
           <form method="POST" action="/adminUpdateUser">
-            <button type="submit" class="edit-user-btn" name="updateUser">Modifier</button>
+            <button type="submit" class="btn_update" name="updateUser">Modifier</button>
             <input type="hidden" name="id_user" value="<?= $u->id_User ?>">
           </form>
         </div>

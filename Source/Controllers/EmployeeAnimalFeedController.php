@@ -39,11 +39,11 @@ class EmployeeAnimalFeedController extends EmployeeController
 
     $form = new Form;
 
-    $form->startForm('POST', 'employeeAnimalFeed', ['id' => 'form_report_habitat', 'enctype' => 'multipart/form-data'])
+    $form->startForm('POST', 'employeeAnimalFeed', ['enctype' => 'multipart/form-data', 'class' => 'form_animal_feed'])
 
-      ->addSelect('animal', $animal, ['class' => 'select_animal', 'id' => '', 'required' => true])
+      ->addSelect('animal', $animal, ['class' => 'select_animal_feed', 'required' => true])
 
-      ->addBouton('Rechercher', ['type' => 'submit', 'value' => 'search', 'id' => 'btn_search_animal_report', 'name' => '', 'class' => ''])
+      ->addBouton('Rechercher', ['type' => 'submit', 'value' => 'search', 'name' => '', 'class' => 'btn'])
 
       ->endForm();
 
@@ -105,25 +105,25 @@ class EmployeeAnimalFeedController extends EmployeeController
 
       $form = new Form;
 
-      $form->startForm('POST', "/employeeAnimalFeed/createGivenFood", ['id' => 'form_report_habitat', 'enctype' => 'multipart/form-data'])
+      $form->startForm('POST', "/employeeAnimalFeed/createGivenFood", ['class' => 'form_food_given', 'enctype' => 'multipart/form-data'])
 
         ->addLabelFor('for', 'A remplir par l\'employer : ')
 
         ->addLabelFor('date', 'Date du repas : ')
-        ->addInput('date', 'date', ['class' => '', 'id' => '', 'required' => true])
+        ->addInput('date', 'date', ['class' => '', 'required' => true])
 
         ->addLabelFor('hour', 'Heure du repas : ')
-        ->addInput('time', 'hour', ['class' => '', 'id' => '', 'required' => true])
+        ->addInput('time', 'hour', ['class' => '', 'required' => true])
 
         ->addLabelFor('food', 'Nourriture donnée : ')
-        ->addInput('text', 'food', ['class' => '', 'id' => '', 'required' => true])
+        ->addInput('text', 'food', ['class' => '', 'required' => true])
 
         ->addLabelFor('quantity', 'Quantité donnée (en gramme) : ')
-        ->addInput('text', 'quantity', ['class' => '', 'id' => '', 'required' => true])
+        ->addInput('text', 'quantity', ['class' => '', 'required' => true])
 
         ->addInput('hidden', 'animal', ['value' => $_POST['animal']])
 
-        ->addBouton('Crée', ['type' => 'submit', 'value' => 'submit', 'id' => '', 'name' => 'createGivenFood', 'class' => ''])
+        ->addBouton('Crée', ['type' => 'submit', 'value' => 'submit', 'name' => 'createGivenFood', 'class' => ''])
 
         ->endForm();
 

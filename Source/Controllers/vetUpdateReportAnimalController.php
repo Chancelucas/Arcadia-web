@@ -41,26 +41,26 @@ class VetUpdateReportAnimalController extends VetController
 
     $form = new Form;
 
-    $form->startForm('POST', "/vetUpdateReportAnimal/updateReportAnimal/{$idAnimalReport}", ['id' => '', 'enctype' => 'multipart/form-data'])
+    $form->startForm('POST', "/vetUpdateReportAnimal/updateReportAnimal/{$idAnimalReport}", ['class' => 'form_update_report_vet', 'enctype' => 'multipart/form-data'])
 
-      ->addSelect('animal', $breedModel, ['class' => '', 'id' => '', 'required' => true, 'value' => $breed])
+      ->addSelect('animal', $breedModel, ['class' => 'label_update_report_vet', 'required' => true, 'value' => $breed])
 
       ->addLabelFor('state', 'Etat de l\'animal')
-      ->addSelect('stateId', $state, ['class' => '', 'id' => '', 'required' => true, 'value' => $state])
+      ->addSelect('stateId', $state, ['class' => 'label_update_report_vet', 'required' => true, 'value' => $state])
 
       ->addLabelFor('proposed_food', 'Nourriture proposer')
-      ->addInput('text', 'proposed_food', ['class' => '', 'id' => '', 'required' => true, 'value' => $proposedFood])
+      ->addInput('text', 'proposed_food', ['class' => 'label_update_report_vet', 'required' => true, 'value' => $proposedFood])
 
       ->addLabelFor('food_amount', 'Grammage')
-      ->addInput('text', 'food_amount', ['class' => '', 'id' => '', 'required' => true, 'value' => $foodAmount])
+      ->addInput('text', 'food_amount', ['class' => 'label_update_report_vet','required' => true, 'value' => $foodAmount])
 
       ->addLabelFor('passage_date', 'Date du passage')
-      ->addInput('date', 'passage_date', ['class' => '', 'id' => '', 'required' => true, 'value' => $passageDate])
+      ->addInput('date', 'passage_date', ['class' => 'label_update_report_vet', 'required' => true, 'value' => $passageDate])
 
       ->addLabelFor('state_detail', 'Information complémentaire')
-      ->addTextarea('state_detail', $stateDetail, ['class' => '', 'id' => '', 'required' => true])
+      ->addTextarea('state_detail', $stateDetail, ['class' => 'label_update_report_vet', 'required' => true])
 
-      ->addBouton('Enregister', ['type' => 'submit', 'value' => 'submit', 'id' => '', 'name' => 'save_changes', 'class' => ''])
+      ->addBouton('Enregister', ['type' => 'submit', 'value' => 'submit', 'name' => 'save_changes', 'class' => 'btn'])
 
       ->endForm();
 
