@@ -188,4 +188,28 @@ class FilterModel extends MainModel
       return $user->role === $selectedRole;
     });
   }
+
+  /////////////////// Filtre for last field  ////////////////////
+
+  public function getLastElementByField(array $items, string $field, bool $descending = true)
+  {
+    if (empty($items)) {
+      return null;
+    }
+
+    // Tri des objets en fonction du champ donné
+    usort($items, function ($a, $b) use ($field, $descending) {
+      if (!property_exists($a, $field) || !property_exists($b, $field)) {
+        return 0; // Si le champ n'existe pas, ne pas changer l'ordre
+      }
+
+      $result = strtotime($a->$field) - strtotime($b->$field);
+
+      // Retourne l'ordre selon l'option de tri
+      return $descending ? -$result : $result;
+    });
+
+    // Retourner le premier élément après le tri (le plus récent ou le plus ancien selon le cas)
+    return $items[0];
+  }
 }

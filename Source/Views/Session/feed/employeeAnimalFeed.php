@@ -4,25 +4,39 @@
     <?= $selectAnimalForm; ?>
   </div>
 
-  <div class="">
-    <p>Comptes rendu sur : <?= $animalsBreed ?></p>
+  <div class="div_report_vet_employee">
     <?php if ($reportAnimal) : ?>
       <?php foreach ($reportAnimal as $report) : ?>
-        <div class="">
-          <p>Date du rapport : <?= $report->passage_date; ?></p>
-          <p>Aliment à donné : <?= $report->proposed_food; ?></p>
-          <p>Quantité à donnée en gramme : <?= $report->food_amount; ?></p>
-          <p>Note du vétérinaire : <?= $report->state_detail; ?></p>
-
+        <div class="one_report_vet_employee">
+          <div class="one_container_report_employee">
+            <p class="label_report_employee">Comptes rendu sur : </p>
+            <p class="input_report_employee"><?= $animalsBreed ?></p>
+          </div>
+          <div class="one_container_report_employee">
+            <p class="label_report_employee">Date du rapport : </p>
+            <p class="input_report_employee"><?= $report->passage_date; ?></p>
+          </div>
+          <div class="one_container_report_employee">
+            <p class="label_report_employee">Aliment à donné : </p>
+            <p class="input_report_employee"><?= $report->proposed_food; ?></p>
+          </div>
+          <div class="one_container_report_employee">
+            <p class="label_report_employee">Quantité à donnée en gramme : </p>
+            <p class="input_report_employee"><?= $report->food_amount; ?></p>
+          </div>
+          <div class="one_container_report_employee">
+            <p class="label_report_employee">Note du vétérinaire : </p>
+            <p class="input_report_employee"><?= $report->state_detail; ?></p>
+          </div>
         </div>
       <?php endforeach; ?>
-    <?php else : ?>
-      <p>Aucun rapport trouvé pour cet animal.</p>
     <?php endif; ?>
   </div>
+</div>
 
-  <div>
-    <?= $givenFoodForm; ?>
-  </div>
+
+<div class="div_given_food_animal_feed_page">
+  <?= $givenFoodForm; ?>
+</div>
 
 </div>

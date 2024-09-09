@@ -90,18 +90,7 @@ class AdminHourController extends AdminController
   private function getAllHours()
   {
     $model = new HourModel;
-    $hoursModel = $model->getAll();
-
-    $allHours = [];
-    foreach ($hoursModel as $hourModel) {
-      $hour = new \stdClass();
-      $hour->id_Hour = $hourModel->getId();
-      $hour->day = $hourModel->getDay();
-      $hour->opening_time = $hourModel->getOpeningTime();
-      $hour->closing_time = $hourModel->getClosingTime();
-
-      $allHours[] = $hour;
-    }
+    $allHours = $model->getAllHours();
 
     return $allHours;
   }

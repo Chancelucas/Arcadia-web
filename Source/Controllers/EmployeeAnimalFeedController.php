@@ -106,23 +106,23 @@ class EmployeeAnimalFeedController extends EmployeeController
 
       $form->startForm('POST', "/employeeAnimalFeed/createGivenFood", ['class' => 'form_food_given', 'enctype' => 'multipart/form-data'])
 
-        ->addLabelFor('for', 'A remplir par l\'employer : ')
+        ->addLabelFor('for', 'A remplir par l\'employer', ['class' => 'label_good_given title_form_given_food'])
 
-        ->addLabelFor('date', 'Date du repas : ')
-        ->addInput('date', 'date', ['class' => '', 'required' => true])
+        ->addLabelFor('date', 'Date du repas : ', ['class' => 'label_good_given'])
+        ->addInput('date', 'date', ['class' => 'input_food_given', 'required' => true])
 
-        ->addLabelFor('hour', 'Heure du repas : ')
-        ->addInput('time', 'hour', ['class' => '', 'required' => true])
+        ->addLabelFor('hour', 'Heure du repas : ', ['class' => 'label_good_given'])
+        ->addInput('time', 'hour', ['class' => 'input_food_given', 'required' => true])
 
-        ->addLabelFor('food', 'Nourriture donnée : ')
-        ->addInput('text', 'food', ['class' => '', 'required' => true])
+        ->addLabelFor('food', 'Nourriture donnée : ', ['class' => 'label_good_given'])
+        ->addInput('text', 'food', ['class' => 'input_food_given', 'required' => true])
 
-        ->addLabelFor('quantity', 'Quantité donnée (en gramme) : ')
-        ->addInput('text', 'quantity', ['class' => '', 'required' => true])
+        ->addLabelFor('quantity', 'Quantité donnée (en gramme) : ', ['class' => 'label_good_given'])
+        ->addInput('text', 'quantity', ['class' => 'input_food_given', 'required' => true])
 
         ->addInput('hidden', 'animal', ['value' => $_POST['animal']])
 
-        ->addBouton('Crée', ['type' => 'submit', 'value' => 'submit', 'name' => 'createGivenFood', 'class' => ''])
+        ->addBouton('Crée', ['type' => 'submit', 'value' => 'submit', 'name' => 'createGivenFood', 'class' => 'btn'])
 
         ->endForm();
 

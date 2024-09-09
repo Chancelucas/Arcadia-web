@@ -176,6 +176,31 @@ class FoodGivenModel extends MainModel
     return $allFoodGiven;
   }
 
+  public function findByAnimalId(string $id_animal)
+{
+    $query = "SELECT * FROM {$this->table} WHERE id_animal = :id_animal";
+    $data = $this->request($query, [':id_animal' => $id_animal])->fetchAll();
+
+    if ($data === false) {
+        return [];
+    }
+
+    $models = [];
+    foreach ($data as $item) {
+        $self = new self();
+        $self->hydrate($item);
+        $models[] = $self;
+    }
+
+    return $models;
+}
+
+public function getFoodGivenByAnimalId($animalId)
+  {
+    $result =  $this->request("SELECT * FROM foodGiven WHERE id_animal = :id_animal", [':id_animal' => $animalId])->fetchAll();
+    return $result;
+  }
+
 
   /////////////////// GETTER and SETTER /////////////////////
 

@@ -74,6 +74,27 @@ class HourModel extends MainModel
     return $this->request($sql, $values);
   }
 
+   /**
+   * Get all hour  
+   */
+  public function getAllHours()
+  {
+    $hoursModel = $this->getAll();
+
+    $allHours = [];
+    foreach ($hoursModel as $hourModel) {
+      $hour = new \stdClass();
+      $hour->id_Hour = $hourModel->getId();
+      $hour->day = $hourModel->getDay();
+      $hour->opening_time = $hourModel->getOpeningTime();
+      $hour->closing_time = $hourModel->getClosingTime();
+
+      $allHours[] = $hour;
+    }
+
+    return $allHours;
+  }
+
 
   /////////////////// GETTER and SETTER /////////////////////
 

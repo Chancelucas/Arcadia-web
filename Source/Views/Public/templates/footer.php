@@ -7,9 +7,11 @@
 
   <div class="bloc_container_infos">
     <span class="bloc_containe_text_footer">
+
       <div class="footer_section horaire_section">
-        <p>Horraire</p>
+        <a href="/hour" class="link_footer">Horraire</a>
       </div>
+
 
       <div class="footer_section contact_section">
         <a href="tel:+33610101010" class="link_footer">
@@ -42,6 +44,6 @@
   </div>
 
   <div class="footer_section copy_right">
-    <p>© Création du site par - <a href="https://github.com/Chancelucas" class="link_copyright">Lucas CHANCEL</a> - ECF STUDI Décembre 2024 </p>
+    <p>© Création du site par - <a href="https://github.com/Chancelucas" class="link_copyright">Lucas CHANCEL</a> - ECF STUDI AVRIL 2025 </p>
   </div>
 </div>
