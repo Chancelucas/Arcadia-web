@@ -9,7 +9,7 @@ Bienvenue sur le projet fuctif **Arcadia**, une application web pour le zoo Arca
 - [Configuration](#configuration)
 - [Utilisation](#utilisation)
 - [Fonctionnalités](#fonctionnalités)
-- [Contribuer](#contribuer)
+- [Lien du site](#Arcadia)
 
 ## Prérequis
 
@@ -78,3 +78,7 @@ Vous pouvez maintenant naviguer dans l'application pour explorer les fonctionnal
 - Système de gestion des avis des visiteurs.
 - Espace administrateur pour la gestion des comptes et des contenus.
 - Espaces dédiés pour les employés et les vétérinaires.
+
+## Arcadia
+
+Lien du site : 
