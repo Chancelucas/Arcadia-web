@@ -30,7 +30,7 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur 
 - [MySQL](https://dev.mysql.com/downloads/) 
 - Un serveur web comme [Apache](https://httpd.apache.org/download.cgi) ou [Nginx](https://nginx.org/en/download.html)
 - [Git](https://git-scm.com/downloads)
-- [MongoDB](https://www.mongodb.com/products/platform/atlas-database) MongoDB Atlas
+- [MongoDB Atlas](https://www.mongodb.com/products/platform/atlas-database)
 
 ## Installation
 
