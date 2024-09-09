@@ -1,6 +1,17 @@
-# Arcadia Web
+# Arcadia Web App
 
-Bienvenue sur le projet fuctif **Arcadia**, une application web pour le zoo Arcadia située en Bretagne, en France. Ce projet vise à offrir une plateforme permettant aux visiteurs de visualiser les animaux, leurs états, les services disponibles et les horaires du zoo. 
+Arcadia Web est un projet fictif de développement d'application web pour le zoo Arcadia, situé en Bretagne, près de la forêt de Brocéliande en France. Ce projet a été créé dans le cadre d'un exercice d'apprentissage pour valider toutes les compétences requises pour le titre professionnel de Développeur Web et Web Mobile.
+
+#### Contraintes et Besoins
+En plus de devoir intégrer toutes les compétences du titre professionnel de développeur, ce projet est soumis à plusieurs contraintes spécifiques :
+
+- Respect des valeurs écologiques : Le design de l'application doit évoquer l'écologie, en reflétant l'indépendance énergétique du zoo.
+- Structure et contenu de l'application : L'application doit inclure des pages spécifiques pour la présentation des animaux, des habitats, des services, des avis des visiteurs, et des espaces réservés aux administrateurs, employés et vétérinaires.
+- Gestion des utilisateurs et permissions : L'application doit gérer différents types d'utilisateurs (administrateur, employé, vétérinaire) avec des niveaux d'accès et des fonctionnalités spécifiques pour chaque rôle.
+- Base de données relationnelle et NoSQL : Les données doivent être stockées de manière hybride, en utilisant des bases de données SQL pour les données structurées et NoSQL pour les statistiques et les consultations.
+- Statistiques et tableau de bord : L'application doit permettre au directeur José de visualiser les consultations des animaux via un tableau de bord administrateur.
+- Déploiement et documentation : Le projet doit être déployé de manière fonctionnelle et être entièrement documenté.
+
 
 ## Table des matières
 
