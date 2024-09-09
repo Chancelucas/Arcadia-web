@@ -27,17 +27,18 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur 
 
    Ouvrez votre terminal et exécutez la commande suivante :
 
-   ```bash
+   ```
    git clone https://github.com/Chancelucas/Arcadia-web.git
    cd Arcadia-web
-Démarrez le serveur local :
+   ```
+   
+2. **Démarrez le serveur local :**
 
 Assurez-vous que votre serveur web (Apache ou Nginx) est correctement configuré pour pointer vers le dossier du projet cloné. Vous pouvez également utiliser le serveur de développement PHP intégré :
 
-bash
-Copier le code
-php -S localhost:8000
-Créer et Configurer la Base de Données :
+```php -S localhost:8000```
+
+3. Créer et Configurer la Base de Données :
 
 Créez une nouvelle base de données MySQL et MongoDB.
 Importez le fichier SQL fourni dans le dépôt (database/arcadia.sql) pour créer les tables nécessaires.
@@ -54,11 +55,13 @@ Modifiez le fichier config.php à la racine du projet pour configurer les param�
 
 php
 Copier le code
+```
 <?php
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'arcadia_database');
 define('DB_USER', 'username');
 define('DB_PASS', 'password');
+```
 Remplacez arcadia_database, username et password par vos informations.
 
 Utilisation
