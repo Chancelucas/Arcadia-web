@@ -20,23 +20,23 @@ class VetUpdateReportAnimalController extends VetController
     $animalReport = $animalReportModel->findOneById($id);
 
     $breed = $animalReport->getAnimalBreed();
+    $state = $animalReport->getState();
     $proposedFood = $animalReport->getProposedFood();
     $foodAmount = $animalReport->getFoodAmount();
     $passageDate = $animalReport->getPassageDate();
     $stateDetail = $animalReport->getStateDetail();
 
-    $animalReportForm = $this->createForm($id, $breed, $proposedFood, $foodAmount, $passageDate, $stateDetail);
+    $animalReportForm = $this->createForm($id, $breed, $state, $proposedFood, $foodAmount, $passageDate, $stateDetail);
 
     $this->render('animal/vetUpdateAnimal', ['animalReportForm' => $animalReportForm]);
   }
-  
+
   /**
    * Generate update user form
    */
-  public function createForm($idAnimalReport, $breed, $proposedFood, $foodAmount, $passageDate, $stateDetail)
+  public function createForm($idAnimalReport, $breed, $state, $proposedFood, $foodAmount, $passageDate, $stateDetail)
   {
-
-    $state = (new AssessmentModel)->getAllNameState();
+    $stateModel = (new AssessmentModel)->getAllNameState();
     $breedModel = (new AnimalModel)->getAllBreedAnimals();
 
     $form = new Form;
@@ -46,13 +46,13 @@ class VetUpdateReportAnimalController extends VetController
       ->addSelect('animal', $breedModel, ['class' => 'label_update_report_vet', 'required' => true, 'value' => $breed])
 
       ->addLabelFor('state', 'Etat de l\'animal')
-      ->addSelect('stateId', $state, ['class' => 'label_update_report_vet', 'required' => true, 'value' => $state])
+      ->addSelect('stateId', $stateModel, ['class' => 'label_update_report_vet', 'required' => true, 'value' => $state])
 
       ->addLabelFor('proposed_food', 'Nourriture proposer')
       ->addInput('text', 'proposed_food', ['class' => 'label_update_report_vet', 'required' => true, 'value' => $proposedFood])
 
       ->addLabelFor('food_amount', 'Grammage')
-      ->addInput('text', 'food_amount', ['class' => 'label_update_report_vet','required' => true, 'value' => $foodAmount])
+      ->addInput('text', 'food_amount', ['class' => 'label_update_report_vet', 'required' => true, 'value' => $foodAmount])
 
       ->addLabelFor('passage_date', 'Date du passage')
       ->addInput('date', 'passage_date', ['class' => 'label_update_report_vet', 'required' => true, 'value' => $passageDate])

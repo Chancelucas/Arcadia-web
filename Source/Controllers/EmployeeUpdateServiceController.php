@@ -47,7 +47,7 @@ class EmployeeUpdateServiceController extends EmployeeController
       ->endDiv()
 
       ->startDiv(['class' => 'div_form_update_service_admin div_btns_update_service_admin'])
-      ->addBouton('Enregistrer', ['type' => 'submit', 'name' => 'save_changes', 'id' => 'btn btn_update_service'])
+      ->addBouton('Enregistrer', ['type' => 'submit', 'name' => 'save_changes', 'class' => 'btn btn_update_service'])
       ->endDiv()
 
       ->endForm();

@@ -10,7 +10,6 @@ use Source\Models\report\AnimalReportModel;
 
 class EmployeeAnimalFeedController extends EmployeeController
 {
-
   /**
    * Displays WelcomPage
    * 
@@ -18,7 +17,7 @@ class EmployeeAnimalFeedController extends EmployeeController
   public function index()
   {
     $selectAnimalForm = $this->generateCreateSelectAnimalForm();
-    $reportAnimal = $this->showAllReportsAboutOneAnimal();
+    $reportAnimal = $this->showAllReportsAboutOneAnimal(); // AIME PAS
     $animalsBreed = $this->showAnimalBreed();
     $givenFoodForm = $this->generateCreateGivenFoodForm();
 
@@ -39,7 +38,7 @@ class EmployeeAnimalFeedController extends EmployeeController
 
     $form = new Form;
 
-    $form->startForm('POST', 'employeeAnimalFeed', ['enctype' => 'multipart/form-data', 'class' => 'form_animal_feed'])
+    $form->startForm('POST', 'employeeAnimalFeed', ['class' => 'form_animal_feed'])
 
       ->addSelect('animal', $animal, ['class' => 'select_animal_feed', 'required' => true])
 

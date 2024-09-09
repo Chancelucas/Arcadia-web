@@ -117,7 +117,8 @@ class AnimalReportModel extends MainModel
 
   public function getReportsByAnimalId($animalId)
   {
-    return $this->request("SELECT * FROM AnimalReport WHERE id_animal = ?", [$animalId])->fetchAll();
+    $result =  $this->request("SELECT * FROM AnimalReport WHERE id_animal = :id_animal", [':id_animal' => $animalId])->fetchAll();
+    return $result;
   }
 
 

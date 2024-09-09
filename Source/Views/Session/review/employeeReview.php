@@ -4,11 +4,12 @@
   <div class="container_all_review_employee">
     <?php foreach ($allReviews as $reviews) : ?>
       <?php $label = $reviews->status == 1 ? "Désactiver" : "Activer" ?>
+      <?php $stylebtn = $reviews->status == 1 ? "delete_btn" : "btn_update" ?>
       <div class="one_review_employee">
         <p class="text_review_employee"><?= $reviews->pseudo ?></p>
         <p class="text_review_employee"><?= $reviews->review ?></p>
         <form method="POST" action="employeeReview/toggleStatus/<?= $reviews->id ?>">
-          <button class="btn_reviews_employee" type="submit" name="toggleStatusReviews"><?= $label; ?></button>
+          <button class="<?= $stylebtn ?>" type="submit" name="toggleStatusReviews"><?= $label; ?></button>
         </form>
       </div>
 

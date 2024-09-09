@@ -52,7 +52,7 @@ CREATE TABLE `HabitatReport` (
     `id` INT PRIMARY KEY AUTO_INCREMENT,
     `opinion` int,
     `state` int,
-    `improvement` VARCHAR(255),
+    `improvement` TEXT,
     `date` DATE,
     `id_habitat` INT,
     FOREIGN KEY (`id_habitat`) REFERENCES `Habitat`(`id`),

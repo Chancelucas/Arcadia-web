@@ -70,32 +70,50 @@ class VetUpdateReportHabitatController extends VetController
   public function updateReportHabitat(int $idHabitatReport)
   {
     if (isset($_POST['save_changes'])) {
-      $habitat = $_POST['habitat'];
-      $state = $_POST['stateId'];
-      $opinion = $_POST['opinionId'];
-      $date = $_POST['passage_date'];
-      $improvement = $_POST['improvement'];
+      // $habitat = $_POST['habitat'];
+      // $state = $_POST['stateId'];
+      // $opinion = $_POST['opinionId'];
+      // $date = $_POST['passage_date'];
+      // $improvement = $_POST['improvement'];
+      $habitat = filter_input(INPUT_POST, 'habitat', FILTER_SANITIZE_NUMBER_INT);
+      $state = filter_input(INPUT_POST, 'stateId', FILTER_SANITIZE_NUMBER_INT);
+      $opinion = filter_input(INPUT_POST, 'opinionId', FILTER_SANITIZE_NUMBER_INT);
+      $date = htmlspecialchars(strip_tags($_POST['passage_date']), ENT_QUOTES, 'UTF-8');
+      $improvement = htmlspecialchars(strip_tags($_POST['improvement']), ENT_QUOTES, 'UTF-8');
 
-      $habitatReportModel = new HabitatReportModel;
-      $habitatReportModel->findOneById($idHabitatReport);
+      $dateFormatValid = preg_match('/^\d{4}-\d{2}-\d{2}$/', $date); // AAAA-MM-JJ
 
-      $habitatReportModel->setIdHabitat($habitat);
-      $habitatReportModel->setOpinion($opinion);
-      $habitatReportModel->setState($state);
-      $habitatReportModel->setDate($date);
-      $habitatReportModel->setImprovement($improvement);
+      // var_dump();
+      // die;
 
-      $updateResult = $habitatReportModel->update();
+      if (
+        $habitat && $state && $opinion && $date && $improvement &&
+        strlen($improvement) <= 255 &&
+        $dateFormatValid
+      ) {
+        $habitatReportModel = new HabitatReportModel;
+        $habitatReportModel->findOneById($idHabitatReport);
 
-      if ($updateResult) {
-        header("Location: /vetHabitat");
-        exit;
+        $habitatReportModel->setIdHabitat($habitat);
+        $habitatReportModel->setOpinion($opinion);
+        $habitatReportModel->setState($state);
+        $habitatReportModel->setDate($date);
+        $habitatReportModel->setImprovement($improvement);
+
+        $updateResult = $habitatReportModel->update();
+
+        if ($updateResult) {
+          header("Location: /vetHabitat");
+          exit;
+        } else {
+          $_SESSION['error'] = "Une erreur s'est produite lors de la modification du compte rendu de l'animal.";
+        }
       } else {
-        $_SESSION['error'] = "Une erreur s'est produite lors de la modification du compte rendu de l'animal.";
+        $_SESSION['error'] = "Tu as fait de la merde dans le formulaire frérot ! ";
       }
     }
 
-    Header("Location: /vetUpdateHabitat");
+    Header("Location: /vetUpdateReportHabitat/index/" . $idHabitatReport);
     exit;
   }
 }

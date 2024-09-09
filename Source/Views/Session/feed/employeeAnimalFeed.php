@@ -21,7 +21,6 @@
     <?php endif; ?>
   </div>
 
-
   <div>
     <?= $givenFoodForm; ?>
   </div>

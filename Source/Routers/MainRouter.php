@@ -94,6 +94,9 @@ class MainRouter
         $controller->index();
       }
     } catch (\Throwable $th) {
+      var_dump($th);
+      die;
+      
       $this->handle404();
     }
   }
@@ -134,6 +137,9 @@ class MainRouter
         $controller->index();
       }
     } catch (\Throwable $th) {
+      var_dump($th);
+      die;
+
       $this->handle404();
     }
   }

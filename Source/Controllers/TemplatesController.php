@@ -29,6 +29,13 @@ class TemplatesController extends Controller
     ]);
   }
 
+  public function ForgotPassword()
+  {
+    $this->render('templates/forgot_password', [
+    
+    ]);
+  }
+
 
 
 }

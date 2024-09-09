@@ -7,11 +7,9 @@ submitButton.addEventListener("click", async (e) => {
 
   const res = await fetch("/adminHabitat/createHabitat", {
     method: "POST",
-    body: {
-      headers: {
-        "Content-Type": "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
+    headers: {
+      "Content-Type": "application/json",
+      // 'Content-Type': 'application/x-www-form-urlencoded',
     },
   });
 

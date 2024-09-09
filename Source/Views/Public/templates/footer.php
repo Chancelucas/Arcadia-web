@@ -44,7 +44,4 @@
   <div class="footer_section copy_right">
     <p>© Création du site par - <a href="https://github.com/Chancelucas" class="link_copyright">Lucas CHANCEL</a> - ECF STUDI Décembre 2024 </p>
   </div>
-
-
-
 </div>
