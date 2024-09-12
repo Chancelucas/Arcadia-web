@@ -5,14 +5,4 @@
         <?= $animalReportForm; ?>
     </div>
 
-    <select name="" id="">
-        <option value="0">NULL</option>
-        <option value="12">BIEZN</option>
-        <option value="23" selected>BITE</option>
-        <option value="99"></option>
-        <option value="55"></option>
-        <option value="77"></option>
-        <option value="995421"></option>
-    </select>
-
 </div>

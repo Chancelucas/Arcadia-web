@@ -1,4 +1,3 @@
-lib/config/Database.php
 lib/config/connect_api.php
 Lib/vendor/
 composer.json

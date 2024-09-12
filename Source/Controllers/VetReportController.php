@@ -19,7 +19,9 @@ class VetReportController extends VetController
     $createReportHabitatForm = $this->generateCreateReportHabitatForm();
 
 
-    $this->render('report/report', ['createReportHabitatForm' => $createReportHabitatForm, 'createReportAnimalForm' => $createReportAnimalForm]);
+    $this->render('report/report', [
+      'createReportHabitatForm' => $createReportHabitatForm, 
+      'createReportAnimalForm' => $createReportAnimalForm]);
   }
 
   private function getAllAssessment()

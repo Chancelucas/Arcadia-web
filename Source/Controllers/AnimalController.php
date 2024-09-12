@@ -7,6 +7,7 @@ use Source\Models\animal\AnimalModel;
 use Source\Models\animal\FoodGivenModel;
 use Source\Models\filter\FilterModel;
 use Source\Models\report\AnimalReportModel;
+use Source\Models\report\AssessmentModel;
 
 class AnimalController extends Controller
 {
@@ -58,9 +59,12 @@ class AnimalController extends Controller
   private function getLastReportVet($idAnimal)
   {
     $reportModel = new AnimalReportModel;
+
     $allReports = $reportModel->getReportsByAnimalId($idAnimal);
 
-    return $this->getLastElementByField($allReports, 'passage_date');
+    $lastReport = $this->getLastElementByField($allReports, 'passage_date');
+
+    return $lastReport;
   }
 
   private function getLastFoodGiven($idAnimal)
@@ -68,6 +72,9 @@ class AnimalController extends Controller
     $foodGivenModel = new FoodGivenModel;
     $allFoodGiven = $foodGivenModel->getFoodGivenByAnimalId($idAnimal);
 
+
+
     return $this->getLastElementByField($allFoodGiven, 'food_given_date');
+
   }
 }

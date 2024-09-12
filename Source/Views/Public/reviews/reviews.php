@@ -1,9 +1,15 @@
 <main class="main_reviews_page">
-  <h2 class="title_reviews_page">Vos avis</h2>
 
+<h2 class="title_reviews_page">Nous contacter</h2>
+
+  <div>
+    <?= $formContact ?>
+  </div>
+
+  <h2 class="title_reviews_page">Laissez nous votre avis</h2>
   <?= $formReviews; ?>
   <section class="reviews_section">
-  <div class="slider">
+    <div class="slider">
       <div class="slide-track">
         <?php if ($allReviews) : ?>
           <?php for ($i = 0; $i < 4; $i++) : ?>
@@ -18,5 +24,7 @@
       </div>
     </div>
   </section>
+
+
 
 </main>

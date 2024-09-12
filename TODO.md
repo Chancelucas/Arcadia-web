@@ -32,9 +32,9 @@ un employé peut nourrir des animaux, modifier les services et valider les avis 
 | Vétérinaire  |    ✔️     |
 | Employé      |    ✖️     |
 
-- -R-- sur les nourrissage des animaux (en **LECTURE** uniquement) ❌
+- -R-- sur les nourrissage des animaux (en **LECTURE** uniquement) ✅
 - Accés protégé (auth) ✅
-  - Uniquement le vétérinaire peut accéder à cette page ❌
+  - Uniquement le vétérinaire peut accéder à cette page ✅
 
 ---
 
@@ -46,9 +46,9 @@ un employé peut nourrir des animaux, modifier les services et valider les avis 
 | Vétérinaire  |    ✖️     |
 | Employé      |    ✔️     |
 
-- -RU- sur les avis des internautes ❌
+- -RU- sur les avis des internautes ✅
 - Accés protégé (auth) ✅
-  - Uniquement l'employé peut accéder à cette page ❌
+  - Uniquement l'employé peut accéder à cette page ✅
 
 ### Salariés
 
@@ -67,9 +67,9 @@ un employé peut nourrir des animaux, modifier les services et valider les avis 
 | Employé      | CRUD |
 
 - CRUD sur les users ✅
-- Il ne peut pas être possible de modifier / créer / supprimer un admin ❌
+- Il ne peut pas être possible de modifier / créer / supprimer un admin ✅
 - Accés protégé (auth) ✅
-  - Uniquement l'admin peut accéder à cette page ❌
+  - Uniquement l'admin peut accéder à cette page ✅
 
 ### Habitats
 
@@ -83,11 +83,11 @@ un employé peut nourrir des animaux, modifier les services et valider les avis 
 
 - CRUD sur les habitats ✅
 - Gestion des images sur cloudinary ✅
-- Suppression d'un habitat ❌
+- Suppression d'un habitat ✅
   - Un habitat ne peut pas être supprimé si il y a encore un animal ❓
   - Si un habitat est supprimé, alors vide sa liste d'animaux ❓
 - Accés protégé (auth) ✅
-  - Uniquement l'admin peut accéder à cette page ❌
+  - Uniquement l'admin peut accéder à cette page ✅
 
 ### Animaux
 
@@ -102,7 +102,7 @@ un employé peut nourrir des animaux, modifier les services et valider les avis 
 - CRUD sur les animaux ✅
 - Gestion des images sur cloudinary ✅
 - Accés protégé (auth) ✅
-  - Uniquement l'admin peut accéder à cette page ❌
+  - Uniquement l'admin peut accéder à cette page ✅
 
 ### Services
 
@@ -117,7 +117,7 @@ un employé peut nourrir des animaux, modifier les services et valider les avis 
 - CRUD sur les services ✅
 - Gestion des images sur cloudinary ✅
 - Accés protégé (auth) ✅
-  - Uniquement l'admin peut accéder à cette page ❌
+  - Uniquement l'admin peut accéder à cette page ✅
 
 ---
 
@@ -129,10 +129,10 @@ un employé peut nourrir des animaux, modifier les services et valider les avis 
 | Vétérinaire  |    ✖️     |
 | Employé      |    ✔️     |
 
-- -RU- sur les services ❌
+- -RU- sur les services ✅
 - Gestion des images sur cloudinary ✅
 - Accés protégé (auth) ✅
-  - Uniquement l'employé peut accéder à cette page ❌
+  - Uniquement l'employé peut accéder à cette page ✅
 
 ### Horaires
 
@@ -147,9 +147,9 @@ un employé peut nourrir des animaux, modifier les services et valider les avis 
 - CRUD sur les services ✅
 - Contrôle sur cohérence heure d'ouverture et heure de fermeture (Hardening)
   - Le jour est unique ✅
-  - horaire fermeture > horaire de début ❌
+  - horaire fermeture > horaire de début ✅
 - Accés protégé (auth) ✅
-  - Uniquement l'admin peut accéder à cette page ❌
+  - Uniquement l'admin peut accéder à cette page ✅
 
 ### Comptes rendus
 
@@ -164,9 +164,9 @@ un employé peut nourrir des animaux, modifier les services et valider les avis 
 - -R-- sur les comptes rendus animaux (en **LECTURE** uniquement)  ✅
 - -R-- sur les comptes rendus habitats (en **LECTURE** uniquement)  ✅
 - Permettre de filter :
-  - par date ❌
-  - par race d'animal ❌
-  - par habitat ❌
+  - par date ✅
+  - par race d'animal ✅
+  - par habitat ✅
 
 ---
 
@@ -181,7 +181,7 @@ un employé peut nourrir des animaux, modifier les services et valider les avis 
 - C--- sur les comptes rendus des habitats ✅
 - C--- sur les comptes rendus des animaux ✅
 - Accés protégé (auth) ✅
-  - Uniquement le vétérinaire peut accéder à cette page ❌
+  - Uniquement le vétérinaire peut accéder à cette page ✅
 
 ---
 
@@ -193,9 +193,9 @@ un employé peut nourrir des animaux, modifier les services et valider les avis 
 | Vétérinaire  |    ✔️     |
 | Employé      |    ✖️     |
 
-- -RUD sur les comptes rendus des habitats ❌✅ (bug sur les états)
+- -RUD sur les comptes rendus des habitats ✅ (bug sur les états)
 - Accés protégé (auth) ✅
-  - Uniquement le vétérinaire peut accéder à cette page ❌
+  - Uniquement le vétérinaire peut accéder à cette page ✅
 
 ---
 
@@ -207,9 +207,9 @@ un employé peut nourrir des animaux, modifier les services et valider les avis 
 | Vétérinaire  |    ✔️     |
 | Employé      |    ✖️     |
 
-- -RUD sur les comptes rendus des animaux ❌✅ (bug sur les états)
+- -RUD sur les comptes rendus des animaux ✅ (bug sur les états)
 - Accés protégé (auth) ✅
-  - Uniquement le vétérinaire peut accéder à cette page ❌
+  - Uniquement le vétérinaire peut accéder à cette page ✅
 
 ---
 
@@ -222,7 +222,7 @@ un employé peut nourrir des animaux, modifier les services et valider les avis 
 | Employé      |    ✔️     |
 
 - Accés protégé (auth) ✅
-  - Uniquement l'employé peut accéder à cette page ❌
+  - Uniquement l'employé peut accéder à cette page ✅
 
 ## FRONT USER
 

@@ -12,7 +12,9 @@ class VetAnimalController extends VetController
   {
     $animalsReport = $this->getAllAnimalReportFromModel();
 
-    $this->render('animal/vetAnimal', ['animalsReport' => $animalsReport]);
+    $this->render('animal/vetAnimal', [
+      'animalsReport' => $animalsReport
+    ]);
   }
 
 

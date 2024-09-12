@@ -121,6 +121,18 @@ class AnimalReportModel extends MainModel
     return $result;
   }
 
+  public function getAssessmentStateLabel()
+  {
+    $assessmentModel = new AssessmentModel();
+    $assessment = $assessmentModel->findOneById($this->state);
+
+    if ($assessment) {
+      return $assessment->getState();
+    }
+
+    return "État inconnu";
+  }
+
 
   /////////////////// GETTER and SETTER /////////////////////
 

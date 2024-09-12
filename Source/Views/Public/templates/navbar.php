@@ -10,7 +10,7 @@
             <li class="li_link_public_nav"><a href="/services">Services du parc</a></li>
             <li class="li_link_public_nav"><a href="/habitat">Les habitats</a></li>
             <li class="li_link_public_nav"><a href="/login">Connexion</a></li>
-            <li class="li_link_public_nav"><a href="/reviews">Vos avis</a></li>
+            <li class="li_link_public_nav"><a href="/reviews">Contact</a></li>
         </ul>
     </div>
 </nav>

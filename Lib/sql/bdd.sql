@@ -25,7 +25,7 @@ CREATE TABLE `Animal` (
     `id` INT PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(255),
     `breed` VARCHAR(255),
-    `picture_url` VARCHAR(255)
+    `picture_url` VARCHAR(255),
     `id_habitat` INT,
     FOREIGN KEY (`id_habitat`) REFERENCES `Habitat`(`id`)
 );
@@ -71,7 +71,7 @@ CREATE TABLE `Service` (
     `id` INT PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(255),
     `description` TEXT,
-    `picture_url`VARCHAR(255),
+    `picture_url`VARCHAR(255)
 );
 
 CREATE TABLE `Hour`(

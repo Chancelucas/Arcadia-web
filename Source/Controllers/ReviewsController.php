@@ -16,11 +16,13 @@ class ReviewsController extends Controller
   {
     $formReviews = $this->generateFormReviews();
     $reviews = $this->getAllValableReview();
+    $formContact = $this->generateFormContact();
 
 
     $this->render('reviews/reviews', [
       'formReviews' => $formReviews,
       'allReviews' => $reviews,
+      'formContact' => $formContact,
 
     ]);
   }
@@ -92,5 +94,33 @@ class ReviewsController extends Controller
   {
     $enableReviews = (new ReviewsModel)->findBy(['status' => true]);
     return $enableReviews;
+  }
+
+  private function generateFormContact()
+  {
+    $form = new Form;
+
+    $form->startForm('POST', 'reviews/createReviews', ['class' => ''])
+
+      ->startDiv(['class' => ''])
+      ->addInput('email', 'email', ['id' => 'pseudo', 'placeholder' => 'Email', 'required' => true, 'class' => ''])
+      ->endDiv()
+
+      ->startDiv(['class' => ''])
+      ->addInput('text', 'title', ['placeholder' => 'Titre du message', 'required' => true, 'class' => ''])
+      ->endDiv()
+
+      ->startDiv(['class' => ''])
+      ->addInput('text', 'comment', ['placeholder' => 'Votre message', 'required' => true, 'class' => ''])
+      ->endDiv()
+
+      ->startDiv(['class' => ''])
+      ->addBouton('Envoyer', ['type' => 'submit', 'value' => 'submit', 'name' => 'createReviews', 'class' => 'btn'])
+      ->endDiv()
+
+      ->endForm();
+
+
+    return $form->create();
   }
 }
