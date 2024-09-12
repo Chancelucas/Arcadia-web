@@ -1,7 +1,12 @@
+<?php
+use function Source\Helpers\securityHTML;
+?>
+
+
 <div class="main_animal_feed">
   <div class="div_animal_feed">
     <p>Liste des animaux</p>
-    <?= $selectAnimalForm; ?>
+    <?= securityHTML($selectAnimalForm); ?>
   </div>
 
   <div class="div_report_vet_employee">
@@ -10,23 +15,23 @@
         <div class="one_report_vet_employee">
           <div class="one_container_report_employee">
             <p class="label_report_employee">Comptes rendu sur : </p>
-            <p class="input_report_employee"><?= $animalsBreed ?></p>
+            <p class="input_report_employee"><?= securityHTML($animalsBreed) ?></p>
           </div>
           <div class="one_container_report_employee">
             <p class="label_report_employee">Date du rapport : </p>
-            <p class="input_report_employee"><?= $report->passage_date; ?></p>
+            <p class="input_report_employee"><?= securityHTML($report->passage_date); ?></p>
           </div>
           <div class="one_container_report_employee">
             <p class="label_report_employee">Aliment à donné : </p>
-            <p class="input_report_employee"><?= $report->proposed_food; ?></p>
+            <p class="input_report_employee"><?= securityHTML($report->proposed_food); ?></p>
           </div>
           <div class="one_container_report_employee">
             <p class="label_report_employee">Quantité à donnée en gramme : </p>
-            <p class="input_report_employee"><?= $report->food_amount; ?></p>
+            <p class="input_report_employee"><?= securityHTML($report->food_amount); ?></p>
           </div>
           <div class="one_container_report_employee">
             <p class="label_report_employee">Note du vétérinaire : </p>
-            <p class="input_report_employee"><?= $report->state_detail; ?></p>
+            <p class="input_report_employee"><?= securityHTML($report->state_detail); ?></p>
           </div>
         </div>
       <?php endforeach; ?>
@@ -36,7 +41,7 @@
 
 
 <div class="div_given_food_animal_feed_page">
-  <?= $givenFoodForm; ?>
+  <?= securityHTML($givenFoodForm); ?>
 </div>
 
 </div>

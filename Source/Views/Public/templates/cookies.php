@@ -1,3 +1,8 @@
+<?php
+use function Source\Helpers\securityHTML;
+?>
+
+
 <h3>Gestion des Cookies sur le site "ARCADIA"</h3>
 <br>
 <p>La présente politique de gestion des cookies explique ce que sont les cookies, comment nous les utilisons sur le site "ARCADIA", les choix qui s'offrent à vous concernant leur utilisation, et comment vous pouvez les gérer.</p>

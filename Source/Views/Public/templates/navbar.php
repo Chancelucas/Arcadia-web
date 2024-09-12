@@ -1,3 +1,8 @@
+<?php
+use function Source\Helpers\securityHTML;
+?>
+
+
 <nav class="navbar_public">
     <div class="div_nav_public">
         <a href="/home" class="container_logo_public"><img class="logo_public" src="/assets/images/logo/1 1.svg" alt="logo"></a>

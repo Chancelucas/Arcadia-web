@@ -1,3 +1,8 @@
+<?php
+use function Source\Helpers\securityHTML;
+?>
+
+
 <div class="main_report_vet">
 
   <div class="title_vet_report">
@@ -11,36 +16,36 @@
 
           <div class="label_report_vet">
             <p class="sous_title_report">Race de l'animal</p>
-            <p><?= $animalReport->animalBreed ?></p>
+            <p><?= securityHTML($animalReport->animalBreed) ?></p>
           </div>
           <div class="label_report_vet">
             <p class="sous_title_report">Son etat</p>
-            <p><?= $animalReport->state ?></p>
+            <p><?= securityHTML($animalReport->state) ?></p>
           </div>
           <div class="label_report_vet">
             <p class="sous_title_report">Nourriture proposé</p>
-            <p><?= $animalReport->proposed_food ?></p>
+            <p><?= securityHTML($animalReport->proposed_food) ?></p>
           </div>
           <div class="label_report_vet">
             <p class="sous_title_report">Quantité de nourriture</p>
-            <p><?= $animalReport->food_amount ?></p>
+            <p><?= securityHTML($animalReport->food_amount) ?></p>
           </div>
           <div class="label_report_vet">
             <p class="sous_title_report">Date du derrnière repas</p>
-            <p><?= $animalReport->passage_date ?></p>
+            <p><?= securityHTML($animalReport->passage_date) ?></p>
           </div>
           <div class="label_report_vet">
             <p class="sous_title_report">Commentaire</p>
-            <p><?= $animalReport->state_detail ?></p>
+            <p><?= securityHTML($animalReport->state_detail) ?></p>
           </div>
         </div>
 
         <div class="btns_report_vet">
-          <form method="POST" action="vetReport/deleteReportAnimal/<?= $animalReport->id_AnimalReport ?>">
+          <form method="POST" action="vetReport/deleteReportAnimal/<?= securityHTML($animalReport->id_AnimalReport) ?>">
             <button type="submit" class="delete_btn" name="deleteReportAnimal">Supprimer</button>
           </form>
 
-          <a href="/vetUpdateReportAnimal/index/<?= $animalReport->id_AnimalReport ?>" class="link_update">Modifier</a>
+          <a href="/vetUpdateReportAnimal/index/<?= securityHTML($animalReport->id_AnimalReport) ?>" class="link_update">Modifier</a>
         </div>
 
       </div>

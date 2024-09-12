@@ -1,3 +1,8 @@
+<?php
+use function Source\Helpers\securityHTML;
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -6,24 +11,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" media="screen" href="/css/style.css" type="text/css">
     <title>Arcadia</title>
-
 </head>
 
-<body>
 
+
+<body>
     <header>
         <?php require_once ROOT . '/Source/Views/public/templates/navbar.php'; ?>
     </header>
-
-    <?= $containe; ?>
-
+        <?= $containe; ?>
     <footer class="footer_public">
         <?php require_once ROOT . '/Source/Views/public/templates/footer.php'; ?>
     </footer>
-
     <script src="/js/templates/menu/menu_script.js"></script>
     <script src="/js/templates/welcome/anime_welcome_page.js"></script>
-
 </body>
 
 </html>

@@ -1,3 +1,8 @@
+<?php
+use function Source\Helpers\securityHTML;
+?>
+
+
 <nav class="session_navbar">
   <div class="div_nav_session">
     <div class="icons_menu_session">
@@ -6,8 +11,8 @@
     </div>
 
     <div class="user_dashboard">
-      <p class="name_user_dashboard"><?= $user->getUsername() ?></p>
-      <p class="role_user_dashboard"><?= $user->getRole(); ?></p>
+      <p class="name_user_dashboard"><?= securityHTML($user->getUsername()) ?></p>
+      <p class="role_user_dashboard"><?= securityHTML($user->getRole()); ?></p>
     </div>
 
     <ul class="ul_links_session_nav">

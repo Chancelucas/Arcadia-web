@@ -1,3 +1,8 @@
+<?php
+use function Source\Helpers\securityHTML;
+?>
+
+
 <div class="container_footer">
   <div class="footer_section">
     <a href="/home" class="link_home_logo">

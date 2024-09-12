@@ -1,3 +1,7 @@
+<?php
+use function Source\Helpers\securityHTML;
+?>
+
 <div class="body_home">
     <h1 class="title_welcome">
         <span class="letter_title_welcome">A</span>

@@ -1,3 +1,8 @@
+
+<?php
+use function Source\Helpers\securityHTML;
+?>
+
 <main class="main_login">
 
   <div class="container_form_login">

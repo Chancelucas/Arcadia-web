@@ -1,3 +1,8 @@
+<?php
+use function Source\Helpers\securityHTML;
+?>
+
+
 <h3>Conditions Générales d'Utilisation (CGU) du site "ARCADIA"</h3>
 
 <p>Les présentes conditions générales d'utilisation (CGU) ont pour objet de définir les modalités et conditions d'utilisation du site internet "ARCADIA". En accédant au site, l'utilisateur accepte sans réserve les présentes conditions.</p>
