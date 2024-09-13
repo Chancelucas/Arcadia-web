@@ -6,7 +6,7 @@ use function Source\Helpers\securityHTML;
 <div class="main-edit-habitats-admin">
   <div class="container-form-habitat-admin">
     <h3>Crée un habitat</h3>
-    <?= securityHTML($createHabitatForm); ?>
+    <?= $createHabitatForm; ?>
   </div>
   <div class="habitats-list-admin">
     <h3>Liste des habitats</h3>

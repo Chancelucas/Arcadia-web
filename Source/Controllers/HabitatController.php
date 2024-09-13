@@ -5,7 +5,7 @@ namespace Source\Controllers;
 use Source\Controllers\Controller;
 use Source\Models\animal\AnimalModel;
 use Source\Models\habitat\HabitatModel;
-use Source\Models\hour\HourModel;
+use function Source\Helpers\securityHTML;
 
 class HabitatController extends Controller
 {

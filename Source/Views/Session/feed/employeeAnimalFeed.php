@@ -6,7 +6,7 @@ use function Source\Helpers\securityHTML;
 <div class="main_animal_feed">
   <div class="div_animal_feed">
     <p>Liste des animaux</p>
-    <?= securityHTML($selectAnimalForm); ?>
+    <?= $selectAnimalForm; ?>
   </div>
 
   <div class="div_report_vet_employee">
@@ -41,7 +41,7 @@ use function Source\Helpers\securityHTML;
 
 
 <div class="div_given_food_animal_feed_page">
-  <?= securityHTML($givenFoodForm); ?>
+  <?= $givenFoodForm; ?>
 </div>
 
 </div>

@@ -7,6 +7,7 @@ use Source\Models\animal\AnimalModel;
 use Source\Models\animal\FoodGivenModel;
 use Source\Controllers\EmployeeController;
 use Source\Models\report\AnimalReportModel;
+use function Source\Helpers\securityHTML;
 
 class EmployeeAnimalFeedController extends EmployeeController
 {

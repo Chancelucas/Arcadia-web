@@ -5,7 +5,7 @@ use function Source\Helpers\securityHTML;
 
 <div class="main_container_animal_admin">
   <div class="form_create_animal_admin">
-    <?= securityHTML($createAnimalForm); ?>
+    <?= $createAnimalForm; ?>
   </div>
 
 

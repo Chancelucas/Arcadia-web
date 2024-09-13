@@ -7,6 +7,7 @@ use Source\Controllers\VetController;
 use Source\Models\habitat\HabitatModel;
 use Source\Models\report\AssessmentModel;
 use Source\Models\report\HabitatReportModel;
+use function Source\Helpers\securityHTML;
 
 class VetUpdateReportHabitatController extends VetController
 {
@@ -78,8 +79,8 @@ class VetUpdateReportHabitatController extends VetController
       $habitat = filter_input(INPUT_POST, 'habitat', FILTER_SANITIZE_NUMBER_INT);
       $state = filter_input(INPUT_POST, 'stateId', FILTER_SANITIZE_NUMBER_INT);
       $opinion = filter_input(INPUT_POST, 'opinionId', FILTER_SANITIZE_NUMBER_INT);
-      $date = htmlspecialchars(strip_tags($_POST['passage_date']), ENT_QUOTES, 'UTF-8');
-      $improvement = htmlspecialchars(strip_tags($_POST['improvement']), ENT_QUOTES, 'UTF-8');
+      $date = securityHTML(strip_tags($_POST['passage_date']), ENT_QUOTES, 'UTF-8');
+      $improvement = securityHTML(strip_tags($_POST['improvement']), ENT_QUOTES, 'UTF-8');
 
       $dateFormatValid = preg_match('/^\d{4}-\d{2}-\d{2}$/', $date); // AAAA-MM-JJ
 

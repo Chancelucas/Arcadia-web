@@ -1,8 +1,3 @@
-<?php
-use function Source\Helpers\securityHTML;
-?>
-
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -20,7 +15,7 @@ use function Source\Helpers\securityHTML;
   </header>
 
   <main class="session_dashboard">
-    <?= securityHTML($containe); ?>
+    <?= $containe; ?>
   </main>
 
   <script src="/js/templates/menu/menu_script_session.js"></script>

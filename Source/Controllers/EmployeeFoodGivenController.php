@@ -5,6 +5,7 @@ namespace Source\Controllers;
 use Lib\config\Form;
 use Source\Helpers\FilterHelper;
 use Source\Models\filter\FilterModel;
+use function Source\Helpers\securityHTML;
 
 class EmployeeFoodGivenController extends EmployeeController
 {

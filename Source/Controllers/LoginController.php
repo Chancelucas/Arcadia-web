@@ -4,6 +4,7 @@ namespace Source\Controllers;
 
 use Source\Models\user\LoginModel;
 use Lib\config\Form;
+use function Source\Helpers\securityHTML;
 
 
 class LoginController extends Controller

@@ -5,7 +5,7 @@ use function Source\Helpers\securityHTML;
 
 <div class="main_edit_hour_admin">
   <div class="div_form_create_hour_admin">
-    <?= securityHTML($createHourForm); ?>
+    <?= $createHourForm; ?>
   </div>
 
   <div class="container_hour_admin">

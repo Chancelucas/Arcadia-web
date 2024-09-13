@@ -5,6 +5,7 @@ namespace Source\Controllers;
 use Lib\config\Form;
 use Source\Controllers\Controller;
 use Source\Models\reviews\ReviewsModel;
+use function Source\Helpers\securityHTML;
 
 class ReviewsController extends Controller
 {
@@ -100,21 +101,21 @@ class ReviewsController extends Controller
   {
     $form = new Form;
 
-    $form->startForm('POST', 'reviews/createReviews', ['class' => ''])
+    $form->startForm('POST', 'reviews/createReviews', ['class' => 'form_reviews_page'])
 
-      ->startDiv(['class' => ''])
-      ->addInput('email', 'email', ['id' => 'pseudo', 'placeholder' => 'Email', 'required' => true, 'class' => ''])
+      ->startDiv(['class' => 'div_form_reviews_page'])
+      ->addInput('email', 'email', ['id' => 'pseudo', 'placeholder' => 'Email', 'required' => true, 'class' => 'input_form_reviews_page'])
       ->endDiv()
 
-      ->startDiv(['class' => ''])
-      ->addInput('text', 'title', ['placeholder' => 'Titre du message', 'required' => true, 'class' => ''])
+      ->startDiv(['class' => 'div_form_reviews_page'])
+      ->addInput('text', 'title', ['placeholder' => 'Titre du message', 'required' => true, 'class' => 'input_form_reviews_page'])
       ->endDiv()
 
-      ->startDiv(['class' => ''])
-      ->addInput('text', 'comment', ['placeholder' => 'Votre message', 'required' => true, 'class' => ''])
+      ->startDiv(['class' => 'div_form_reviews_page'])
+      ->addInput('text', 'comment', ['placeholder' => 'Votre message', 'required' => true, 'class' => 'input_form_reviews_page reviews_input'])
       ->endDiv()
 
-      ->startDiv(['class' => ''])
+      ->startDiv(['class' => 'div_form_reviews_page'])
       ->addBouton('Envoyer', ['type' => 'submit', 'value' => 'submit', 'name' => 'createReviews', 'class' => 'btn'])
       ->endDiv()
 

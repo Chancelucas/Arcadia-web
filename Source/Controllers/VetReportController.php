@@ -9,6 +9,7 @@ use Source\Models\habitat\HabitatModel;
 use Source\Models\report\AnimalReportModel;
 use Source\Models\report\AssessmentModel;
 use Source\Models\report\HabitatReportModel;
+use function Source\Helpers\securityHTML;
 
 class VetReportController extends VetController
 {

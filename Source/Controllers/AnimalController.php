@@ -7,7 +7,7 @@ use Source\Models\animal\AnimalModel;
 use Source\Models\animal\FoodGivenModel;
 use Source\Models\filter\FilterModel;
 use Source\Models\report\AnimalReportModel;
-use Source\Models\report\AssessmentModel;
+use function Source\Helpers\securityHTML;
 
 class AnimalController extends Controller
 {

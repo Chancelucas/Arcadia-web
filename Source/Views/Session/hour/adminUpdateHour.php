@@ -9,7 +9,7 @@ use function Source\Helpers\securityHTML;
         <a class="link_back_btn" href="javascript:history.back()">Retour</a>
     </div>
     <div class="container_update_hour_admin">
-        <?= securityHTML($hourForm); ?>
+        <?= $hourForm; ?>
     </div>
 
 </div>

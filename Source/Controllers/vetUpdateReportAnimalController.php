@@ -7,6 +7,7 @@ use Source\Controllers\VetController;
 use Source\Models\animal\AnimalModel;
 use Source\Models\report\AssessmentModel;
 use Source\Models\report\AnimalReportModel;
+use function Source\Helpers\securityHTML;
 
 class VetUpdateReportAnimalController extends VetController
 {

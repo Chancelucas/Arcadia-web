@@ -6,6 +6,7 @@ use Lib\config\Form;
 use Source\Models\user\UserModel;
 use Source\Controllers\AdminController;
 use Source\Controllers\AdminUserController;
+use function Source\Helpers\securityHTML;
 
 class AdminUpdateUserController extends AdminController
 {

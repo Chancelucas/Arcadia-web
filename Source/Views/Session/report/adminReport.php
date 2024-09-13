@@ -9,7 +9,7 @@ use function Source\Helpers\securityHTML;
   </div>
 
   <div class="container_form_report_admin container_form_report_animal_admin">
-    <?= securityHTML($filterFormReportAnimal); ?>
+    <?= $filterFormReportAnimal; ?>
   </div>
 
   <div class="all_items_report_admin">
@@ -29,7 +29,7 @@ use function Source\Helpers\securityHTML;
 
 
   <div class="container_form_report_admin container_form_report_habitat_admin">
-    <?= securityHTML($filterFormReportHabitat); ?>
+    <?= $filterFormReportHabitat; ?>
   </div>
 
   <div class="all_items_report_admin">

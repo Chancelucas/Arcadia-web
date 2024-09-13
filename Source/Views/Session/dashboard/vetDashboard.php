@@ -8,7 +8,7 @@ use function Source\Helpers\securityHTML;
   <h3>Liste des repas donnée</h3>
 
   <div class="form_search_foodgiven_vet">
-    <?= securityHTML($filterForm); ?>
+    <?= $filterForm; ?>
   </div>
 
   <div class="container_foodgiven_vet">

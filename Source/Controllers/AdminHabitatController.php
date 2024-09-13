@@ -7,6 +7,7 @@ use Lib\config\CloudinaryManager;
 use Source\Models\animal\AnimalModel;
 use Source\Controllers\AdminController;
 use Source\Models\habitat\HabitatModel;
+use Function Source\Helpers\securityHTML;
 
 class AdminHabitatController extends AdminController
 {
@@ -31,10 +32,10 @@ class AdminHabitatController extends AdminController
     $form = new Form;
 
     $form->startForm('POST', 'adminHabitat/createHabitat', ['class' => 'form-habitat-admin', 'enctype' => 'multipart/form-data'])
-      ->addInput('text', 'habitat_name', ['class' => 'habitat-form-input-admin', 'placeholder' => 'Ajouter un nom', 'required' => true])
-      ->addTextarea('habitat_description', '', ['class' => 'habitat-form-input-admin', 'name' => 'description', 'placeholder' => 'Ajouter une description', 'required' => true])
+      ->addInput('text', securityHTML('habitat_name'), ['class' => 'habitat-form-input-admin', 'placeholder' => 'Ajouter un nom', 'required' => true])
+      ->addTextarea('habitat_description', securityHTML(''), ['class' => 'habitat-form-input-admin', 'name' => 'description', 'placeholder' => 'Ajouter une description', 'required' => true])
       ->startDiv(['class' => 'div-add-doc-habitat-admin'])
-      ->addInput('file', 'picture', ['class' => 'habitat-form-input-admin', 'multiple' => true, 'accept' => '.png, .jpeg, .jpg'])
+      ->addInput('file', securityHTML('picture'), ['class' => 'habitat-form-input-admin', 'multiple' => true, 'accept' => '.png, .jpeg, .jpg'])
       ->endDiv()
       ->addBouton('Créer', ['type' => 'submit', 'value' => 'submit', 'name' => 'createHabitat', 'class' => 'btn btn_add_habitat_admin'])
       ->endForm();

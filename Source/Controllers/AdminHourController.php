@@ -5,6 +5,7 @@ namespace Source\Controllers;
 use Lib\config\Form;
 use Source\Controllers\AdminController;
 use Source\Models\hour\HourModel;
+use function Source\Helpers\securityHTML;
 
 class AdminHourController extends AdminController
 {

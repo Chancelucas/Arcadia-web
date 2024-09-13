@@ -2,6 +2,7 @@
 
 namespace Source\Controllers;
 
+use function Source\Helpers\securityHTML;
 use Source\Controllers\BackController;
 
 /**

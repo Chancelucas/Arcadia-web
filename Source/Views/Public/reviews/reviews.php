@@ -7,9 +7,9 @@ use function Source\Helpers\securityHTML;
 
 <h2 class="title_reviews_page">Nous contacter</h2>
 
-  <div>
+
     <?= $formContact ?>
-  </div>
+
 
   <h2 class="title_reviews_page">Laissez nous votre avis</h2>
   <?= $formReviews; ?>
@@ -33,3 +33,4 @@ use function Source\Helpers\securityHTML;
 
 
 </main>
+

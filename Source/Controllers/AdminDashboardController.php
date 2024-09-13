@@ -3,6 +3,7 @@
 namespace Source\Controllers;
 
 use Lib\config\Form;
+use function Source\Helpers\securityHTML;
 use Source\Controllers\AdminController;
 
 class AdminDashboardController extends AdminController

@@ -4,6 +4,7 @@ namespace Source\Controllers;
 
 use Source\Controllers\VetController;
 use Source\Models\report\AnimalReportModel;
+use function Source\Helpers\securityHTML;
 
 class VetAnimalController extends VetController
 {

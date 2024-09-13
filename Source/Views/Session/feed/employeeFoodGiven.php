@@ -6,7 +6,7 @@ use function Source\Helpers\securityHTML;
 <div class="main_food_given_employee">
 
   <div class="div_form_food_given_employee">
-    <?= securityHTML($filterForm); ?>
+    <?= $filterForm; ?>
   </div>
 
   <div class="all_food_given_employee">

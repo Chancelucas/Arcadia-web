@@ -21,7 +21,7 @@ use function Source\Helpers\securityHTML;
 
 
   <main class="session_dashboard">
-    <?= securityHTML($containe); ?>
+    <?= $containe; ?>
   </main>
 
 

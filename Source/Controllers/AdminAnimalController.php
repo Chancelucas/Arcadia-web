@@ -7,6 +7,7 @@ use Lib\config\CloudinaryManager;
 use Source\Models\animal\AnimalModel;
 use Source\Controllers\AdminController;
 use Source\Models\habitat\HabitatModel;
+use function Source\Helpers\securityHTML;
 
 class AdminAnimalController extends AdminController
 {
@@ -30,14 +31,14 @@ class AdminAnimalController extends AdminController
 
     $form->startForm('POST', 'adminAnimal/createAnimal', ['class' => 'form_animal_admin', 'enctype' => 'multipart/form-data'])
 
-      ->addInput('text', 'name', ['class' => 'animal_form_input_admin', 'placeholder' => 'Ajouter un nom', 'required' => true])
+      ->addInput('text', securityHTML('name'), ['class' => 'animal_form_input_admin', 'placeholder' => 'Ajouter un nom', 'required' => true])
 
-      ->addInput('text', 'breed', ['class' => 'animal_form_input_admin', 'name' => 'animal_breed', 'placeholder' => 'Ajouter une race animal', 'required' => true])
+      ->addInput('text', securityHTML('breed'), ['class' => 'animal_form_input_admin', 'name' => 'animal_breed', 'placeholder' => 'Ajouter une race animal', 'required' => true])
 
       ->addSelect('habitat', $habitats, ['class' => 'animal_form_input_admin'])
 
       ->startDiv(['class' => 'div_add_doc_animal_admin'])
-      ->addInput('file', 'picture', ['class' => 'animal_form_input_admin', 'multiple' => true])
+      ->addInput('file', securityHTML('picture'), ['class' => 'animal_form_input_admin', 'multiple' => true])
       ->endDiv()
 
       ->startDiv(['class' => 'div_btn_add_animal'])

@@ -7,6 +7,7 @@ use Source\Models\user\UserModel;
 use Source\Models\role\RoleModel;
 use Source\Controllers\AdminController;
 use Source\Models\filter\FilterModel;
+use function Source\Helpers\securityHTML;
 
 class AdminUserController extends AdminController
 {

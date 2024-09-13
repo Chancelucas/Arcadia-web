@@ -4,6 +4,7 @@ namespace Source\Controllers;
 
 use Lib\config\Form;
 use Source\Controllers\EmployeeController;
+use function Source\Helpers\securityHTML;
 
 class EmployeeDashboardController extends EmployeeController
 {

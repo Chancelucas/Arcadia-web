@@ -7,12 +7,12 @@ use function Source\Helpers\securityHTML;
 
   <div class="div_form_create_report_vet">
     <h3>Créer un comptes rendu pour un habitat</h3>
-    <?= securityHTML($createReportHabitatForm); ?>
+    <?= $createReportHabitatForm; ?>
   </div>
 
   <div class="div_form_create_report_vet">
     <h3>Créer un comptes rendu pour un animal</h3>
-    <?= securityHTML($createReportAnimalForm); ?>
+    <?= $createReportAnimalForm; ?>
   </div>
 
 </div>

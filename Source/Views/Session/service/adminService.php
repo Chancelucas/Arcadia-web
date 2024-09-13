@@ -7,7 +7,7 @@ use function Source\Helpers\securityHTML;
 
 
   <div class="div_form_create_service_admin">
-    <?= securityHTML($createServiceForm); ?>
+    <?= $createServiceForm; ?>
   </div>
 
 
