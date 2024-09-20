@@ -2,12 +2,13 @@
 
 namespace Source\Controllers;
 
-use Lib\config\Database;
-use Source\Models\user\LoginModel;
 use Lib\config\Form;
-use Source\Helpers\SecurityHelper;
+use Lib\config\Database;
 use Source\Helpers\InputType;
 use Source\Helpers\FlashMessage;
+use Source\Models\user\UserModel;
+use Source\Helpers\SecurityHelper;
+use Source\Models\user\LoginModel;
 
 class LoginController extends Controller
 {
@@ -36,9 +37,6 @@ class LoginController extends Controller
 
     $form->startForm('POST', 'login/login', ['class' => 'form_login'])
 
-      ->addError('email', $this->error)
-      ->addError('password', $this->error)
-
       ->startDiv(['class' => 'input_login'])
       ->addInput('email', 'email', ['class' => 'input_text_login', 'placeholder' => 'Email'])
       ->endDiv()
@@ -66,16 +64,19 @@ class LoginController extends Controller
         $email = SecurityHelper::sanitize(InputType::String, 'email');
         $password = SecurityHelper::sanitize(InputType::String, 'password');
 
-        if (!$email) {
-          FlashMessage::addMessage("Utilisateur inconnu", 'error');
-          header('Location: /login');
-          exit;
-        }
-
+        // crée le 1er user admin lors de la 1er connection
         if (Database::firstLogin()) {
           Database::fixtureAdmin();
-          FlashMessage::addMessage("L'utilisateur admin a été créé avec succès", 'success');
-          header('Location: /login');
+          header('Location: login');
+          exit;
+        }
+        $userModel = New UserModel;
+        $user = $userModel->findOneByEmail($email);
+
+        if (!$user) {
+          // Si l'utilisateur n'existe pas
+          FlashMessage::addMessage("Cet utilisateur n'existe pas.", 'warning');
+          $this->index();
           exit;
         }
 
@@ -83,19 +84,19 @@ class LoginController extends Controller
           $this->redirectBasedOnRole();
           exit;
         } else { 
-          FlashMessage::addMessage("Le formulaire est incomplet", 'error');
-          header('Location: /login');
+          FlashMessage::addMessage("Email ou mot de passse incorrect", 'warning');
+          $this->index();
           exit;
         }
       }
 
-      FlashMessage::addMessage('⚠️ login/login en POST... Formulaire invalide', 'error');
-      header('Location: /login');
+      FlashMessage::addMessage('Veillez remplir tout les champs', 'error');
+      $this->index();
       exit;
     }
 
-    FlashMessage::addMessage('⚠️ login/login en GET...', 'error');
-    header('Location: /login');
+    FlashMessage::addMessage("L'utilisateur admin a été créé avec succès", 'success');
+    $this->index();
     exit;
   }
 
@@ -122,8 +123,8 @@ class LoginController extends Controller
       header('Location: /vetDashboard');
       exit;
     } else {
-      $_SESSION['error'] = "Rôle non reconnu";
-      header('Location: /login');
+      FlashMessage::addMessage("Aucun rôle n'a était reconnue", 'error');
+      $this->index();
       exit;
     }
   }

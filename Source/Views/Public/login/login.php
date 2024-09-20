@@ -1,10 +1,15 @@
-<?php use Source\Helpers\FlashMessage; ?>
+<?php 
+
+use Source\Helpers\FlashMessage; 
+
+?>
 
 <main class="main_login">
-
   <div class="container_form_login">
-    <?= $loginForm ?>
-    <?php FlashMessage::displayFlashMessage(); ?>
+    <?php
+     FlashMessage::displayFlashMessage();
+     echo $loginForm;
+     ?>
     <div class="div">
       <a href="/templates/ForgotPassword" class="link_forgot_pass">Mot de passe oublié ?</a>
     </div>

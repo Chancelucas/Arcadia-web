@@ -2,9 +2,6 @@
 
 namespace Source\Helpers;
 
-use Source\Helpers\SecurityHelper;
-use Source\Helpers\InputType;
-
 class FlashMessage
 {
   private static $message = null;
@@ -28,8 +25,11 @@ class FlashMessage
   public static function displayFlashMessage()
   {
     if (!empty(self::$message)) {
-      $message = SecurityHelper::sanitize(InputType::String, self::$message);
-      $type = SecurityHelper::sanitize(InputType::String, self::$type);
+      $message = self::$message;
+      $type = self::$type;
+      
+      // $message = SecurityHelper::sanitize(InputType::String, self::$message);
+      // $type = SecurityHelper::sanitize(InputType::String, self::$type);
       echo "<div class='flash-message {$type}' id='flash-message'>
                     {$message}
                   </div>";
