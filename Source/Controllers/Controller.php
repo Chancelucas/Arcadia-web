@@ -9,6 +9,9 @@ namespace Source\Controllers;
 
 abstract class Controller
 {
+
+  protected $error = [];
+
   /**
    * Rendu d'une vue avec un template.
    *

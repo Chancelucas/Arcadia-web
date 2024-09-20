@@ -1,6 +1,3 @@
-<?php
-use function Source\Helpers\securityHTML;
-?>
 
 
 <h3> Mot de passe oublié<h3>

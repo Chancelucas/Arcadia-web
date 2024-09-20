@@ -72,22 +72,21 @@ class Database extends PDO
             return;
         }
 
-        // get role_id from role (Admin)
         $roleId = (new RoleModel)->findOneByRole($adminRole)->getId();
 
         try {
             $user = new UserModel;
-
             $user->setUsername($username)
-                ->setEmail($email)
-                ->setPassword($hashedPassword)
-                ->setIdRole($roleId);
-
+                 ->setEmail($email)
+                 ->setPassword($hashedPassword)
+                 ->setIdRole($roleId);
             $user->createUser();
-
-            echo "L'utilisateur admin a été créé avec succès.";
+        
+            $_SESSION['error'] = "l'administrateur à était crée avec succes";
+            header('Location: /login');
         } catch (PDOException $e) {
             echo "Erreur lors de la création de l'utilisateur admin : " . $e->getMessage();
         }
+        
     }
 }

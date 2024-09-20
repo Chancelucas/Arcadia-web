@@ -1,7 +1,3 @@
-<?php
-use function Source\Helpers\securityHTML;
-?>
-
 
 <h3>Mentions Légales</h3>
 

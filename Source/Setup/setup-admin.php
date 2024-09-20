@@ -1,5 +1,7 @@
 <?php
 
+namespace Source\Setup;
+
 use Source\Autoloader;
 use Lib\config\Database;
 
@@ -9,5 +11,6 @@ require_once ROOT . '/Autoloader.php';
 
 Autoloader::register();
 
-Database::fixtureAdmin();
-
+if (Database::firstLogin()) {
+  Database::fixtureAdmin();
+}

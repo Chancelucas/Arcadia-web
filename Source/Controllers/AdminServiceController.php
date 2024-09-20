@@ -6,7 +6,7 @@ use Lib\config\Form;
 use Lib\config\CloudinaryManager;
 use Source\Controllers\AdminController;
 use Source\Models\service\ServiceModel;
-use function Source\Helpers\securityHTML;
+use Source\Helpers\securityHTML;
 
 class AdminServiceController extends AdminController
 {

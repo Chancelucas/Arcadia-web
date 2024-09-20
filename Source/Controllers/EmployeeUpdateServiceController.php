@@ -4,7 +4,7 @@ namespace Source\Controllers;
 
 use Lib\config\Form;
 use Source\Models\service\ServiceModel;
-use function Source\Helpers\securityHTML;
+use Source\Helpers\securityHTML;
 
 
 class EmployeeUpdateServiceController extends EmployeeController

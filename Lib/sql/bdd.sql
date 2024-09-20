@@ -74,7 +74,7 @@ CREATE TABLE `Service` (
     `picture_url`VARCHAR(255)
 );
 
-CREATE TABLE `Hour`(
+CREATE TABLE `Hours`(
     `id` INT PRIMARY KEY AUTO_INCREMENT,
     `day`VARCHAR(20) NOT NULL,
     `opening_time` TIME NOT NULL,
@@ -108,12 +108,11 @@ VALUES
     ('Mauvais');
 
 
+-- INSERT INTO Animal (name, breed) VALUES ('Léo', 'Lion');
+-- INSERT INTO Habitat (name, description) VALUES ('Terre Chaude', 'blablabla');
 
-INSERT INTO Animal (name, breed) VALUES ('Léo', 'Lion');
-INSERT INTO Habitat (name, description) VALUES ('Terre Chaude', 'blablabla');
-
-SELECT * 
-FROM `Habitat` h  
-LEFT JOIN `Animal` a 
-ON a.id_habitat = h.id
+-- SELECT * 
+-- FROM `Habitat` h  
+-- LEFT JOIN `Animal` a 
+-- ON a.id_habitat = h.id
 

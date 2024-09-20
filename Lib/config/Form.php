@@ -62,6 +62,15 @@ class Form
     return $this;
   }
 
+  public function addError(string $name, array $errors = [])
+  {
+    if (isset($errors[$name])) {
+      $this->formCode .= "<p class='error'>$errors[$name]</p>";
+    }
+
+    return $this;
+  }
+
   //addInput
   public function addInput(string $type, string $name, array $params = []): self
   {

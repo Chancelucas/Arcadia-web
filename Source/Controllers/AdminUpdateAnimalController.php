@@ -5,7 +5,7 @@ namespace Source\Controllers;
 use Lib\config\Form;
 use Source\Models\animal\AnimalModel;
 use Source\Controllers\AdminController;
-use function Source\Helpers\securityHTML;
+use Source\Helpers\securityHTML;
 
 class AdminUpdateAnimalController extends AdminController
 {

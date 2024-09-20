@@ -1,5 +1,5 @@
 <?php
-use function Source\Helpers\securityHTML;
+use Source\Helpers\securityHTML;
 ?>
 
 
@@ -21,9 +21,9 @@ use function Source\Helpers\securityHTML;
   <?php foreach ($users as $u) : ?>
     <div class="container-user-admin">
       <div class="user-created-admin">
-        <div class="user-item username"><?= securityHTML($u->username); ?></div>
-        <div class="user-item email"><?= securityHTML($u->email); ?></div>
-        <div class="user-item role"><?= securityHTML($u->role); ?></div>
+        <div class="user-item username"><?= $u->username ?></div>
+        <div class="user-item email"><?= $u->email ?></div>
+        <div class="user-item role"><?= $u->role ?></div>
         <div class="btn-gestion-user">
           <form method="POST" action="adminUser/deleteUser/<?= $u->id_User ?>">
             <button type="submit" class="delete_btn" name="deleteUser">Supprimer</button>

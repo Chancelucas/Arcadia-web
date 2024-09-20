@@ -1,7 +1,3 @@
-<?php
-use function Source\Helpers\securityHTML;
-?>
-
 
 <h3>Gestion des Cookies sur le site "ARCADIA"</h3>
 <br>

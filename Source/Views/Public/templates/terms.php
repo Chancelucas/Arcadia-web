@@ -1,7 +1,3 @@
-<?php
-use function Source\Helpers\securityHTML;
-?>
-
 
 <h3>Conditions Générales d'Utilisation (CGU) du site "ARCADIA"</h3>
 

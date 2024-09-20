@@ -1,5 +1,5 @@
 <?php
-use function Source\Helpers\securityHTML;
+use Source\Helpers\securityHTML;
 ?>
 
 
@@ -12,16 +12,16 @@ use function Source\Helpers\securityHTML;
     <?php foreach ($hours as $hour) : ?>
 
       <div class="hour_creaded_admin">
-        <div class="item_hour_admin"><?= securityHTML($hour->day); ?></div>
-        <div class="item_hour_admin"><?= securityHTML($hour->opening_time); ?></div>
-        <div class="item_hour_admin"><?= securityHTML($hour->closing_time); ?></div>
+        <div class="item_hour_admin"><?= $hour->day ?></div>
+        <div class="item_hour_admin"><?= $hour->opening_time ?></div>
+        <div class="item_hour_admin"><?= $hour->closing_time ?></div>
 
         <div class="btn_gestion_hour_admin">
-          <form method="POST" action="/adminHour/deleteHour/<?= securityHTML($hour->id_Hour); ?>">
+          <form method="POST" action="/adminHour/deleteHour/<?= $hour->id_Hour ?>">
             <button type="submit" class="delete_btn" name="deleteHour">Supprimer</button>
           </form>
 
-          <a href="/adminUpdateHour/index/<?= securityHTML($hour->id_Hour) ?>" class="link_update">Modifier</a>
+          <a href="/adminUpdateHour/index/<?= $hour->id_Hour ?>" class="link_update">Modifier</a>
 
         </div>
 

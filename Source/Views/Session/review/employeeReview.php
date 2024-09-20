@@ -1,5 +1,5 @@
 <?php
-use function Source\Helpers\securityHTML;
+use Source\Helpers\securityHTML;
 ?>
 
 
@@ -8,13 +8,13 @@ use function Source\Helpers\securityHTML;
 
   <div class="container_all_review_employee">
     <?php foreach ($allReviews as $reviews) : ?>
-      <?php securityHTML($label = $reviews->status == 1 ? "Désactiver" : "Activer") ?>
-      <?php securityHTML($stylebtn = $reviews->status == 1 ? "delete_btn" : "btn_update") ?>
+      <?php $label = $reviews->status == 1 ? "Désactiver" : "Activer" ?>
+      <?php $stylebtn = $reviews->status == 1 ? "delete_btn" : "btn_update" ?>
       <div class="one_review_employee">
-        <p class="text_review_employee"><?= securityHTML($reviews->pseudo) ?></p>
-        <p class="text_review_employee"><?= securityHTML($reviews->review) ?></p>
+        <p class="text_review_employee"><?= $reviews->pseudo ?></p>
+        <p class="text_review_employee"><?= $reviews->review ?></p>
         <form method="POST" action="employeeReview/toggleStatus/<?= $reviews->id ?>">
-          <button class="<?= securityHTML($stylebtn) ?>" type="submit" name="toggleStatusReviews"><?= securityHTML($label); ?></button>
+          <button class="<?= $stylebtn ?>" type="submit" name="toggleStatusReviews"><?= $label ?></button>
         </form>
       </div>
 

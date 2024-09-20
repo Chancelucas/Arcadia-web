@@ -7,7 +7,7 @@ use Source\Helpers\FilterHelper;
 use Source\Controllers\VetController;
 use Source\Models\filter\FilterModel;
 use Source\Models\animal\FoodGivenModel;
-use function Source\Helpers\securityHTML;
+use Source\Helpers\securityHTML;
 
 class VetDashboardController extends VetController
 {

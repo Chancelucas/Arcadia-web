@@ -66,9 +66,6 @@
   font-size: 15px;
 }
 
-.div_back_btn {
-}
-
 .link_back_btn {
   color: var(--shadow);
   display: flex;
@@ -78,4 +75,29 @@
 
 .title_page {
   padding: 10px 0;
+}
+
+.error {
+ color: var(--red);
+}
+
+.flash-message {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.flash-message.success {
+  background-color: var(--clear);
+  color: var(--shadow);
+}
+
+.flash-message.error {
+  color: var(--red);
+}
+
+.flash-message.warning {
+  color: var(--red);
 }

@@ -1,7 +1,3 @@
-<?php
-use function Source\Helpers\securityHTML;
-?>
-
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -25,6 +21,8 @@ use function Source\Helpers\securityHTML;
     </footer>
     <script src="/js/templates/menu/menu_script.js"></script>
     <script src="/js/templates/welcome/anime_welcome_page.js"></script>
+    <script src="/js/templates/message/flash_message.js"></script>
+
 </body>
 
 </html>

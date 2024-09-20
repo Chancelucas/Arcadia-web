@@ -1,7 +1,3 @@
-<?php
-use function Source\Helpers\securityHTML;
-?>
-
 
 <nav class="navbar_public">
     <div class="div_nav_public">

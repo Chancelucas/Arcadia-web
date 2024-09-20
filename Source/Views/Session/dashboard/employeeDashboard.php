@@ -1,5 +1,5 @@
 <?php
-use function Source\Helpers\securityHTML;
+use Source\Helpers\securityHTML;
 ?>
 
 

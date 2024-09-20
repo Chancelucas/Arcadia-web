@@ -1,5 +1,5 @@
 <?php
-use function Source\Helpers\securityHTML;
+use Source\Helpers\securityHTML;
 ?>
 
 
@@ -16,12 +16,12 @@ use function Source\Helpers\securityHTML;
     <?php if ($animalsReport) : ?>
       <?php foreach ($animalsReport as $animalReport) : ?>
         <div class="one_elements_report_admin">
-          <div class="item_report_admin">L'animal : <?= securityHTML($animalReport->animalBreed) ?></div>
-          <div class="item_animal_report_admin">Son etat : <?= securityHTML($animalReport->state) ?></div>
-          <div class="item_animal_report_admin">Nourriture : <?= securityHTML($animalReport->proposed_food) ?></div>
-          <div class="item_animal_report_admin">Quantité : <?= securityHTML($animalReport->food_amount) ?></div>
-          <div class="item_animal_report_admin">Date de passage : <?= securityHTML($animalReport->passage_date) ?></div>
-          <div class="item_animal_report_admin">Commentaire : <?= securityHTML($animalReport->state_detail) ?></div>
+          <div class="item_report_admin">L'animal : <?= $animalReport->animalBreed ?></div>
+          <div class="item_animal_report_admin">Son etat : <?= $animalReport->state ?></div>
+          <div class="item_animal_report_admin">Nourriture : <?= $animalReport->proposed_food ?></div>
+          <div class="item_animal_report_admin">Quantité : <?= $animalReport->food_amount ?></div>
+          <div class="item_animal_report_admin">Date de passage : <?= $animalReport->passage_date ?></div>
+          <div class="item_animal_report_admin">Commentaire : <?= $animalReport->state_detail ?></div>
         </div>
       <?php endforeach; ?>
     <?php endif; ?>
@@ -36,11 +36,11 @@ use function Source\Helpers\securityHTML;
     <?php if ($reportsHabitat) : ?>
       <?php foreach ($reportsHabitat as $reportHabitat) : ?>
         <div class="one_elements_report_admin">
-          <div class="item_report_admin"><?= securityHTML($reportHabitat->name_habitat) ?></div>
-          <div class="item_report_admin"><?= securityHTML($reportHabitat->opinion) ?></div>
-          <div class="item_report_admin"><?= securityHTML($reportHabitat->state) ?></div>
-          <div class="item_report_admin"><?= securityHTML($reportHabitat->improvement) ?></div>
-          <div class="item_report_admin"><?= securityHTML($reportHabitat->date) ?></div>
+          <div class="item_report_admin"><?= $reportHabitat->name_habitat ?></div>
+          <div class="item_report_admin"><?= $reportHabitat->opinion ?></div>
+          <div class="item_report_admin"><?= $reportHabitat->state ?></div>
+          <div class="item_report_admin"><?= $reportHabitat->improvement ?></div>
+          <div class="item_report_admin"><?= $reportHabitat->date ?></div>
         </div>
       <?php endforeach; ?>
     <?php endif; ?>

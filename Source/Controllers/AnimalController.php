@@ -4,10 +4,11 @@ namespace Source\Controllers;
 
 use Source\Controllers\Controller;
 use Source\Models\animal\AnimalModel;
-use Source\Models\animal\FoodGivenModel;
 use Source\Models\filter\FilterModel;
+use Source\Models\animal\FoodGivenModel;
+use Source\Models\report\AssessmentModel;
 use Source\Models\report\AnimalReportModel;
-use function Source\Helpers\securityHTML;
+
 
 class AnimalController extends Controller
 {
@@ -64,6 +65,9 @@ class AnimalController extends Controller
 
     $lastReport = $this->getLastElementByField($allReports, 'passage_date');
 
+    $assessment = (new AssessmentModel())->findOneById($lastReport->state)->getState();
+    $lastReport->state = $assessment;
+
     return $lastReport;
   }
 
@@ -75,6 +79,5 @@ class AnimalController extends Controller
 
 
     return $this->getLastElementByField($allFoodGiven, 'food_given_date');
-
   }
 }

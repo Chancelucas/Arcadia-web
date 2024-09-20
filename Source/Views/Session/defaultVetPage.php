@@ -19,6 +19,8 @@
   </main>
 
   <script src="/js/templates/menu/menu_script_session.js"></script>
+  <script src="/js/templates/message/flash_message.js"></script>
+
 </body>
 
 </html>

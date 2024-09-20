@@ -12,6 +12,8 @@ use Source\Models\user\UserModel;
 abstract class BackController
 {
   protected $user;
+  protected $error = [];
+
 
   function __construct()
   {

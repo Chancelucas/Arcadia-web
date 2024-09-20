@@ -1,5 +1,5 @@
 <?php
-use function Source\Helpers\securityHTML;
+use Source\Helpers\securityHTML;
 ?>
 
 
@@ -13,22 +13,22 @@ use function Source\Helpers\securityHTML;
     <?php foreach ($habitats as $habitat) : ?>
       <div class="habitat-admin">
         <div class="title-habitat-admin">
-          <h4><?= securityHTML($habitat->name) ?></h4>
+          <h4><?= $habitat->name ?></h4>
         </div>
         <div class="btns-habitat-view-admin">
-          <form method="POST" action="adminHabitat/deleteHabitat/<?= securityHTML($habitat->id) ?>">
+          <form method="POST" action="adminHabitat/deleteHabitat/<?= $habitat->id ?>">
             <button type="submit" class="delete_btn" name="deleteHabitat">Supprimer</button>
           </form>
-          <a href="/adminUpdateHabitat/index/<?= securityHTML($habitat->id) ?>" class="link_update">Modifier</a>
+          <a href="/adminUpdateHabitat/index/<?= $habitat->id ?>" class="link_update">Modifier</a>
         </div>
         <div class="image-habitat-view-admin">
-          <img src="<?= securityHTML($habitat->picture_url) ?>" alt="Photo habitat">
+          <img src="<?= $habitat->picture_url ?>" alt="Photo habitat">
         </div>
-        <div class="description-habitat-view-admin"><?= securityHTML($habitat->description) ?></div>
+        <div class="description-habitat-view-admin"><?= $habitat->description ?></div>
         <div class="animals-habitat-view-admin">
           <?php foreach ($habitat->animals as $animal) : ?>
-            <div class="image-animal-view-admin animal" style="background-image: url('<?= securityHTML($animal->picture_url); ?>');" >
-              <p class="div-breed-animal-admin"><?= securityHTML($animal->breed) ?></p>
+            <div class="image-animal-view-admin animal" style="background-image: url('<?= $animal->picture_url ?>');" >
+              <p class="div-breed-animal-admin"><?= $animal->breed ?></p>
             </div>
           <?php endforeach; ?>
         </div>

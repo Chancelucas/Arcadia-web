@@ -3,13 +3,14 @@
 namespace Source\Controllers;
 
 use Lib\config\Form;
+use Source\Helpers\InputType;
+use Source\Helpers\SecurityHelper;
 use Source\Controllers\VetController;
 use Source\Models\animal\AnimalModel;
 use Source\Models\habitat\HabitatModel;
-use Source\Models\report\AnimalReportModel;
 use Source\Models\report\AssessmentModel;
+use Source\Models\report\AnimalReportModel;
 use Source\Models\report\HabitatReportModel;
-use function Source\Helpers\securityHTML;
 
 class VetReportController extends VetController
 {
@@ -19,10 +20,10 @@ class VetReportController extends VetController
     $createReportAnimalForm = $this->generateCreateReportAnimalForm();
     $createReportHabitatForm = $this->generateCreateReportHabitatForm();
 
-
     $this->render('report/report', [
-      'createReportHabitatForm' => $createReportHabitatForm, 
-      'createReportAnimalForm' => $createReportAnimalForm]);
+      'createReportHabitatForm' => $createReportHabitatForm,
+      'createReportAnimalForm' => $createReportAnimalForm
+    ]);
   }
 
   private function getAllAssessment()
@@ -33,7 +34,7 @@ class VetReportController extends VetController
     return $habitats;
   }
 
-   /** 
+  /** 
    * Function get all habitat on habitat model
    */
   private function getHabitatsFromDatabase()
@@ -59,6 +60,9 @@ class VetReportController extends VetController
     $form = new Form;
 
     $form->startForm('POST', 'vetReport/createHabitatReport', ['class' => 'form_create_report_vet', 'enctype' => 'multipart/form-data'])
+
+      ->addError('date', $this->error)
+      ->addError('improvement', $this->error)
 
       ->addInput('date', 'date', ['class' => 'input_create_report_vet', 'required' => true])
 
@@ -86,11 +90,17 @@ class VetReportController extends VetController
   public function createHabitatReport()
   {
     if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST['createReportHabitat'])) {
-      $opinion = $_POST['opinion'];
-      $state = $_POST['state'];
-      $date = $_POST['date'];
-      $idHabitat = $_POST['habitat'];
-      $improvement = $_POST['improvement'];
+      
+      $opinion = SecurityHelper::sanitize(InputType::Int, 'opinion');
+      $state = SecurityHelper::sanitize(InputType::Int, 'state');
+      $date = SecurityHelper::sanitize(InputType::Date, 'date');
+      $idHabitat = SecurityHelper::sanitize(InputType::Int, 'habitat');
+      $improvement = SecurityHelper::sanitize(InputType::Int, 'improvement');
+
+      // $state = $_POST['state'];
+      // $date = $_POST['date'];
+      // $idHabitat = $_POST['habitat'];
+      // $improvement = $_POST['improvement'];
 
       $existingReportDate = (new HabitatReportModel)->findOneByDate($date);
       $existingReportHabitat = (new HabitatReportModel)->findOneByIdHabitat($idHabitat);
@@ -129,23 +139,23 @@ class VetReportController extends VetController
    * Delete One Habitat
    */
   public function deleteReportHabitat()
-{
+  {
     if (isset($_POST['deleteReportHabitat'])) {
-        $habitatReportId = $_POST['habitatReportId'];
-        $reportHabitatModel = new HabitatReportModel;
-        $reportHabitatModel->setId($habitatReportId);
-        $deleteReportHabitat = $reportHabitatModel->delete();
+      $habitatReportId = $_POST['habitatReportId'];
+      $reportHabitatModel = new HabitatReportModel;
+      $reportHabitatModel->setId($habitatReportId);
+      $deleteReportHabitat = $reportHabitatModel->delete();
 
-        if ($deleteReportHabitat) {
-            $_SESSION['message'] = "✅ Le rapport de l'habitat a été supprimé avec succès.";
-        } else {
-            $_SESSION['error'] = "❌ Une erreur s'est produite lors de la suppression du rapport de l'habitat.";
-        }
+      if ($deleteReportHabitat) {
+        $_SESSION['message'] = "✅ Le rapport de l'habitat a été supprimé avec succès.";
+      } else {
+        $_SESSION['error'] = "❌ Une erreur s'est produite lors de la suppression du rapport de l'habitat.";
+      }
     }
 
     header("Location: /vetHabitat");
     exit;
-}
+  }
 
 
   ////////////////////// REPORT ANIMAL ///////////////////////////
@@ -243,7 +253,7 @@ class VetReportController extends VetController
     return $animalsModel;
   }
 
-   /**
+  /**
    * Delete One animal
    */
   public function deleteReportAnimal(int $animalReportId)

@@ -7,7 +7,8 @@ use Lib\config\CloudinaryManager;
 use Source\Models\animal\AnimalModel;
 use Source\Controllers\AdminController;
 use Source\Models\habitat\HabitatModel;
-use function Source\Helpers\securityHTML;
+use Source\Helpers\SecurityHelper;
+use Source\Helpers\InputType;
 
 class AdminAnimalController extends AdminController
 {
@@ -16,9 +17,14 @@ class AdminAnimalController extends AdminController
    */
   public function index()
   {
+
     $createAnimalForm = $this->generateCreateAnimalForm();
     $animals = $this->getAllAnimalsFromDatabase();
-    $this->render('animal/adminAnimal', ['createAnimalForm' => $createAnimalForm, 'animals' => $animals]);
+
+    $this->render('animal/adminAnimal', [
+      'createAnimalForm' => $createAnimalForm,
+      'animals' => $animals
+    ]);
   }
 
   /**
@@ -31,14 +37,20 @@ class AdminAnimalController extends AdminController
 
     $form->startForm('POST', 'adminAnimal/createAnimal', ['class' => 'form_animal_admin', 'enctype' => 'multipart/form-data'])
 
-      ->addInput('text', securityHTML('name'), ['class' => 'animal_form_input_admin', 'placeholder' => 'Ajouter un nom', 'required' => true])
+    //Ajoute les erreurs éventuelles
+    ->addError('name', $this->error)
+    ->addError('breed', $this->error)
+    ->addError('habitat', $this->error)
+    ->addError('picture', $this->error)
 
-      ->addInput('text', securityHTML('breed'), ['class' => 'animal_form_input_admin', 'name' => 'animal_breed', 'placeholder' => 'Ajouter une race animal', 'required' => true])
+      ->addInput('text', 'name', ['class' => 'animal_form_input_admin', 'placeholder' => 'Ajouter un nom', 'required' => true])
+
+      ->addInput('text', 'breed', ['class' => 'animal_form_input_admin', 'name' => 'animal_breed', 'placeholder' => 'Ajouter une race animal', 'required' => true])
 
       ->addSelect('habitat', $habitats, ['class' => 'animal_form_input_admin'])
 
       ->startDiv(['class' => 'div_add_doc_animal_admin'])
-      ->addInput('file', securityHTML('picture'), ['class' => 'animal_form_input_admin', 'multiple' => true])
+      ->addInput('file', 'picture', ['class' => 'animal_form_input_admin', 'multiple' => true])
       ->endDiv()
 
       ->startDiv(['class' => 'div_btn_add_animal'])
@@ -56,12 +68,27 @@ class AdminAnimalController extends AdminController
   public function createAnimal()
   {
     if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST['createAnimal'])) {
-      $name = $_POST['name'];
-      $breed = $_POST['breed'];
-      $id_Habitat = $_POST['habitat'];
+      $name = SecurityHelper::sanitize(InputType::String, 'name');
+      $breed = SecurityHelper::sanitize(InputType::String, 'breed');
+      $id_Habitat = SecurityHelper::sanitize(InputType::Int, 'habitat');
+      
+      // $name = $_POST['name'];
+      // $breed = $_POST['breed'];
+      // $id_Habitat = $_POST['habitat'];
 
 
-      $imageUrl = NULL; // Définissez une valeur par défaut ou une URL vide
+      // Vérifie la validité des données et ajoute des messages d'erreur si nécessaire
+      if (!$name) {
+        $this->error["name"] = "Le nom de l'habitat n'ai pas remplie";
+      }
+      if (!$breed) {
+        $this->error["breed"] = "La race de l'animal n'ai pas remplie";
+      }
+      if (!$id_Habitat) {
+        $this->error["habitat"] = "L'habitat séléctioné n'existe pas";
+      }
+
+      $imageUrl = NULL; 
 
       // Vérifie si un fichier a été téléchargé
       if (!empty($_FILES['picture']['tmp_name'])) {

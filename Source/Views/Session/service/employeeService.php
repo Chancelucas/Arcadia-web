@@ -1,5 +1,5 @@
 <?php
-use function Source\Helpers\securityHTML;
+use Source\Helpers\securityHTML;
 ?>
 
 
@@ -9,14 +9,14 @@ use function Source\Helpers\securityHTML;
     <?php foreach ($services as $service) : ?>
 
       <div class="service_creaded_admin">
-        <p class="item_service_admin title_service_admin"><?= securityHTML($service->name); ?></p>
-        <p class="item_service_admin texte_service_admin"><?= securityHTML($service->description); ?></p>
+        <p class="item_service_admin title_service_admin"><?= $service->name ?></p>
+        <p class="item_service_admin texte_service_admin"><?= $service->description ?></p>
 
         <div class="picture_service_view_admin">
-          <img class="picture_service_admin" src="<?= securityHTML($service->picture); ?>" alt="Photo du service"">
+          <img class="picture_service_admin" src="<?= $service->picture ?>" alt="Photo du service"">
         </div>
 
-          <a href=" /employeeUpdateService/index/<?= securityHTML($service->id_Service) ?>" class="link_update">Modifier</a>
+          <a href=" /employeeUpdateService/index/<?= $service->id_Service ?>" class="link_update">Modifier</a>
         </div>
     <?php endforeach; ?>
     </div>

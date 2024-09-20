@@ -1,5 +1,5 @@
 <?php
-use function Source\Helpers\securityHTML;
+use Source\Helpers\securityHTML;
 ?>
 
 
@@ -11,8 +11,8 @@ use function Source\Helpers\securityHTML;
     </div>
 
     <div class="user_dashboard">
-      <p class="name_user_dashboard"><?= securityHTML($user->getUsername()) ?></p>
-      <p class="role_user_dashboard"><?= securityHTML($user->getRole()); ?></p>
+      <p class="name_user_dashboard"><?= $user->getUsername() ?></p>
+      <p class="role_user_dashboard"><?= $user->getRole() ?></p>
     </div>
 
     <ul class="ul_links_session_nav">

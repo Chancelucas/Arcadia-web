@@ -1,6 +1,3 @@
-<?php
-use function Source\Helpers\securityHTML;
-?>
 
 
 <div class="container_footer">

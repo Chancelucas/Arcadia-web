@@ -4,6 +4,7 @@ namespace Source\Models\report;
 
 use Source\Models\MainModel;
 use Source\Models\animal\AnimalModel;
+use Source\Models\report\AssessmentModel;
 
 /**
  * Report Object
@@ -305,12 +306,12 @@ class AnimalReportModel extends MainModel
     return (new AssessmentModel())->findOneById($this->state)->getState();
   }
 
-  /**
+    /**
    * Get the value of habitat
    */
-  // ??????
-  // public function setAssessmentState($state)
-  // {
-  //   return (new AssessmentModel())->findOneById($this->id)->setState($state);
-  // }
+  public function getAssessmentStateId()
+  {
+    return $this->state;
+  }
+
 }

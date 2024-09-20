@@ -5,7 +5,7 @@ namespace Source\Controllers;
 use Lib\config\Form;
 use Source\Controllers\AdminController;
 use Source\Models\habitat\HabitatModel;
-use function Source\Helpers\securityHTML;
+use Source\Helpers\securityHTML;
 
 class AdminUpdateHabitatController extends AdminController
 {

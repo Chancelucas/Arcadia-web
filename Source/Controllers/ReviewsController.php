@@ -5,7 +5,7 @@ namespace Source\Controllers;
 use Lib\config\Form;
 use Source\Controllers\Controller;
 use Source\Models\reviews\ReviewsModel;
-use function Source\Helpers\securityHTML;
+use Source\Helpers\securityHTML;
 
 class ReviewsController extends Controller
 {

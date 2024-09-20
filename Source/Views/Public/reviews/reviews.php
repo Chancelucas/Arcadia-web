@@ -1,5 +1,5 @@
 <?php
-use function Source\Helpers\securityHTML;
+use  Source\Helpers\securityHTML;
 ?>
 
 
@@ -20,8 +20,8 @@ use function Source\Helpers\securityHTML;
           <?php for ($i = 0; $i < 4; $i++) : ?>
             <?php foreach ($allReviews as $review) : ?>
               <div class="slide review">
-                <p class="review_pseudo"><?= securityHTML($review->pseudo) ?></p>
-                <p class="review_text"><?= securityHTML($review->review) ?></p>
+                <p class="review_pseudo"><?= $review->pseudo ?></p>
+                <p class="review_text"><?= $review->review ?></p>
               </div>
             <?php endforeach; ?>
           <?php endfor; ?>
