@@ -2,10 +2,19 @@
 
 namespace Source\Helpers;
 
+use Source\Helpers\InputType;
+use Source\Helpers\SecurityHelper;
+
+
 class FlashMessage
 {
   private static $message = null;
   private static $type = null;
+
+// public function create()
+// {
+//   return $this->errorCode;
+// }
 
   // Ajoute un message flash temporaire
   public static function addMessage(string $message, string $type = 'success')
@@ -24,19 +33,27 @@ class FlashMessage
   // Méthode pour afficher les messages (sans session)
   public static function displayFlashMessage()
   {
-    if (!empty(self::$message)) {
+    if (!empty(self::$message)) {  
+
       $message = self::$message;
       $type = self::$type;
-      
-      // $message = SecurityHelper::sanitize(InputType::String, self::$message);
-      // $type = SecurityHelper::sanitize(InputType::String, self::$type);
-      echo "<div class='flash-message {$type}' id='flash-message'>
-                    {$message}
-                  </div>";
+
+      // $message = SecurityHelper::sanitize(InputType::Test, self::$message);
+      // $type = SecurityHelper::sanitize(InputType::Test, self::$type);
+
+      return "<div class='flash-message {$type}' id='flash-message'>{$message}</div>";
 
       // On efface le message après l'affichage pour éviter qu'il persiste
       self::$message = null;
       self::$type = null;
     }
   }
+
+  // public function test()
+  // {
+  //   $this->errorCode .= "<label for='$for'";
+  //   $this->errorCode .= $params ? $this->addParams($params) : '';
+  //   $this->errorCode .= ">$texte</label>";
+  //   return $this;
+  // }
 }

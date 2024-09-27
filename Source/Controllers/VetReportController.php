@@ -11,10 +11,14 @@ use Source\Models\habitat\HabitatModel;
 use Source\Models\report\AssessmentModel;
 use Source\Models\report\AnimalReportModel;
 use Source\Models\report\HabitatReportModel;
+use Source\Helpers\FlashMessage;
+
 
 class VetReportController extends VetController
 {
-
+  /**
+   * Donne les données à la vue. 
+   */
   public function index()
   {
     $createReportAnimalForm = $this->generateCreateReportAnimalForm();
@@ -34,9 +38,6 @@ class VetReportController extends VetController
     return $habitats;
   }
 
-  /** 
-   * Function get all habitat on habitat model
-   */
   private function getHabitatsFromDatabase()
   {
     $model = new HabitatModel;
@@ -49,21 +50,25 @@ class VetReportController extends VetController
   ////////////////////// REPORT HABITAT ///////////////////
 
   /**
-   * Function with form for create REPORT HABITAT
+   * Formulaire report habitat
    */
   private function generateCreateReportHabitatForm()
   {
     $state = $this->getAllAssessment();
-
     $habitats = $this->getHabitatsFromDatabase();
 
     $form = new Form;
 
     $form->startForm('POST', 'vetReport/createHabitatReport', ['class' => 'form_create_report_vet', 'enctype' => 'multipart/form-data'])
 
+      // Ajoute les erreurs éventuelles
       ->addError('date', $this->error)
+      ->addError('habitat', $this->error)
+      ->addError('opinion', $this->error)
+      ->addError('state', $this->error)
       ->addError('improvement', $this->error)
 
+      // Ajout du champ de sélection 
       ->addInput('date', 'date', ['class' => 'input_create_report_vet', 'required' => true])
 
       ->addSelect('habitat', $habitats, ['class' => 'input_create_report_vet', 'required' => true])
@@ -85,28 +90,23 @@ class VetReportController extends VetController
   }
 
   /**
-   * Function create habitat report
+   * Création habitat report
    */
   public function createHabitatReport()
   {
     if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST['createReportHabitat'])) {
-      
+
       $opinion = SecurityHelper::sanitize(InputType::Int, 'opinion');
       $state = SecurityHelper::sanitize(InputType::Int, 'state');
       $date = SecurityHelper::sanitize(InputType::Date, 'date');
       $idHabitat = SecurityHelper::sanitize(InputType::Int, 'habitat');
       $improvement = SecurityHelper::sanitize(InputType::Int, 'improvement');
 
-      // $state = $_POST['state'];
-      // $date = $_POST['date'];
-      // $idHabitat = $_POST['habitat'];
-      // $improvement = $_POST['improvement'];
-
       $existingReportDate = (new HabitatReportModel)->findOneByDate($date);
       $existingReportHabitat = (new HabitatReportModel)->findOneByIdHabitat($idHabitat);
 
       if (!is_null($existingReportDate) && !is_null($existingReportHabitat)) {
-        echo "Le rapport existe déjà.";
+        FlashMessage::addMessage("Le rapport existe déjà", 'error');
         return;
       } else {
 
@@ -120,18 +120,16 @@ class VetReportController extends VetController
             ->setImprovement($improvement);
 
           $reportHabitat->createReport();
-
-          $_SESSION['message'] = "le compte rendu a été créé avec succès.";
+          FlashMessage::addMessage("le compte rendu a été créé avec succès.", 'success');
         } catch (\Exception $e) {
-
-          $_SESSION['error'] = "Une erreur s'est produite lors de la création de du compte rendu : " . $e->getMessage();
+          FlashMessage::addMessage("Une erreur s'est produite lors de la création de du compte rendu", 'error');
         }
       }
     } else {
-      $_SESSION['error'] = "Aucun compte rendu n'a été renseigné";
+      FlashMessage::addMessage("Aucun compte rendu n'a été renseigné", 'warning');
     }
-
-    header("Location: /vetHabitat");
+    $this->index();
+    //header("Location: /vetHabitat");
     exit;
   }
 
@@ -147,13 +145,14 @@ class VetReportController extends VetController
       $deleteReportHabitat = $reportHabitatModel->delete();
 
       if ($deleteReportHabitat) {
-        $_SESSION['message'] = "✅ Le rapport de l'habitat a été supprimé avec succès.";
+      FlashMessage::addMessage("Le rapport de l'habitat a été supprimé avec succès.", 'success');
+
       } else {
-        $_SESSION['error'] = "❌ Une erreur s'est produite lors de la suppression du rapport de l'habitat.";
+      FlashMessage::addMessage("Une erreur s'est produite lors de la suppression du rapport de l'habitat.", 'error');
       }
     }
-
-    header("Location: /vetHabitat");
+    $this->index();
+    //header("Location: /vetHabitat");
     exit;
   }
 
@@ -200,18 +199,27 @@ class VetReportController extends VetController
   public function createAnimalReport()
   {
     if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST['createReportAnimal'])) {
-      $idAnimal = $_POST['animal'];
-      $state = $_POST['state'];
-      $proposed_food = $_POST['proposed_food'];
-      $food_amount = $_POST['food_amount'];
-      $passage_date = $_POST['passage_date'];
-      $state_detail = $_POST['state_detail'];
+      $idAnimal = SecurityHelper::sanitize(InputType::Int, 'animal');
+      $state = SecurityHelper::sanitize(InputType::Int, 'state');
+      $proposed_food = SecurityHelper::sanitize(InputType::String, 'proposed_food');
+      $food_amount = SecurityHelper::sanitize(InputType::Int, 'food_amount');
+      $passage_date = SecurityHelper::sanitize(InputType::Date, 'passage_date');
+      $state_detail = SecurityHelper::sanitize(InputType::Int, 'state_detail');
+
 
       $existingReportDate = (new HabitatReportModel)->findOneByDate($passage_date);
       $existingReportIdAnimal = (new AnimalReportModel)->findOneByIdAnimal($idAnimal);
 
+
+      if (!$food_amount) {
+        $this->error["food_amount"] = "Les commentaires doivent être remplis";
+      } else if (strlen($food_amount) > 255) {
+        $this->error["food_amount"] = "Le commentaire est trop long, 255 caractères maximum!";
+      }
+
       if (!is_null($existingReportDate) && !is_null($existingReportIdAnimal)) {
-        echo "Le rapport existe déjà.";
+        FlashMessage::addMessage("Rapport déjà existant", 'error');
+        $this->index();
         return;
       } else {
 
@@ -227,17 +235,17 @@ class VetReportController extends VetController
 
           $reportAnimal->createReport();
 
-          $_SESSION['message'] = "le compte rendu a été créé avec succès.";
-        } catch (\Exception $e) {
+          FlashMessage::addMessage("le compte rendu a été créé avec succès.", 'success');
 
-          $_SESSION['error'] = "Une erreur s'est produite lors de la création de du compte rendu : " . $e->getMessage();
+        } catch (\Exception $e) {
+          FlashMessage::addMessage("Une erreur s'est produite lors de la création du compte rendu", 'warning');
         }
       }
     } else {
-      $_SESSION['error'] = "Aucun compte rendu n'a été renseigné";
+      FlashMessage::addMessage("Aucun compte rendu n'a été renseigné", 'error');
     }
-
-    header("Location: /vetAnimal");
+    $this->index();
+    //header("Location: /vetAnimal");
     exit;
   }
 
@@ -264,13 +272,14 @@ class VetReportController extends VetController
       $deleteReportAnimal = $reportAnimalModel->delete();
 
       if ($deleteReportAnimal) {
-        $_SESSION['message'] = "✅ Le rapport de l'animal à était supprimé avec succès.";
+      FlashMessage::addMessage("Le rapport de l'animal à était supprimé avec succès.", 'success');
       } else {
-        $_SESSION['error'] = "❌ Une erreur s'est produite lors de la suppression du rapport de l'animal.";
+      FlashMessage::addMessage("Une erreur s'est produite lors de la suppression du rapport de l'animal.", 'error');
       }
     }
+    $this->index();
 
-    Header("Location: /vetAnimal");
+    //Header("Location: /vetAnimal");
     exit;
   }
 }

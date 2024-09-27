@@ -6,7 +6,6 @@ use Source\Controllers\Controller;
 use Source\Models\habitat\HabitatModel;
 use Source\Models\reviews\ReviewsModel;
 use Source\Models\service\ServiceModel;
-use Source\Helpers\securityHTML;
 
 class HomeController extends Controller
 {

@@ -87,8 +87,8 @@ CREATE TABLE `FoodGiven`(
     `hour` TIME NOT NULL,
     `food` VARCHAR(255) NOT NULL,
     `quantity` VARCHAR(255) NOT NULL,
-    `id_user` INT,
-    `id_animal` INT,
+    `id_user` INT NOT NULL,
+    `id_animal` INT NOT NULL,
     FOREIGN KEY (`id_user`) REFERENCES `User`(`id`),
     FOREIGN KEY (`id_animal`) REFERENCES `Animal`(`id`)
 );

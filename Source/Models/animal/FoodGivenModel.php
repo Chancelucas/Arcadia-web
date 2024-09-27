@@ -138,6 +138,9 @@ class FoodGivenModel extends MainModel
     return $resulat;
   }
 
+  
+
+
   /**
    * Get all Animals 
    * 
@@ -157,15 +160,11 @@ class FoodGivenModel extends MainModel
       $foodGiven->quantity = $foodGivenModel->getQuantity();
 
       $user = $foodGivenModel->getUser();
-      // $foodGiven->user = $foodGivenModel->getUser();
-
       $foodGiven->user = new \stdClass();
       $foodGiven->user->id = $user->getId();
       $foodGiven->user->username = $user->getUsername();
 
       $animal = $foodGivenModel->getAnimal();
-      // $foodGiven->animal = $foodGivenModel->getAnimal();
-
       $foodGiven->animal = new \stdClass();
       $foodGiven->animal->id = $animal->getId();
       $foodGiven->animal->breed = $animal->getBreed();
@@ -177,25 +176,25 @@ class FoodGivenModel extends MainModel
   }
 
   public function findByAnimalId(string $id_animal)
-{
+  {
     $query = "SELECT * FROM {$this->table} WHERE id_animal = :id_animal";
     $data = $this->request($query, [':id_animal' => $id_animal])->fetchAll();
 
     if ($data === false) {
-        return [];
+      return [];
     }
 
     $models = [];
     foreach ($data as $item) {
-        $self = new self();
-        $self->hydrate($item);
-        $models[] = $self;
+      $self = new self();
+      $self->hydrate($item);
+      $models[] = $self;
     }
 
     return $models;
-}
+  }
 
-public function getFoodGivenByAnimalId($animalId)
+  public function getFoodGivenByAnimalId($animalId)
   {
     $result =  $this->request("SELECT * FROM foodGiven WHERE id_animal = :id_animal", [':id_animal' => $animalId])->fetchAll();
     return $result;

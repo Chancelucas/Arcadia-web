@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zoo Arcadia site officiel">
     <link rel="stylesheet" media="screen" href="/css/style.css" type="text/css">
     <title>Arcadia</title>
 </head>

@@ -7,7 +7,9 @@ use Source\Models\animal\AnimalModel;
 use Source\Models\animal\FoodGivenModel;
 use Source\Controllers\EmployeeController;
 use Source\Models\report\AnimalReportModel;
-use Source\Helpers\securityHTML;
+use Source\Helpers\InputType;
+use Source\Helpers\FlashMessage;
+use Source\Helpers\SecurityHelper;
 
 class EmployeeAnimalFeedController extends EmployeeController
 {
@@ -18,7 +20,7 @@ class EmployeeAnimalFeedController extends EmployeeController
   public function index()
   {
     $selectAnimalForm = $this->generateCreateSelectAnimalForm();
-    $reportAnimal = $this->showAllReportsAboutOneAnimal(); // AIME PAS
+    $reportAnimal = $this->showAllReportsAboutOneAnimal();
     $animalsBreed = $this->showAnimalBreed();
     $givenFoodForm = $this->generateCreateGivenFoodForm();
 
@@ -78,10 +80,10 @@ class EmployeeAnimalFeedController extends EmployeeController
   private function showAllReportsAboutOneAnimal()
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['animal'])) {
-      $animalId = $_POST['animal'];
+      $animalId = SecurityHelper::sanitize(InputType::Int, 'animal');
+      //$animalId = $_POST['animal'];
       return $this->getAnimalReports($animalId);
     }
-
     return null;
   }
 
@@ -91,7 +93,8 @@ class EmployeeAnimalFeedController extends EmployeeController
   private function showAnimalBreed()
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['animal'])) {
-      $animalId = $_POST['animal'];
+      $animalId =  SecurityHelper::sanitize(InputType::Int, 'animal');
+      //$animalId = $_POST['animal'];
       $animalModel = new AnimalModel();
       $animal = $animalModel->findOneById($animalId);
       return $animal ? $animal->getBreed() : 'Race inconnue';
@@ -135,17 +138,18 @@ class EmployeeAnimalFeedController extends EmployeeController
   public function createGivenFood()
   {
     if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST['createGivenFood'])) {
-      $date = $_POST['date'];
-      $hour = $_POST['hour'];
-      $food = $_POST['food'];
-      $quantity = $_POST['quantity'];
-      $idAnimal = $_POST['animal'];
+      $date = SecurityHelper::sanitize(InputType::Date, 'date');
+      $hour = SecurityHelper::sanitize(InputType::Int, 'hour');
+      $food = SecurityHelper::sanitize(InputType::String, 'food');
+      $quantity = SecurityHelper::sanitize(InputType::Int, 'quantity');
+      $idAnimal = SecurityHelper::sanitize(InputType::Int, 'animal');
       $employee = $_SESSION['user'];
 
       $existingDate = (new FoodGivenModel)->findOneByDateAndAnimal($date, $idAnimal);
 
       if (!is_null($existingDate)) {
-        echo "Le repas existe déjà.";
+        FlashMessage::addMessage("Un repas déjà était donner a la même date pour cette animal", 'error');
+        $this->index();
         return;
       } else {
         try {
@@ -160,17 +164,17 @@ class EmployeeAnimalFeedController extends EmployeeController
 
           $foodGiven->createFoodGiven();
 
-          $_SESSION['message'] = "le compte rendu a été créé avec succès.";
-        } catch (\Exception $e) {
+          FlashMessage::addMessage("Le repas a bien était crée.", 'success');
 
-          $_SESSION['error'] = "Une erreur s'est produite lors de la création de du compte rendu : " . $e->getMessage();
+        } catch (\Exception $e) {
+          FlashMessage::addMessage("Une erreur s'est produite lors de la création du repas", 'error');
         }
       }
     } else {
-      $_SESSION['error'] = "Aucun compte rendu n'a été renseigné";
+      FlashMessage::addMessage("Aucun compte rendu n'a été renseigné", 'error');
     }
 
-    header("Location: /employeeFoodGiven");
+    $this->index();
     exit;
   }
 }

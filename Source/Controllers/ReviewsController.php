@@ -5,7 +5,10 @@ namespace Source\Controllers;
 use Lib\config\Form;
 use Source\Controllers\Controller;
 use Source\Models\reviews\ReviewsModel;
-use Source\Helpers\securityHTML;
+use Source\Helpers\SecurityHelper;
+use Source\Helpers\InputType;
+use Source\Helpers\FlashMessage;
+
 
 class ReviewsController extends Controller
 {
@@ -36,6 +39,9 @@ class ReviewsController extends Controller
 
     $form->startForm('POST', 'reviews/createReviews', ['class' => 'form_reviews_page'])
 
+      ->addError('pseudo', $this->error)
+      ->addError('review', $this->error)
+
       ->startDiv(['class' => 'div_form_reviews_page'])
       ->addInput('text', 'pseudo', ['id' => 'pseudo', 'placeholder' => 'Nom', 'required' => true, 'class' => 'input_form_reviews_page'])
       ->endDiv()
@@ -57,17 +63,25 @@ class ReviewsController extends Controller
   public function createReviews()
   {
     if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST['createReviews'])) {
-      $pseudo = $_POST['pseudo'];
-      $comment = $_POST['review'];
+      $pseudo = SecurityHelper::sanitize(InputType::String, 'pseudo');
+      $comment = SecurityHelper::sanitize(InputType::String, 'review');
+
       $status = false;
+
+      if (!$pseudo) {
+        $this->error["pseudo"] = "Champ nom non remplie";
+      }
+      if (!$comment) {
+        $this->error["review"] = "Commentaire non valide";
+      }
 
       $existingReviews = (new ReviewsModel)->findOneByPseudo($pseudo);
 
       if (!is_null($existingReviews)) {
-        echo "Un avis a déjà était poser avec ce pseudo.";
-        return;
+        FlashMessage::addMessage("Un avis a déjà était poser avec ce nom", 'error');
+        $this->index();
+        exit;
       } else {
-
         try {
           $reviewModel = new ReviewsModel;
 
@@ -76,18 +90,16 @@ class ReviewsController extends Controller
             ->setStatus($status);
 
           $reviewModel->createReviews();
-
-          $_SESSION['message'] = "Votre avis à été créé avec succès.";
+          FlashMessage::addMessage("Votre avis à été créé avec succès.", 'success');
         } catch (\Exception $e) {
-
-          $_SESSION['error'] = "Une erreur s'est produite lors de la création de votre avis : " . $e->getMessage();
+          FlashMessage::addMessage("Une erreur s'est produite lors de la création de votre avis.", 'error');
         }
       }
     } else {
-      $_SESSION['error'] = "Aucun avis n'a été renseigné";
+      FlashMessage::addMessage("Aucun avis n'a été renseigné.", 'warning');
     }
 
-    header("Location: /reviews");
+    $this->index();
     exit;
   }
 
@@ -101,7 +113,11 @@ class ReviewsController extends Controller
   {
     $form = new Form;
 
-    $form->startForm('POST', 'reviews/createReviews', ['class' => 'form_reviews_page'])
+    $form->startForm('POST', 'reviews/sendMail', ['class' => 'form_reviews_page'])
+
+      ->addError('email', $this->error)
+      ->addError('title', $this->error)
+      ->addError('comment', $this->error)
 
       ->startDiv(['class' => 'div_form_reviews_page'])
       ->addInput('email', 'email', ['id' => 'pseudo', 'placeholder' => 'Email', 'required' => true, 'class' => 'input_form_reviews_page'])
@@ -123,5 +139,36 @@ class ReviewsController extends Controller
 
 
     return $form->create();
+  }
+
+  public function sendMail()
+  {
+    $email =  SecurityHelper::sanitize(InputType::String, 'email') ?? null;
+    $title = SecurityHelper::sanitize(InputType::String, 'title') ?? null;
+    $message = SecurityHelper::sanitize(InputType::String, 'comment') ?? null;
+
+    if (!$email || !$title || !$message) {
+      FlashMessage::addMessage("Tous les champs doivent être remplis.", 'error');
+      $this->index();
+      exit;
+    }
+
+    // Envoi du mail
+    $headers = 'From: lucas.studi24@gmail.com' . "\r\n" .
+      'Reply-To: lucas.studi24@gmail.com' . "\r\n" .
+      'X-Mailer: PHP/' . phpversion();
+
+    $retour = mail($email, $title, $message, $headers);
+
+    // Vérifier si l'envoi a fonctionné
+    if ($retour) {
+      FlashMessage::addMessage("Votre demande a bien été envoyée", 'success');
+    } else {
+      FlashMessage::addMessage("Une erreur est survenue lors de l'envoi du mail", 'error');
+    }
+
+    // Rediriger vers la page d'accueil ou une autre page
+    $this->index();
+    exit;
   }
 }

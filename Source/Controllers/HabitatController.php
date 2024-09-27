@@ -5,7 +5,8 @@ namespace Source\Controllers;
 use Source\Controllers\Controller;
 use Source\Models\animal\AnimalModel;
 use Source\Models\habitat\HabitatModel;
-use Source\Helpers\securityHTML;
+use Source\Helpers\FlashMessage;
+
 
 class HabitatController extends Controller
 {
@@ -20,7 +21,6 @@ class HabitatController extends Controller
 
     $this->render('habitat/habitat', [
       'allHabitats' => $habitat,
-
     ]);
   }
 
@@ -33,7 +33,6 @@ class HabitatController extends Controller
     $this->render('habitat/page', [
       'habitat' => $habitat,
       'animalsInHabitat' => $animalsInHabitat
-
     ]);
   }
 
@@ -58,7 +57,7 @@ class HabitatController extends Controller
     $habitat = $habitatModel->findOneById($idHabitat);
 
     if (!$habitat) {
-      $_SESSION['error'] = "Aucun habitat n'a était trouvé";
+      FlashMessage::addMessage("Aucun habitat n'a était trouvé.", 'warning');
     }
 
     $animalModel = new AnimalModel();

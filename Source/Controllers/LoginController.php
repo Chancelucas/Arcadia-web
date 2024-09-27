@@ -6,8 +6,8 @@ use Lib\config\Form;
 use Lib\config\Database;
 use Source\Helpers\InputType;
 use Source\Helpers\FlashMessage;
-use Source\Models\user\UserModel;
 use Source\Helpers\SecurityHelper;
+use Source\Models\user\UserModel;
 use Source\Models\user\LoginModel;
 
 class LoginController extends Controller

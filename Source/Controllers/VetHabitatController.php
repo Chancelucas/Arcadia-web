@@ -12,8 +12,9 @@ class VetHabitatController extends VetController
   {
     $reportsHabitat = $this->getAllHabitatReportFromModel();
 
-
-    $this->render('habitat/vetHabitat', ['reportsHabitat' => $reportsHabitat]);
+    $this->render('habitat/vetHabitat', [
+      'reportsHabitat' => $reportsHabitat
+    ]);
   }
 
   /**

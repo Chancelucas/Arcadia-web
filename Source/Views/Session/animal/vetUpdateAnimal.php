@@ -5,11 +5,4 @@
         <?= $animalReportForm; ?>
     </div>
 
-    <code>
-        <pre>  <?php 
-        
-        var_dump($error) 
-        ?> </pre>
-    </code>
-
 </div>

@@ -3,31 +3,45 @@
 namespace Source\Controllers;
 
 use Lib\config\Form;
+use Source\Helpers\InputType;
+use Source\Helpers\SecurityHelper;
 use Source\Models\service\ServiceModel;
-use Source\Helpers\securityHTML;
+use Source\Controllers\EmployeeController;
 
 
 class EmployeeUpdateServiceController extends EmployeeController
 {
   /**
-   * Show all habitat en BDD with form create habitat. 
+   * Donne les données à la vue. 
    */
   public function index(int $id)
   {
-    $serviceModel = new ServiceModel;
-    $service = $serviceModel->findOneById($id);
+    // Vérifie si des changements ont été soumis via le formulaire
+    if (isset($_POST['save_changes'])) {
+      // Récupère les données saisies dans le formulaire
+      $service = $_POST['service'];
+      $name = $_POST['name'];
+      $description = $_POST['description'];
+    } else {
+      // Si aucune soumission, récupère les données existantes du compte rendu pour le formulaire
+      $serviceModel = new ServiceModel;
+      $service = $serviceModel->findOneById($id);
+      // Récupération des valeurs existantes pour peupler le formulaire
+      $name = $service->getName();
+      $description = $service->getDescription();
+    }
 
-    $name = $service->getName();
-    $description = $service->getDescription();
-
+    // Création du formulaire de mise à jour
     $serviceForm = $this->createForm($id, $name, $description);
-    $this->render('service/adminUpdateService', ['serviceForm' => $serviceForm]);
+
+    // Rend la vue pour afficher le formulaire de mise à jour
+    $this->render('service/adminUpdateService', [
+      'serviceForm' => $serviceForm
+    ]);
   }
 
-
-
   /**
-   * Generate update service form
+   * Génère le formulaire de mise à jour.
    */
   public function createForm($serviceId, $name, $description)
   {
@@ -36,6 +50,11 @@ class EmployeeUpdateServiceController extends EmployeeController
 
     $form->startForm('POST', "/employeeUpdateService/updateService/{$serviceId}", ['class' => 'form_update_service_admin'])
 
+      // Ajoute les erreurs éventuelles
+      ->addError('name', $this->error)
+      ->addError('description', $this->error)
+
+      // Ajout du champ de sélection 
       ->startDiv(['class' => 'div_form_update_service_admin'])
       ->addLabelFor('name', 'Nom :')
       ->addInput('text', 'name', ['id' => 'name', 'class' => 'input_class_update_service_admin', 'value' => $name, 'required' => true])
@@ -60,9 +79,20 @@ class EmployeeUpdateServiceController extends EmployeeController
    */
   public function updateService(int $serviceId)
   {
+    // Vérifie si des changements ont été soumis via le formulaire
     if (isset($_POST['save_changes'])) {
-      $name = $_POST['name'];
-      $description = $_POST['description']; 
+
+      // Nettoie les entrées du formulaire pour éviter les injections ou erreurs
+      $name = SecurityHelper::sanitize(InputType::String, 'name');
+      $description = SecurityHelper::sanitize(InputType::String, 'description');
+
+      // Vérifie la validité des données et ajoute des messages d'erreur si nécessaire
+      if (!$name) {
+        $this->error["name"] = "Le nom du service n'ai pas valide";
+      }
+      if (!$description) {
+        $this->error["description"] = "Description non valide";
+      }
 
       $serviceModel = new ServiceModel;
       $serviceModel->findOneById($serviceId);
@@ -76,7 +106,7 @@ class EmployeeUpdateServiceController extends EmployeeController
         header("Location: /employeeService");
         exit;
       } else {
-        $_SESSION['error'] = "Une erreur s'est produite lors de la modification du service.";
+          $this->error["db"] = "Une erreur s'est produite lors de la modification du service.";
       }
     }
 

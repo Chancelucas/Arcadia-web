@@ -5,7 +5,8 @@ namespace Source\Controllers;
 use Lib\config\Form;
 use Source\Helpers\FilterHelper;
 use Source\Models\filter\FilterModel;
-use Source\Helpers\securityHTML;
+use Source\Helpers\InputType;
+use Source\Helpers\SecurityHelper;
 
 class EmployeeFoodGivenController extends EmployeeController
 {
@@ -24,10 +25,10 @@ class EmployeeFoodGivenController extends EmployeeController
   {
     $form = new Form();
 
-    $form->startForm('POST', '' ,['class' => 'form_food_given_employee'])
+    $form->startForm('POST', '', ['class' => 'form_food_given_employee'])
 
       ->addLabelFor('employee', 'Employé')
-      ->addSelect('employee', $this->getAllUsername(), ['value' => $_POST['employee'] ?? null, 'class' => 'select_food_given' ])
+      ->addSelect('employee', $this->getAllUsername(), ['value' => $_POST['employee'] ?? null, 'class' => 'select_food_given'])
 
       ->addLabelFor('date', 'Date du repas')
       ->addSelect('date', $this->getAllDates(), ['value' => $_POST['date'] ?? null, 'class' => 'select_food_given'])
@@ -45,9 +46,13 @@ class EmployeeFoodGivenController extends EmployeeController
   private function filterFoodGiven()
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      $selectedEmployee = $_POST['employee'] ?? null;
-      $selectedDate = $_POST['date'] ?? null;
-      $selectedAnimal = $_POST['animal'] ?? null;
+      // $selectedEmployee = $_POST['employee'] ?? null;
+      // $selectedDate = $_POST['date'] ?? null;
+      // $selectedAnimal = $_POST['animal'] ?? null;
+
+      $selectedEmployee = SecurityHelper::sanitize(InputType::Int, 'employee') ?? null;
+      $selectedDate = SecurityHelper::sanitize(InputType::Date, 'date') ?? '';
+      $selectedAnimal = SecurityHelper::sanitize(InputType::Int, 'animal') ?? null;
 
       return FilterHelper::filterFoodGiven($selectedEmployee,  $selectedDate, $selectedAnimal);
     }

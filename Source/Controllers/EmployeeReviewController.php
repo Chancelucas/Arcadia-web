@@ -3,6 +3,8 @@
 namespace Source\Controllers;
 
 use Source\Models\reviews\ReviewsModel;
+use Source\Helpers\FlashMessage;
+
 
 class EmployeeReviewController extends EmployeeController
 {
@@ -36,7 +38,7 @@ class EmployeeReviewController extends EmployeeController
       $updateResult = $reviewModel->update();
 
       if (!$updateResult) {
-        $_SESSION['error'] = "Une erreur s'est produite lors de la modification de l'avis client.";
+        FlashMessage::addMessage("Une erreur s'est produite lors de la modification de l'avis client.", 'error');
       }
     }
 

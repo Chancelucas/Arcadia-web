@@ -1,8 +1,10 @@
 <?php
-use Source\Helpers\securityHTML;
+use Source\Helpers\FlashMessage; 
+
 ?>
 
 <div class="habitats_section">
+<?= FlashMessage::displayFlashMessage() ?>
   <?php if ($allHabitats) : ?>
     <?php foreach ($allHabitats as $habitat) : ?>
       <div class="habitat">

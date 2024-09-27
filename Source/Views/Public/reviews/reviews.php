@@ -1,18 +1,22 @@
 <?php
-use  Source\Helpers\securityHTML;
+
+use Source\Helpers\FlashMessage;
+
 ?>
 
 
 <main class="main_reviews_page">
 
-<h2 class="title_reviews_page">Nous contacter</h2>
+  <h2 class="title_reviews_page">Nous contacter</h2>
+  
+  <?= FlashMessage::displayFlashMessage() ?>
 
-
-    <?= $formContact ?>
+  <?= $formContact ?>
 
 
   <h2 class="title_reviews_page">Laissez nous votre avis</h2>
-  <?= $formReviews; ?>
+
+  <?= $formReviews ?>
   <section class="reviews_section">
     <div class="slider">
       <div class="slide-track">
@@ -33,4 +37,3 @@ use  Source\Helpers\securityHTML;
 
 
 </main>
-

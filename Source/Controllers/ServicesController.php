@@ -36,12 +36,4 @@ class ServicesController extends Controller
     ]);
   }
 
-  // public function page(string $slug)
-  // {
-  //   $model = (new ServiceModel)->findBy(['slug' => $slug])[0];
-
-  //   $this->render('services/page', [
-  //     'service' => $model
-  //   ]);
-  // }
 }

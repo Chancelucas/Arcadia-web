@@ -1,5 +1,5 @@
 <?php
-use Source\Helpers\securityHTML;
+use Source\Helpers\FlashMessage; 
 ?>
 
 
@@ -39,6 +39,7 @@ use Source\Helpers\securityHTML;
   </div>
 </div>
 
+<?= FlashMessage::displayFlashMessage(); ?>
 
 <div class="div_given_food_animal_feed_page">
   <?= $givenFoodForm; ?>

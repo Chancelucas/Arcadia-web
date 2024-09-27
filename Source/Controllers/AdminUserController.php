@@ -7,7 +7,9 @@ use Source\Models\user\UserModel;
 use Source\Models\role\RoleModel;
 use Source\Controllers\AdminController;
 use Source\Models\filter\FilterModel;
-use Source\Helpers\securityHTML;
+use Source\Helpers\SecurityHelper;
+use Source\Helpers\InputType;
+use Source\Helpers\FlashMessage;
 
 class AdminUserController extends AdminController
 {
@@ -65,16 +67,23 @@ class AdminUserController extends AdminController
   public function createUser()
   {
     if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['createUser'])) {
-      $username = $_POST['username'];
-      $email = $_POST['email'];
-      $password = $_POST['password'];
-      $id_Role = $_POST['role'];
+      // $username = $_POST['username'];
+      // $email = $_POST['email'];
+      // $password = $_POST['password'];
+      // $id_Role = $_POST['role'];
+
+      $username = SecurityHelper::sanitize(InputType::String, 'username');
+      $email = SecurityHelper::sanitize(InputType::String, 'email');
+      $password = SecurityHelper::sanitize(InputType::String, 'password');
+      $id_Role = SecurityHelper::sanitize(InputType::String, 'role');
 
       $existingUser = (new UserModel)->findOneByEmail($email);
 
       if (!is_null($existingUser)) {
-        echo "Le nom d'utilisateur ou l'adresse e-mail est déjà utilisé.";
-        return;
+        FlashMessage::addMessage("Le nom d'utilisateur ou l'adresse e-mail est déjà utilisé.", 'warning');
+        //echo "Le nom d'utilisateur ou l'adresse e-mail est déjà utilisé.";
+        $this->index();
+        exit;
       }
 
       $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
