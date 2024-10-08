@@ -3,12 +3,13 @@
 namespace Source\Controllers;
 
 use Lib\config\Form;
+use Source\Helpers\InputType;
+use Source\Helpers\FlashMessage;
 use Lib\config\CloudinaryManager;
+use Source\Helpers\SecurityHelper;
 use Source\Models\animal\AnimalModel;
 use Source\Controllers\AdminController;
 use Source\Models\habitat\HabitatModel;
-use Source\Helpers\SecurityHelper;
-use Source\Helpers\InputType;
 
 class AdminAnimalController extends AdminController
 {
@@ -37,11 +38,11 @@ class AdminAnimalController extends AdminController
 
     $form->startForm('POST', 'adminAnimal/createAnimal', ['class' => 'form_animal_admin', 'enctype' => 'multipart/form-data'])
 
-    //Ajoute les erreurs éventuelles
-    ->addError('name', $this->error)
-    ->addError('breed', $this->error)
-    ->addError('habitat', $this->error)
-    ->addError('picture', $this->error)
+      //Ajoute les erreurs éventuelles
+      ->addError('name', $this->error)
+      ->addError('breed', $this->error)
+      ->addError('habitat', $this->error)
+      ->addError('picture', $this->error)
 
       ->addInput('text', 'name', ['class' => 'animal_form_input_admin', 'placeholder' => 'Ajouter un nom', 'required' => true])
 
@@ -71,11 +72,6 @@ class AdminAnimalController extends AdminController
       $name = SecurityHelper::sanitize(InputType::String, 'name');
       $breed = SecurityHelper::sanitize(InputType::String, 'breed');
       $id_Habitat = SecurityHelper::sanitize(InputType::Int, 'habitat');
-      
-      // $name = $_POST['name'];
-      // $breed = $_POST['breed'];
-      // $id_Habitat = $_POST['habitat'];
-
 
       // Vérifie la validité des données et ajoute des messages d'erreur si nécessaire
       if (!$name) {
@@ -88,15 +84,15 @@ class AdminAnimalController extends AdminController
         $this->error["habitat"] = "L'habitat séléctioné n'existe pas";
       }
 
-      $imageUrl = NULL; 
+      $imageUrl = NULL;
 
       // Vérifie si un fichier a été téléchargé
       if (!empty($_FILES['picture']['tmp_name'])) {
         // Télécharge l'image sur Cloudinary
         $imageUrl = CloudinaryManager::uploadImage($_FILES['picture']['tmp_name']);
         if (!$imageUrl) {
-          $_SESSION['error'] = "Une erreur s'est produite lors du téléchargement de l'image.";
-          header("Location: /adminAnimal");
+          FlashMessage::addMessage("Une erreur s'est produite lors du téléchargement de l'image.", 'error');
+          $this->index();
           exit;
         }
       }
@@ -104,7 +100,7 @@ class AdminAnimalController extends AdminController
       $existingAnimal = (new AnimalModel)->findOneByBreed($breed);
 
       if (!is_null($existingAnimal)) {
-        echo "Le nom de l'animal existe déjà.";
+        FlashMessage::addMessage("Le nom de l'animal existe déjà.", 'error');
         return;
       } else {
 
@@ -117,17 +113,14 @@ class AdminAnimalController extends AdminController
             ->setIdHabitat($id_Habitat);
 
           $animal->createAnimal();
-
-          $_SESSION['message'] = "L'animal a été créé avec succès.";
+          FlashMessage::addMessage("L'animal a été créé avec succès.", 'succes');
         } catch (\Exception $e) {
-
-          $_SESSION['error'] = "Une erreur s'est produite lors de la création de l'animal : " . $e->getMessage();
+          FlashMessage::addMessage("Une erreur s'est produite lors de la création de l'animal", 'succes');
         }
       }
     } else {
-      $_SESSION['error'] = "Aucun animal n'a été renseigné";
+      FlashMessage::addMessage("Aucun animal n'a été renseigné", 'error');
     }
-
     header("Location: /adminAnimal");
     exit;
   }
@@ -144,13 +137,15 @@ class AdminAnimalController extends AdminController
       $deleteAnimal = $animalModel->delete();
 
       if ($deleteAnimal) {
-        $_SESSION['message'] = "✅ Animal supprimé avec succès.";
+        FlashMessage::addMessage("Une erreur s'est produite lors de la suppression de l'animal.", 'error');
+
       } else {
-        $_SESSION['error'] = "❌ Une erreur s'est produite lors de la suppression de l'animal.";
+        FlashMessage::addMessage("Animal supprimé avec succès.", 'succes');
+
+
       }
     }
-
-    Header("Location: /adminAnimal");
+    header("Location: /adminAnimal");
     exit;
   }
 

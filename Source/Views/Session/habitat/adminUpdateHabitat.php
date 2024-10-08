@@ -1,5 +1,6 @@
 <?php
-use Source\Helpers\securityHTML;
+use Source\Helpers\FlashMessage;
+
 ?>
 
 
@@ -8,6 +9,9 @@ use Source\Helpers\securityHTML;
     <div>
         <a class="link_back_btn" href="javascript:history.back()">Retour</a>
     </div>
+
+    <?= FlashMessage::displayFlashMessage(); ?>
+
     <div class="container_update_habitat_admin">
         <?= $habitatForm; ?>
     </div>

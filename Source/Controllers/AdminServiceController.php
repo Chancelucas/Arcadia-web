@@ -6,7 +6,9 @@ use Lib\config\Form;
 use Lib\config\CloudinaryManager;
 use Source\Controllers\AdminController;
 use Source\Models\service\ServiceModel;
-use Source\Helpers\securityHTML;
+use Source\Helpers\FlashMessage;
+use Source\Helpers\SecurityHelper;
+use Source\Helpers\InputType;
 
 class AdminServiceController extends AdminController
 {
@@ -58,18 +60,19 @@ class AdminServiceController extends AdminController
   public function createService()
   {
     if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST['createService'])) {
-      $name = $_POST['name'];
-      $description = $_POST['description'];
-      $picture_url = $_POST['picture'];
 
-      $imageUrl = NULL; // Définissez une valeur par défaut ou une URL vide
+      $name = SecurityHelper::sanitize(InputType::String, 'name');
+      $description = SecurityHelper::sanitize(InputType::String, 'description');
+
+      $imageUrl = NULL; 
 
       // Vérifie si un fichier a été téléchargé
       if (!empty($_FILES['picture']['tmp_name'])) {
         // Télécharge l'image sur Cloudinary
         $imageUrl = CloudinaryManager::uploadImage($_FILES['picture']['tmp_name']);
         if (!$imageUrl) {
-          $_SESSION['error'] = "Une erreur s'est produite lors du téléchargement de l'image.";
+          FlashMessage::addMessage("Une erreur s'est produite lors du téléchargement de l'image.", 'error');
+
           header("Location: /adminService");
           exit;
         }
@@ -78,7 +81,7 @@ class AdminServiceController extends AdminController
       $existingService = (new ServiceModel)->findOneByName($name);
 
       if (!is_null($existingService)) {
-        echo "Le nom du service est déjà utilisé.";
+        FlashMessage::addMessage("Le nom du service est déjà utilisé.", 'error');
         return;
       } else {
 
@@ -91,40 +94,41 @@ class AdminServiceController extends AdminController
 
           $service->createService();
 
-          $_SESSION['message'] = "Le service a été créé avec succès.";
+          FlashMessage::addMessage("Le service a été créé avec succès.", 'success');
         } catch (\Exception $e) {
-
-          $_SESSION['error'] = "Une erreur s'est produite lors de la création du service : " . $e->getMessage();
+          FlashMessage::addMessage("Une erreur s'est produite lors de la création du service.", 'error');
         }
       }
     } else {
-      $_SESSION['error'] = "Aucun service n'a été renseigné";
+      FlashMessage::addMessage("Aucun service n'a été renseigné", 'warning');
     }
 
-    Header("Location: /adminService");
+    header("Location: /adminService");
     exit;
   }
 
   /**
    * Delete One service
    */
-  public function deleteService(int $serviceId)
+  public function deleteService(string $serviceId)
   {
 
     if (isset($_POST['deleteService'])) {
+      
       $serviceModel = new ServiceModel;
-
       $serviceModel->setId($serviceId);
       $deleteService = $serviceModel->delete();
 
       if ($deleteService) {
-        $_SESSION['message'] = "✅ Service supprimé avec succès.";
+        FlashMessage::addMessage("Une erreur s'est produite lors de la suppression du service.", 'warning');
+
       } else {
-        $_SESSION['error'] = "❌ Une erreur s'est produite lors de la suppression du service.";
+        FlashMessage::addMessage("Service supprimé avec succès.", 'success');
+
       }
     }
 
-    Header("Location: /adminService");
+    header("Location: /adminService");
     exit;
   }
 

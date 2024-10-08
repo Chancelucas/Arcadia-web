@@ -1,8 +1,14 @@
+<?php
+use Source\Helpers\FlashMessage; 
+?>
+
 
 <div class="main_container_animal_admin">
   <div class="form_create_animal_admin">
     <?= $createAnimalForm; ?>
   </div>
+
+  <?= FlashMessage::displayFlashMessage(); ?>
 
 
   <div class="container_animal_admin">

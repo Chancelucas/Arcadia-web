@@ -1,7 +1,3 @@
-<?php
-?>
-
-
 <div class="main_report_vet">
 
   <div class="title_vet_report">

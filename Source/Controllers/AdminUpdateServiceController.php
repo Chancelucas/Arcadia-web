@@ -3,9 +3,12 @@
 namespace Source\Controllers;
 
 use Lib\config\Form;
+use Source\Helpers\InputType;
+use Source\Helpers\FlashMessage;
+use Source\Helpers\securityHTML;
+use Source\Helpers\SecurityHelper;
 use Source\Controllers\AdminController;
 use Source\Models\service\ServiceModel;
-use Source\Helpers\securityHTML;
 
 
 class AdminUpdateServiceController extends AdminController
@@ -62,8 +65,9 @@ class AdminUpdateServiceController extends AdminController
   public function updateService(int $serviceId)
   {
     if (isset($_POST['save_changes'])) {
-      $name = $_POST['name'];
-      $description = $_POST['description']; 
+
+      $name = SecurityHelper::sanitize(InputType::String, 'name');
+      $description = SecurityHelper::sanitize(InputType::String, 'description'); 
 
       $serviceModel = new ServiceModel;
       $serviceModel->findOneById($serviceId);
@@ -75,9 +79,11 @@ class AdminUpdateServiceController extends AdminController
 
       if ($updateResult) {
         header("Location: /adminService");
+        FlashMessage::addMessage("Modification effectuer avec succes", 'success');
         exit;
       } else {
-        $_SESSION['error'] = "Une erreur s'est produite lors de la modification du service.";
+        FlashMessage::addMessage("Une erreur s'est produite lors de la modification du service.", 'warning');
+
       }
     }
 

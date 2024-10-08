@@ -1,5 +1,7 @@
 <?php
-use Source\Helpers\securityHTML;
+
+use Source\Helpers\FlashMessage;
+
 ?>
 
 
@@ -10,6 +12,7 @@ use Source\Helpers\securityHTML;
     <?= $createServiceForm; ?>
   </div>
 
+  <?= FlashMessage::displayFlashMessage(); ?>
 
 
   <div class="container_service_admin">

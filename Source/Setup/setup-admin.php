@@ -12,5 +12,5 @@ require_once ROOT . '/Autoloader.php';
 Autoloader::register();
 
 if (Database::firstLogin()) {
-  Database::fixtureAdmin();
+  // Database::fixtureAdmin();
 }

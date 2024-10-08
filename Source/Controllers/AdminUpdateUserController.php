@@ -3,10 +3,13 @@
 namespace Source\Controllers;
 
 use Lib\config\Form;
+use Source\Helpers\InputType;
 use Source\Models\user\UserModel;
+use Source\Helpers\SecurityHelper;
 use Source\Controllers\AdminController;
 use Source\Controllers\AdminUserController;
-use Source\Helpers\securityHTML;
+use Source\Helpers\FlashMessage;
+
 
 class AdminUpdateUserController extends AdminController
 {
@@ -81,10 +84,10 @@ class AdminUpdateUserController extends AdminController
   public function updateUser(int $userId)
   {
     if (isset($_POST['save_changes'])) {
-      $username = $_POST['username'];
-      $password = $_POST['password']; 
-      $email = $_POST['email'];
-      $roleId = $_POST['roleId'];
+      $username = SecurityHelper::sanitize(InputType::String, 'username');
+      $password = SecurityHelper::sanitize(InputType::String, 'password');
+      $email = SecurityHelper::sanitize(InputType::String, 'email');
+      $roleId = SecurityHelper::sanitize(InputType::Int, 'roleId');
 
       $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
@@ -102,7 +105,7 @@ class AdminUpdateUserController extends AdminController
         header("Location: /adminUser");
         exit;
       } else {
-        $_SESSION['error'] = "Une erreur s'est produite lors de la modification de l'utilisateur.";
+        FlashMessage::addMessage("Une erreur s'est produite lors de la modification de l'utilisateur.", 'error');
       }
     }
 

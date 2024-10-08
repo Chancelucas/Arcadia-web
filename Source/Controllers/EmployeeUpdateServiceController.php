@@ -4,6 +4,7 @@ namespace Source\Controllers;
 
 use Lib\config\Form;
 use Source\Helpers\InputType;
+use Source\Helpers\FlashMessage;
 use Source\Helpers\SecurityHelper;
 use Source\Models\service\ServiceModel;
 use Source\Controllers\EmployeeController;
@@ -50,11 +51,6 @@ class EmployeeUpdateServiceController extends EmployeeController
 
     $form->startForm('POST', "/employeeUpdateService/updateService/{$serviceId}", ['class' => 'form_update_service_admin'])
 
-      // Ajoute les erreurs éventuelles
-      ->addError('name', $this->error)
-      ->addError('description', $this->error)
-
-      // Ajout du champ de sélection 
       ->startDiv(['class' => 'div_form_update_service_admin'])
       ->addLabelFor('name', 'Nom :')
       ->addInput('text', 'name', ['id' => 'name', 'class' => 'input_class_update_service_admin', 'value' => $name, 'required' => true])
@@ -79,20 +75,10 @@ class EmployeeUpdateServiceController extends EmployeeController
    */
   public function updateService(int $serviceId)
   {
-    // Vérifie si des changements ont été soumis via le formulaire
     if (isset($_POST['save_changes'])) {
 
-      // Nettoie les entrées du formulaire pour éviter les injections ou erreurs
       $name = SecurityHelper::sanitize(InputType::String, 'name');
       $description = SecurityHelper::sanitize(InputType::String, 'description');
-
-      // Vérifie la validité des données et ajoute des messages d'erreur si nécessaire
-      if (!$name) {
-        $this->error["name"] = "Le nom du service n'ai pas valide";
-      }
-      if (!$description) {
-        $this->error["description"] = "Description non valide";
-      }
 
       $serviceModel = new ServiceModel;
       $serviceModel->findOneById($serviceId);
@@ -104,9 +90,11 @@ class EmployeeUpdateServiceController extends EmployeeController
 
       if ($updateResult) {
         header("Location: /employeeService");
+        FlashMessage::addMessage("Modification effectuer avec succes", 'success');
         exit;
+
       } else {
-          $this->error["db"] = "Une erreur s'est produite lors de la modification du service.";
+        FlashMessage::addMessage("Une erreur s'est produite lors de la modification du service.", 'error');
       }
     }
 

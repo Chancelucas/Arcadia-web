@@ -5,7 +5,9 @@ namespace Source\Controllers;
 use Lib\config\Form;
 use Source\Controllers\AdminController;
 use Source\Models\habitat\HabitatModel;
-use Source\Helpers\securityHTML;
+use Source\Helpers\FlashMessage;
+use Source\Helpers\SecurityHelper;
+use Source\Helpers\InputType;
 
 class AdminUpdateHabitatController extends AdminController
 {
@@ -60,8 +62,8 @@ class AdminUpdateHabitatController extends AdminController
   public function updateHabitat(int $habitatId)
   {
     if (isset($_POST['save_changes'])) {
-      $name = $_POST['name'];
-      $description = $_POST['description'];
+      $name = SecurityHelper::sanitize(InputType::String,'name');
+      $description = SecurityHelper::sanitize(InputType::String,'description');
 
       $habitatModel = new HabitatModel;
       $habitatModel->findOneById($habitatId);
@@ -73,9 +75,10 @@ class AdminUpdateHabitatController extends AdminController
 
       if ($updateResult) {
         header("Location: /adminHabitat");
-        exit;
+        FlashMessage::addMessage("Modification effectuer avec succes", 'success');
+        return;
       } else {
-        $_SESSION['error'] = "Une erreur s'est produite lors de la modification de l'utilisateur.";
+        FlashMessage::addMessage("Une erreur s'est produite lors de la modification de l'utilisateur.", 'error');
       }
     }
 

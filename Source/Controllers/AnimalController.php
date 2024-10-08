@@ -23,7 +23,6 @@ class AnimalController extends Controller
 
     $this->render('animal/animal', [
       'allHabitats' => $animal,
-
     ]);
   }
 
@@ -75,8 +74,6 @@ class AnimalController extends Controller
   {
     $foodGivenModel = new FoodGivenModel;
     $allFoodGiven = $foodGivenModel->getFoodGivenByAnimalId($idAnimal);
-
-
 
     return $this->getLastElementByField($allFoodGiven, 'food_given_date');
   }

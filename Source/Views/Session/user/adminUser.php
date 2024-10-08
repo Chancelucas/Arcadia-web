@@ -7,9 +7,10 @@ use Source\Helpers\FlashMessage;
   <div class="overlay"></div>
   <h3>Gestion des salariés</h3>
 
+  <?= FlashMessage::displayFlashMessage(); ?>
+
   <div class="form-create-admin">
     <h3>Créer un employé</h3>
-    <?= FlashMessage::displayFlashMessage(); ?>
 
     <?= $createUserForm; ?>
     <img class="icon_close" src="/assets/images/icons/croix.png" alt="Fermer">

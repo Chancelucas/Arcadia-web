@@ -5,7 +5,9 @@ namespace Source\Controllers;
 use Lib\config\Form;
 use Source\Models\animal\AnimalModel;
 use Source\Controllers\AdminController;
-use Source\Helpers\securityHTML;
+use Source\Helpers\FlashMessage;
+use Source\Helpers\SecurityHelper;
+use Source\Helpers\InputType;
 
 class AdminUpdateAnimalController extends AdminController
 {
@@ -56,8 +58,8 @@ class AdminUpdateAnimalController extends AdminController
   public function updateAnimal(int $animalId)
   {
     if (isset($_POST['save_changes'])) {
-      $name = $_POST['name'];
-      $breed = $_POST['breed']; 
+      $name = SecurityHelper::sanitize(InputType::String,'name');
+      $breed = SecurityHelper::sanitize(InputType::String,'breed'); 
 
       $animalModel = new AnimalModel;
       $animalModel->findOneById($animalId);
@@ -69,9 +71,10 @@ class AdminUpdateAnimalController extends AdminController
 
       if ($updateResult) {
         header("Location: /adminAnimal");
-        exit;
+        FlashMessage::addMessage("Modification effectuer avec succes", 'success');
+        return;
       } else {
-        $_SESSION['error'] = "Une erreur s'est produite lors de la modification de l'animal.";
+        FlashMessage::addMessage("Une erreur s'est produite lors de la modification de l'animal.", 'error');
       }
     }
 

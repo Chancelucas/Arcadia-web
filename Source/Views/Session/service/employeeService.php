@@ -1,9 +1,13 @@
 <?php
-use Source\Helpers\securityHTML;
+use Source\Helpers\FlashMessage;
+
 ?>
 
 
 <div class="main_edit_service_admin">
+
+<?= FlashMessage::displayFlashMessage(); ?>
+
 
   <div class="container_service_admin">
     <?php foreach ($services as $service) : ?>

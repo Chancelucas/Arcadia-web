@@ -67,10 +67,6 @@ class AdminUserController extends AdminController
   public function createUser()
   {
     if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['createUser'])) {
-      // $username = $_POST['username'];
-      // $email = $_POST['email'];
-      // $password = $_POST['password'];
-      // $id_Role = $_POST['role'];
 
       $username = SecurityHelper::sanitize(InputType::String, 'username');
       $email = SecurityHelper::sanitize(InputType::String, 'email');
@@ -81,9 +77,8 @@ class AdminUserController extends AdminController
 
       if (!is_null($existingUser)) {
         FlashMessage::addMessage("Le nom d'utilisateur ou l'adresse e-mail est déjà utilisé.", 'warning');
-        //echo "Le nom d'utilisateur ou l'adresse e-mail est déjà utilisé.";
         $this->index();
-        exit;
+        return;
       }
 
       $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -98,15 +93,19 @@ class AdminUserController extends AdminController
 
         $newUser->createUser();
 
-        $_SESSION['message'] = "L'utilisateur a été créé avec succès.";
+        FlashMessage::addMessage("L'utilisateur a été créé avec succès.", 'success');
+
       } catch (\Exception $e) {
-        $_SESSION['error'] = "Une erreur s'est produite lors de la création de l'utilisateur : " . $e->getMessage();
+        FlashMessage::addMessage("Une erreur s'est produite lors de la création de l'utilisateur.", 'success');
+
       }
     } else {
-      $_SESSION['error'] = "Aucun utilisateur n'a été renseigné";
+      FlashMessage::addMessage("Aucun utilisateur n'a été renseigné.", 'error');
+
     }
 
-    Header("Location: /adminUser");
+    $this->index();
+    // Header("Location: /adminUser");
     exit;
   }
 
@@ -120,12 +119,12 @@ class AdminUserController extends AdminController
 
       $deleteUser = $userModel->update();
 
-
-
       if ($deleteUser) {
-        $_SESSION['message'] = "✅ Utilisateur supprimé avec succès.";
+        FlashMessage::addMessage("L'utilisateur à était crée avec succes.", 'success');
+        exit;
       } else {
-        $_SESSION['error'] = "❌ Une erreur s'est produite lors de la suppression de l'utilisateur.";
+        FlashMessage::addMessage("Une erreur s'est produite lors de la suppression de l'utilisateur.", 'error');
+        exit;
       }
     }
 

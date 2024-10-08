@@ -3,9 +3,11 @@
 namespace Source\Controllers;
 
 use Lib\config\Form;
-use Source\Controllers\AdminController;
+use Source\Helpers\InputType;
+use Source\Helpers\FlashMessage;
 use Source\Models\hour\HourModel;
-use Source\Helpers\securityHTML;
+use Source\Helpers\SecurityHelper;
+use Source\Controllers\AdminController;
 
 class AdminHourController extends AdminController
 {
@@ -51,14 +53,15 @@ class AdminHourController extends AdminController
   public function createHour()
   {
     if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST['createHour'])) {
-      $day = $_POST['day'];
-      $opening_time = $_POST['opening_time'];
-      $closing_time = $_POST['closing_time'];
+
+      $day = SecurityHelper::sanitize(InputType::String, 'day');
+      $opening_time = SecurityHelper::sanitize(InputType::String, 'opening_time');
+      $closing_time = SecurityHelper::sanitize(InputType::String, 'closing_time');
 
       $existingHour = (new HourModel)->findOneByDay($day);
 
       if (!is_null($existingHour)) {
-        echo "Le jour d'ouverture à déjà utilisé.";
+        FlashMessage::addMessage("Le jour d'ouverture à déjà était crée utilisé.", 'error');
         return;
       } else {
 
@@ -70,18 +73,15 @@ class AdminHourController extends AdminController
             ->setClosingTime($closing_time);
 
           $hour->createHour();
-
-          $_SESSION['message'] = "Le jour d'ouverture du zoo a été créé avec succès.";
+          FlashMessage::addMessage("Le jour d'ouverture du zoo a été créé avec succès.", 'success');
         } catch (\Exception $e) {
-
-          $_SESSION['error'] = "Une erreur s'est produite lors de la création du jour d'ouverture du zoo : " . $e->getMessage();
+          FlashMessage::addMessage("Une erreur s'est produite lors de la création du jour d'ouverture du zoo.", 'error');
         }
       }
     } else {
-      $_SESSION['error'] = "Aucun jour d'ouverture n'a été renseigné";
+      FlashMessage::addMessage("Aucun jour d'ouverture n'a été renseigné.", 'warrning');
     }
-
-    Header("Location: /adminHour");
+    header("Location: /adminHour");
     exit;
   }
 
@@ -108,13 +108,12 @@ class AdminHourController extends AdminController
       $deleteHour = $hourModel->delete();
 
       if ($deleteHour) {
-        $_SESSION['message'] = "✅ Le jour d'ouverture à bien été supprimé avec succès.";
+        FlashMessage::addMessage("Une erreur s'est produite lors de la suppression du jour d'ouverture..", 'error');
       } else {
-        $_SESSION['error'] = "❌ Une erreur s'est produite lors de la suppression du jour d'ouverture.";
+        FlashMessage::addMessage("Le jour d'ouverture à bien été supprimé avec succès.", 'succes');
       }
     }
-
-    Header("Location: /adminHour");
+    header("Location: /adminHour");
     exit;
   }
 }

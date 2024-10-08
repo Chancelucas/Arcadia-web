@@ -5,7 +5,10 @@ namespace Source\Controllers;
 use Lib\config\Form;
 use Source\Controllers\AdminController;
 use Source\Models\hour\HourModel;
-use Source\Helpers\securityHTML;
+use Source\Helpers\FlashMessage;
+use Source\Helpers\SecurityHelper;
+use Source\Helpers\InputType;
+
 
 class AdminUpdateHourController extends AdminController
 {
@@ -63,9 +66,10 @@ class AdminUpdateHourController extends AdminController
   public function updateHour(int $hourId)
   {
     if (isset($_POST['save_changes'])) {
-      $day = $_POST['day'];
-      $openingTime = $_POST['opening_time'];
-      $closingTime = $_POST['closing_time'];
+
+      $day = SecurityHelper::sanitize(InputType::String,'day');
+      $openingTime = SecurityHelper::sanitize(InputType::String,'opening_time');
+      $closingTime = SecurityHelper::sanitize(InputType::String, 'closing_time');
 
       $hourModel = new HourModel;
       $hourModel->findOneById($hourId);
@@ -78,9 +82,11 @@ class AdminUpdateHourController extends AdminController
 
       if ($updateResult) {
         header("Location: /adminHour");
+        FlashMessage::addMessage("Modification effectuer avec succes", 'success');
+
         exit;
       } else {
-        $_SESSION['error'] = "Une erreur s'est produite lors de la modification des jours d'ouverture.";
+        FlashMessage::addMessage("Une erreur s'est produite lors de la modification des jours d'ouverture.", 'error');
       }
     }
 

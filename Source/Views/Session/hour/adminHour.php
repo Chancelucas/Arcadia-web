@@ -1,5 +1,6 @@
 <?php
-use Source\Helpers\securityHTML;
+use Source\Helpers\FlashMessage;
+
 ?>
 
 
@@ -7,6 +8,8 @@ use Source\Helpers\securityHTML;
   <div class="div_form_create_hour_admin">
     <?= $createHourForm; ?>
   </div>
+
+  <?= FlashMessage::displayFlashMessage(); ?>
 
   <div class="container_hour_admin">
     <?php foreach ($hours as $hour) : ?>

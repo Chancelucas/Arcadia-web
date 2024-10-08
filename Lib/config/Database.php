@@ -6,9 +6,7 @@ use PDO;
 use PDOException;
 use Source\Models\role\RoleModel;
 use Source\Models\user\UserModel;
-use Source\Helpers\InputType;
 use Source\Helpers\FlashMessage;
-use Source\Helpers\SecurityHelper;
 
 class Database extends PDO
 {

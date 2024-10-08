@@ -1,7 +1,8 @@
 <?php
-use Source\Helpers\securityHTML;
+use Source\Helpers\FlashMessage; 
 ?>
 
+<?= FlashMessage::displayFlashMessage(); ?>
 
 <div class="main_admin_update_user">
 

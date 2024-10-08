@@ -1,5 +1,5 @@
 <?php
-use Source\Helpers\securityHTML;
+use Source\Helpers\FlashMessage;
 ?>
 
 
@@ -8,6 +8,10 @@ use Source\Helpers\securityHTML;
     <h3>Crée un habitat</h3>
     <?= $createHabitatForm; ?>
   </div>
+
+  <?= FlashMessage::displayFlashMessage(); ?>
+
+
   <div class="habitats-list-admin">
     <h3>Liste des habitats</h3>
     <?php foreach ($habitats as $habitat) : ?>

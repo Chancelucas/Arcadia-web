@@ -129,7 +129,6 @@ class VetReportController extends VetController
       FlashMessage::addMessage("Aucun compte rendu n'a été renseigné", 'warning');
     }
     $this->index();
-    //header("Location: /vetHabitat");
     exit;
   }
 
@@ -152,7 +151,6 @@ class VetReportController extends VetController
       }
     }
     $this->index();
-    //header("Location: /vetHabitat");
     exit;
   }
 

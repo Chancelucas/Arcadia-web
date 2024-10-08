@@ -3,7 +3,10 @@
 namespace Source\Controllers;
 
 use Lib\config\Form;
+use Source\Helpers\InputType;
+use Source\Helpers\FlashMessage;
 use Lib\config\CloudinaryManager;
+use Source\Helpers\SecurityHelper;
 use Source\Models\animal\AnimalModel;
 use Source\Controllers\AdminController;
 use Source\Models\habitat\HabitatModel;
@@ -18,7 +21,7 @@ class AdminHabitatController extends AdminController
     $createHabitatForm = $this->generateCreateHabitatForm();
     $habitats = $this->getAllHabitats();
     $this->render('habitat/adminHabitat', [
-      'createHabitatForm' => $createHabitatForm, 
+      'createHabitatForm' => $createHabitatForm,
       'habitats' => $habitats
     ]);
   }
@@ -45,40 +48,41 @@ class AdminHabitatController extends AdminController
   public function createHabitat()
   {
     if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST['createHabitat'])) {
-      $name = $_POST['habitat_name'];
-      $description = $_POST['habitat_description'];
+      $name = SecurityHelper::sanitize(InputType::String, 'habitat_name');
+      $description = SecurityHelper::sanitize(InputType::String, 'habitat_description');
       $imageUrl = NULL;
+
 
       if (!empty($_FILES['picture']['tmp_name'])) {
         $imageUrl = CloudinaryManager::uploadImage($_FILES['picture']['tmp_name']);
         if (!$imageUrl) {
-          $_SESSION['error'] = "Une erreur s'est produite lors du téléchargement de l'image.";
-          header("Location: /adminHabitat");
-          exit;
+          FlashMessage::addMessage("Une erreur s'est produite lors du téléchargement de l'image.", 'error');
+          return
+            exit;
         }
       }
 
       $existingHabitat = (new HabitatModel)->findOneByName($name);
 
       if (!is_null($existingHabitat)) {
-        echo "Le nom de l'habitat existe déjà.";
+        FlashMessage::addMessage("Le nom de l'habitat existe déjà.", 'error');
         return;
       } else {
+
         try {
           $habitat = new HabitatModel;
           $habitat->setName($name)
             ->setDescription($description)
             ->setPictureUrl($imageUrl);
           $habitat->createHabitat();
-          $_SESSION['message'] = "L'habitat a été créé avec succès.";
+          FlashMessage::addMessage("L'habitat a été créé avec succès.", 'success');
         } catch (\Exception $e) {
-          $_SESSION['error'] = "Une erreur s'est produite lors de la création de l'habitat : " . $e->getMessage();
+          FlashMessage::addMessage("Une erreur s'est produite lors de la création de l'habitat", 'error');
         }
       }
     } else {
-      $_SESSION['error'] = "Aucun habitat n'a été renseigné";
+      FlashMessage::addMessage("Aucun habitat n'a été renseigné", 'error');
     }
-
     header("Location: /adminHabitat");
     exit;
   }
@@ -103,13 +107,13 @@ class AdminHabitatController extends AdminController
       $deleteHabitat = $habitatModel->delete();
 
       if ($deleteHabitat) {
-        $_SESSION['message'] = "✅ Habitat supprimé avec succès.";
+        FlashMessage::addMessage("Une erreur s'est produite lors de la suppression de l'habitat.", 'error');
       } else {
-        $_SESSION['error'] = "❌ Une erreur s'est produite lors de la suppression de l'habitat.";
+        FlashMessage::addMessage("Habitat supprimé avec succès.", 'succes');
       }
     }
-
-    Header("Location: /adminHabitat");
+    header("Location: /adminHabitat");
+    //$this->index();
     exit;
   }
 
@@ -122,7 +126,7 @@ class AdminHabitatController extends AdminController
       if ($animal->id_Habitat === $idHabitat && $animal->id_Habitat === $animalIdHabitat) {
         return $animal->breed;
       } else {
-        $_SESSION['error'] = "Aucun animal n'a été trouvé pour cet habitat.";
+        FlashMessage::addMessage("Aucun animal n'a été trouvé pour cet habitat.", 'warning');
       }
     }
   }

@@ -46,10 +46,6 @@ class EmployeeFoodGivenController extends EmployeeController
   private function filterFoodGiven()
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      // $selectedEmployee = $_POST['employee'] ?? null;
-      // $selectedDate = $_POST['date'] ?? null;
-      // $selectedAnimal = $_POST['animal'] ?? null;
-
       $selectedEmployee = SecurityHelper::sanitize(InputType::Int, 'employee') ?? null;
       $selectedDate = SecurityHelper::sanitize(InputType::Date, 'date') ?? '';
       $selectedAnimal = SecurityHelper::sanitize(InputType::Int, 'animal') ?? null;

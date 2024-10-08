@@ -7,7 +7,6 @@ use Source\Models\filter\FilterModel;
 use Source\Controllers\AdminController;
 use Source\Models\report\AnimalReportModel;
 use Source\Models\report\HabitatReportModel;
-use Source\Helpers\securityHTML;
 
 class AdminReportController extends AdminController
 {
