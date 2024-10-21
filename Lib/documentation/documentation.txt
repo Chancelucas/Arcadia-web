@@ -1,3 +1,157 @@
+# Introduction générale
+Présentation du projet :
+Arcadia Zoo est une application web conçue pour gérer zoo. Le site inclut la gestion des animaux, des habitats, des employés, des vétérinaires, ainsi que les retours des visiteurs. Cette plateforme centralise les informations et simplifie les tâches quotidiennes des administrateurs, employés et vétérinaires tout en offrant aux visiteurs la possibilité de consulter les informations sur les animaux, de laisser des avis et concater le zoo.
+
+
+## Arborescence du projet
+Voici un aperçu de la structure des dossiers et fichiers principaux.
+
+3 dossier principaux: 
+
+Lib : Contient tout les fichiers relier au projet, comme cette documentation ou même le script pour crée la BDD et le dossier config où ce trouve les les scripte de connection au dependence, comme les API ou les BDD.
+
+Public : C'est la où ce troune l'index.php avec ces fichiers conplementaire comme le css ou le JavaScript. 
+
+Source : C'est la ou ce trouve tout la logique du site repartie dans une architecture MVC, Model, Vue, Controller. Au fure et a mesure du projet d'autres dossier on vu le jour, comme Setup, Helpers et Routers. 
+
+
+
+## Installation et configuration
+Pré-requis :
+PHP 8.3 ou supérieur
+Serveur MySQL (avec PHPMyAdmin)
+MAMP (ou autre serveur local)
+Composer (si des dépendances externes sont utilisées)
+Clé API Cloudinary (pour la gestion des images)
+
+### Étapes d'installation :
+Clonage du projet :
+
+bash
+Copier le code
+'''
+git clone https://github.com/Chancelucas/Arcadia-web
+cd Arcadia-web
+'''
+
+### Configuration de la base de données :
+Importe le fichier SQL fourni (disponible dans /Lib/database/arcadia.sql) dans PHPMyAdmin pour configurer la base de données.
+
+### Configuration du serveur local :
+
+Utilise MAMP ou un serveur similaire pour configurer les ports :
+Apache sur le port 8888
+MySQL sur le port 8889
+
+Clé API pour Cloudinary :
+Ouvre le fichier Lib/Config/CloudinaryManager.php.
+Ajoute ta clé API dans la section dédiée.
+
+Configuration des variables d'environnement (si nécessaire) :
+Crée un fichier .env pour stocker les variables sensibles comme les informations de connexion à la base de données ou les clés API.
+Lancer le projet en local :
+
+Ouvre un navigateur et accède à http://localhost:8888.
+
+
+## Utilisation
+Fonctionnalités principales :
+Page d’accueil : Présente les informations principales sur le zoo, les habitats, et les animaux.
+
+Espace Administrateur :
+Gestion des employés, animaux, et habitats.
+Ajout, modification et suppression des informations.
+
+Espace Vétérinaire :
+Suivi de la santé des animaux et rédaction de rapports.
+Vérification de l’état des habitats.
+
+Espace Employé :
+Validation des avis des visiteurs.
+Gestion des services (alimentation des animaux, maintenance des habitats).
+
+Avis des visiteurs :
+Les visiteurs peuvent laisser des avis et noter leur expérience.
+Les avis doivent être validés par les employés.
+
+Gestion des rôles et autorisations :
+Administrateur : Accès complet à toutes les fonctionnalités (sauf celle du vétérinaire uniquement Lire les inorfamtions).
+Vétérinaire : Accès uniquement à la gestion (CRUD) des rapports animaux/habitats.
+Employé : Accès à la gestion des avis et des services et donner des repas aux animaux.
+Visiteur : Accès aux fiches des animaux et à la soumission d’avis et contacte du zoo.
+
+
+## Technologies utilisées
+Voici les principales technologies utilisées dans ce projet :
+
+Front-end :
+
+HTML5/CSS3 pour la structure et le design des pages.
+JavaScript pour l’interactivité (gestion des formulaires, validation côté client).
+
+Back-end :
+PHP 8.3 pour la gestion des fonctionnalités serveur (gestion des requêtes, interactions avec la base de données).
+SQL pour la gestion des données (stockage des animaux, employés, habitats, etc.).
+
+API et services externes :
+Cloudinary pour l'hébergement et la gestion des images (photos des animaux, des habitats, etc.).
+
+
+## Sécurité
+Le projet Arcadia Zoo intègre plusieurs mécanismes de sécurité pour protéger les données sensibles et éviter les attaques courantes.
+
+Protection contre les injections SQL :
+Utilisation de requêtes préparées dans toutes les interactions avec la base de données pour éviter les injections SQL.
+
+Protection contre les attaques XSS :
+Utilisation de la fonction htmlspecialchars() pour échapper les caractères spéciaux dans les formulaires.
+
+
+
+## Tests et validation
+
+Tests utilisateurs :
+Utilise les différents comptes de test disponibles pour valider les fonctionnalités administratives, vétérinaires, et employées.
+
+Tests des formulaires :
+Tester les validations (ex. : validation des avis des visiteurs, ajout d'un nouvel employé).
+
+Test de la connexion à la base de données :
+Assurer que toutes les interactions avec la base de données sont fluides et que les requêtes fonctionnent comme prévu.
+
+
+## Problèmes connus et améliorations futures
+
+Problèmes connus :
+Quelques lenteurs possibles lors du chargement de photo lors de la créaetion des services, habitat, animaux.
+
+Améliorations possibles :
+Optimisation des requêtes pour améliorer les performances.
+Mise en place d'un système de pagination pour les longues listes.
+Possibilité d’ajouter une fonctionnalité de recherche avancée pour les animaux et employés.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 - Installer Homebrew pour mac : 
     1 - commande dans le terminal : /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
