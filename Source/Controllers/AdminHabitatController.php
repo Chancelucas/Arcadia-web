@@ -113,7 +113,6 @@ class AdminHabitatController extends AdminController
       }
     }
     header("Location: /adminHabitat");
-    //$this->index();
     exit;
   }
 

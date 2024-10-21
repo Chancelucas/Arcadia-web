@@ -5,7 +5,7 @@ use Source\Helpers\FlashMessage;
 
 <div class="main-edit-habitats-admin">
   <div class="container-form-habitat-admin">
-    <h3>Crée un habitat</h3>
+    <h3>Créer un habitat</h3>
     <?= $createHabitatForm; ?>
   </div>
 

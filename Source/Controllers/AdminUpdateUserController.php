@@ -9,13 +9,11 @@ use Source\Helpers\SecurityHelper;
 use Source\Controllers\AdminController;
 use Source\Controllers\AdminUserController;
 use Source\Helpers\FlashMessage;
-
+use Source\Models\role\RoleModel;
 
 class AdminUpdateUserController extends AdminController
 {
-  /**
-   * Show all employee en BDD with form create user. 
-   */
+
   public function index()
   {
     $userForm = $this->getOneUser();
@@ -29,27 +27,26 @@ class AdminUpdateUserController extends AdminController
   {
     if (isset($_POST['id_user'])) {
       $userId = intval($_POST['id_user']);
+
       $userModel = new UserModel;
       $user = $userModel->findOneById($userId);
 
       $username = $user->getUsername();
       $email = $user->getEmail();
-      $password = $user->getPassword();
+      // $password = $user->getPassword();
+      $role = $user->getIdRole();
 
       // Utilisez la méthode createForm pour générer le formulaire
-      $updateUserForm = $this->createForm($userId, $username, $email, $password);
+      $updateUserForm = $this->createForm($userId, $username, $email, $role);
 
       return $updateUserForm;
     }
   }
 
-  /**
-   * Generate update user form
-   */
-  public function createForm($userId, $username, $email, $password)
+  public function createForm($userId, $username, $email, $role)
   {
     $getRole = new AdminUserController;
-    $roles = $getRole->getRolesFromDatabase();
+    $rolesList = $getRole->getRolesFromDatabase();
 
     $form = new Form;
 
@@ -64,10 +61,10 @@ class AdminUpdateUserController extends AdminController
       ->endDiv()
       ->startDiv(['class' => 'div_form_update_user'])
       ->addLabelFor('password', 'Mot de passe : ')
-      ->addInput('password', 'password', ['id' => 'password', 'class' => 'input_class_update_user', 'value' =>  $password, 'required' => true])
+      ->addInput('password', 'password', ['id' => 'password', 'class' => 'input_class_update_user', 'placeholder' =>  'Entrez un nouveau mot de passe', 'required' => true])
       ->endDiv()
       ->startDiv(['class' => 'div_form_update_user'])
-      ->addSelect('roleId', $roles, ['required' => true, 'id' => 'roleId', 'class' => 'input_class_update_user'])
+      ->addSelect('roleId', $rolesList, ['required' => true, 'id' => 'roleId', 'class' => 'input_class_update_user', 'value' => $role])
       ->endDiv()
       ->startDiv(['id' => 'div_id_update_user', 'class' => 'div_class_update_user'])
       ->addBouton('Enregistrer', ['type' => 'submit', 'name' => 'save_changes', 'class' => 'btn'])
@@ -103,7 +100,8 @@ class AdminUpdateUserController extends AdminController
 
       if ($updateResult) {
         header("Location: /adminUser");
-        exit;
+        FlashMessage::addMessage("Modification effectuer avec succes", 'success');
+        return;
       } else {
         FlashMessage::addMessage("Une erreur s'est produite lors de la modification de l'utilisateur.", 'error');
       }

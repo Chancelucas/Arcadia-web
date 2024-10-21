@@ -4,22 +4,18 @@ namespace Source\Controllers;
 
 use Lib\config\Form;
 use Source\Controllers\EmployeeController;
-use function Source\Helpers\securityHTML;
+use Source\Models\reviews\ReviewsModel;
 
 class EmployeeDashboardController extends EmployeeController
 {
 
-  /**
-   * Index function on Admin Dashboard Controller
-   */
+
   public function index()
   {
     $this->generateLogoutForm();
   }
 
-  /**
-   * Function logout [session = 'user']
-   */
+
   public function logout()
   {
     session_destroy();
@@ -27,9 +23,7 @@ class EmployeeDashboardController extends EmployeeController
     exit;
   }
 
-  /**
-   * Form for logout session
-   */
+
   private function generateLogoutForm()
   {
     $form = new Form;
@@ -43,4 +37,6 @@ class EmployeeDashboardController extends EmployeeController
       'user' => $this->user
     ]);
   }
+
+ 
 }

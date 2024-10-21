@@ -11,7 +11,7 @@
     <span class="bloc_containe_text_footer">
 
       <div class="footer_section horaire_section">
-        <a href="/hour" class="link_footer">Horraire</a>
+        <a href="/hour" class="link_footer">Horaires</a>
       </div>
 
 

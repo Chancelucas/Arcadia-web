@@ -15,14 +15,7 @@ class FilterHelper
 {
   /////////////////// Filtre for employee food given ////////////////////
 
-  /**
-   * Filtre les entrées de nourriture donnée en fonction des critères sélectionnés.
-   *
-   * @param string $selectedEmployee L'ID de l'employé sélectionné, ou null pour ne pas filtrer par employé.
-   * @param string $selectedDate La date sélectionnée au format 'Y-m-d', ou null pour ne pas filtrer par date.
-   * @param string $selectedAnimal L'ID de l'animal sélectionné, ou null pour ne pas filtrer par animal.
-   * @return array Un tableau des entrées de nourriture donnée qui correspondent aux critères.
-   */
+
   public static function filterFoodGiven(string $selectedEmployee, string $selectedDate, string $selectedAnimal)
   {
     $foodGivenModel = new FoodGivenModel();
@@ -43,15 +36,7 @@ class FilterHelper
     return $foodGiven;
   }
 
-  /**
-   * Vérifie si une entrée de nourriture donnée correspond aux critères sélectionnés.
-   *
-   * @param object $entry Une entrée de nourriture donnée.
-   * @param int $selectedEmployee L'ID de l'employé sélectionné, ou null pour ne pas filtrer par employé.
-   * @param string $selectedDate La date sélectionnée au format 'Y-m-d', ou null pour ne pas filtrer par date.
-   * @param int $selectedAnimal L'ID de l'animal sélectionné, ou null pour ne pas filtrer par animal.
-   * @return bool True si l'entrée correspond aux critères, sinon false.
-   */
+
   private static function matchesCriteriaFoodGiven(object $entry, string $selectedEmployee, string $selectedDate, string $selectedAnimal)
   {
     $employeeMatch = !$selectedEmployee || $entry->user->id == $selectedEmployee;
@@ -61,18 +46,7 @@ class FilterHelper
     return $employeeMatch && $dateMatch && $animalMatch;
   }
 
-  /**
-   * Récupère tous les noms d'utilisateur des employés.
-   *
-   * Cette méthode statique obtient les noms d'utilisateur de tous les employés
-   * ayant le rôle "Employer". Elle retourne un tableau où la clé est l'ID de
-   * l'utilisateur et la valeur est le nom d'utilisateur. La première entrée du
-   * tableau est `null` avec la valeur 'Tous'.
-   *
-   * @return array Un tableau associatif où les clés sont les IDs des utilisateurs
-   *               et les valeurs sont les noms d'utilisateur. La première entrée
-   *               est `null` avec la valeur 'Tous'.
-   */
+
   public static function getAllEmployeeUsername()
   {
     $role = "Employer";

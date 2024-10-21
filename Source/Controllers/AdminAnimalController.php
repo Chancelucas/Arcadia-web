@@ -46,7 +46,7 @@ class AdminAnimalController extends AdminController
 
       ->addInput('text', 'name', ['class' => 'animal_form_input_admin', 'placeholder' => 'Ajouter un nom', 'required' => true])
 
-      ->addInput('text', 'breed', ['class' => 'animal_form_input_admin', 'name' => 'animal_breed', 'placeholder' => 'Ajouter une race animal', 'required' => true])
+      ->addInput('text', 'breed', ['class' => 'animal_form_input_admin', 'name' => 'animal_breed', 'placeholder' => 'Ajouter une espece animale', 'required' => true])
 
       ->addSelect('habitat', $habitats, ['class' => 'animal_form_input_admin'])
 

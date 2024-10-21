@@ -128,7 +128,9 @@ class VetReportController extends VetController
     } else {
       FlashMessage::addMessage("Aucun compte rendu n'a été renseigné", 'warning');
     }
-    $this->index();
+    Header("Location: /VetReport");
+
+    //$this->index();
     exit;
   }
 
@@ -144,13 +146,12 @@ class VetReportController extends VetController
       $deleteReportHabitat = $reportHabitatModel->delete();
 
       if ($deleteReportHabitat) {
-      FlashMessage::addMessage("Le rapport de l'habitat a été supprimé avec succès.", 'success');
-
-      } else {
       FlashMessage::addMessage("Une erreur s'est produite lors de la suppression du rapport de l'habitat.", 'error');
+      } else {
+      FlashMessage::addMessage("Le rapport de l'habitat a été supprimé avec succès.", 'success');
       }
     }
-    $this->index();
+    Header("Location: /VetHabitat");
     exit;
   }
 
@@ -242,8 +243,8 @@ class VetReportController extends VetController
     } else {
       FlashMessage::addMessage("Aucun compte rendu n'a été renseigné", 'error');
     }
-    $this->index();
-    //header("Location: /vetAnimal");
+    //$this->index();
+    header("Location: /vetReport");
     exit;
   }
 
@@ -270,14 +271,14 @@ class VetReportController extends VetController
       $deleteReportAnimal = $reportAnimalModel->delete();
 
       if ($deleteReportAnimal) {
-      FlashMessage::addMessage("Le rapport de l'animal à était supprimé avec succès.", 'success');
-      } else {
       FlashMessage::addMessage("Une erreur s'est produite lors de la suppression du rapport de l'animal.", 'error');
+
+      } else {
+      FlashMessage::addMessage("Le rapport de l'animal à était supprimé avec succès.", 'success');
+
       }
     }
-    $this->index();
-
-    //Header("Location: /vetAnimal");
+    header("Location: /vetAnimal");
     exit;
   }
 }

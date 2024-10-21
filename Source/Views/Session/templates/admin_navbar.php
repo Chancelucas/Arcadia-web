@@ -21,7 +21,7 @@ use Source\Helpers\securityHTML;
       <li class="li_link_session_nav"><a href="/adminHabitat">Habitats</a></li>
       <li class="li_link_session_nav"><a href="/adminAnimal">Animaux</a></li>
       <li class="li_link_session_nav"><a href="/adminService">Services</a></li>
-      <li class="li_link_session_nav"><a href="/adminHour">Horaire</a></li>
+      <li class="li_link_session_nav"><a href="/adminHour">Horaires</a></li>
       <li class="li_link_session_nav"><a href="/adminReport">Comptes rendus</a></li>
     </ul>
     <a class="link_logout" href="/adminDashboard/logout">Déconnexion</a>

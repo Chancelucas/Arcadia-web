@@ -21,7 +21,7 @@ class AdminUserController extends AdminController
 
     $filterFormUser = $this->createFilterUser();
     $createUserForm = $this->generateCreateUserForm();
-    
+
     $users = empty($filterUser) ? $this->getAllUsers() : $filterUser;
 
     $this->render('user/adminUser', [
@@ -94,32 +94,29 @@ class AdminUserController extends AdminController
         $newUser->createUser();
 
         FlashMessage::addMessage("L'utilisateur a été créé avec succès.", 'success');
-
       } catch (\Exception $e) {
         FlashMessage::addMessage("Une erreur s'est produite lors de la création de l'utilisateur.", 'success');
-
       }
     } else {
       FlashMessage::addMessage("Aucun utilisateur n'a été renseigné.", 'error');
-
     }
 
-    $this->index();
-    // Header("Location: /adminUser");
+    header("Location: /adminUser");
     exit;
   }
 
   public function deleteUser(int $userId)
   {
     if (isset($_POST['deleteUser'])) {
-      $userModel = new UserModel;
 
+      $userModel = new UserModel;
       $userModel->findOneById($userId);
       $userModel->setActive(0);
 
-      $deleteUser = $userModel->update();
+      $deleteUser = $userModel->update($userId);
 
       if ($deleteUser) {
+        header("Location: /adminUser");
         FlashMessage::addMessage("L'utilisateur à était crée avec succes.", 'success');
         exit;
       } else {
@@ -128,7 +125,7 @@ class AdminUserController extends AdminController
       }
     }
 
-    Header("Location: /adminUser");
+    header("Location: /adminUser");
     exit;
   }
 

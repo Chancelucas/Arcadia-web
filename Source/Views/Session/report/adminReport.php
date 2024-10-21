@@ -1,5 +1,4 @@
 <?php
-use Source\Helpers\securityHTML;
 ?>
 
 
@@ -36,11 +35,11 @@ use Source\Helpers\securityHTML;
     <?php if ($reportsHabitat) : ?>
       <?php foreach ($reportsHabitat as $reportHabitat) : ?>
         <div class="one_elements_report_admin">
-          <div class="item_report_admin"><?= $reportHabitat->name_habitat ?></div>
-          <div class="item_report_admin"><?= $reportHabitat->opinion ?></div>
-          <div class="item_report_admin"><?= $reportHabitat->state ?></div>
-          <div class="item_report_admin"><?= $reportHabitat->improvement ?></div>
-          <div class="item_report_admin"><?= $reportHabitat->date ?></div>
+          <div class="item_report_admin">L'habitat : <?= $reportHabitat->name_habitat ?></div>
+          <div class="item_report_admin">Avis du vétérinaire : <?= $reportHabitat->opinion ?></div>
+          <div class="item_report_admin">Etat de l'habitat : <?= $reportHabitat->state ?></div>
+          <div class="item_report_admin">Amélioration à apporter : <?= $reportHabitat->improvement ?></div>
+          <div class="item_report_admin">Date de passage : <?= $reportHabitat->date ?></div>
         </div>
       <?php endforeach; ?>
     <?php endif; ?>

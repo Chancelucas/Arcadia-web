@@ -1,11 +1,14 @@
 <?php
+use Source\Helpers\FlashMessage; 
 ?>
-
 
 <div class="main_report_vet">
   <div class="title_vet_report">
     <h3>Les comptes rendu des habitats</h3>
   </div>
+
+  <?= FlashMessage::displayFlashMessage(); ?>
+
 
   <div class="all_report_vet">
     <?php foreach ($reportsHabitat as $reportHabitat) : ?>

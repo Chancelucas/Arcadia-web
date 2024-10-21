@@ -99,6 +99,7 @@ class ReviewsModel extends MainModel
   }
 
 
+
   /////////////////// GETTER and SETTER /////////////////////
 
 

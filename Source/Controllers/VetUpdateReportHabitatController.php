@@ -3,9 +3,10 @@
 namespace Source\Controllers;
 
 use Lib\config\Form;
-use Source\Controllers\VetController;
-use Source\Helpers\SecurityHelper;
 use Source\Helpers\InputType;
+use Source\Helpers\FlashMessage;
+use Source\Helpers\SecurityHelper;
+use Source\Controllers\VetController;
 use Source\Models\habitat\HabitatModel;
 use Source\Models\report\AssessmentModel;
 use Source\Models\report\HabitatReportModel;
@@ -146,14 +147,15 @@ class VetUpdateReportHabitatController extends VetController
       // Si la mise à jour est réussie, redirige l'utilisateur
       if ($updateResult) {
         header("Location: /vetHabitat");
-        exit;
+        FlashMessage::addMessage("Modification effectuer avec succes", 'success');
+        return;
       } else {
         // Sinon, affiche un message d'erreur pour l'utilisateur
-        $this->error["db"] = "Une erreur s'est produite lors de la modification du compte rendu de l'habitat.";
+        FlashMessage::addMessage("Une erreur s'est produite lors de la modification du compte rendu de l'habitat.", 'error');
       }
     } else {
       // Si des champs ne sont pas valides, affiche un message d'erreur général
-      $this->error["form"] = "Formulaire incomplet.";
+      FlashMessage::addMessage("Formulaire incomplet", 'error');
     }
 
     // Si la mise à jour échoue ou s'il manque des informations, retourne à la vue du formulaire

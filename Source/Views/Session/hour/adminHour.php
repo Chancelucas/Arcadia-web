@@ -1,6 +1,6 @@
 <?php
-use Source\Helpers\FlashMessage;
 
+use Source\Helpers\FlashMessage;
 ?>
 
 
@@ -30,6 +30,5 @@ use Source\Helpers\FlashMessage;
 
       </div>
     <?php endforeach; ?>
-
   </div>
 </div>

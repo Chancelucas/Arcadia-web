@@ -3,11 +3,12 @@
 namespace Source\Controllers;
 
 use Lib\config\Form;
-use Source\Controllers\Controller;
-use Source\Models\reviews\ReviewsModel;
-use Source\Helpers\SecurityHelper;
 use Source\Helpers\InputType;
+use Lib\config\PhpMailerConfig;
 use Source\Helpers\FlashMessage;
+use Source\Controllers\Controller;
+use Source\Helpers\SecurityHelper;
+use Source\Models\reviews\ReviewsModel;
 
 
 class ReviewsController extends Controller
@@ -113,7 +114,7 @@ class ReviewsController extends Controller
   {
     $form = new Form;
 
-    $form->startForm('POST', 'reviews/sendMail', ['class' => 'form_reviews_page'])
+    $form->startForm('POST', 'reviews/sendMessage', ['class' => 'form_reviews_page'])
 
       ->addError('email', $this->error)
       ->addError('title', $this->error)
@@ -124,7 +125,7 @@ class ReviewsController extends Controller
       ->endDiv()
 
       ->startDiv(['class' => 'div_form_reviews_page'])
-      ->addInput('text', 'title', ['placeholder' => 'Titre du message', 'required' => true, 'class' => 'input_form_reviews_page'])
+      ->addInput('text', 'subject', ['placeholder' => 'Sujet du message', 'required' => true, 'class' => 'input_form_reviews_page'])
       ->endDiv()
 
       ->startDiv(['class' => 'div_form_reviews_page'])
@@ -136,39 +137,47 @@ class ReviewsController extends Controller
       ->endDiv()
 
       ->endForm();
-
-
     return $form->create();
   }
 
-  public function sendMail()
+  public function sendMessage()
   {
     $email =  SecurityHelper::sanitize(InputType::String, 'email') ?? null;
-    $title = SecurityHelper::sanitize(InputType::String, 'title') ?? null;
+    $subject = SecurityHelper::sanitize(InputType::String, 'subject') ?? null;
     $message = SecurityHelper::sanitize(InputType::String, 'comment') ?? null;
 
-    if (!$email || !$title || !$message) {
+    if (!$email || !$subject || !$message) {
       FlashMessage::addMessage("Tous les champs doivent être remplis.", 'error');
       $this->index();
       exit;
     }
 
-    // Envoi du mail
-    $headers = 'From: lucas.studi24@gmail.com' . "\r\n" .
-      'Reply-To: lucas.studi24@gmail.com' . "\r\n" .
-      'X-Mailer: PHP/' . phpversion();
+    $body = "
+        <h3>Nouvelle demande de contact</h3>
+        <p><strong>Email de l'expéditeur :</strong> {$email}</p>
+        <p><strong>Sujet :</strong> {$subject}</p>
+        <p><strong>Message :</strong></p>
+        <p>{$message}</p>
+    ";
 
-    $retour = mail($email, $title, $message, $headers);
+    // Utilisation de la configuration PHPMailer pour envoyer l'email
+    $mailer = new PhpMailerConfig();
+    $mailSent = $mailer->sendMail(
+      'zooarcadia5@gmail.com',
+      $email,
+      $subject,
+      $body
+    );
 
-    // Vérifier si l'envoi a fonctionné
-    if ($retour) {
+    // Vérification si l'email a été envoyé avec succès
+    if ($mailSent === true) {
       FlashMessage::addMessage("Votre demande a bien été envoyée", 'success');
     } else {
-      FlashMessage::addMessage("Une erreur est survenue lors de l'envoi du mail", 'error');
+      FlashMessage::addMessage("Une erreur est survenue lors de l'envoi de l'email : " . $mailSent, 'error');
     }
 
     // Rediriger vers la page d'accueil ou une autre page
-    $this->index();
+    header("Location: /reviews");
     exit;
   }
 }

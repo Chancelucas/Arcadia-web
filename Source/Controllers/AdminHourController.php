@@ -45,7 +45,9 @@ class AdminHourController extends AdminController
 
       ->startDiv(['class' => 'div_form_hour_admin'])
       ->addBouton('Créer', ['type' => 'submit', 'value' => 'submit', 'class' => 'btn btn_add_hour_admin', 'name' => 'createHour'])
-      ->endDiv();
+      ->endDiv()
+      
+      ->endForm();
 
     return $form->create();
   }
@@ -79,7 +81,7 @@ class AdminHourController extends AdminController
         }
       }
     } else {
-      FlashMessage::addMessage("Aucun jour d'ouverture n'a été renseigné.", 'warrning');
+      FlashMessage::addMessage("Aucun jour d'ouverture n'a été renseigné.", 'error');
     }
     header("Location: /adminHour");
     exit;
@@ -103,14 +105,14 @@ class AdminHourController extends AdminController
   {
     if (isset($_POST['deleteHour'])) {
       $hourModel = new HourModel;
-
-      $hourModel->setId($hourId);
+      $hourModel->setIdHour($hourId);
       $deleteHour = $hourModel->delete();
+      
 
       if ($deleteHour) {
-        FlashMessage::addMessage("Une erreur s'est produite lors de la suppression du jour d'ouverture..", 'error');
+        FlashMessage::addMessage("Une erreur s'est produite lors de la suppression du jour d'ouverture.", 'error');
       } else {
-        FlashMessage::addMessage("Le jour d'ouverture à bien été supprimé avec succès.", 'succes');
+        FlashMessage::addMessage("Le jour d'ouverture a bien été supprimé avec succès.", 'success');
       }
     }
     header("Location: /adminHour");
