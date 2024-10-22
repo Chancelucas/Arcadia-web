@@ -35,7 +35,7 @@ cd Arcadia-web
 '''
 
 ### Configuration de la base de données :
-Importe le fichier SQL fourni (disponible dans /Lib/database/arcadia.sql) dans PHPMyAdmin pour configurer la base de données.
+Importe le fichier SQL fourni (disponible dans /Lib/sql/bdd.sql) dans PHPMyAdmin pour configurer la base de données.
 
 ### Configuration du serveur local :
 
@@ -44,11 +44,9 @@ Apache sur le port 8888
 MySQL sur le port 8889
 
 Clé API pour Cloudinary :
-Ouvre le fichier Lib/Config/CloudinaryManager.php.
+Ouvre le fichier Lib/config/CloudinaryConfigSingleton.php.
 Ajoute ta clé API dans la section dédiée.
 
-Configuration des variables d'environnement (si nécessaire) :
-Crée un fichier .env pour stocker les variables sensibles comme les informations de connexion à la base de données ou les clés API.
 Lancer le projet en local :
 
 Ouvre un navigateur et accède à http://localhost:8888.
@@ -56,23 +54,28 @@ Ouvre un navigateur et accède à http://localhost:8888.
 
 ## Utilisation
 Fonctionnalités principales :
+
 Page d’accueil : Présente les informations principales sur le zoo, les habitats, et les animaux.
 
 Espace Administrateur :
-Gestion des employés, animaux, et habitats.
+Gestion des employés, animaux, et habitats, services, heure.
 Ajout, modification et suppression des informations.
+Lire les compte rendu des vétérinaires sur les habitats et les animaux.
 
 Espace Vétérinaire :
-Suivi de la santé des animaux et rédaction de rapports.
-Vérification de l’état des habitats.
+Crée des rapports de la santé des animaux et rédaction de rapports sur les habitats.
+Lire ce que les employer on donner a manger aux animaux.
 
 Espace Employé :
 Validation des avis des visiteurs.
-Gestion des services (alimentation des animaux, maintenance des habitats).
+Gestion des services 
+Crée un repas pour les animaux.
+Acces a la boite mail et gestionde la boite mail pour les différents demande de contacte fait via le site par les visteurs.
 
 Avis des visiteurs :
 Les visiteurs peuvent laisser des avis et noter leur expérience.
-Les avis doivent être validés par les employés.
+Il peuvent voir tout les habitats, les animaux est ce que le vétérinaire peux dire sur l'animal.
+Possible de contacter le zoo par mail ou direcetement via le formulaire de contact.
 
 Gestion des rôles et autorisations :
 Administrateur : Accès complet à toutes les fonctionnalités (sauf celle du vétérinaire uniquement Lire les inorfamtions).
@@ -135,68 +138,3 @@ Possibilité d’ajouter une fonctionnalité de recherche avancée pour les anim
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- Installer Homebrew pour mac : 
-    1 - commande dans le terminal : /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-- Installation de php (pour mac avec Homebrew): 
-    1 - commande dans le terminal : brew install php
-
-- Installation de composer (pour mac avec Homebrew):
-    1 - commande dans le terminal : brew install composer
-
-- Installer cloudinary : 
-    1 - https://github.com/cloudinary/cloudinary_php?tab=readme-ov-file
-    2 - commande dans le terminal : composer require "cloudinary/cloudinary_php"
-    3 - Dans le dossier config du projet crée un fichier : config.php avec les info fourni par cloudinary :
-        3.1 - a inscrire dans ce fichier : 
-            use Cloudinary\Configuration\Configuration;
-
-            Configuration::instance([
-                'cloud' => [
-                    'cloud_name' => 'VOTRE_CLOUD_NAME', 
-                    'api_key' => 'VOTRE_API_KEY', 
-                    'api_secret' => 'VOTRE_API_SECRET'
-                ],
-                'url' => [
-                    'secure' => truegit 
-            ]
-            ]);
-
-
-
-Infos sur le projet : 
-
-Dans le fichier script ce trouve un fichier create_admin.php pour crée un administrateur lors de la premier connection. Il faut bien penser a supprier ce compte et de crée un autre vrai profil admin si sera vraiemnt sécuriser. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
