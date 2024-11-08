@@ -1,0 +1,12 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Source\\" : "Source/"
+        }
+    },
+    "require": {
+        "cloudinary/cloudinary_php": "^2.13",
+        "phpmailer/phpmailer": "^6.9",
+        "mongodb/mongodb": "^1.20"
+    }
+}
