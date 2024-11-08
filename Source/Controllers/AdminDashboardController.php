@@ -6,6 +6,8 @@ use Lib\config\Form;
 use Lib\config\MongoDBAtlasManager;
 use Source\Models\animal\AnimalModel;
 use Source\Controllers\AdminController;
+use Source\Helpers\FlashMessage;
+
 
 class AdminDashboardController extends AdminController
 {
@@ -94,15 +96,15 @@ class AdminDashboardController extends AdminController
       if (strlen($animalId) === 24 && ctype_xdigit($animalId)) {
         $mongoDBManager = new MongoDBAtlasManager();
         if ($mongoDBManager->incrementClickCount($animalId)) {
-          echo "Animal ID reçu et compteur incrémenté : $animalId";
+          FlashMessage::addMessage("Animal ID reçu et compteur incrémenté", 'error');
         } else {
-          echo "Erreur lors de l'incrémentation pour l'ID : $animalId";
+          FlashMessage::addMessage("Erreur lors de l'incrémentation pour l'ID", 'error');
         }
       } else {
-        echo "L'ID fourni n'est pas un ObjectId valide.";
+        FlashMessage::addMessage("L'ID fourni n'est pas un ObjectId valide.", 'error');
       }
     } else {
-      echo "Aucun ID d'animal n'a été reçu.";
+      FlashMessage::addMessage("Aucun ID d'animal n'a été reçu.", 'error');
     }
 
     // Redirection vers le tableau de bord
@@ -110,22 +112,3 @@ class AdminDashboardController extends AdminController
     exit;
   }
 }
-
-
-
-
-
-
-// public function createCliksCompter()
-// {
-
-//     $database = $dataOnMongoDB->getDatabase();
-//     $test = $database->test->findOne(['_id' => '67255f283b7879fbad01bf86']);
-//     $test = $database->test->findOne(['_id' => new MongoDB\BSON\ObjectId('67255f283b7879fbad01bf86')]);
-//     print_r($test);
-
-//     $doc =  $dataOnMongoDB->readDocuments(["_id" => "67255f283b7879fbad01bf86"]);
-//     print_r($doc);
-//     $dataOnMongoDB->updateOne(["_id" => "67255f283b7879fbad01bf86"], ["Tamere"]);
-//     $dataOnMongoDB->createDocument(["Tamere" => 42]);
-// }

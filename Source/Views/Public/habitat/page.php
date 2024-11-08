@@ -1,5 +1,4 @@
 <?php
-use Source\Helpers\securityHTML;
 ?>
 
 <main class="main_element_on_click">

@@ -1,6 +1,5 @@
 <?php
 
-use Source\Helpers\securityHTML;
 ?>
 
 <main class="main_home_page">

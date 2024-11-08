@@ -6,7 +6,8 @@ use Exception;
 use MongoDB\Client;
 use MongoDB\Collection;
 use MongoDB\Driver\ServerApi;
-use MongoDB\BSON\ObjectId;
+use Source\Helpers\FlashMessage;
+
 
 class MongoDBAtlasManager
 {
@@ -55,7 +56,7 @@ class MongoDBAtlasManager
       $result = $this->collection->insertOne($data);
       return $result->getInsertedId(); // Retourne l'ObjectId de MongoDB
     } catch (Exception $e) {
-      echo "Erreur lors de l'insertion : " . $e->getMessage() . "\n";
+      FlashMessage::addMessage("Erreur lors de l'insertion", 'error');
     }
   }
 
@@ -65,7 +66,7 @@ class MongoDBAtlasManager
     try {
       return iterator_to_array($this->collection->find($filter, $options));
     } catch (Exception $e) {
-      echo "Erreur lors de la lecture : " . $e->getMessage() . "\n";
+      FlashMessage::addMessage("Erreur lors de la lecture", 'error');
     }
   }
 
@@ -78,7 +79,7 @@ class MongoDBAtlasManager
       // Retourne le nombre de documents modifiés
       return $updateResult->getModifiedCount();
     } catch (Exception $e) {
-      echo "Erreur lors de la mise à jour : " . $e->getMessage() . "\n";
+      FlashMessage::addMessage("Erreur lors de la mise à jour", 'error');
     }
   }
 
@@ -88,44 +89,6 @@ class MongoDBAtlasManager
     $filter = ['relational_id' => (string) $relationalId];
     $update = ['$inc' => ['click_count' => 1]];
 
-    echo "Incrémentation pour ID: $relationalId"; // Log temporaire
-
     return $this->updateDocument($filter, $update);
   }
 }
-
-
-
-
-// <?php
-
-// require 'vendor/autoload.php'; // Assurez-vous que le chemin est correct
-
-// use Lib\config\MongoDBCrud;
-
-// // Configuration de la connexion
-// $uri = 'mongodb+srv://wadyx38:B6YstI1tgxi9a5hi@cluster007.ujm8v.mongodb.net/?retryWrites=true&w=majority';
-// $databaseName = 'arcadia';
-// $collectionName = 'animaux';
-
-// // Création d'une instance de MongoDBCrud
-// $crud = new MongoDBCrud($uri, $databaseName, $collectionName);
-
-// // Exemple de CREATE
-// $crud->createDocument([
-//     'nom' => 'Lion',
-//     'type' => 'Animal',
-//     'habitat' => 'Savane'
-// ]);
-
-// // Exemple de READ
-// $documents = $crud->readDocuments();
-// foreach ($documents as $doc) {
-//     print_r($doc);
-// }
-
-// // Exemple de UPDATE
-// $crud->updateDocument(['nom' => 'Lion'], ['habitat' => 'Zoo']);
-
-// // Exemple de DELETE
-// $crud->deleteDocument(['nom' => 'Lion']);

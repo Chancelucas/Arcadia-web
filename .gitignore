@@ -3,3 +3,4 @@ Lib/vendor/
 vendor/
 composer.json
 composer.lock
+.DS_Store

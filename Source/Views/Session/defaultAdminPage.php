@@ -1,6 +1,5 @@
 <?php
 
-use Source\Helpers\securityHTML;
 ?>
 
 <!DOCTYPE html>

@@ -117,6 +117,8 @@
   align-items: center;
   aspect-ratio: 1 / 1;
   height: 100px;
+  text-decoration: none;
+
 }
 
 .service {

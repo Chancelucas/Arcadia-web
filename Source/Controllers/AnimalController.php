@@ -2,6 +2,7 @@
 
 namespace Source\Controllers;
 
+use Source\Helpers\FlashMessage;
 use Source\Controllers\Controller;
 use Lib\config\MongoDBAtlasManager;
 use Source\Models\animal\AnimalModel;
@@ -9,7 +10,6 @@ use Source\Models\filter\FilterModel;
 use Source\Models\animal\FoodGivenModel;
 use Source\Models\report\AssessmentModel;
 use Source\Models\report\AnimalReportModel;
-use MongoDB\BSON\ObjectId;
 
 
 class AnimalController extends Controller
@@ -104,7 +104,7 @@ class AnimalController extends Controller
       header("Location: /animal/page/" . urlencode($animalId));
       exit;
     } catch (Exception $e) {
-      echo "Erreur lors de la redirection et de l'incrémentation : " . $e->getMessage();
+      FlashMessage::addMessage("Erreur lors de la redirection et de l'incrémentation", 'warning');
     }
   }
 }
