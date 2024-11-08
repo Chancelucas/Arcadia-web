@@ -2,8 +2,8 @@
 
 namespace Source\Models\animal;
 
-use Source\Models\habitat\HabitatModel;
 use Source\Models\MainModel;
+use Source\Models\habitat\HabitatModel;
 
 /**
  * Habitat Object
@@ -130,6 +130,8 @@ class AnimalModel extends MainModel
     }
     return $animalsList;
   }
+
+
 
 
 

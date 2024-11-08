@@ -1,4 +1,5 @@
 <?php
+
 use Source\Helpers\securityHTML;
 ?>
 
@@ -18,9 +19,9 @@ use Source\Helpers\securityHTML;
           </a>
           <div class="animals_container">
             <?php foreach ($habitat->animals as $animal) : ?>
-              <div class="animal" onclick="location.href='/animal/page/<?= $animal->id ?>'" style="background-image: url('<?= $animal->picture_url; ?>');">
-                <p class="animal_breed"><?= $animal->breed; ?></p>
-              </div>
+              <a href="/animal/clickAndRedirect/<?= htmlspecialchars($animal->id) ?>" class="animal" style="background-image: url('<?= htmlspecialchars($animal->picture_url) ?>');">
+                <p class="animal_breed"><?= htmlspecialchars($animal->breed) ?></p>
+              </a>
             <?php endforeach; ?>
           </div>
         </div>

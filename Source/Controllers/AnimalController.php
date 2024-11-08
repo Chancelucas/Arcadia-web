@@ -3,11 +3,13 @@
 namespace Source\Controllers;
 
 use Source\Controllers\Controller;
+use Lib\config\MongoDBAtlasManager;
 use Source\Models\animal\AnimalModel;
 use Source\Models\filter\FilterModel;
 use Source\Models\animal\FoodGivenModel;
 use Source\Models\report\AssessmentModel;
 use Source\Models\report\AnimalReportModel;
+use MongoDB\BSON\ObjectId;
 
 
 class AnimalController extends Controller
@@ -39,13 +41,14 @@ class AnimalController extends Controller
     $model = (new AnimalModel)->findBy(['id' => $idAnimal])[0];
     $reportOfVet = $this->getLastReportVet($idAnimal);
     $foodGiven = $this->getLastFoodGiven($idAnimal);
-
+  
     $this->render('animal/page', [
       'animal' => $model,
       'report' => $reportOfVet,
       'food' => $foodGiven
     ]);
   }
+  
 
   private function getLastElementByField($items, $field)
   {
@@ -76,5 +79,32 @@ class AnimalController extends Controller
     $allFoodGiven = $foodGivenModel->getFoodGivenByAnimalId($idAnimal);
 
     return $this->getLastElementByField($allFoodGiven, 'food_given_date');
+  }
+
+  public function clickAndRedirect($animalId)
+  {
+    $mongoDBManager = new MongoDBAtlasManager();
+
+    try {
+      // Rechercher l'animal par relational_id
+      $existingAnimal = $mongoDBManager->readDocuments(['relational_id' => (string)$animalId]);
+
+      if (empty($existingAnimal)) {
+        // Si l'animal n'existe pas, créez un document avec relational_id
+        $mongoDBManager->createDocument([
+          'relational_id' => (string)$animalId,
+          'click_count' => 1
+        ]);
+      } else {
+        // Si l'animal existe, incrémentez le compteur de clics
+        $mongoDBManager->incrementClickCount($animalId);
+      }
+
+      // Redirection vers la page de l'animal
+      header("Location: /animal/page/" . urlencode($animalId));
+      exit;
+    } catch (Exception $e) {
+      echo "Erreur lors de la redirection et de l'incrémentation : " . $e->getMessage();
+    }
   }
 }

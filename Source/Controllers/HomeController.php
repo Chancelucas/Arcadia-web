@@ -48,4 +48,6 @@ class HomeController extends Controller
     $enableReviews = (new ReviewsModel)->findBy(['status' => true]);
     return $enableReviews;
   }
+
+  
 }

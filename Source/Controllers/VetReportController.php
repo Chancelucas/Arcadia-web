@@ -203,7 +203,7 @@ class VetReportController extends VetController
       $proposed_food = SecurityHelper::sanitize(InputType::String, 'proposed_food');
       $food_amount = SecurityHelper::sanitize(InputType::Int, 'food_amount');
       $passage_date = SecurityHelper::sanitize(InputType::Date, 'passage_date');
-      $state_detail = SecurityHelper::sanitize(InputType::Int, 'state_detail');
+      $state_detail = SecurityHelper::sanitize(InputType::String, 'state_detail');
 
 
       $existingReportDate = (new HabitatReportModel)->findOneByDate($passage_date);
