@@ -1,0 +1,6 @@
+lib/config/connect_api.php
+Lib/vendor/
+vendor/
+composer.json
+composer.lock
+.DS_Store

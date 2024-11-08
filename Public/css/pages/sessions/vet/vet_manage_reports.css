@@ -1,0 +1,55 @@
+.main_vet_report{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+}
+
+.div_form_create_report_vet{
+  background-color: var(--ClearWhite);
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  max-width: 450px;
+  align-items: center;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 10px 0;
+  border: solid 1px var(--brown);
+
+}
+
+.form_create_report_vet{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 10px 0;
+}
+
+.label_create_report_vet{
+  font-weight: 600;
+}
+
+.input_create_report_vet{
+  border: 1px solid var(--brown);
+  border-radius: 5px;
+  color: var(--shadow);
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.form_create_report_vet > textarea {
+  height: 200px;
+}
+
+@media screen and (min-width: 1440px) {
+  .main_vet_report {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    justify-items: center;
+    align-items: center;
+  }
+}
+

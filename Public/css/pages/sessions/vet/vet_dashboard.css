@@ -1,0 +1,100 @@
+@import url(/css/config/config.css);
+@import url(/css/pages/sessions/vet/vet_manage_reports.css);
+@import url(/css/templates/session_navbar.css);
+@import url(/css/pages/sessions/vet/vet_report.css);
+@import url(/css/pages/sessions/vet/vet_update_report.css);
+
+.main_container_vet {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form_search_foodgiven_vet {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 20px;
+
+}
+
+.form_foodgiven_vet {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--ClearWhite);
+  border: 1px solid var(--brown);
+  border-radius: 5px;
+  padding: 10px;
+  max-width: 520px;
+  margin-top: 10px;
+
+}
+
+.div_form_foodgiven_vet {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 10px;
+}
+
+.input_foodgiven_vet {
+  width: 50%;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--white);
+  color: var(--shadow);
+  border: 1px solid var(--brown);
+}
+
+.div_btn_form_foodgiven_vet {
+  display: flex;
+  justify-content: center;
+}
+
+.container_foodgiven_vet {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  align-items: center;
+}
+
+.element_foodgiven_vet {
+  background-color: var(--ClearWhite);
+  border: 1px solid var(--brown);
+  border-radius: 5px;
+  padding: 10px 5px;
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 5px;
+}
+
+@media screen and (min-width: 425px) {
+
+  .input_foodgiven_vet {
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+
+  .container_foodgiven_vet {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    justify-items: center;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+
+  .container_foodgiven_vet {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    justify-items: center;
+    align-items: center;
+  }
+}

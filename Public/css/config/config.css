@@ -1,0 +1,106 @@
+:root {
+  /* Color */
+  --ClearWhite: #fef8f1;
+  --white: #faf1e4;
+  --brown: #e7d4b5;
+
+  --overlay: rgba(0, 0, 0, 0.5);
+
+  --clear: #cedebd;
+  --normal: #9eb384;
+  --shadow: #435334;
+
+  --grey: rgba(224, 224, 224, 0.703);
+
+  --red: #960000;
+  --yellow: #e9b80f;
+  --ClearYellow: #fffed3;
+  --blue: #219c90;
+
+  /* font */
+  --font-baloo: "Baloo Paaji 2", sans-serif;
+}
+
+/* Componant */
+.btn {
+  display: block;
+  margin: 20px 0;
+  font-size: 12px;
+  padding: 5px 20px;
+  background-color: var(--shadow);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 50px;
+  transition: var(--normal) 0.9s;
+  border: none;
+}
+
+.btn:hover {
+  background-color: var(--normal);
+}
+
+.delete_btn {
+  background-color: var(--red);
+  border: none;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  color: var(--white);
+  cursor: pointer;
+}
+
+.btn_update {
+  background-color: var(--normal);
+  border: none;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  color: var(--white);
+  cursor: pointer;
+}
+
+.link_update {
+  background-color: var(--normal);
+  color: var(--white);
+  border-radius: 5px;
+  padding: 1.5px 15px;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.link_back_btn {
+  color: var(--shadow);
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.title_page {
+  padding: 10px 0;
+}
+
+.error {
+ color: var(--red);
+}
+
+.flash-message {
+  padding: 10px;
+  margin: 10px 0;
+  width: 30%;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.flash-message.success {
+  background-color: var(--clear);
+  color: var(--shadow);
+}
+
+.flash-message.error {
+  background-color: var(--grey);
+  color: var(--red);
+}
+
+.flash-message.warning {
+  background-color: var(--grey);
+  color: var(--red);
+}

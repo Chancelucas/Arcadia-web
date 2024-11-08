@@ -1,0 +1,239 @@
+/* START OF HISTORY FOOD GIVEN */
+
+.main_food_given_employee {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.div_form_food_given_employee {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  background-color: var(--ClearWhite);
+  border: 1px solid var(--brown);
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  max-width: 340px;
+}
+
+.form_food_given_employee {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.select_food_given {
+  display: flex;
+  border: 1px solid var(--brown);
+  background-color: var(--white);
+  color: var(--shadow);
+  padding: 2px 0 2px 5px;
+}
+
+.one_food_given_employee{
+  border: 1px solid var(--brown);
+  background-color: var(--ClearWhite);
+  margin: 5px 0;
+  padding: 10px;
+}
+
+
+@media screen and (min-width: 768px) {
+
+  .all_food_given_employee {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    justify-items: center;
+    align-items: center;
+  }
+
+}
+
+@media screen and (min-width: 1024px) {
+
+  .all_food_given_employee {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    justify-items: center;
+    align-items: center;
+  }
+
+}
+
+@media screen and (min-width: 1700px) {
+
+  .all_food_given_employee {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    justify-items: center;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+
+  .all_food_given_employee {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px;
+    justify-items: center;
+    align-items: center;
+  }
+}
+
+/* END OF HISTORY FOOD GIVEN */
+
+
+
+
+/* START OF FOOD GIVEN */
+
+.main_animal_feed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.div_animal_feed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  background-color: var(--ClearWhite);
+  border: 1px solid var(--brown);
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  max-width: 340px;
+}
+
+.form_animal_feed {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.select_animal_feed {
+  display: flex;
+  border: 1px solid var(--brown);
+  background-color: var(--white);
+  color: var(--shadow);
+  padding: 2px 0 2px 5px;
+  border-radius: 5px;
+}
+
+.div_report_vet_employee{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.one_report_vet_employee{
+  margin: 10px;
+  background-color: var(--ClearWhite);
+  border-radius: 5px;
+  border: 1px solid var(--brown);
+  padding: 10px 5px;
+  max-width: 700px;
+  width: 80%;
+}
+
+.label_report_employee{
+  font-weight: 600;
+}
+
+
+.div_given_food_animal_feed_page{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center
+
+}
+
+.form_food_given{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  background-color: var(--ClearWhite);
+  border: solid 1px var(--brown);
+  border-radius: 5px;
+  padding: 10px;
+  max-width: 1440px;
+
+}
+
+.label_good_given{
+}
+.title_form_given_food{
+  margin-bottom: 10px;
+  font-weight: 600;
+
+}
+
+.input_food_given{
+  width: 100%;
+  border: 1px solid var(--brown);
+  background-color: var(--white);
+  color: var(--shadow);
+  padding: 2px 0 2px 5px;
+  border-radius: 5px;
+}
+
+@media screen and (min-width: 768px) {
+
+  .all_food_given_employee {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    justify-items: center;
+    align-items: center;
+  }
+
+}
+
+@media screen and (min-width: 1024px) {
+
+  .all_food_given_employee {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    justify-items: center;
+    align-items: center;
+  }
+
+}
+
+@media screen and (min-width: 1700px) {
+
+  .all_food_given_employee {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    justify-items: center;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+
+  .all_food_given_employee {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px;
+    justify-items: center;
+    align-items: center;
+  }
+}

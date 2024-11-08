@@ -1,0 +1,16 @@
+@import url(/css/config/config.css);
+@import url(/css/templates/session_navbar.css);
+@import url(/css/pages/sessions/admin/admin_create_user.css);
+@import url(/css/pages/sessions/admin/admin_edit_animals.css);
+@import url(/css/pages/sessions/admin/admin_edit_habitats.css);
+@import url(/css/pages/sessions/admin/admin_edit_hour.css);
+@import url(/css/pages/sessions/admin/admin_edit_services.css);
+@import url(/css/pages/sessions/admin/admin_report.css);
+@import url(/css/pages/sessions/admin/admin_update_user.css);
+@import url(/css/pages/sessions/admin/admin_update_habitat.css);
+@import url(/css/pages/sessions/admin/admin_update_animals.css);
+@import url(/css/pages/sessions/admin/admin_update_services.css);
+@import url(/css/pages/sessions/admin/admin_update_hour.css);
+
+
+

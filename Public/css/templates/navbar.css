@@ -1,0 +1,149 @@
+/* Mobile First Styles */
+.navbar_public {
+  background-color: var(--shadow);
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.div_nav_public {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.container_logo_public {
+  display: flex;
+}
+
+.logo_public {
+  height: 50px;
+}
+
+.icons_menu_public {
+  position: relative;
+  right: 0;
+}
+
+.icon_close {
+  display: none;
+  top: 0;
+}
+
+.ul_links_public_nav {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 90vh;
+  width: 100vw;
+  left: 0;
+  top: 10vh;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: var(--normal);
+  z-index: 100;
+}
+
+.li_link_public_nav {
+  padding: 10px 0;
+}
+
+.li_link_public_nav > a {
+  text-decoration: none;
+  color: var(--white);
+  font-size: 15px;
+}
+
+.li_link_public_nav > a:hover {
+  color: var(--overlay);
+}
+
+/* Tablet Styles */
+@media screen and (min-width: 769px) {
+
+  .div_nav_public {
+    justify-content: space-between;
+    padding: 0 30px;
+  }
+
+  .icons_menu_public {
+    position: relative;
+    right: 0;
+  }
+
+  .icon_close {
+    display: none;
+  }
+
+  .ul_links_public_nav {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 90vh;
+    width: 100vw;
+    top: 10vh;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: var(--normal);
+  }
+
+  .li_link_public_nav {
+    padding: 10px 0;
+  }
+
+  .li_link_public_nav > a {
+    font-size: 18px;
+  }
+}
+
+/* Desktop Styles */
+@media screen and (min-width: 1025px) {
+  .navbar_public {
+    justify-content: space-around;
+  }
+
+  .div_nav_public {
+    max-width: 1440px;
+    justify-content: space-between;
+    padding: 0 50px;
+  }
+
+  .logo_public {
+    height: 50px;
+  }
+
+  .icons_menu_public {
+    display: none;
+  }
+
+  .ul_links_public_nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    position: static;
+    height: auto;
+    width: auto;
+    background-color: transparent;
+  }
+
+  .li_link_public_nav {
+    padding: 0 2em;
+  }
+
+  .li_link_public_nav > a {
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--white);
+  }
+}

@@ -1,0 +1,66 @@
+@import url(/css/config/config.css);
+
+.container_update_habitat_admin {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+}
+
+.form_update_habitat_admin {
+  margin-top: 5%;
+  background-color: var(--ClearWhite);
+  display: flex;
+  border: 1px solid var(--brown);
+  flex-direction: column;
+  width: 50vw;
+  max-width: 1110px;
+  padding: 1rem 1rem 1rem 1rem;
+  border-radius: 5px;
+  width: 90%;
+}
+
+.div_form_update_habitat_admin{
+  margin: 5px 0 5px 0;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input_class_update_habitat_admin{
+  background-color: var(--white);
+  border: none;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  width: 80%;
+  color: var(--shadow);
+
+}
+
+.input_class_update_habitat_admin {
+  height: auto;
+  background-color: var(--white);
+}
+
+.description_update_habitat_admin{
+  height: 100px;
+}
+
+.div_class_update_habitat_admin{
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (min-width: 769px)  {
+  .div_form_update_habitat_admin{
+    margin: 5px 0 5px 0;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
