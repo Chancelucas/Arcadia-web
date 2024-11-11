@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Zoo Arcadia site officiel">
     <link rel="stylesheet" media="screen" href="/css/style.css" type="text/css">
+    <link rel="icon" type="image/png" href="Public/assets/images/logo/favicon.ico"> 
+    <meta name="description" content="Découvrez le zoo Arcadia, un espace écologique près de la forêt de Brocéliande, en Bretagne. Explorez nos animaux et habitats en ligne, accédez aux horaires et services, et plongez dans notre engagement pour le bien-être animal et l’écologie.">
     <title>Arcadia</title>
 </head>
 

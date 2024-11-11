@@ -73,6 +73,25 @@ define('DB_USER', 'VOTRE USERNAME');
 define('DB_PASS', 'VOTRE PASSWORD');
 ```
 
+3. Installation de composer :
+
+```
+composer install
+```
+
+Pour utiliser mongodb pour avoir le nombre de clic par animaux veillez bien a voir mongodb d'installer 
+
+````
+composer require mongodb/mongodb
+````
+
+Pensez a ajouter mongodb dans votre fichier php.ini de la version que vous utiliser :
+
+```
+extension=mongodb.so
+```
+
+
 ## Utilisation
 
 Accédez à l'application en ouvrant votre navigateur et en vous rendant à l'adresse :

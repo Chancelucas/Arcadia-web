@@ -196,7 +196,7 @@ class FoodGivenModel extends MainModel
 
   public function getFoodGivenByAnimalId($animalId)
   {
-    $result =  $this->request("SELECT * FROM foodGiven WHERE id_animal = :id_animal", [':id_animal' => $animalId])->fetchAll();
+    $result =  $this->request("SELECT * FROM FoodGiven WHERE id_animal = :id_animal", [':id_animal' => $animalId])->fetchAll();
     return $result;
   }
 
